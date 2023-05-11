@@ -1,0 +1,13 @@
+D:\Realta NetCore Library\Common\GSM00100Common\bin\Release\netstandard2.1\GSM00100Common.deps.json
+D:\Realta NetCore Library\Common\GSM00100Common\bin\Release\netstandard2.1\GSM00100Common.dll
+D:\Realta NetCore Library\Common\GSM00100Common\bin\Release\netstandard2.1\GSM00100Common.pdb
+D:\Realta NetCore Library\Common\GSM00100Common\bin\Release\netstandard2.1\R_APICommonDTO.dll
+D:\Realta NetCore Library\Common\GSM00100Common\bin\Release\netstandard2.1\R_CommonFrontBackAPI.dll
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.vbproj.AssemblyReference.cache
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.AssemblyInfoInputs.cache
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.AssemblyInfo.vb
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.vbproj.CoreCompileInputs.cache
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.vbproj.CopyComplete
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.dll
+D:\Realta NetCore Library\Common\GSM00100Common\obj\Release\netstandard2.1\GSM00100Common.pdb

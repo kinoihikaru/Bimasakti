@@ -1,0 +1,78 @@
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.deps.json
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.pdb
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuCommon.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_APIBackEnd.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_APICommon.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_ContextBackEnd.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\R_Security.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuCommon.pdb
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.AssemblyReference.cache
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.BlazorMenuBackResources_msgrsc.resources
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.GenerateResource.cache
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.GeneratedMSBuildEditorConfig.editorconfig
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.AssemblyInfoInputs.cache
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.AssemblyInfo.vb
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.CoreCompileInputs.cache
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.CopyComplete
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\refint\BlazorMenuBack.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.pdb
+D:\Realta NetCore Library\Back\BlazorMenuBack\obj\Debug\net6.0\ref\BlazorMenuBack.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\id\R_APIBackEnd.resources.dll
+D:\Realta NetCore Library\Back\BlazorMenuBack\bin\Debug\net6.0\ja\R_APIBackEnd.resources.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.deps.json
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.pdb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuCommon.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_APIBackEnd.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_APICommon.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_ContextBackEnd.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_Security.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuCommon.pdb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\id\R_APIBackEnd.resources.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\ja\R_APIBackEnd.resources.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.AssemblyReference.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.BlazorMenuBackResources_msgrsc.resources
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.GenerateResource.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.AssemblyInfoInputs.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.AssemblyInfo.vb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.CoreCompileInputs.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.CopyComplete
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\refint\BlazorMenuBack.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.pdb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\ref\BlazorMenuBack.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuBack.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuCommon.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_APIBackEnd.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_APICommon.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_ContextBackEnd.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\R_Security.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\BlazorMenuCommon.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\id\R_APIBackEnd.resources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\bin\Debug\net6.0\ja\R_APIBackEnd.resources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.BlazorMenuBackResources_msgrsc.resources
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.GenerateResource.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.AssemblyInfo.vb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.vbproj.CopyComplete
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\refint\BlazorMenuBack.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\BlazorMenuBack.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\BlazorMenuBack\obj\Debug\net6.0\ref\BlazorMenuBack.dll

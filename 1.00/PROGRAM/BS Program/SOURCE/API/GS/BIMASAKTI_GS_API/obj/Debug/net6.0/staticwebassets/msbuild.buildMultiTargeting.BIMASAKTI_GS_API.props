@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\BIMASAKTI_GS_API.props" />
+</Project>

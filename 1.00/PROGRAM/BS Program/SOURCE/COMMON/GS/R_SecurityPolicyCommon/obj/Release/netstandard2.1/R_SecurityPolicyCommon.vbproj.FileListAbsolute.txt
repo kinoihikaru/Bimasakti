@@ -1,0 +1,14 @@
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\bin\Release\netstandard2.1\R_SecurityPolicyCommon.deps.json
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\bin\Release\netstandard2.1\R_SecurityPolicyCommon.dll
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\bin\Release\netstandard2.1\R_SecurityPolicyCommon.pdb
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\bin\Release\netstandard2.1\R_APICommonDTO.dll
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\bin\Release\netstandard2.1\R_SecurityTokenCommon.dll
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\bin\Release\netstandard2.1\R_SecurityTokenCommon.pdb
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.vbproj.AssemblyReference.cache
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.AssemblyInfoInputs.cache
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.AssemblyInfo.vb
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.vbproj.CoreCompileInputs.cache
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.vbproj.CopyComplete
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.dll
+D:\Realta NetCore Library\R_SecurityPolicy\R_SecurityPolicyCommon\obj\Release\netstandard2.1\R_SecurityPolicyCommon.pdb

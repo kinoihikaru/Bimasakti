@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "GSM00110Back/1.0.0": {
+        "runtime": {
+          "GSM00110Back.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GSM00110Back/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

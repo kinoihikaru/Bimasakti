@@ -1,0 +1,74 @@
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\GSM00100Back.deps.json
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\GSM00100Back.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\GSM00100Back.pdb
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\GSM00100Common.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_APIBackEnd.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_APICommon.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_EmailEngine.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_ContextBackEnd.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_Security.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\GSM00100Common.pdb
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\R_EmailEngine.pdb
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.AssemblyReference.cache
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.GeneratedMSBuildEditorConfig.editorconfig
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.AssemblyInfoInputs.cache
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.AssemblyInfo.vb
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.CoreCompileInputs.cache
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.CopyComplete
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.dll
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\refint\GSM00100Back.dll
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\GSM00100Back.pdb
+D:\Realta NetCore Library\Back\GSM00100Back\obj\Debug\net6.0\ref\GSM00100Back.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\id\R_APIBackEnd.resources.dll
+D:\Realta NetCore Library\Back\GSM00100Back\bin\Debug\net6.0\ja\R_APIBackEnd.resources.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Back.deps.json
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Back.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Back.pdb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Common.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_APIBackEnd.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_APICommon.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_ContextBackEnd.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_Security.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Common.pdb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\id\R_APIBackEnd.resources.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\ja\R_APIBackEnd.resources.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.AssemblyReference.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.AssemblyInfoInputs.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.AssemblyInfo.vb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.CoreCompileInputs.cache
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.CopyComplete
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\refint\GSM00100Back.dll
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.pdb
+D:\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\ref\GSM00100Back.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Back.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Back.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Back.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Common.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_APIBackEnd.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_APICommon.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_ContextBackEnd.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_Security.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\GSM00100Common.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\id\R_APIBackEnd.resources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\bin\Debug\net6.0\ja\R_APIBackEnd.resources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.AssemblyInfo.vb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.vbproj.CopyComplete
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\refint\GSM00100Back.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\GSM00100Back.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\GS\GSM00100Back\obj\Debug\net6.0\ref\GSM00100Back.dll
