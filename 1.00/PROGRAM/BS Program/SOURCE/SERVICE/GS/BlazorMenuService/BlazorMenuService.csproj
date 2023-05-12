@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="R_APICommon">
-      <HintPath>..\..\..\Library\Back\R_APICommon.dll</HintPath>
+      <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APICommon.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -2758,49 +2758,12 @@
           "bin/placeholder/BlazorMenuService.dll": {}
         }
       },
-      "GSM00100Back/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GSM00100Common": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/GSM00100Back.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Back.dll": {}
-        }
-      },
-      "GSM00100Common/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/GSM00100Common.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Common.dll": {}
-        }
-      },
-      "GSM00100Service/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "GSM00100Back": "1.0.0",
-          "GSM00100Common": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
-        },
-        "compile": {
-          "bin/placeholder/GSM00100Service.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/GSM00100Service.dll": {}
-        }
-      },
       "GSM03000BACK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "GSM03000COMMON": "1.0.0"
+          "GSM03000COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_OTHER_CHARGESResources": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM03000BACK.dll": {}
@@ -2832,6 +2795,54 @@
         },
         "runtime": {
           "bin/placeholder/GSM03000SERVICE.dll": {}
+        }
+      },
+      "Lookup_GSBACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSBACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSBACK.dll": {}
+        }
+      },
+      "Lookup_GSCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        }
+      },
+      "Lookup_GSSERVICES/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSBACK": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSSERVICES.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSSERVICES.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_MAINTAIN_OTHER_CHARGESResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_MAINTAIN_OTHER_CHARGESResources.dll": {}
         }
       },
       "R_SecurityPolicyBack/1.0.0": {
@@ -8363,21 +8374,6 @@
       "path": "../../../SERVICE/GS/BlazorMenuService/BlazorMenuService.csproj",
       "msbuildProject": "../../../SERVICE/GS/BlazorMenuService/BlazorMenuService.csproj"
     },
-    "GSM00100Back/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/GSM00100Back/GSM00100Back.vbproj",
-      "msbuildProject": "../../../BACK/GS/GSM00100Back/GSM00100Back.vbproj"
-    },
-    "GSM00100Common/1.0.0": {
-      "type": "project",
-      "path": "../../../COMMON/GS/GSM00100Common/GSM00100Common.vbproj",
-      "msbuildProject": "../../../COMMON/GS/GSM00100Common/GSM00100Common.vbproj"
-    },
-    "GSM00100Service/1.0.0": {
-      "type": "project",
-      "path": "../../../SERVICE/GS/GSM00100Service/GSM00100Service.csproj",
-      "msbuildProject": "../../../SERVICE/GS/GSM00100Service/GSM00100Service.csproj"
-    },
     "GSM03000BACK/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM03000BACK/GSM03000BACK.csproj",
@@ -8392,6 +8388,26 @@
       "type": "project",
       "path": "../../../SERVICE/GS/GSM03000SERVICE/GSM03000SERVICE.csproj",
       "msbuildProject": "../../../SERVICE/GS/GSM03000SERVICE/GSM03000SERVICE.csproj"
+    },
+    "Lookup_GSBACK/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSBACK/Lookup_GSBACK.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSBACK/Lookup_GSBACK.csproj"
+    },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj"
+    },
+    "Lookup_GSSERVICES/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GSSERVICES/Lookup_GSSERVICES.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GSSERVICES/Lookup_GSSERVICES.csproj"
+    },
+    "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_CHARGESResources/RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_CHARGESResources/RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj"
     },
     "R_SecurityPolicyBack/1.0.0": {
       "type": "project",
@@ -8427,8 +8443,8 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "BlazorMenuService >= 1.0.0",
-      "GSM00100Service >= 1.0.0",
       "GSM03000SERVICE >= 1.0.0",
+      "Lookup_GSSERVICES >= 1.0.0",
       "R_SecurityPolicyService >= 1.0.0",
       "R_SecurityTokenService >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.0",
@@ -8443,11 +8459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+      "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
       "projectName": "BIMASAKTI_GS_API",
-      "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+      "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
       "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-      "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\obj\\",
+      "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8470,20 +8486,20 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj"
             },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM00100Service\\GSM00100Service.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM00100Service\\GSM00100Service.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj"
             },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"
             },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
             },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
+            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
+              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"
             }
           }
         }

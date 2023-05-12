@@ -9,8 +9,8 @@
       "BIMASAKTI_GS_API/1.0.0": {
         "dependencies": {
           "BlazorMenuService": "1.0.0",
-          "GSM00100Service": "1.0.0",
           "GSM03000SERVICE": "1.0.0",
+          "Lookup_GSSERVICES": "1.0.0",
           "R_SecurityPolicyService": "1.0.0",
           "R_SecurityTokenService": "1.0.0",
           "Realta.BackCollectionNuGet": "1.0.0",
@@ -1454,40 +1454,10 @@
           "BlazorMenuService.dll": {}
         }
       },
-      "GSM00100Back/1.0.0": {
-        "dependencies": {
-          "GSM00100Common": "1.0.0"
-        },
-        "runtime": {
-          "GSM00100Back.dll": {}
-        }
-      },
-      "GSM00100Common/1.0.0": {
-        "runtime": {
-          "GSM00100Common.dll": {}
-        }
-      },
-      "GSM00100Service/1.0.0": {
-        "dependencies": {
-          "GSM00100Back": "1.0.0",
-          "GSM00100Common": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
-        },
-        "runtime": {
-          "GSM00100Service.dll": {}
-        },
-        "resources": {
-          "id/R_APIBackEnd.resources.dll": {
-            "locale": "id"
-          },
-          "ja/R_APIBackEnd.resources.dll": {
-            "locale": "ja"
-          }
-        }
-      },
       "GSM03000BACK/1.0.0": {
         "dependencies": {
-          "GSM03000COMMON": "1.0.0"
+          "GSM03000COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_OTHER_CHARGESResources": "1.0.0"
         },
         "runtime": {
           "GSM03000BACK.dll": {}
@@ -1506,6 +1476,42 @@
         },
         "runtime": {
           "GSM03000SERVICE.dll": {}
+        }
+      },
+      "Lookup_GSBACK/1.0.0": {
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0"
+        },
+        "runtime": {
+          "Lookup_GSBACK.dll": {}
+        }
+      },
+      "Lookup_GSCOMMON/1.0.0": {
+        "runtime": {
+          "Lookup_GSCOMMON.dll": {}
+        }
+      },
+      "Lookup_GSSERVICES/1.0.0": {
+        "dependencies": {
+          "Lookup_GSBACK": "1.0.0",
+          "Lookup_GSCOMMON": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "runtime": {
+          "Lookup_GSSERVICES.dll": {}
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
+      "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
+        "runtime": {
+          "RSP_GS_MAINTAIN_OTHER_CHARGESResources.dll": {}
         }
       },
       "R_SecurityPolicyBack/1.0.0": {
@@ -1581,14 +1587,6 @@
           }
         }
       },
-      "R_CommonFrontBackAPI/1.0.0.0": {
-        "runtime": {
-          "R_CommonFrontBackAPI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "R_APIBackEnd/1.0.0.0": {
         "runtime": {
           "R_APIBackEnd.dll": {
@@ -1602,6 +1600,14 @@
           },
           "ja/R_APIBackEnd.resources.dll": {
             "locale": "ja"
+          }
+        }
+      },
+      "R_CommonFrontBackAPI/1.0.0.0": {
+        "runtime": {
+          "R_CommonFrontBackAPI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       },
@@ -2800,21 +2806,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "GSM00100Back/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "GSM00100Common/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "GSM00100Service/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "GSM03000BACK/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -2826,6 +2817,26 @@
       "sha512": ""
     },
     "GSM03000SERVICE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_GSBACK/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_GSSERVICES/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2875,12 +2886,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "R_CommonFrontBackAPI/1.0.0.0": {
+    "R_APIBackEnd/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "R_APIBackEnd/1.0.0.0": {
+    "R_CommonFrontBackAPI/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

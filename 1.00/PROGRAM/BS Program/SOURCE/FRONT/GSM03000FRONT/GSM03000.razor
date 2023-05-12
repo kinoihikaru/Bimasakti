@@ -1,0 +1,162 @@
+﻿@page "/GSM03000" 
+@inherits R_Page
+@using GSM03000MODEL.ViewModel
+@using GSM03000Common.DTOs
+@inject R_ILocalizer<GSM03000FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout Row>
+        <R_ItemLayout xs="4">
+            <R_Label FontColor="Red" Class="fw-bold" FontSize="15">Property</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="8">
+            <R_ComboBox Data="@_viewModel.PropertyList"
+                            @bind-Value="_viewModel.PropertyValueContext"
+                            ValueField="@nameof(GSM03000PropertyDTO.CPROPERTY_ID)"
+                            TextField="@nameof(GSM03000PropertyDTO.CPROPERTY_NAME)"
+                            R_ConductorSource="@_conductorRef" OnChanged="@PropertyDropdown_OnChange">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-3">
+    <R_Grid @ref="@_gridRef"
+            DataSource="@_viewModel.OtherChargeList"
+            R_ConductorSource="@_conductorRef"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable="true"
+            R_ServiceGetListRecord="@ServiceGetListRecord">
+        <R_GridColumns>
+            <R_GridNumericColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CSTATUS_DESCRIPTION" HeaderText="Status"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2" >
+            <R_Label>Additional Charges Id</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="4">
+            <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="6">
+            <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label>Charges Description</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="20">
+            <R_TextArea @bind-Value="@_viewModel.Data.CDESCRIPTION"
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"></R_TextArea>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label>Status</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="10">
+            <R_RadioGroup Data="@_viewModel.OptionsStatus"
+                          @bind-Value="@_viewModel.Data.CSTATUS"
+                          ValueField="@nameof(RadioModel.Id)"
+                          TextField="@nameof(RadioModel.Text)"
+                          R_ConductorSource="@_conductorRef"
+                          >
+            </R_RadioGroup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="4">
+            <R_Label FontColor="Red" Class="fw-bold" FontSize="13">GL ACCOUNT SETUP</R_Label>
+            <R_Label>(Valid when GL Journal Link Enable)</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label>GL Account No*</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_TextBox @bind-Value="@_viewModel.Data.CGLACCOUNT_NO"
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="false"
+                       R_EnableEdit="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Lookup @ref="R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout xs="8">
+            <R_TextBox @bind-Value="@_viewModel.Data.CGLACCOUNT_NAME"
+                       R_ConductorSource="@_conductorRef"
+                       R_EnableAdd="false"
+                       R_EnableEdit="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_AddButton R_Conductor="@_conductorRef" @ref="@R_AddBtn"></R_AddButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_Button @ref="@R_ActiveInActiveBtn">Activate/InActive</R_Button>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_Button @ref="@R_PrintBtn">Print</R_Button>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorRef" 
+             R_ViewModel="@_viewModel"
+             R_IsHeader = "true"
+             R_ServiceGetRecord="@ServiceGetRecord"
+             R_ServiceSave="@ServiceSave" 
+             R_ServiceDelete="@ServiceDelete"
+             R_Validation="@Validation"
+             R_SetAdd="@R_SetAdd"
+             R_SetEdit="@R_SetEdit"
+             R_SetHasData="@R_SetHasData"
+             >
+</R_Conductor>

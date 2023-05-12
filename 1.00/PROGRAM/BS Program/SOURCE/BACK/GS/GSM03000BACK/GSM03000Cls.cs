@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GSM03000Common;
+using System.Data.Common;
 
 namespace GSM03000Back
 {
@@ -16,15 +17,14 @@ namespace GSM03000Back
         protected override void R_Deleting(GSM03000DTO poEntity)
         {
             var loEx = new R_Exception();
+            string lcQuery = "";
+            var loDb = new R_Db();
+            var loConn = loDb.GetConnection("R_DefaultConnectionString");
 
             try
             {
                 // set action delete
                 poEntity.CACTION = "DELETE";
-
-                string lcQuery = "";
-                var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
 
                 lcQuery = $"EXEC RSP_GS_MAINTAIN_OTHER_CHARGES  " +
                     $"@CCOMPANY_ID = '{poEntity.CCOMPANY_ID}', " +
@@ -38,14 +38,35 @@ namespace GSM03000Back
                     $"@CACTION = '{poEntity.CACTION}', " +
                     $"@CUSER_ID = '{poEntity.CUSER_ID}' "; 
 
-                loDb.SqlExecNonQuery(lcQuery, loConn, true);
-                
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                try
+                {
+                    loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
 
+                    loConn.Dispose();
+                    loConn = null;
+                }
+            }
             loEx.ThrowExceptionIfErrors();
 
         }
@@ -81,13 +102,14 @@ namespace GSM03000Back
         protected override void R_Saving(GSM03000DTO poNewEntity, eCRUDMode poCRUDMode)
         {
             var loEx = new R_Exception();
+            string lcQuery = "";
+            var loDb = new R_Db();
+            var loConn = loDb.GetConnection("R_DefaultConnectionString");
+            var loCmd = loDb.GetCommand();
 
             try
             {
-                string lcQuery = "";
-                var loDb = new R_Db();
-                var loConn = loDb.GetConnection("R_DefaultConnectionString");
-                var loCmd = loDb.GetCommand();
+                
 
                 lcQuery = "exec RSP_GS_MAINTAIN_OTHER_CHARGES @CCOMPANY_ID ,@CPROPERTY_ID ,@CCHARGES_TYPE, " +
                     "@CCHARGES_ID ,@CCHARGES_NAME ,@CDESCRIPTION ,@CSTATUS ,@CGLACCOUNT_NO ,@CACTION ,@CUSER_ID;";
@@ -113,12 +135,34 @@ namespace GSM03000Back
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poNewEntity.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
 
-                loDb.SqlExecNonQuery(loConn, loCmd, true);
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                try
+                {
+                    loDb.SqlExecNonQuery(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
 
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
+
+                    loConn.Dispose();
+                    loConn = null;
+                }
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -188,5 +232,6 @@ namespace GSM03000Back
 
             return loResult;
         }
+
     }
 }

@@ -742,7 +742,8 @@
       },
       "GSM03000BACK/1.0.0": {
         "dependencies": {
-          "GSM03000COMMON": "1.0.0"
+          "GSM03000COMMON": "1.0.0",
+          "RSP_GS_MAINTAIN_OTHER_CHARGESResources": "1.0.0"
         },
         "runtime": {
           "GSM03000BACK.dll": {}
@@ -751,6 +752,11 @@
       "GSM03000COMMON/1.0.0": {
         "runtime": {
           "GSM03000COMMON.dll": {}
+        }
+      },
+      "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
+        "runtime": {
+          "RSP_GS_MAINTAIN_OTHER_CHARGESResources.dll": {}
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -1342,6 +1348,11 @@
       "sha512": ""
     },
     "GSM03000COMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

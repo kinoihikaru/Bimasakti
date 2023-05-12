@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FRONT", "FRONT", "{C983CB42-032A-4E27-BA05-F0273E6B7BF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lookup_GSFRONT", "FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj", "{E783D739-869E-4C95-B82D-7E621EA25B63}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MODEL", "MODEL", "{D89C3FD0-0D1D-4A07-B366-6BF33836E3E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lookup_GSModel", "FRONT\Lookup_GSModel\Lookup_GSModel.csproj", "{334EBFE0-3ACA-41DA-A27C-B52E019499F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontResources", "FrontResources", "{13EDF08D-1149-48F8-A501-DC536EC09D6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lookup_GSFrontResources", "FRONT\Lookup_GSFrontResources\Lookup_GSFrontResources.csproj", "{0B757B83-6D1C-4346-9356-AFE18967E920}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E783D739-869E-4C95-B82D-7E621EA25B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E783D739-869E-4C95-B82D-7E621EA25B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E783D739-869E-4C95-B82D-7E621EA25B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E783D739-869E-4C95-B82D-7E621EA25B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334EBFE0-3ACA-41DA-A27C-B52E019499F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334EBFE0-3ACA-41DA-A27C-B52E019499F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334EBFE0-3ACA-41DA-A27C-B52E019499F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334EBFE0-3ACA-41DA-A27C-B52E019499F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B757B83-6D1C-4346-9356-AFE18967E920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B757B83-6D1C-4346-9356-AFE18967E920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B757B83-6D1C-4346-9356-AFE18967E920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B757B83-6D1C-4346-9356-AFE18967E920}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E783D739-869E-4C95-B82D-7E621EA25B63} = {C983CB42-032A-4E27-BA05-F0273E6B7BF2}
+		{334EBFE0-3ACA-41DA-A27C-B52E019499F1} = {D89C3FD0-0D1D-4A07-B366-6BF33836E3E8}
+		{0B757B83-6D1C-4346-9356-AFE18967E920} = {13EDF08D-1149-48F8-A501-DC536EC09D6E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {903C3A5A-9E90-4F55-A47D-3F3747CA5A77}
+	EndGlobalSection
+EndGlobal

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\GS\GSM03000COMMON\GSM03000COMMON.csproj" />
+    <ProjectReference Include="..\GS_SPR\RSP_GS_MAINTAIN_OTHER_CHARGESResources\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -225,6 +225,16 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "BlazorClientHelper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/BlazorClientHelper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BlazorClientHelper.dll": {}
+        }
+      },
       "GSM03000COMMON/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -257,6 +267,44 @@
         },
         "runtime": {
           "bin/placeholder/GSM03000MODEL.dll": {}
+        }
+      },
+      "Lookup_GSCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        }
+      },
+      "Lookup_GSFRONT/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0",
+          "Lookup_GSModel": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSFRONT.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSFRONT.dll": {}
+        }
+      },
+      "Lookup_GSModel/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Lookup_GSCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_GSModel.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSModel.dll": {}
         }
       }
     }
@@ -574,6 +622,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "BlazorClientHelper/1.0.0": {
+      "type": "project",
+      "path": "../../../Menu/BlazorClientHelper/BlazorClientHelper.csproj",
+      "msbuildProject": "../../../Menu/BlazorClientHelper/BlazorClientHelper.csproj"
+    },
     "GSM03000COMMON/1.0.0": {
       "type": "project",
       "path": "../../../COMMON/GS/GSM03000COMMON/GSM03000COMMON.csproj",
@@ -588,13 +641,31 @@
       "type": "project",
       "path": "../GSM03000MODEL/GSM03000MODEL.csproj",
       "msbuildProject": "../GSM03000MODEL/GSM03000MODEL.csproj"
+    },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj"
+    },
+    "Lookup_GSFRONT/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSFRONT/Lookup_GSFRONT.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSFRONT/Lookup_GSFRONT.csproj"
+    },
+    "Lookup_GSModel/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSModel/Lookup_GSModel.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/FRONT/Lookup_GSModel/Lookup_GSModel.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "BlazorClientHelper >= 1.0.0",
       "GSM03000COMMON >= 1.0.0",
       "GSM03000FrontResources >= 1.0.0",
       "GSM03000MODEL >= 1.0.0",
+      "Lookup_GSCOMMON >= 1.0.0",
+      "Lookup_GSFRONT >= 1.0.0",
       "Microsoft.AspNetCore.Components.Web >= 6.0.15"
     ]
   },
@@ -640,6 +711,15 @@
             },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000MODEL\\GSM03000MODEL.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GS\\GSM03000MODEL\\GSM03000MODEL.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj"
             }
           }
         }
