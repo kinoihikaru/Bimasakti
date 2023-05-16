@@ -225,11 +225,21 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Lookup_GSCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_GSCOMMON.dll": {}
+        }
+      },
       "Lookup_GSModel/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
         "dependencies": {
-          "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": "1.0.0"
+          "Lookup_GSCOMMON": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Lookup_GSModel.dll": {}
@@ -553,6 +563,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "Lookup_GSCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj",
+      "msbuildProject": "../../BACK/Lookup_GSCOMMON/Lookup_GSCOMMON.csproj"
+    },
     "Lookup_GSModel/1.0.0": {
       "type": "project",
       "path": "../Lookup_GSModel/Lookup_GSModel.csproj",
@@ -561,7 +576,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
+      "Lookup_GSCOMMON >= 1.0.0",
       "Lookup_GSModel >= 1.0.0",
       "Microsoft.AspNetCore.Components.Web >= 6.0.15"
     ]
@@ -573,11 +588,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
+      "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
       "projectName": "Lookup_GSFRONT",
-      "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
+      "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
       "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-      "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\obj\\",
+      "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -600,11 +615,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
-              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
             },
-            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSModel\\Lookup_GSModel.csproj": {
-              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSModel\\Lookup_GSModel.csproj"
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSModel\\Lookup_GSModel.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSModel\\Lookup_GSModel.csproj"
             }
           }
         }
@@ -643,16 +658,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Unable to find project information for 'D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
-      "libraryId": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  }
 }

@@ -1,4 +1,4 @@
-﻿@*@page "/GSM03000"*@
+﻿@page "/GSM03010"
 @inherits R_Page
 @using GSM03000MODEL.ViewModel
 @using GSM03000Common.DTOs
@@ -49,7 +49,7 @@
         <R_ItemLayout xs="4">
             <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                       R_EnableAdd="true" R_EnableEdit="false"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout xs="6">
             <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
@@ -81,7 +81,8 @@
                           @bind-Value="@_viewModel.Data.CSTATUS"
                           ValueField="@nameof(RadioModel.Id)"
                           TextField="@nameof(RadioModel.Text)"
-                          R_ConductorSource="@_conductorRef">
+                          R_ConductorSource="@_conductorRef"
+                          Enabled="false">
             </R_RadioGroup>
         </R_ItemLayout>
     </R_StackLayout>
@@ -101,8 +102,8 @@
         <R_ItemLayout xs="2">
             <R_TextBox @bind-Value="@_viewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="false"
-                       R_EnableEdit="false"></R_TextBox>
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout xs="2">
             <R_Lookup @ref="R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
@@ -110,42 +111,41 @@
         <R_ItemLayout xs="8">
             <R_TextBox @bind-Value="@_viewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="false"
-                       R_EnableEdit="false"></R_TextBox>
-        </R_ItemLayout>
-    </R_StackLayout>
-
-    <R_StackLayout Row>
-        <R_ItemLayout xs="2">
-            <R_AddButton R_Conductor="@_conductorRef" @ref="@R_AddBtn"></R_AddButton>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_Button @ref="@R_ActiveInActiveBtn">Activate/InActive</R_Button>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_Button @ref="@R_PrintBtn">Print</R_Button>
-        </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"></R_TextBox>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
 
+<R_StackLayout Row Class="justify-content-between">
+    <R_StackLayout>
+        <R_ItemLayout xs="2">
+            <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout>
+        <R_ItemLayout xs="2">
+            <R_Button @ref="@R_ActiveInActiveBtn">Activate/InActive</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_Button @ref="@R_PrintBtn">Print</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout>
+        <R_ItemLayout xs="2">
+            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
 
 <R_Conductor @ref="@_conductorRef"
              R_ViewModel="@_viewModel"
@@ -156,5 +156,6 @@
              R_Validation="@Validation"
              R_SetAdd="@R_SetAdd"
              R_SetEdit="@R_SetEdit"
-             R_SetHasData="@R_SetHasData">
+             R_SetHasData="@R_SetHasData"
+             R_CheckAdd="@R_CheckAdd">
 </R_Conductor>

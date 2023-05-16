@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5CU1msqOLb9lpEKAnUCYdWq7AJKOBqdBnD1Kw2IgB1swZMoP9BtQAwBALt6Bf+/cauoUf+K0iQKycUjAI4zHPw==",
-  "success": false,
-  "projectFilePath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
+  "dgSpecHash": "fsgvf6OozWIb+e48zxtlJwszpDRCZ4x0KwXoNUvmR8HChTdjnw0Rj+wK+kDbu6dY5fecOmNuLKYTH9wSqDO8fQ==",
+  "success": true,
+  "projectFilePath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.15\\microsoft.aspnetcore.authorization.6.0.15.nupkg.sha512",
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.15\\microsoft.aspnetcore.components.6.0.15.nupkg.sha512",
@@ -19,15 +19,5 @@
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Unable to find project information for 'D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj'. If you are using Visual Studio, this may be because the project is unloaded or not part of the current solution so run a restore from the command-line. Otherwise, the project file may be invalid or missing targets required for restore.",
-      "libraryId": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "logs": []
 }

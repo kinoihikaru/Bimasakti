@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj": {}
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj": {}
   },
   "projects": {
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
         "projectName": "BIMASAKTI_GS_API",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\BIMASAKTI_GS_API.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\API\\GS\\BIMASAKTI_GS_API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -34,20 +34,20 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"
               }
             }
           }
@@ -98,14 +98,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
         "projectName": "BlazorMenuBack",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -128,8 +128,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
               }
             }
           }
@@ -163,14 +163,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj",
         "projectName": "GSM03000BACK",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -193,11 +193,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj"
               }
             }
           }
@@ -231,14 +231,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj",
         "projectName": "RSP_GS_MAINTAIN_OTHER_CHARGESResources",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GS_SPR\\RSP_GS_MAINTAIN_OTHER_CHARGESResources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -292,14 +292,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
         "projectName": "R_SecurityPolicyBack",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -322,8 +322,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj"
               }
             }
           }
@@ -357,14 +357,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj",
         "projectName": "R_SecurityTokenBack",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -387,8 +387,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj"
               }
             }
           }
@@ -422,14 +422,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "projectName": "BlazorMenuCommon",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -483,14 +483,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj",
         "projectName": "GSM03000COMMON",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -544,14 +544,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
         "projectName": "R_SecurityPolicyCommon",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -574,8 +574,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj"
               }
             }
           }
@@ -609,14 +609,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
         "projectName": "R_SecurityTokenCommon",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -670,14 +670,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj",
         "projectName": "BlazorMenuService",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -700,11 +700,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
               }
             }
           }
@@ -744,14 +744,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj",
         "projectName": "GSM03000SERVICE",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\GSM03000SERVICE.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\GSM03000SERVICE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -774,11 +774,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\GSM03000BACK\\GSM03000BACK.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\GSM03000COMMON\\GSM03000COMMON.csproj"
               }
             }
           }
@@ -818,14 +818,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj",
         "projectName": "R_SecurityPolicyService",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -848,14 +848,14 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj"
               }
             }
           }
@@ -895,14 +895,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj",
         "projectName": "R_SecurityTokenService",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -925,8 +925,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityTokenBack\\R_SecurityTokenBack.vbproj"
               }
             }
           }
@@ -966,14 +966,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
         "projectName": "Lookup_GSBACK",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -996,8 +996,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
               }
             }
           }
@@ -1031,14 +1031,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
         "projectName": "Lookup_GSCOMMON",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1092,14 +1092,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj",
         "projectName": "Lookup_GSSERVICES",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1122,11 +1122,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj"
               },
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
               }
             }
           }

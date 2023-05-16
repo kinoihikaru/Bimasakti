@@ -11,12 +11,12 @@
         </R_ItemLayout>
 
         <R_ItemLayout xs="8">
-            <R_ComboBox Data="@_viewModel.PropertyList"
+            <R_DropDownList Data="@_viewModel.PropertyList"
                             @bind-Value="_viewModel.PropertyValueContext"
                             ValueField="@nameof(GSM03000PropertyDTO.CPROPERTY_ID)"
                             TextField="@nameof(GSM03000PropertyDTO.CPROPERTY_NAME)"
-                            R_ConductorSource="@_conductorRef" OnChanged="@PropertyDropdown_OnChange">
-            </R_ComboBox>
+                            R_ConductorSource="@_conductorRef" OnChanged="@PropertyDropdown_OnChange" >
+            </R_DropDownList>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
@@ -49,7 +49,7 @@
         <R_ItemLayout xs="4">
             <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                       R_EnableAdd="true" R_EnableEdit="false"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout xs="6">
             <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
@@ -63,7 +63,7 @@
             <R_Label>Charges Description</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="20">
+        <R_ItemLayout xs="20" >
             <R_TextArea @bind-Value="@_viewModel.Data.CDESCRIPTION"
                        R_ConductorSource="@_conductorRef"
                        R_EnableAdd="true"
@@ -82,6 +82,7 @@
                           ValueField="@nameof(RadioModel.Id)"
                           TextField="@nameof(RadioModel.Text)"
                           R_ConductorSource="@_conductorRef"
+                          Enabled="false"
                           >
             </R_RadioGroup>
         </R_ItemLayout>
@@ -102,47 +103,47 @@
         <R_ItemLayout xs="2">
             <R_TextBox @bind-Value="@_viewModel.Data.CGLACCOUNT_NO"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="false"
-                       R_EnableEdit="false"></R_TextBox>
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout xs="2">
-            <R_Lookup @ref="R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
+            <R_Lookup @ref="@R_LookupBtn" R_Before_Open_Lookup="@Before_Open_Lookup" R_After_Open_Lookup="@After_Open_Lookup"></R_Lookup>
         </R_ItemLayout>
         <R_ItemLayout xs="8">
             <R_TextBox @bind-Value="@_viewModel.Data.CGLACCOUNT_NAME"
                        R_ConductorSource="@_conductorRef"
-                       R_EnableAdd="false"
-                       R_EnableEdit="false"></R_TextBox>
+                       R_EnableAdd="true"
+                       R_EnableEdit="true"></R_TextBox>
         </R_ItemLayout>
     </R_StackLayout>
+</R_StackLayout>
 
-    <R_StackLayout Row>
+<R_StackLayout Row>
+    <R_StackLayout Class="justify-content-start">
         <R_ItemLayout xs="2">
-            <R_AddButton R_Conductor="@_conductorRef" @ref="@R_AddBtn"></R_AddButton>
+            <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
         </R_ItemLayout>
-
         <R_ItemLayout xs="2">
             <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
         </R_ItemLayout>
-
         <R_ItemLayout xs="2">
             <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
         </R_ItemLayout>
-
-        <R_ItemLayout xs="2">
-            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
-        </R_ItemLayout>
-
+    </R_StackLayout>
+    <R_StackLayout Class="justify-content-center">
         <R_ItemLayout xs="2">
             <R_Button @ref="@R_ActiveInActiveBtn">Activate/InActive</R_Button>
         </R_ItemLayout>
-
         <R_ItemLayout xs="2">
             <R_Button @ref="@R_PrintBtn">Print</R_Button>
         </R_ItemLayout>
-
+    </R_StackLayout>
+    <R_StackLayout Class="justify-content-end">
         <R_ItemLayout xs="2">
             <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
@@ -158,5 +159,6 @@
              R_SetAdd="@R_SetAdd"
              R_SetEdit="@R_SetEdit"
              R_SetHasData="@R_SetHasData"
-             >
+             R_CheckAdd="@R_CheckAdd" 
+             R_BeforeDelete="@R_BeforeDelete">
 </R_Conductor>

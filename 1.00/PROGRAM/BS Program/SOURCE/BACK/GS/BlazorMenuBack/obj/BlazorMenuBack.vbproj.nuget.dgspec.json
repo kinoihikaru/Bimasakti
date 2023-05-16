@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {}
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {}
   },
   "projects": {
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
         "projectName": "BlazorMenuBack",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\BlazorMenuBack.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\BlazorMenuBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -34,8 +34,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj"
               }
             }
           }
@@ -69,14 +69,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "projectName": "BlazorMenuCommon",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\BlazorMenuCommon.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\BlazorMenuCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -5,11 +5,13 @@ using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
+using R_BlazorFrontEnd.Controls.Base;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Forms;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using R_BlazorFrontEnd.Controls.MessageBox;
 using R_CommonFrontBackAPI;
 
 namespace GSM03000FRONT
@@ -157,7 +159,8 @@ namespace GSM03000FRONT
 
         private void Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            var param = new GSL00500ParameterDTO {
+            var param = new GSL00500ParameterDTO
+            {
                 CPROPERTY_ID = _viewModel.PropertyValueContext,
                 CPROGRAM_CODE = "GSM03000",
                 CBSIS = "",
@@ -166,8 +169,8 @@ namespace GSM03000FRONT
                 LUSER_RESTR = false,
                 CCENTER_CODE = "",
                 CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName
-            } ;
-            eventArgs.Parameter = param ;
+            };
+            eventArgs.Parameter = param;
             eventArgs.TargetPageType = typeof(GSL00500);
         }
 
@@ -184,14 +187,20 @@ namespace GSM03000FRONT
             loGetData.CGLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
         }
 
-        private R_AddButton R_AddBtn;
+        private void R_CheckAdd(R_CheckAddEventArgs eventArgs)
+        {
+            if (string.IsNullOrEmpty(_viewModel.PropertyValueContext))
+            {
+                eventArgs.Allow = false;
+            }
+
+        }
+
         private R_Button R_ActiveInActiveBtn;
         private R_Button R_PrintBtn;
+
         private void R_SetHasData(R_SetEventArgs eventArgs)
         {
-            if (R_AddBtn != null)
-                R_AddBtn.Enabled = eventArgs.Enable;
-
             if (R_ActiveInActiveBtn != null)
                 R_ActiveInActiveBtn.Enabled = eventArgs.Enable;
 
@@ -210,6 +219,28 @@ namespace GSM03000FRONT
         {
             if (R_LookupBtn != null)
                 R_LookupBtn.Enabled = eventArgs.Enable;
+        }
+
+        private async Task R_BeforeDelete(R_BeforeDeleteEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var llCancel = _viewModel.Data.CSTATUS != "00";
+
+                if (llCancel)
+                {
+                    eventArgs.Cancel = llCancel;
+                    await R_MessageBox.Show("", "Cannot Delete, this charges status is not draft", R_eMessageBoxButtonType.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
     }
 }

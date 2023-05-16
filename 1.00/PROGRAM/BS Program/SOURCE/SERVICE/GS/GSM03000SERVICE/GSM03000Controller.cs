@@ -30,11 +30,10 @@ namespace GSM03000SERVICE
                 var loCls = new GSM03000Cls();
                 loParameter = new GSM03000DTO();
 
-                var param1 = R_BackGlobalVar.PROGRAM_ID;
-                var param2 = R_BackGlobalVar.CULTURE_MENU;
-
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+                //loParameter.CUSER_ID = "admin";
+
                 loParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.CPROPERTY_ID);
                 loParameter.CCHARGES_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstant.CCHARGES_TYPE);
 
@@ -75,6 +74,7 @@ namespace GSM03000SERVICE
 
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+                //loParameter.CUSER_ID = "admin";
 
                 var loResult = loCls.GetProperty(loParameter);
                 loRtn.Data = loResult;
@@ -98,6 +98,7 @@ namespace GSM03000SERVICE
             try
             {
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+                //poParameter.Entity.CUSER_ID = "admin";
 
                 var loCls = new GSM03000Cls();
 
@@ -145,6 +146,7 @@ namespace GSM03000SERVICE
             {
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
+                //poParameter.Entity.CUSER_ID = "admin";
 
                 var loCls = new GSM03000Cls();
 

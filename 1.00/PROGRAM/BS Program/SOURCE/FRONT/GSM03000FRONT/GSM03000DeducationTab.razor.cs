@@ -168,7 +168,7 @@ namespace GSM03000FRONT
                 CPROPERTY_ID = _viewModel.PropertyValue,
                 CPROGRAM_CODE = "GSM03000",
                 CBSIS = "",
-                CDBCR = "D",
+                CDBCR = "C",
                 LCENTER_RESTR = false,
                 LUSER_RESTR = false,
                 CCENTER_CODE = "",
@@ -191,14 +191,20 @@ namespace GSM03000FRONT
             loGetData.CGLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
         }
 
-        private R_AddButton R_AddBtn;
+        private void R_CheckAdd(R_CheckAddEventArgs eventArgs)
+        {
+            if (string.IsNullOrEmpty(_viewModel.PropertyValue))
+            {
+                eventArgs.Allow = false;
+            }
+
+        }
+
         private R_Button R_ActiveInActiveBtn;
         private R_Button R_PrintBtn;
+
         private void R_SetHasData(R_SetEventArgs eventArgs)
         {
-            if (R_AddBtn != null)
-                R_AddBtn.Enabled = eventArgs.Enable;
-
             if (R_ActiveInActiveBtn != null)
                 R_ActiveInActiveBtn.Enabled = eventArgs.Enable;
 
@@ -218,6 +224,5 @@ namespace GSM03000FRONT
             if (R_LookupBtn != null)
                 R_LookupBtn.Enabled = eventArgs.Enable;
         }
-
     }
 }

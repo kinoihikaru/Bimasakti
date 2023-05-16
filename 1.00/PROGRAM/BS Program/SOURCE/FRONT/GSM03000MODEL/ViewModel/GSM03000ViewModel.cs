@@ -86,11 +86,21 @@ namespace GSM03000MODEL.ViewModel
                     poEntity.CPROPERTY_ID = PropertyValueContext;
                     poEntity.CCHARGES_TYPE = PropertyTypeContext;
                     var loResult = await _GSM03000Model.R_ServiceGetRecordAsync(poEntity);
+
                     if (loResult != null)
                     {
                         var loErr = R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "3002");
                         loEx.Add(loErr);
+                    }
 
+                    if (string.IsNullOrEmpty(PropertyValueContext))
+                    {
+                        loEx.Add("0000", "Charhes ID Is null");
+                    }
+
+                    if (string.IsNullOrEmpty(poEntity.CCHARGES_ID))
+                    {
+                        loEx.Add("0000", "Charhes ID Is null");
                     }
                 }
 

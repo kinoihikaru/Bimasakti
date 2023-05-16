@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
+      "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
       "projectName": "Lookup_GSBACK",
-      "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
+      "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\Lookup_GSBACK.csproj",
       "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-      "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\obj\\",
+      "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSBACK\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -60,8 +60,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
-              "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
             }
           }
         }

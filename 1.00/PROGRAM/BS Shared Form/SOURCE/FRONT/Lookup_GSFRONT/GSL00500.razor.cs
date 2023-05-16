@@ -1,5 +1,5 @@
 ﻿using Lookup_GSCOMMON.DTOs;
-using Lookup_GSModel.ViewModel.GSL00500;
+using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Exceptions;

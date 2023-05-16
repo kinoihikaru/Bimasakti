@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {}
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {}
   },
   "projects": {
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
         "projectName": "R_SecurityPolicyBack",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\R_SecurityPolicyBack.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\BACK\\GS\\R_SecurityPolicyBack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -34,8 +34,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj"
               }
             }
           }
@@ -69,14 +69,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
         "projectName": "R_SecurityPolicyCommon",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\R_SecurityPolicyCommon.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityPolicyCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -99,8 +99,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
-                "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj"
+              "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
+                "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj"
               }
             }
           }
@@ -134,14 +134,14 @@
         }
       }
     },
-    "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
+    "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
+        "projectUniqueName": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
         "projectName": "R_SecurityTokenCommon",
-        "projectPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
+        "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\R_SecurityTokenCommon.vbproj",
         "packagesPath": "C:\\Users\\fadel.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\RealCode\\RSF\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\obj\\",
+        "outputPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\COMMON\\GS\\R_SecurityTokenCommon\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
