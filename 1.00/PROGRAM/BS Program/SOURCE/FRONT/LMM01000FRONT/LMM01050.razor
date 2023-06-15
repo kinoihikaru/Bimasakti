@@ -1,0 +1,217 @@
+﻿@inherits R_Page
+@using LMM01000COMMON
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="3">
+        <R_Label>Utility Charges ID*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="3">
+        <R_TextBox @bind-Value="@ChargesID"
+                   R_ConductorSource="@_RateOT_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="5">
+        <R_TextBox @bind-Value="@ChargesName"
+                   R_ConductorSource="@_RateOT_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="3">
+        <R_Label>Currency Code</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_TextBox @bind-Value="@_viewModel.Data.CCURENCY_CODE"
+                   R_ConductorSource="@_RateOT_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="3">
+        <R_Label>Administration Fee (per Month)</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="3">
+        <R_RadioGroup Data="@_Universal_viewModel.AdminFeeTypeList"
+                      @bind-Value="@_viewModel.Data.CADMIN_FEE"
+                      ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
+                      TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
+                      R_ConductorSource="@_RateOT_conductorRef">
+        </R_RadioGroup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="4">
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
+                          R_ConductorSource="@_RateOT_conductorRef"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
+                          R_ConductorSource="@_RateOT_conductorRef"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="3">
+        <R_Label>Currency Code</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUNIT_AREA_VALID_FROM"
+                          R_ConductorSource="@_RateOT_conductorRef"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_Label>to</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUNIT_AREA_VALID_TO"
+                          R_ConductorSource="@_RateOT_conductorRef"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="3">
+        <R_Label>Unit Area Validation (Sqm)</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUNIT_AREA_VALID_FROM"
+                          R_ConductorSource="@_RateOT_conductorRef"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_Label>to</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUNIT_AREA_VALID_TO"
+                          R_ConductorSource="@_RateOT_conductorRef"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="6">
+        <R_Label FontColor="red">Weekend Overtime Rate</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="6">
+        <R_StackLayout Row>
+            <R_ItemLayout xs="3">
+                <R_Label FontColor="red">Weekend Overtime Rate</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="2" Class="d-inline">
+                <R_CheckBox @bind-Value="@_viewModel.Data.LHOLIDAY"
+                            R_ConductorSource="@_RateOT_conductorRef"
+                            R_EnableEdit R_EnableAdd>
+                </R_CheckBox>
+                <R_Label>Holiday</R_Label>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="2" Class="d-inline">
+                <R_CheckBox @bind-Value="@_viewModel.Data.LSATURDAY"
+                            R_ConductorSource="@_RateOT_conductorRef"
+                            R_EnableEdit R_EnableAdd>
+                </R_CheckBox>
+                <R_Label>Saturday</R_Label>
+
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="2" Class="d-inline">
+                <R_CheckBox @bind-Value="@_viewModel.Data.LSUNDAY"
+                            R_ConductorSource="@_RateOT_conductorRef"
+                            R_EnableEdit R_EnableAdd>
+                </R_CheckBox>
+                <R_Label>Sunday</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="6">
+        <R_Grid @ref="@_RateOTDetailWD_gridRef"
+                DataSource="@_viewModel.RateOTWDDetailList"
+                Pageable
+                R_ConductorGridSource="@_RateOTDetailWD_conductorRef"
+                R_GridType="@R_eGridType.Batch"
+                AllowAddNewRow="@EnableAddEdit"
+                AllowEditRow="@EnableAddEdit"
+                AllowDeleteRow="@EnableAddEdit"
+                R_ServiceGetListRecord="@RateOTDetailWK_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridNumericColumn FieldName="IUP_TO_USAGE" HeaderText="Usage (kwh)"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="Description"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="NBUY_USAGE_CHARGE" HeaderText="LWBP Charges"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NUSAGE_CHARGE" HeaderText="WBP Charges"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout xs="6">
+        <R_Grid @ref="@_RateOTDetailWK_gridRef"
+                DataSource="@_viewModel.RateOTWKDetailList"
+                Pageable
+                R_ConductorGridSource="@_RateOTDetailWK_conductorRef"
+                R_GridType="@R_eGridType.Batch"
+                AllowAddNewRow="@EnableAddEdit"
+                AllowEditRow="@EnableAddEdit"
+                AllowDeleteRow="@EnableAddEdit"
+                R_ServiceGetListRecord="@RateOTDetailWD_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridNumericColumn FieldName="IUP_TO_USAGE" HeaderText="Usage (kwh)"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="Description"></R_GridTextColumn>
+                <R_GridNumericColumn FieldName="NBUY_USAGE_CHARGE" HeaderText="LWBP Charges"></R_GridNumericColumn>
+                <R_GridNumericColumn FieldName="NUSAGE_CHARGE" HeaderText="WBP Charges"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="3" Class="d-inline">
+        <R_CheckBox @bind-Value="@_viewModel.Data.LCUT_OFF_WEEKDAY"
+                    R_ConductorSource="@_RateOT_conductorRef"
+                    R_EnableEdit R_EnableAdd>
+        </R_CheckBox>
+        <R_Label>Cut Of Over Weekend</R_Label>
+
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_RateOT_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@RateWG_ServiceGetRecord"
+             >
+</R_Conductor>
+
+<R_ConductorGrid @ref="@_RateOTDetailWD_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_ConductorParent="@_RateOT_conductorRef"
+             R_ServiceGetRecord="@RateOTDetailWD_ServiceGetRecord"
+             >
+</R_ConductorGrid>
+
+<R_ConductorGrid @ref="@_RateOTDetailWK_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_ConductorParent="@_RateOT_conductorRef"
+             R_ServiceGetRecord="@RateWGDetailWK_ServiceGetRecord"
+             >
+</R_ConductorGrid>

@@ -1,0 +1,255 @@
+﻿using BlazorClientHelper;
+using GSM03000Common.DTOs;
+using GSM03000MODEL.ViewModel;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Microsoft.AspNetCore.Components;
+using R_BlazorFrontEnd.Controls;
+using R_BlazorFrontEnd.Controls.Base;
+using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Forms;
+using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
+using R_BlazorFrontEnd.Controls.MessageBox;
+using R_CommonFrontBackAPI;
+using R_BlazorFrontEnd.Enums;
+using System.Reflection.Emit;
+
+namespace GSM03000FRONT
+{
+    public partial class GSM03010 : R_Page
+    {
+        private GSM03000ViewModel Additional_viewModel = new GSM03000ViewModel();
+        private R_Grid<GSM03000DTO> Additional_gridRef = new();
+        private R_Conductor Additional_conductorRef;
+
+        private string Additional_lcLabel = "Activate";
+        [Inject] IClientHelper clientHelper { get; set; }
+
+        [Parameter] public string PropertyIdVal { get; set; }
+        protected override async Task R_Init_From_Master(object poParameter)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await Additional_gridRef.R_RefreshGrid(null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+
+        #region Additional
+        private void Additional_R_Display(R_DisplayEventArgs eventArgs)
+        {
+            if (eventArgs.ConductorMode == R_eConductorMode.Normal)
+            {
+                var loParam = (GSM03000DTO)eventArgs.Data;
+
+                if (loParam.CSTATUS != "80")
+                {
+                    Additional_lcLabel = "Activate";
+                    Additional_viewModel.StatusChange = "80";
+                }
+                else
+                {
+                    Additional_lcLabel = "Inactive";
+                    Additional_viewModel.StatusChange = "90";
+                }
+            }
+        }
+
+        private async Task Additional_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<GSM03000DTO>(eventArgs.Data);
+
+                await Additional_viewModel.GetOtherChargesDetail(loParam);
+
+                eventArgs.Result = Additional_viewModel.OtherChargesDetail;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task Additional_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await Additional_viewModel.GetOtherChargesList();
+
+                eventArgs.ListEntityResult = Additional_viewModel.OtherChargeList;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+
+        private async Task Additional_ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await Additional_viewModel.SaveOtherCharges((GSM03000DTO)eventArgs.Data, (eCRUDMode)eventArgs.ConductorMode);
+
+                eventArgs.Result = Additional_viewModel.OtherChargesDetail;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task Additional_ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (GSM03000DTO)eventArgs.Data;
+                await Additional_viewModel.DeleteOtherCharges(loData);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void Additional_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            //var param = new GSL00500ParameterDTO
+            //{
+            //    CPROPERTY_ID = Additional_viewModel.PropertyValueContext,
+            //    CPROGRAM_CODE = "GSM03000",
+            //    CBSIS = "",
+            //    CDBCR = "D",
+            //    LCENTER_RESTR = false,
+            //    LUSER_RESTR = false,
+            //    CCENTER_CODE = "",
+            //    CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName
+            //};
+            //eventArgs.Parameter = param;
+            eventArgs.TargetPageType = typeof(GSL00700);
+        }
+
+        private void Additional_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loTempResult = (GSL00500DTO)eventArgs.Result;
+            if (loTempResult == null)
+            {
+                return;
+            }
+
+            Additional_viewModel.Data.CGLACCOUNT_NO = loTempResult.CGLACCOUNT_NO;
+            Additional_viewModel.Data.CGLACCOUNT_NAME = loTempResult?.CGLACCOUNT_NAME;
+        }
+
+        private void Additional_R_CheckAdd(R_CheckAddEventArgs eventArgs)
+        {
+             eventArgs.Allow = !string.IsNullOrEmpty(Additional_viewModel.PropertyValueContext);
+        }
+
+        private R_Popup Additional_R_ActiveInActiveBtn;
+        private void Additional_R_Before_Open_Popup_ActivateInactive(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = "GSM03001";
+            eventArgs.TargetPageType = typeof(GFF00900FRONT.GFF00900);
+        }
+
+        private async Task Additional_R_After_Open_Popup_ActivateInactive(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            var loGetData = Additional_viewModel.Data.CCHARGES_ID;
+            var loParam = new GSM03000ActiveParameterDTO()
+            {
+                CCHARGES_ID = loGetData,
+            };
+
+            R_Exception loException = new R_Exception();
+            try
+            {
+                bool result = (bool)eventArgs.Result;
+                if (result == true)
+                {
+                    await Additional_viewModel.ActiveInactiveProcessAsync(loParam);
+                }
+                await Additional_gridRef.R_RefreshGrid(null);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
+        private R_Button Additional_R_PrintBtn;
+
+        private void Additional_R_SetHasData(R_SetEventArgs eventArgs)
+        {
+            if (Additional_R_ActiveInActiveBtn != null)
+                Additional_R_ActiveInActiveBtn.Enabled = eventArgs.Enable;
+
+            if (Additional_R_PrintBtn != null)
+                Additional_R_PrintBtn.Enabled = eventArgs.Enable;
+        }
+
+        private async Task Additional_R_BeforeDelete(R_BeforeDeleteEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var llCancel = Additional_viewModel.Data.CSTATUS != "00";
+
+                if (llCancel)
+                {
+                    eventArgs.Cancel = llCancel;
+                    await R_MessageBox.Show("", "Cannot Delete, this charges status is not draft", R_eMessageBoxButtonType.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private R_TextBox Additional_ChargesIdTextBox;
+        private async Task Additional_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            if (eventArgs.ConductorMode == R_eConductorMode.Add)
+            {
+                await Additional_ChargesIdTextBox.FocusAsync();
+            }
+            if (eventArgs.ConductorMode == R_eConductorMode.Edit)
+            {
+                await Additional_ChargesIdTextBox.FocusAsync();
+            }
+        }
+
+        #endregion
+
+    }
+}

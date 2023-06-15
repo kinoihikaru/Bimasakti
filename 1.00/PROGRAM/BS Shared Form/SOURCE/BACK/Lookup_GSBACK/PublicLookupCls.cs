@@ -100,7 +100,8 @@ namespace Lookup_GSLBACK
 
                 var lcQuery = $"SELECT CJRNGRP_CODE, CJRNGRP_NAME FROM GSM_JRNGRP (NOLOCK) " +
                     $"WHERE CCOMPANY_ID = '{poEntity.CCOMPANY_ID}' " +
-                    $"AND CPROPERTY_ID = '{poEntity.CPROPERTY_ID}' ";
+                    $"AND CPROPERTY_ID = '{poEntity.CPROPERTY_ID}' " +
+                    $"AND CJRNGRP_TYPE = '{poEntity.CJRNGRP_TYPE}'";
 
                 loResult = loDb.SqlExecObjectQuery<GSL00400DTO>(lcQuery, loConn, true);
             }
@@ -136,7 +137,35 @@ namespace Lookup_GSLBACK
                     $"@CCENTER_CODE = '{poEntity.CCENTER_CODE}', " +
                     $"@CUSER_LANGUAGE = '{poEntity.CUSER_LANGUAGE}' ";
 
-               loResult = loDb.SqlExecObjectQuery<GSL00500DTO>(lcQuery, loConn, true);
+                loResult = loDb.SqlExecObjectQuery<GSL00500DTO>(lcQuery, loConn, true);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL00510DTO> GetALLCOA(GSL00510ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL00510DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+
+                var lcQuery = $"EXEC RSP_GS_GET_COA_LOOKUP_LIST " +
+                    $"@CCOMPANY_ID = '{poEntity.CCOMPANY_ID}', " +
+                    $"@CGL_ACCOUNT_TYPE = '{poEntity.CGLACCOUNT_TYPE}', " +
+                    $"@CUSER_LANGUAGE = '{poEntity.CUSER_LANGUAGE}', ";
+
+
+                loResult = loDb.SqlExecObjectQuery<GSL00510DTO>(lcQuery, loConn, true);
             }
             catch (Exception ex)
             {
@@ -312,13 +341,11 @@ namespace Lookup_GSLBACK
                 var loDb = new R_Db();
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
 
-                var lcQuery = $"SELECT A.CUSER_ID, B.CUSER_NAME, B.CPOSITION FROM GSM_PROPERTY_USER A (NOLOCK) " +
-                    $"INNER JOIN SAM_USER B (NOLOCK) ON A.CUSER_ID = B.CUSER_ID " +
-                    $"WHERE A.CCOMPANY_ID = '{poEntity.CCOMPANY_ID}' " +
-                    $"AND A.CPROPERTY_ID = '{poEntity.CPROPERTY_ID}' " +
-                    $"AND NOT EXISTS (SELECT TOP 1 1 FROM GSM_TRANSACTION_APPROVAL C (NOLOCK) " +
-                    $"WHERE A.CCOMPANY_ID = C.CCOMPANY_ID " +
-                    $"AND A.CUSER_ID = C.CUSER_ID) ";
+                var lcQuery = $"SELECT A.CUSER_ID, A.CUSER_NAME FROM SAM_USER A (NOLOCK) " +
+                    $"WHERE NOT EXISTS (SELECT TOP 1 1 FROM GSM_TRANSACTION_APPROVAL C (NOLOCK) " +
+                    $"WHERE C.CCOMPANY_ID = '{poEntity.CCOMPANY_ID}' " +
+                    $"AND A.CUSER_ID = C.CUSER_ID " +
+                    $"AND C.CTRANSACTION_CODE = '{poEntity.CTRANSACTION_CODE}' ) ";
 
                 loResult = loDb.SqlExecObjectQuery<GSL01100DTO>(lcQuery, loConn, true);
             }
@@ -482,6 +509,86 @@ namespace Lookup_GSLBACK
                     $"@CUSER_ID = '{poEntity.CUSER_ID}' ";
 
                 loResult = loDb.SqlExecObjectQuery<GSL01600DTO>(lcQuery, loConn, true);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL01700DTO> GetALLCurrencyRate(GSL01700DTOParameter poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL01700DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+
+                var lcQuery = $"EXEC RSP_GS_GET_CURRENCY_RATE_LIST " +
+                    $"@CCOMPANY_ID = '{poEntity.CCOMPANY_ID}', " +
+                    $"@CUSER_ID = '{poEntity.CUSER_ID}', " +
+                    $"@CRATETYPE_CODE = '{poEntity.CRATETYPE_CODE}', " +
+                    $"@CRATE_DATE = '{poEntity.CRATE_DATE}'";
+
+                loResult = loDb.SqlExecObjectQuery<GSL01700DTO>(lcQuery, loConn, true);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL01701DTO> GetALLRateType(GSL01700DTOParameter poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL01701DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+
+                var lcQuery = $"SELECT CRATETYPE_CODE, CRATETYPE_DESCRIPTION FROM GSM_RATETYPE (NOLOCK) WHERE CCOMPANY_ID = '{poEntity.CCOMPANY_ID}'";
+
+                loResult = loDb.SqlExecObjectQuery<GSL01701DTO>(lcQuery, loConn, true);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL01702DTO> GetALLLocalAndBaseCurrency(GSL01700DTOParameter poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL01702DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+
+                var lcQuery = $"SELECT A.CLOCAL_CURRENCY, B.CCURRENCY_NAME AS CLOCAL_CURRENCY_NAME,  A.CBASE_CURRENCY, C.CCURRENCY_NAME AS CBASE_CURRENCY_NAME " +
+                    $"FROM SAM_COMPANIES A (NOLOCK) LEFT JOIN GSM_CURRENCY B (NOLOCK) " +
+                    $"ON A.CLOCAL_CURRENCY = B.CCURRENCY_CODE LEFT JOIN GSM_CURRENCY C (NOLOCK) " +
+                    $"ON A.CBASE_CURRENCY = C.CCURRENCY_CODE " +
+                    $"WHERE A.CCOMPANY_ID = '{poEntity.CCOMPANY_ID}'";
+
+                loResult = loDb.SqlExecObjectQuery<GSL01702DTO>(lcQuery, loConn, true);
             }
             catch (Exception ex)
             {

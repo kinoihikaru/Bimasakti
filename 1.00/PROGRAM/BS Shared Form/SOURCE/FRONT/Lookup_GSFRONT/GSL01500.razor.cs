@@ -80,6 +80,8 @@ namespace Lookup_GSFRONT
                         CCASH_FLOW_GROUP_CODE = eventArgs.Parameter.ToString()
                     };
                     await _viewModel.GetCashFlowDetailList(loParam);
+
+                    eventArgs.ListEntityResult = _viewModel.CashFlowDetailGrid;
                 }
             }
             catch (Exception ex)

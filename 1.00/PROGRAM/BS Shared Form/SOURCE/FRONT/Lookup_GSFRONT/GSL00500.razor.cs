@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00500ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetGLAccountList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.GLAccountList;
             }
             catch (Exception ex)
             {

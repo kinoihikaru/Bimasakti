@@ -9,7 +9,6 @@
       "BlazorMenuService/1.0.0": {
         "dependencies": {
           "BlazorMenuBack": "1.0.0",
-          "BlazorMenuCommon": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "R_APICommon": "1.0.0.0"
         },

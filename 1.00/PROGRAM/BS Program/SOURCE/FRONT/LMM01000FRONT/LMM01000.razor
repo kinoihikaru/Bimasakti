@@ -1,0 +1,375 @@
+﻿@page "/LMM01000"
+@inherits R_Page
+@using LMM01000COMMON
+@using LMM01000MODEL
+
+<CascadingValue Value="this" Name="GeneralTabParent" IsFixed>
+    <R_StackLayout Class="mb-4 mt-3">
+        <R_StackLayout Row>
+            <R_ItemLayout xs="1">
+                <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="15">Property</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="2">
+                <R_DropDownList Data="@_General_viewModel.PropertyList"
+                                @bind-Value="_General_viewModel.PropertyValueContext"
+                                ValueField="@nameof(LMM01000DTOPropety.CPROPERTY_ID)"
+                                TextField="@nameof(LMM01000DTOPropety.CPROPERTY_NAME)"
+                                OnChanged="@PropertyDropdown_OnChange">
+                </R_DropDownList>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+
+    <R_TabStrip @ref="@_TabGeneral" OnActiveTabIndexChanged="@_General_OnActiveTabIndexChanged">
+        <R_TabStripTab Title="General Info" Id="General">
+            <R_StackLayout Spacing="3" Row="true">
+
+                <R_StackLayout Class="col-2">
+                    <R_Grid @ref="@_General_gridRef"
+                            DataSource="@_General_viewModel.ChargesTypeGrid"
+                            R_ConductorSource="@_General_conductorRef"
+                            R_GridType="@R_eGridType.Navigator"
+                            R_ServiceGetListRecord="@ChargesTypeGrid_ServiceGetListRecord">
+                        <R_GridColumns>
+                            <R_GridNumericColumn FieldName="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" HeaderText="Charges Type"></R_GridNumericColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_StackLayout>
+
+                <R_StackLayout Class="col-10">
+
+                    <R_StackLayout Row="true">
+                        <R_Grid @ref="@_UtilityCharges_gridRef"
+                                DataSource="@_General_viewModel.ChargesUtilityGrid"
+                                R_ConductorSource="@_UtilityCharges_conductorRef"
+                                R_GridType="@R_eGridType.Navigator"
+                                Pageable="true"
+                                PageSize="5"
+                                R_ServiceGetListRecord="@UtilityCharges_ServiceGetListRecord">
+                            <R_GridColumns>
+                                <R_GridNumericColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridNumericColumn>
+                                <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="CSTATUS_DESCRIPTION" HeaderText="Status"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Update By"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Update Date"></R_GridTextColumn>
+                            </R_GridColumns>
+                        </R_Grid>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="7">
+                            <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="12">GENERAL INFORMATION</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label Class="fw-bold" FontSize="11">Charges Id*</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="2">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CCHARGES_ID"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       R_EnableAdd R_EnableEdit>
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="5">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CCHARGES_NAME"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       R_EnableAdd R_EnableEdit>
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label Class="fw-bold" FontSize="11">Description</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="7">
+                            <R_TextArea @bind-Value="@_General_viewModel.Data.CDESCRIPTION"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
+                                        R_EnableAdd R_EnableEdit>
+                            </R_TextArea>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2">
+                            <R_Label>Status</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="8">
+                            <R_RadioGroup Data="@_Universal_viewModel.StatusList"
+                                          @bind-Value="@_General_viewModel.Data.CSTATUS"
+                                          ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
+                                          TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
+                                          R_ConductorSource="@_UtilityCharges_conductorRef"
+                                          Enabled="false">
+                            </R_RadioGroup>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="5" Class="d-inline">
+                            <R_CheckBox @bind-Value="@_General_viewModel.Data.LACCRUAL"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
+                                        R_EnableEdit R_EnableAdd OnChanged="@AccuralJournal_OnChanged">
+                            </R_CheckBox>
+                            <R_Label>Enable Accurual Journal</R_Label>
+                            </R_ItemLayout>
+                            </R_StackLayout>
+
+                            <R_StackLayout Row> <R_ItemLayout xs="1"></R_ItemLayout> </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="7">
+                            <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="12">TAX INFORMATION</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="5" Class="d-inline">
+                            <R_CheckBox @bind-Value="@_General_viewModel.Data.LTAXABLE"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
+                                        R_EnableEdit R_EnableAdd OnChanged="@Taxable_OnChnaged">
+                            </R_CheckBox>
+                            <R_Label>Taxable (VAT/GST)</R_Label>
+                            </R_ItemLayout>
+                            </R_StackLayout>
+
+                            <R_StackLayout Row>
+                        <R_ItemLayout xs="1">
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="11">
+                            <R_StackLayout Row>
+                                <R_ItemLayout xs="2" Class="d-inline">
+                                    <R_CheckBox @bind-Value="@_General_viewModel.Data.LTAX_EXEMPTION"
+                                                R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@TaxExemptionEnable" OnChanged="@TaxExemption_OnChnaged">
+                                    </R_CheckBox>
+                                    <R_Label>Tax Exemption</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout xs="1">
+                                    <R_Label>Tax Code*</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout xs="2" Class="d-inline">
+                                    <R_ComboBox Data="@_Universal_viewModel.TaxExemptionList"
+                                                @bind-Value="_General_viewModel.Data.CTAX_EXEMPTION_CODE"
+                                                ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
+                                                TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@TaxExemptionCodeEnable">
+                                    </R_ComboBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout xs="2">
+                                    <R_Label>Tax Exemption</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout xs="2" Class="d-inline">
+                                    <R_NumericTextBox @bind-Value="@_General_viewModel.Data.ITAX_EXEMPTION_PCT"
+                                                      R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@TaxExemptionCodeEnable">
+                                    </R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout xs="1" Class="d-inline">
+                                    <R_Label>%</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                    <R_GroupBox Enabled="@_General_viewModel.Data.LTAXABLE" ShowBorder="false">
+
+                    </R_GroupBox>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2" Class="d-inline">
+                            <R_CheckBox @bind-Value="@_General_viewModel.Data.LOTHER_TAX"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
+                                        R_EnableEdit R_EnableAdd OnChanged="@OtherTax_OnChnaged">
+                            </R_CheckBox>
+                            <R_Label>Other Tax</R_Label>
+                            </R_ItemLayout>
+
+                            <R_ItemLayout xs="2">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.COTHER_TAX_ID"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="1">
+                            <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_OtherTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_OtherTax_After_Open_Lookup" Enabled="@OtherTaxLookupEnable">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout xs="5">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CTAX_OTHER_NAME"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                            </R_ItemLayout>
+                            </R_StackLayout>
+
+                            <R_StackLayout Row>
+                        <R_ItemLayout xs="2" Class="d-inline">
+                            <R_CheckBox @bind-Value="@_General_viewModel.Data.LWITHHOLDING_TAX"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
+                                        R_EnableEdit R_EnableAdd OnChanged="@WithholdingTax_OnChange">
+                            </R_CheckBox>
+                            <R_Label>Withholding Tax</R_Label>
+                            </R_ItemLayout>
+                            </R_StackLayout>
+
+                            <R_StackLayout Row>
+                        <R_ItemLayout xs="1">
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="1">
+                            <R_Label>Tax Type*</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="2">
+                            <R_ComboBox Data="@_Universal_viewModel.WithholdingTaxList"
+                                        @bind-Value="_General_viewModel.Data.CWITHHOLDING_TAX_TYPE"
+                                        ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
+                                        TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@_General_viewModel.Data.LWITHHOLDING_TAX">
+                            </R_ComboBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="1">
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="1">
+                            <R_Label>Tax ID*</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="2">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_ID"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup" Enabled="@_General_viewModel.Data.LWITHHOLDING_TAX">...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="5">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_NAME"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+
+                    <R_StackLayout Row> <R_ItemLayout xs="1"></R_ItemLayout> </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="7">
+                            <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="12">JOURNAL GROUP SETUP</R_Label>
+                            <R_Label>(Valid when GL Journal Link Enable)</R_Label>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="2" Class="d-inline">
+                            <R_Label>Service Journal Group</R_Label>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout xs="2">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CUTILITY_JRNGRP_CODE"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_JournalGrp_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_JournalGrp_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="5">
+                            <R_TextBox @bind-Value="@_General_viewModel.Data.CUTILITY_JRNGRP_NAME"
+                                       R_ConductorSource="@_UtilityCharges_conductorRef"
+                                       Enabled="false">
+                            </R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+                    <R_StackLayout Row>
+                        <R_ItemLayout xs="1">
+                            <R_AddButton R_Conductor="@_UtilityCharges_conductorRef"></R_AddButton>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_EditButton R_Conductor="@_UtilityCharges_conductorRef"></R_EditButton>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_DeleteButton R_Conductor="@_UtilityCharges_conductorRef"></R_DeleteButton>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="@UtilityCharges_CopyFromBtn_Before_Open_Popup" R_After_Open_Popup="@UtilityCharges_CopyFromBtn_After_Open_Popup" Enabled="@CopyNewBtnEnable">Copy New</R_Popup>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="UtilityCharges_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="UtilityCharges_R_After_Open_Popup_ActivateInactive" Enabled="@ActiveInactiveBtnEnable">@_Genereal_lcLabel</R_Popup>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_Button R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@PrintBtnEnable">Print</R_Button>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_CancelButton R_Conductor="@_UtilityCharges_conductorRef"></R_CancelButton>
+                        </R_ItemLayout>
+                        <R_ItemLayout xs="1">
+                            <R_SaveButton R_Conductor="@_UtilityCharges_conductorRef"></R_SaveButton>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+
+
+                </R_StackLayout>
+
+            </R_StackLayout>
+
+        </R_TabStripTab>
+
+        <R_TabStripTab Title="Rate" Id="Rate">
+            @if (_ChargesTypeVal == "01" || _ChargesTypeVal == "02")
+            {
+                <LMM01010 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01010>
+            }
+            else if (_ChargesTypeVal == "03" || _ChargesTypeVal == "04")
+            {
+                <LMM01020 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01020>
+            }
+            else if (_ChargesTypeVal == "05" || _ChargesTypeVal == "06")
+            {
+                <LMM01030 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01030>
+            }
+            else if (_ChargesTypeVal == "07")
+            {
+                <LMM01040 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01040>
+            }
+            else if (_ChargesTypeVal == "08")
+            {
+                <LMM01050 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01050>
+            }
+
+        </R_TabStripTab>
+
+    </R_TabStrip>
+
+</CascadingValue>
+
+
+
+<R_Conductor @ref="@_General_conductorRef"
+             R_ViewModel="@_General_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@ChargesTypeGrid_ServiceGetRecord"
+             R_Display="@ChargesTypeGrid_Display">
+</R_Conductor>
+
+<R_Conductor @ref="@_UtilityCharges_conductorRef"
+             R_ViewModel="@_General_viewModel"
+             R_ConductorParent="@_General_conductorRef"
+             R_ServiceGetRecord="@UtilityCharges_ServiceGetRecord"
+             R_CheckAdd="@UtilityCharges_CheckAdd"
+             R_ServiceSave="@UtilityCharges_ServiceSave"
+             R_AfterSave="@UtilityCharges_AfterSave"
+             R_ServiceDelete="@UtilityCharges_ServiceDelete"
+             R_Display="@UtilityCharges_Display"
+             R_SetHasData="@UtilityCharges_SetHasData"
+             R_SetAdd="@UtilityCharges_SetAdd"
+             R_SetEdit="@UtilityCharges_SetEdit"
+             
+             >
+</R_Conductor>
+  

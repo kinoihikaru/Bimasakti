@@ -1,0 +1,60 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Copy New Utility Charges")]
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="2" Class="d-inline">
+        <R_Label>Current Charges Id </R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="3">
+        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENT_CHARGES_ID"
+                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="6">
+        <R_TextBox @bind-Value="@_viewModel.Data.CCURRENT_CHARGES_NAME"
+                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="2" Class="d-inline">
+        <R_Label>New Charges Id</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="3">
+        <R_TextBox @bind-Value="@_viewModel.Data.CNEW_CHARGES_ID"
+                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                   Enabled="true">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="6">
+        <R_TextBox @bind-Value="@_viewModel.Data.CNEW_CHARGES_NAME"
+                   R_ConductorSource="@_UtilityCharges_conductorRef"
+                   Enabled="true">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            Save
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_UtilityCharges_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@UtilityCharges_ServiceGetRecord"
+             >
+</R_Conductor>

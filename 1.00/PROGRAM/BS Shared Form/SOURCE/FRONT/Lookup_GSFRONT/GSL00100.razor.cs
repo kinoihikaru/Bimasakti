@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00100ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetSalesTaxList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.SalesTaxGrid;
             }
             catch (Exception ex)
             {

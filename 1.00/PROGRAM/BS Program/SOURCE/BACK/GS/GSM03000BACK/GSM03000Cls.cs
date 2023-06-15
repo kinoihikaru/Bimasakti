@@ -81,8 +81,6 @@ namespace GSM03000Back
                 var loDb = new R_Db();
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
 
-                var param = poEntity;
-
                 var lcQuery = $"EXEC dbo.RSP_GS_GET_OTHER_CHARGES_DETAIL  @CCOMPANY_ID = '{poEntity.CCOMPANY_ID}', " +
                     $"@CPROPERTY_ID = '{poEntity.CPROPERTY_ID}', @CCHARGES_TYPE = '{poEntity.CCHARGES_TYPE}', " +
                     $"@CCHARGES_ID = '{poEntity.CCHARGES_ID}', @CUSER_ID = '{poEntity.CUSER_ID}'";
@@ -233,5 +231,36 @@ namespace GSM03000Back
             return loResult;
         }
 
+        public void GSM03000ChangeStatusSP(GSM03000ActiveParameterDTO poEntity)
+        {
+            R_Exception loException = new R_Exception();
+
+            try
+            {
+                R_Db loDb = new R_Db();
+                DbConnection loConn = loDb.GetConnection("R_DefaultConnectionString");
+
+                string lcQuery = $"EXEC RSP_GS_ACTIVE_INACTIVE_OTHER_CHARGES " +
+                    $"'{poEntity.CCOMPANY_ID}', " +
+                    $"'{poEntity.CPROPERTY_ID}', " +
+                    $"'{poEntity.CCHARGES_TYPE}', " +
+                    $"'{poEntity.CCHARGES_ID}', " +
+                    $"'{poEntity.CSTATUS}', " +
+                    $"'{poEntity.CUSER_ID}' " ;
+
+                DbCommand loCmd = loDb.GetCommand();
+                loCmd.CommandText = lcQuery;
+
+                loDb.SqlExecNonQuery(loConn, loCmd, true);
+
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+        EndBlock:
+            loException.ThrowExceptionIfErrors();
+        }
     }
 }

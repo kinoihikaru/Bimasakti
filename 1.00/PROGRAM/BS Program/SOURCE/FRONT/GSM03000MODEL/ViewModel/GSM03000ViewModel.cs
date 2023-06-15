@@ -21,7 +21,9 @@ namespace GSM03000MODEL.ViewModel
         public GSM03000DTO OtherChargesDetail = new GSM03000DTO();
 
         public string PropertyValueContext = "";
+        public string StatusChange = "";
         private string PropertyTypeContext = "A";
+
 
         public async Task GetOtherChargesList()
         {
@@ -29,7 +31,10 @@ namespace GSM03000MODEL.ViewModel
 
             try
             {
-                var loResult = await _GSM03000Model.GetOtherChargesListAsync(PropertyValueContext, PropertyTypeContext);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, PropertyValueContext);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CCHARGES_TYPE, PropertyTypeContext);
+
+                var loResult = await _GSM03000Model.GetOtherChargesListAsync();
 
                 OtherChargeList = new ObservableCollection<GSM03000DTO>(loResult.Data);
             }
@@ -64,6 +69,8 @@ namespace GSM03000MODEL.ViewModel
 
             try
             {
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, PropertyValueContext);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CCHARGES_TYPE, PropertyTypeContext);
                 var loResult = await _GSM03000Model.R_ServiceGetRecordAsync(poParam);
 
                 OtherChargesDetail = loResult;
@@ -76,55 +83,12 @@ namespace GSM03000MODEL.ViewModel
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task R_SaveValidation(GSM03000DTO poEntity, eCRUDMode peCRUDMode)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                if (eCRUDMode.AddMode == peCRUDMode)
-                {
-                    poEntity.CPROPERTY_ID = PropertyValueContext;
-                    poEntity.CCHARGES_TYPE = PropertyTypeContext;
-                    var loResult = await _GSM03000Model.R_ServiceGetRecordAsync(poEntity);
-
-                    if (loResult != null)
-                    {
-                        var loErr = R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "3002");
-                        loEx.Add(loErr);
-                    }
-
-                    if (string.IsNullOrEmpty(PropertyValueContext))
-                    {
-                        loEx.Add("0000", "Charhes ID Is null");
-                    }
-
-                    if (string.IsNullOrEmpty(poEntity.CCHARGES_ID))
-                    {
-                        loEx.Add("0000", "Charhes ID Is null");
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-            loEx.ThrowExceptionIfErrors();
-        }
-
         public async Task SaveOtherCharges(GSM03000DTO poNewEntity, eCRUDMode peCRUDMode)
         {
             var loEx = new R_Exception();
 
             try
             {
-                // set Add PropertyId and Charges Type
-                if (eCRUDMode.AddMode == peCRUDMode)
-                {
-                    poNewEntity.CPROPERTY_ID = PropertyValueContext;
-                    poNewEntity.CCHARGES_TYPE = PropertyTypeContext;
-                }
-
                 var loResult = await _GSM03000Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
 
                 OtherChargesDetail = loResult;
@@ -143,16 +107,6 @@ namespace GSM03000MODEL.ViewModel
 
             try
             {
-                // Validation Before Delete
-                if (poEntity.CSTATUS != "00")
-                {
-                    var loErr = R_FrontUtility.R_GetError(
-                        typeof(Resources_Dummy_Class),
-                        "3003");
-
-                    loEx.Add(loErr);
-                }
-
                 await _GSM03000Model.R_ServiceDeleteAsync(poEntity);
             }
             catch (Exception ex)
@@ -161,6 +115,25 @@ namespace GSM03000MODEL.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task ActiveInactiveProcessAsync(GSM03000ActiveParameterDTO poParameter)
+        {
+            R_Exception loException = new R_Exception();
+
+            try
+            {
+                poParameter.CPROPERTY_ID = PropertyValueContext;
+                poParameter.CCHARGES_TYPE = PropertyTypeContext;
+                poParameter.CSTATUS = StatusChange;
+
+                await _GSM03000Model.GSM03000OtherChargesChangeStatusAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
         }
 
         // Status Radio Button

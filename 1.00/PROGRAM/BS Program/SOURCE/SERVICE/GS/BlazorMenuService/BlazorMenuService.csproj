@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BACK\GS\BlazorMenuBack\BlazorMenuBack.vbproj" />
-    <ProjectReference Include="..\..\..\COMMON\GS\BlazorMenuCommon\BlazorMenuCommon.vbproj" />
   </ItemGroup>
 
   <ItemGroup>

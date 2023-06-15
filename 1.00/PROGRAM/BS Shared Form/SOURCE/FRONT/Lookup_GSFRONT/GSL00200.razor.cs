@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00200ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetWithholdingTaxList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.WithholdingTaxGrid;
             }
             catch (Exception ex)
             {

@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00800ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetCurrencyRateTypeList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.CurrencyRateTypeGrid;
             }
             catch (Exception ex)
             {

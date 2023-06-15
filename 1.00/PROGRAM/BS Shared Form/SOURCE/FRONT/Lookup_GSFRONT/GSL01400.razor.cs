@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL01400ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetOtherChargesList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.OtherChargesGrid;
             }
             catch (Exception ex)
             {

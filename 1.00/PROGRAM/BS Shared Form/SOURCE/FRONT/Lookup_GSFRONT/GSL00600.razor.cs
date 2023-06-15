@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00600ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetUnitTypeCategoryList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.UnitTypeCategoryGrid;
             }
             catch (Exception ex)
             {

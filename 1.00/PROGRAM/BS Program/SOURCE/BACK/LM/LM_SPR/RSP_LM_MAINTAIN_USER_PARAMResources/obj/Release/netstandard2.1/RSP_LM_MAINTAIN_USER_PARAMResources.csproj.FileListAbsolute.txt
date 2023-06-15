@@ -1,0 +1,12 @@
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\bin\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.deps.json
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\bin\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.dll
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\bin\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.pdb
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.csproj.AssemblyReference.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.RSP_LM_MAINTAIN_USER_PARAMResources_msgsrc.resources
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.csproj.GenerateResource.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.AssemblyInfoInputs.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.AssemblyInfo.cs
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.csproj.CoreCompileInputs.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.dll
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_USER_PARAMResources\obj\Release\netstandard2.1\RSP_LM_MAINTAIN_USER_PARAMResources.pdb

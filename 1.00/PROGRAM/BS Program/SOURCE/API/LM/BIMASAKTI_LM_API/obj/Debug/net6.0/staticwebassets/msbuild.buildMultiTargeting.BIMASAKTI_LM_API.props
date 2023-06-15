@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\BIMASAKTI_LM_API.props" />
+</Project>

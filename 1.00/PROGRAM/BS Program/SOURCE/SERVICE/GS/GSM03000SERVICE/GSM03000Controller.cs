@@ -31,8 +31,8 @@ namespace GSM03000SERVICE
                 loParameter = new GSM03000DTO();
 
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-                //loParameter.CUSER_ID = "admin";
+                loParameter.CUSER_ID = "admin";
+                //loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 loParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.CPROPERTY_ID);
                 loParameter.CCHARGES_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstant.CCHARGES_TYPE);
@@ -73,8 +73,8 @@ namespace GSM03000SERVICE
                 loRtn = new GSM03000PropertyListDTO();
 
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-                //loParameter.CUSER_ID = "admin";
+                loParameter.CUSER_ID ="admin";
+                //loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 var loResult = loCls.GetProperty(loParameter);
                 loRtn.Data = loResult;
@@ -97,8 +97,8 @@ namespace GSM03000SERVICE
 
             try
             {
-                poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-                //poParameter.Entity.CUSER_ID = "admin";
+                //poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID; 
+                poParameter.Entity.CUSER_ID = "admin";
 
                 var loCls = new GSM03000Cls();
 
@@ -122,6 +122,7 @@ namespace GSM03000SERVICE
 
             try
             {
+                
                 var loCls = new GSM03000Cls();
 
                 loRtn.data = loCls.R_GetRecord(poParameter.Entity);
@@ -144,9 +145,13 @@ namespace GSM03000SERVICE
 
             try
             {
-                poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-                //poParameter.Entity.CUSER_ID = "admin";
+                if (poParameter.CRUDMode == eCRUDMode.AddMode)
+                {
+                    poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                    poParameter.Entity.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstant.CPROPERTY_ID);
+                    poParameter.Entity.CCHARGES_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstant.CCHARGES_TYPE);
+                }
 
                 var loCls = new GSM03000Cls();
 
@@ -158,6 +163,30 @@ namespace GSM03000SERVICE
             }
 
             loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSM03000ActiveDTO GSM03000OtherChargesChangeStatus(GSM03000ActiveParameterDTO poParam)
+        {
+            R_Exception loException = new R_Exception();
+            GSM03000ActiveDTO loRtn = new GSM03000ActiveDTO();
+            GSM03000Cls loCls = new GSM03000Cls();
+
+            try
+            {
+                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                loCls.GSM03000ChangeStatusSP(poParam);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            loException.ThrowExceptionIfErrors();
 
             return loRtn;
         }

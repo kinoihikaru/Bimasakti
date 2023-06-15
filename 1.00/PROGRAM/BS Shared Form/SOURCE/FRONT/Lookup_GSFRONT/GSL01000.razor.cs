@@ -40,6 +40,8 @@ namespace Lookup_GSFRONT
             try
             {
                 await _viewModel.GetUserList();
+
+                eventArgs.ListEntityResult = _viewModel.UserGrid;
             }
             catch (Exception ex)
             {

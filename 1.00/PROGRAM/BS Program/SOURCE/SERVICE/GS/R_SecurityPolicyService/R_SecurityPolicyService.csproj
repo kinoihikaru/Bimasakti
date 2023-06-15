@@ -13,7 +13,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\BACK\GS\R_SecurityPolicyBack\R_SecurityPolicyBack.vbproj" />
     <ProjectReference Include="..\..\..\BACK\GS\R_SecurityTokenBack\R_SecurityTokenBack.vbproj" />
-    <ProjectReference Include="..\..\..\COMMON\GS\R_SecurityPolicyCommon\R_SecurityPolicyCommon.vbproj" />
   </ItemGroup>
 
   <ItemGroup>

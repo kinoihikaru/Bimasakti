@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL01100ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetUserApprovalList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.UserApprovalGrid;
             }
             catch (Exception ex)
             {

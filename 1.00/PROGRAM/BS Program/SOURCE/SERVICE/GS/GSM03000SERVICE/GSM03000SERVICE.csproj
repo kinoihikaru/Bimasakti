@@ -5,12 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+	
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 	<ItemGroup>
-	    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    </ItemGroup>		
-	
-  <ItemGroup>
     <ProjectReference Include="..\..\..\BACK\GS\GSM03000BACK\GSM03000BACK.csproj" />
     <ProjectReference Include="..\..\..\COMMON\GS\GSM03000COMMON\GSM03000COMMON.csproj" />
   </ItemGroup>		

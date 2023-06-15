@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "Hash": "d82FBDkDtwiPmrrsDhPfuB8BP8FjpWtTsWnqiN/yEa8=",
+  "Source": "GFF00900FRONT",
+  "BasePath": "_content/GFF00900FRONT",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GFF00900FRONT\\wwwroot",
+      "Source": "GFF00900FRONT",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GFF00900FRONT.styles.css",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "RelativePath": "GFF00900FRONT.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GFF00900FRONT.styles.css"
+    },
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GFF00900FRONT.bundle.scp.css",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "RelativePath": "GFF00900FRONT.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GFF00900FRONT.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\background.png",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "RelativePath": "background.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\exampleJsInterop.js",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "RelativePath": "exampleJsInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\exampleJsInterop.js"
+    }
+  ]
+}

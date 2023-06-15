@@ -40,6 +40,8 @@ namespace Lookup_GSFRONT
             try
             {
                 await _viewModel.GetCurrencyList();
+
+                eventArgs.ListEntityResult = _viewModel.CurrencyGrid;
             }
             catch (Exception ex)
             {

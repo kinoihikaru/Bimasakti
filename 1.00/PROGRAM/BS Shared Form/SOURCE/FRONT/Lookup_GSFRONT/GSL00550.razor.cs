@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00550ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetGOAList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.GOAGrid;
             }
             catch (Exception ex)
             {

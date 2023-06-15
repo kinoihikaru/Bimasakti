@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00700ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetDepartmentList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.DepartmentGrid;
             }
             catch (Exception ex)
             {

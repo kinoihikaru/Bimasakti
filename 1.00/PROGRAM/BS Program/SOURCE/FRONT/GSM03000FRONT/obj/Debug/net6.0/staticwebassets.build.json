@@ -1,11 +1,22 @@
 {
   "Version": 1,
-  "Hash": "htpT9z59TlTXp00J+r1JiI9GNfcS6Nxln6kOIzmnx7c=",
+  "Hash": "sySCCKXJmgCW4wtRf6KA036j98QUY5sOXsDLBYak2Gs=",
   "Source": "GSM03000FRONT",
   "BasePath": "_content/GSM03000FRONT",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\GFF00900FRONT.csproj",
+      "Version": 2,
+      "Source": "GFF00900FRONT",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "TargetFramework;RuntimeIdentifier;SelfContained",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "TargetFramework;RuntimeIdentifier;SelfContained"
+    },
     {
       "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj",
       "Version": 2,
@@ -19,6 +30,13 @@
     }
   ],
   "DiscoveryPatterns": [
+    {
+      "Name": "GFF00900FRONT\\wwwroot",
+      "Source": "GFF00900FRONT",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "Pattern": "**"
+    },
     {
       "Name": "GSM03000FRONT\\wwwroot",
       "Source": "GSM03000FRONT",
@@ -35,6 +53,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000FRONT\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GSM03000FRONT.styles.css",
+      "SourceId": "GSM03000FRONT",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000FRONT\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/GSM03000FRONT",
+      "RelativePath": "GSM03000FRONT.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000FRONT\\obj\\Debug\\net6.0\\scopedcss\\bundle\\GSM03000FRONT.styles.css"
+    },
     {
       "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000FRONT\\wwwroot\\background.png",
       "SourceId": "GSM03000FRONT",
@@ -58,6 +93,57 @@
       "SourceType": "Discovered",
       "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000FRONT\\wwwroot\\",
       "BasePath": "_content/GSM03000FRONT",
+      "RelativePath": "exampleJsInterop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\exampleJsInterop.js"
+    },
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GFF00900FRONT.bundle.scp.css",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "RelativePath": "GFF00900FRONT.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GFF00900FRONT.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\background.png",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\",
+      "BasePath": "_content/GFF00900FRONT",
+      "RelativePath": "background.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\background.png"
+    },
+    {
+      "Identity": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\exampleJsInterop.js",
+      "SourceId": "GFF00900FRONT",
+      "SourceType": "Project",
+      "ContentRoot": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\wwwroot\\",
+      "BasePath": "_content/GFF00900FRONT",
       "RelativePath": "exampleJsInterop.js",
       "AssetKind": "All",
       "AssetMode": "All",

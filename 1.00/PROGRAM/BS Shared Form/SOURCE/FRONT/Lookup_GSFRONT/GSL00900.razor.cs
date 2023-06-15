@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00900ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetCenterList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.CenterGrid;
             }
             catch (Exception ex)
             {

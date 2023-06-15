@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL00400ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetJournalGroupList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.JournalGroupGrid;
             }
             catch (Exception ex)
             {

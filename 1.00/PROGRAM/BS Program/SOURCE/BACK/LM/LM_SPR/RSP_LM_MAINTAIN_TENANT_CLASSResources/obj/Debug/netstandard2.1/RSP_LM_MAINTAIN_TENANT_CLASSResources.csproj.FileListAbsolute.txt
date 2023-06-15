@@ -1,0 +1,12 @@
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\bin\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.deps.json
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\bin\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.dll
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\bin\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.pdb
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.csproj.AssemblyReference.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.RSP_LM_MAINTAIN_TENANT_CLASSResources_msgrsc.resources
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.csproj.GenerateResource.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.AssemblyInfoInputs.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.AssemblyInfo.cs
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.csproj.CoreCompileInputs.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.dll
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASSResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASSResources.pdb

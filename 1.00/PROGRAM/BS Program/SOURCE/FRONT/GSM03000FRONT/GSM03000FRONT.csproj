@@ -17,14 +17,17 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GFF00900FRONT\GFF00900FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
     <ProjectReference Include="..\..\COMMON\GS\GSM03000COMMON\GSM03000COMMON.csproj" />
-    <ProjectReference Include="..\..\Menu\BlazorClientHelper\BlazorClientHelper.csproj" />
     <ProjectReference Include="..\GSM03000FrontResources\GSM03000FrontResources.csproj" />
     <ProjectReference Include="..\GSM03000MODEL\GSM03000MODEL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+	<Reference Include="BlazorClientHelper">
+	  <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+	</Reference>
     <Reference Include="R_BlazorFrontEnd">
       <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
     </Reference>

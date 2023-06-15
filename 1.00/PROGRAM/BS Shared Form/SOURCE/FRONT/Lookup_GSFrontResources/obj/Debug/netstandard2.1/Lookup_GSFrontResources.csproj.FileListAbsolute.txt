@@ -1,3 +1,13 @@
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\bin\Debug\netstandard2.1\Lookup_GSFrontResources.deps.json
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\bin\Debug\netstandard2.1\Lookup_GSFrontResources.dll
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\bin\Debug\netstandard2.1\Lookup_GSFrontResources.pdb
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.csproj.AssemblyReference.cache
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.AssemblyInfoInputs.cache
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.AssemblyInfo.cs
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.csproj.CoreCompileInputs.cache
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.dll
+D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\obj\Debug\netstandard2.1\Lookup_GSFrontResources.pdb
 D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\bin\Debug\netstandard2.1\Lookup_GSFrontResources.deps.json
 D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\bin\Debug\netstandard2.1\Lookup_GSFrontResources.dll
 D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_GSFrontResources\bin\Debug\netstandard2.1\Lookup_GSFrontResources.pdb

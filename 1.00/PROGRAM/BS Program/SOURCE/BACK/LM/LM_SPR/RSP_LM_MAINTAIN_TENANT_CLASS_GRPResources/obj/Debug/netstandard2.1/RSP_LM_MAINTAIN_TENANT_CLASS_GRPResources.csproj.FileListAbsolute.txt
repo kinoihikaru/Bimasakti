@@ -1,0 +1,12 @@
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\bin\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.deps.json
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\bin\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.dll
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\bin\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.pdb
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.csproj.AssemblyReference.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources_msgrsc.resources
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.csproj.GenerateResource.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.AssemblyInfoInputs.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.AssemblyInfo.cs
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.csproj.CoreCompileInputs.cache
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.dll
+D:\repos\BS Program\SOURCE\BACK\LM\LM_SPR\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources\obj\Debug\netstandard2.1\RSP_LM_MAINTAIN_TENANT_CLASS_GRPResources.pdb

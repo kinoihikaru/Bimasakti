@@ -2748,7 +2748,6 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "BlazorMenuBack": "1.0.0",
-          "BlazorMenuCommon": "1.0.0",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
         },
         "compile": {
@@ -2756,6 +2755,45 @@
         },
         "runtime": {
           "bin/placeholder/BlazorMenuService.dll": {}
+        }
+      },
+      "GFF00900BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GFF00900COMMON": "1.0.0",
+          "RSP_GS_VALIDATE_USER_ACT_APPRResources": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900BACK.dll": {}
+        }
+      },
+      "GFF00900COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        }
+      },
+      "GFF00900SERVICES/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "GFF00900BACK": "1.0.0",
+          "GFF00900COMMON": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900SERVICES.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900SERVICES.dll": {}
         }
       },
       "GSM03000BACK/1.0.0": {
@@ -2787,15 +2825,17 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GSM03000BACK": "1.0.0",
-          "GSM03000COMMON": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "GSM03000COMMON": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GSM03000SERVICE.dll": {}
         },
         "runtime": {
           "bin/placeholder/GSM03000SERVICE.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Lookup_GSBACK/1.0.0": {
         "type": "project",
@@ -2825,15 +2865,17 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Lookup_GSBACK": "1.0.0",
-          "Lookup_GSCOMMON": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "Lookup_GSCOMMON": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Lookup_GSSERVICES.dll": {}
         },
         "runtime": {
           "bin/placeholder/Lookup_GSSERVICES.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
         "type": "project",
@@ -2843,6 +2885,16 @@
         },
         "runtime": {
           "bin/placeholder/RSP_GS_MAINTAIN_OTHER_CHARGESResources.dll": {}
+        }
+      },
+      "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_GS_VALIDATE_USER_ACT_APPRResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_GS_VALIDATE_USER_ACT_APPRResources.dll": {}
         }
       },
       "R_SecurityPolicyBack/1.0.0": {
@@ -2877,7 +2929,6 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "R_SecurityPolicyBack": "1.0.0",
-          "R_SecurityPolicyCommon": "1.0.0",
           "R_SecurityTokenBack": "1.0.0"
         },
         "compile": {
@@ -8374,6 +8425,21 @@
       "path": "../../../SERVICE/GS/BlazorMenuService/BlazorMenuService.csproj",
       "msbuildProject": "../../../SERVICE/GS/BlazorMenuService/BlazorMenuService.csproj"
     },
+    "GFF00900BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/GFF00900BACK/GFF00900BACK.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/GFF00900BACK/GFF00900BACK.csproj"
+    },
+    "GFF00900COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj"
+    },
+    "GFF00900SERVICES/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/SERVICES/GFF00900SERVICES/GFF00900SERVICES.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/GFF00900SERVICES/GFF00900SERVICES.csproj"
+    },
     "GSM03000BACK/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/GSM03000BACK/GSM03000BACK.csproj",
@@ -8409,6 +8475,11 @@
       "path": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_CHARGESResources/RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj",
       "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_MAINTAIN_OTHER_CHARGESResources/RSP_GS_MAINTAIN_OTHER_CHARGESResources.csproj"
     },
+    "RSP_GS_VALIDATE_USER_ACT_APPRResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_GS_VALIDATE_USER_ACT_APPRResources/RSP_GS_VALIDATE_USER_ACT_APPRResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_GS_VALIDATE_USER_ACT_APPRResources/RSP_GS_VALIDATE_USER_ACT_APPRResources.csproj"
+    },
     "R_SecurityPolicyBack/1.0.0": {
       "type": "project",
       "path": "../../../BACK/GS/R_SecurityPolicyBack/R_SecurityPolicyBack.vbproj",
@@ -8443,6 +8514,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "BlazorMenuService >= 1.0.0",
+      "GFF00900SERVICES >= 1.0.0",
       "GSM03000SERVICE >= 1.0.0",
       "Lookup_GSSERVICES >= 1.0.0",
       "R_SecurityPolicyService >= 1.0.0",
@@ -8497,6 +8569,9 @@
             },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\GFF00900SERVICES\\GFF00900SERVICES.csproj"
             },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_GSSERVICES\\Lookup_GSSERVICES.csproj"

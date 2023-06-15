@@ -235,6 +235,45 @@
           "bin/placeholder/BlazorClientHelper.dll": {}
         }
       },
+      "GFF00900COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900COMMON.dll": {}
+        }
+      },
+      "GFF00900FRONT/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "BlazorClientHelper": "1.0.0",
+          "GFF00900COMMON": "1.0.0",
+          "GFF00900Model": "1.0.0",
+          "Microsoft.AspNetCore.Components.Web": "6.0.15"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900FRONT.dll": {}
+        }
+      },
+      "GFF00900Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "GFF00900COMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/GFF00900Model.dll": {}
+        }
+      },
       "GSM03000COMMON/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -627,6 +666,21 @@
       "path": "../../Menu/BlazorClientHelper/BlazorClientHelper.csproj",
       "msbuildProject": "../../Menu/BlazorClientHelper/BlazorClientHelper.csproj"
     },
+    "GFF00900COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/BACK/GFF00900COMMON/GFF00900COMMON.csproj"
+    },
+    "GFF00900FRONT/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900FRONT/GFF00900FRONT.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900FRONT/GFF00900FRONT.csproj"
+    },
+    "GFF00900Model/1.0.0": {
+      "type": "project",
+      "path": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900Model/GFF00900Model.csproj",
+      "msbuildProject": "../../../../BS Shared Form/SOURCE/FRONT/GFF00900Model/GFF00900Model.csproj"
+    },
     "GSM03000COMMON/1.0.0": {
       "type": "project",
       "path": "../../COMMON/GS/GSM03000COMMON/GSM03000COMMON.csproj",
@@ -660,7 +714,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "BlazorClientHelper >= 1.0.0",
+      "GFF00900FRONT >= 1.0.0",
       "GSM03000COMMON >= 1.0.0",
       "GSM03000FrontResources >= 1.0.0",
       "GSM03000MODEL >= 1.0.0",
@@ -712,11 +766,11 @@
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000MODEL\\GSM03000MODEL.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\GSM03000MODEL\\GSM03000MODEL.csproj"
             },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
-            },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\Lookup_GSCOMMON\\Lookup_GSCOMMON.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\GFF00900FRONT.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FRONT\\GFF00900FRONT.csproj"
             },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\Lookup_GSFRONT\\Lookup_GSFRONT.csproj"

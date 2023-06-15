@@ -14,12 +14,14 @@ namespace GSM03000MODEL
     {
         private const string DEFAULT_HTTP = "R_DefaultServiceUrl";
         private const string DEFAULT_ENDPOINT = "api/GSM03000";
+        private const string DEFAULT_MODULE = "GS";
+
         public GSM03000Model(
             string pcHttpClientName = DEFAULT_HTTP, 
             string pcRequestServiceEndPoint = DEFAULT_ENDPOINT, 
             bool plSendWithContext = true, 
             bool plSendWithToken = true) : 
-            base(pcHttpClientName, pcRequestServiceEndPoint, plSendWithContext, plSendWithToken)
+            base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
         {
         }
 
@@ -28,7 +30,7 @@ namespace GSM03000MODEL
         {
             throw new NotImplementedException();
         }
-        public async Task<GSM03000ListDTO> GetOtherChargesListAsync(string pcID, string PcType)
+        public async Task<GSM03000ListDTO> GetOtherChargesListAsync()
         {
             var loEx = new R_Exception();
             GSM03000ListDTO loResult = new GSM03000ListDTO();
@@ -36,13 +38,11 @@ namespace GSM03000MODEL
 
             try
             {
-                R_BlazorFrontEnd.R_FrontContext.R_SetStreamingContext(ContextConstant.CPROPERTY_ID, pcID);
-                R_BlazorFrontEnd.R_FrontContext.R_SetStreamingContext(ContextConstant.CCHARGES_TYPE, PcType);
-
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM03000DTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM03000.GetOtherChargesList),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
 
@@ -76,6 +76,7 @@ namespace GSM03000MODEL
                 loResult = await R_HTTPClientWrapper.R_APIRequestObject<GSM03000PropertyListDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGSM03000.GetProperty),
+                    DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
             }
@@ -89,7 +90,40 @@ namespace GSM03000MODEL
             return loResult;
         }
 
+
         #endregion
 
+        #region OtherChargesChangeStatus
+        public GSM03000ActiveDTO GSM03000OtherChargesChangeStatus(GSM03000ActiveParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task GSM03000OtherChargesChangeStatusAsync(GSM03000ActiveParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            GSM03000ActiveDTO loRtn = new GSM03000ActiveDTO();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<GSM03000ActiveDTO, GSM03000ActiveParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IGSM03000.GSM03000OtherChargesChangeStatus),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
+        #endregion
     }
 }

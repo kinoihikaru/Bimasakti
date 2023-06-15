@@ -1,0 +1,12 @@
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\bin\Release\netstandard2.1\GSM03000FrontResources.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\bin\Release\netstandard2.1\GSM03000FrontResources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\bin\Release\netstandard2.1\GSM03000FrontResources.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.csproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.GSM03000FrontResources_msgrsc.resources
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.csproj.GenerateResource.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.AssemblyInfo.cs
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.csproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GSM03000FrontResources\obj\Release\netstandard2.1\GSM03000FrontResources.pdb

@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL01600ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetCashFlowGrpList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.CashFlowGrpTypeGrid;
             }
             catch (Exception ex)
             {

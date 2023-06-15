@@ -145,6 +145,31 @@ namespace Lookup_GSSERVICES
         }
 
         [HttpPost]
+        public GSLGenericList<GSL00510DTO> GSL00510GetCOAList(GSL00510ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            GSLGenericList<GSL00510DTO> loRtn = null;
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                var loResult = loCls.GetALLCOA(poParameter);
+
+                loRtn = new GSLGenericList<GSL00510DTO> { Data = loResult };
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
         public GSLGenericList<GSL00550DTO> GSL00550GetGOAList(GSL00550ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
@@ -465,6 +490,84 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCashFlowGruopType(poParameter);
 
                 loRtn = new GSLGenericList<GSL01600DTO> { Data = loResult };
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericList<GSL01700DTO> GSL01700GetCurrencyRateList(GSL01700DTOParameter poParameter)
+        {
+            var loEx = new R_Exception();
+            GSLGenericList<GSL01700DTO> loRtn = null;
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                var loResult = loCls.GetALLCurrencyRate(poParameter);
+
+                loRtn = new GSLGenericList<GSL01700DTO> { Data = loResult };
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+        
+        [HttpPost]
+        public GSLGenericList<GSL01701DTO> GSL01700GetRateTypeList()
+        {
+            var loEx = new R_Exception();
+            GSLGenericList<GSL01701DTO> loRtn = null;
+            var loParam = new GSL01700DTOParameter();
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                var loResult = loCls.GetALLRateType(loParam);
+
+                loRtn = new GSLGenericList<GSL01701DTO> { Data = loResult };
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericList<GSL01702DTO> GSL01700GetLocalAndBaseCurrencyList()
+        {
+            var loEx = new R_Exception();
+            GSLGenericList<GSL01702DTO> loRtn = null;
+            var loParam = new GSL01700DTOParameter();
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                var loResult = loCls.GetALLLocalAndBaseCurrency(loParam);
+
+                loRtn = new GSLGenericList<GSL01702DTO> { Data = loResult };
             }
             catch (Exception ex)
             {

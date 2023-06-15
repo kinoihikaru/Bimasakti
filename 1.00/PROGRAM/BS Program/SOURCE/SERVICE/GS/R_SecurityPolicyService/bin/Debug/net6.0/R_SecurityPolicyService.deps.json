@@ -10,7 +10,6 @@
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
           "R_SecurityPolicyBack": "1.0.0",
-          "R_SecurityPolicyCommon": "1.0.0",
           "R_SecurityTokenBack": "1.0.0",
           "R_APICommon": "1.0.0.0",
           "R_AuthenticationBack": "1.0.0.0",

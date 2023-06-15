@@ -10,5 +10,6 @@ namespace GSM03000Common
     {
         GSM03000PropertyListDTO GetProperty();
         IAsyncEnumerable<GSM03000DTO> GetOtherChargesList();
+        GSM03000ActiveDTO GSM03000OtherChargesChangeStatus(GSM03000ActiveParameterDTO poParam);
     }
 }

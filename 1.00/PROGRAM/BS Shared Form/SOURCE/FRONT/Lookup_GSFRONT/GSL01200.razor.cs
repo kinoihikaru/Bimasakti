@@ -41,6 +41,8 @@ namespace Lookup_GSFRONT
             {
                 var loParam = (GSL01200ParameterDTO)eventArgs.Parameter;
                 await _viewModel.GetBankList(loParam);
+
+                eventArgs.ListEntityResult = _viewModel.BankGrid;
             }
             catch (Exception ex)
             {
