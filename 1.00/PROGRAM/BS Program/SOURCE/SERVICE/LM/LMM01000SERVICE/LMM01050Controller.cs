@@ -24,7 +24,7 @@ namespace LMM01000SERVICE
 
                 poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParam.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.CPROPERTY_ID);
-                poParam.CCHARGES_TYPE_ID = R_Utility.R_GetContext<string>(ContextConstant.CCHARGES_TYPE);
+                poParam.CCHARGES_TYPE = R_Utility.R_GetContext<string>(ContextConstant.CCHARGES_TYPE);
                 poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 var loResult = loCls.GetAllRateOTList(poParam);
@@ -50,7 +50,7 @@ namespace LMM01000SERVICE
             {
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.CPROPERTY_ID);
-                poParameter.Entity.CCHARGES_TYPE_ID = R_Utility.R_GetContext<string>(ContextConstant.CCHARGES_TYPE);
+                poParameter.Entity.CCHARGES_TYPE = R_Utility.R_GetContext<string>(ContextConstant.CCHARGES_TYPE);
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 var loCls = new LMM01050Cls();
@@ -78,7 +78,7 @@ namespace LMM01000SERVICE
                 if (poParameter.CRUDMode == eCRUDMode.AddMode)
                 {
                     poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                    poParameter.Entity.CCHARGES_TYPE_ID = R_Utility.R_GetContext<string>(ContextConstant.CCHARGES_TYPE);
+                    poParameter.Entity.CCHARGES_TYPE = R_Utility.R_GetContext<string>(ContextConstant.CCHARGES_TYPE);
                     poParameter.Entity.CPROPERTY_ID = R_Utility.R_GetContext<string>(ContextConstant.CPROPERTY_ID);
                 }
 

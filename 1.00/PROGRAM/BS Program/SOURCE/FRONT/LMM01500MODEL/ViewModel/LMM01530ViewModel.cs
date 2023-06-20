@@ -27,7 +27,8 @@ namespace LMM01500MODEL
 
             try
             {
-                
+                R_FrontContext.R_SetContext(ContextConstant.CPROPERTY_ID, PropertyValueContext);
+                R_FrontContext.R_SetContext(ContextConstant.CINVGRP_CODE, InvGrpCode);
 
                 var loResult = await _LMM01530Model.GetAllOtherChargerListAsync();
 

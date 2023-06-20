@@ -6,13 +6,13 @@
         <R_Label>Utility Charges ID*</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="3">
-        <R_TextBox @bind-Value="@ChargesID"
+        <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
                    R_ConductorSource="@_RateUC_conductorRef"
                    Enabled="false">
         </R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout xs="5">
-        <R_TextBox @bind-Value="@ChargesName"
+        <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
                    R_ConductorSource="@_RateUC_conductorRef"
                    Enabled="false">
         </R_TextBox>
@@ -41,7 +41,7 @@
                       @bind-Value="@_viewModel.Data.CUSAGE_RATE_MODE"
                       ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                       TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
-                      R_ConductorSource="@_RateUC_conductorRef" Enabled="@EnableAddEdit">
+                      R_ConductorSource="@_RateUC_conductorRef" R_EnableEdit R_EnableAdd="false">
         </R_RadioGroup>
     </R_ItemLayout>
 </R_StackLayout>
@@ -57,7 +57,7 @@
                       ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                       TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
                       R_ConductorSource="@_RateUC_conductorRef"
-                      Enabled="@EnableAddEdit"
+                      R_EnableEdit
                       >
         </R_RadioGroup>
     </R_ItemLayout>
@@ -85,14 +85,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_STANDING_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NSTANDING_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -105,14 +105,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_LWBP_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NLWBP_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -125,14 +125,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_WBP_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NWBP_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -145,14 +145,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_TRANSFORMATOR_FEE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NTRANSFORMATOR_FEE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
     <R_ItemLayout xs="1">
@@ -164,7 +164,7 @@
     <R_ItemLayout xs="2" Class="d-inline">
         <R_CheckBox @bind-Value="@_viewModel.Data.LUSAGE_MIN_CHARGE"
                     R_ConductorSource="@_RateUC_conductorRef"
-                    Enabled="@EnableAddEdit">
+                    R_EnableEdit>
         </R_CheckBox>
         <R_Label>Usage Minimum Charges</R_Label>
     </R_ItemLayout>
@@ -172,7 +172,7 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_MIN_CHARGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          Enabled="@_viewModel.Data.LUSAGE_MIN_CHARGE">
         </R_NumericTextBox>
     </R_ItemLayout>
 
@@ -191,7 +191,7 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NKWH_USED_MAX"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
@@ -208,14 +208,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NKWH_USED_RATE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_KWH_USED_RATE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -228,14 +228,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NKWA_USED_RATE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_KWA_USED_RATE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -245,9 +245,10 @@
         <R_Label>Retribution %</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="2">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NRETRIBUTION_PCT"
+        <R_NumericTextBox @bind-Value="@_viewModel.Data.NRETRIBUTION_PCT" 
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          Min="0" Max="100"
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
     <R_ItemLayout xs="1">
@@ -256,7 +257,7 @@
     <R_ItemLayout xs="3" Class="d-inline">
         <R_CheckBox @bind-Value="@_viewModel.Data.LRETRIBUTION_EXCLUDED_VAT"
                     R_ConductorSource="@_RateUC_conductorRef"
-                    R_EnableEdit R_EnableAdd>
+                    R_EnableEdit>
         </R_CheckBox>
         <R_Label>Excluded From VAT</R_Label>
     </R_ItemLayout>
@@ -271,31 +272,34 @@
                       @bind-Value="@_viewModel.Data.CADMIN_FEE"
                       ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                       TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
-                      R_ConductorSource="@_RateUC_conductorRef" Enabled="@EnableAddEdit">
+                      R_ConductorSource="@_RateUC_conductorRef" R_EnableEdit OnChanged="@RateUc_Admin_OnChange">
         </R_RadioGroup>
     </R_ItemLayout>
     <R_ItemLayout xs="1" Class="d-inline">
         <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_TAX"
                     R_ConductorSource="@_RateUC_conductorRef"
-                    Enabled="@EnableAddEdit">
+                    R_EnableEdit>
         </R_CheckBox>
         <R_Label>Taxable</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
+
 <R_StackLayout Row>
     <R_ItemLayout xs="3">
     </R_ItemLayout>
     <R_ItemLayout xs="1">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          Min="0" Max="100"
+                          Enabled="@AdminFeePctEnable">
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="1">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          Min="0" Max="100"
+                          Enabled="@AdminFeeAmtEnable">
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -308,7 +312,7 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NOTHER_DISINCENTIVE_FACTOR"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -321,14 +325,14 @@
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_KVA_RANGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 
     <R_ItemLayout xs="3">
         <R_NumericTextBox @bind-Value="@_viewModel.Data.NKVA_RANGE"
                           R_ConductorSource="@_RateUC_conductorRef"
-                          Enabled="@EnableAddEdit">
+                          R_EnableEdit>
         </R_NumericTextBox>
     </R_ItemLayout>
 </R_StackLayout>
@@ -342,9 +346,9 @@
             Pageable
             R_ConductorGridSource="@_RateUCDetail_conductorRef"
             R_GridType="@R_eGridType.Batch"
-            AllowAddNewRow="@EnableAddEdit"
-            AllowEditRow="@EnableAddEdit"
-            AllowDeleteRow="@EnableAddEdit"
+            AllowAddNewRow="@EnableEdit"
+            AllowEditRow="@EnableEdit"
+            AllowDeleteRow="@EnableEdit"
             PageSize="5"
             R_ServiceGetListRecord="@RateUC_ServiceGetListRecord">
         <R_GridColumns>
@@ -359,10 +363,36 @@
 </R_StackLayout>
 
 
+<R_StackLayout Row="true">
+    <R_ItemLayout xs="1">
+        <R_EditButton R_Conductor="@_RateUC_conductorRef"></R_EditButton>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_Button Enabled="@PrintBtnEnable" R_ConductorSource="@_RateUC_conductorRef">Print</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="7">
+        <R_StackLayout Row="true" Class="justify-content-end">
+            <R_ItemLayout xs="1">
+                <R_CancelButton R_Conductor="@_RateUC_conductorRef"></R_CancelButton>
+            </R_ItemLayout>
+            <R_ItemLayout xs="1">
+                <R_SaveButton R_Conductor="@_RateUC_conductorRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
 <R_Conductor @ref="@_RateUC_conductorRef"
              R_ViewModel="@_viewModel"
              R_IsHeader="true"
              R_ServiceGetRecord="@RateUC_ServiceGetRecord"
+             R_SetHasData="@RateUC_SetHasData"
+             R_Validation="@RateUC_Validation"
+             R_ServiceSave="@RateUC_ServiceSave"
+             R_SetEdit="@RateUC_SetEdit"
+             R_AfterSave="@RateUC_AfterSave"
+             R_BeforeEdit="@RateUC_BeforeEdit"
+             R_BeforeCancel="@RateUC_BeforeCancel"
              >
 </R_Conductor>
 
@@ -370,5 +400,9 @@
              R_ViewModel="@_viewModel"
              R_ConductorParent="@_RateUC_conductorRef"
              R_ServiceGetRecord="@RateUCDetail_ServiceGetRecord"
+             R_Saving="@RateUCDetail_Saving"
+             R_AfterSave="@RateUCDetail_AfterSave"
+             R_ServiceSaveBatch="@RateUCDetail_ServiceSaveBatch"
+             R_Validation="@RateUCDetail_Validation"
              >
 </R_ConductorGrid>

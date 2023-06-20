@@ -21,7 +21,7 @@
         </R_StackLayout>
     </R_StackLayout>
 
-    <R_TabStrip @ref="@_TabGeneral" OnActiveTabIndexChanged="@_General_OnActiveTabIndexChanged">
+    <R_TabStrip @ref="@_TabGeneral">
         <R_TabStripTab Title="General Info" Id="General">
             <R_StackLayout Spacing="3" Row="true">
 
@@ -303,7 +303,7 @@
                             <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="UtilityCharges_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="UtilityCharges_R_After_Open_Popup_ActivateInactive" Enabled="@ActiveInactiveBtnEnable">@_Genereal_lcLabel</R_Popup>
                         </R_ItemLayout>
                         <R_ItemLayout xs="1">
-                            <R_Button R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@PrintBtnEnable">Print</R_Button>
+                            <R_Button R_ConductorSource="@_UtilityCharges_conductorRef">Print</R_Button>
                         </R_ItemLayout>
                         <R_ItemLayout xs="1">
                             <R_CancelButton R_Conductor="@_UtilityCharges_conductorRef"></R_CancelButton>
@@ -321,27 +321,7 @@
         </R_TabStripTab>
 
         <R_TabStripTab Title="Rate" Id="Rate">
-            @if (_ChargesTypeVal == "01" || _ChargesTypeVal == "02")
-            {
-                <LMM01010 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01010>
-            }
-            else if (_ChargesTypeVal == "03" || _ChargesTypeVal == "04")
-            {
-                <LMM01020 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01020>
-            }
-            else if (_ChargesTypeVal == "05" || _ChargesTypeVal == "06")
-            {
-                <LMM01030 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01030>
-            }
-            else if (_ChargesTypeVal == "07")
-            {
-                <LMM01040 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01040>
-            }
-            else if (_ChargesTypeVal == "08")
-            {
-                <LMM01050 ChargesID="@_ChargesIDVall" EnableAddEdit="@_EnableAddEdit" ChargesName="@_General_viewModel.Data.CCHARGES_NAME"></LMM01050>
-            }
-
+            <R_TabPage R_Before_Open_TabPage="@_General_Before_Open_TabPage"></R_TabPage>
         </R_TabStripTab>
 
     </R_TabStrip>

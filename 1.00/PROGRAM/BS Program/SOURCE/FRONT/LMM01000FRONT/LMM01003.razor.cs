@@ -66,7 +66,7 @@ namespace LMM01000FRONT
         }
         public async Task Button_OnClickCloseAsync()
         {
-            await this.Close(true, false);
+            await this.Close(true, null);
         }
 
     }

@@ -32,7 +32,7 @@ namespace LMM01000BACK
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CCHARGE_TYPE_ID", DbType.String, 50, poEntity.CCHARGES_TYPE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCHARGE_TYPE_ID", DbType.String, 50, poEntity.CCHARGES_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, 50, poEntity.CCHARGES_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
 
@@ -124,7 +124,7 @@ namespace LMM01000BACK
                             "VALUES ";
                         foreach (var loRate in poNewEntity.CRATE_EC_LIST)
                         {
-                            lcQuery += $"('{loRate.CCOMPANY_ID}', '{loRate.CPROPERTY_ID}', '{loRate.CCHARGES_TYPE_ID}', '{loRate.CCHARGES_ID}', '{loRate.IUP_TO_USAGE}', " +
+                            lcQuery += $"('{loRate.CCOMPANY_ID}', '{loRate.CPROPERTY_ID}', '{loRate.CCHARGES_TYPE}', '{loRate.CCHARGES_ID}', '{loRate.IUP_TO_USAGE}', " +
                                 $"'{loRate.CUSAGE_DESC}', '{loRate.NBUY_LWBP_CHARGE}', '{loRate.NBUY_WBP_CHARGE}', '{loRate.NLWBP_CHARGE}', '{loRate.NWBP_CHARGE}'),";
                         }
                         lcQuery = lcQuery.Substring(0, lcQuery.Length - 1) + " ";

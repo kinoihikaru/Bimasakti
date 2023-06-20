@@ -22,7 +22,7 @@
     </R_StackLayout>
 </R_StackLayout>
 
-<R_TabStrip OnActiveTabIndexChanged="@General_OnActiveTabIndexChanged" >
+<R_TabStrip @ref="@_TabGeneral" OnActiveTabIndexChanged="@General_OnActiveTabIndexChanged" >
 
     <R_TabStripTab Title="General Info" Id="General" >
 
@@ -369,7 +369,7 @@
 
             </R_TabStripTab>
 
-            <R_TabStripTab Title="Template and Bank Account" >
+            <R_TabStripTab Title="Template and Bank Account" Enabled="@_Genereal_viewModel.Data.LBY_DEPARTMENT">
                 <R_StackLayout Class="mb-4">
                     <R_StackLayout Row>
                         <R_ItemLayout xs="2">
@@ -522,7 +522,7 @@
         
     </R_TabStripTab>
 
-    <R_TabStripTab Title="Pinalty" Id="Pinalty" >
+    <R_TabStripTab Title="Pinalty" Id="Pinalty" Enabled="@TabPinaltyChargesEnable">
         <R_StackLayout Class="mb-4">
             <R_StackLayout Row>
                 <R_ItemLayout xs="1">
@@ -813,7 +813,7 @@
 
     </R_TabStripTab>
 
-    <R_TabStripTab Title="Charges" Id="OtherCharges">
+    <R_TabStripTab Title="Charges" Id="OtherCharges" Enabled="@TabPinaltyChargesEnable">
         <R_StackLayout Class="mb-4">
             <R_StackLayout Row>
                 <R_ItemLayout xs="2">

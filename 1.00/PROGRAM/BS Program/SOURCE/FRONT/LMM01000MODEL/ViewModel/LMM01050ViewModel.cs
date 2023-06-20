@@ -19,6 +19,9 @@ namespace LMM01000MODEL
         public ObservableCollection<LMM01051DTO> RateOTWDDetailList = new ObservableCollection<LMM01051DTO>();
         public ObservableCollection<LMM01051DTO> RateOTWKDetailList = new ObservableCollection<LMM01051DTO>();
 
+        public List<LMM01051DTO> RateOTWDDetailListData = new List<LMM01051DTO>();
+        public List<LMM01051DTO> RateOTWKDetailListData = new List<LMM01051DTO>();
+
         public async Task GetRateOTWDDetailList(LMM01051DTO poParam)
         {
             var loEx = new R_Exception();
@@ -64,6 +67,8 @@ namespace LMM01000MODEL
             try
             {
                 loResult = await _LMM01050Model.R_ServiceGetRecordAsync(poParam);
+
+                RateOT = loResult;
             }
             catch (Exception ex)
             {
@@ -90,12 +95,45 @@ namespace LMM01000MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
+        public void SavingBatchListOTWD(List<LMM01051DTO> poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                RateOTWDDetailListData = new List<LMM01051DTO>(poParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public void SavingBatchListOTWK(List<LMM01051DTO> poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                RateOTWKDetailListData = new List<LMM01051DTO>(poParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
         public async Task SaveRateOT(LMM01050DTO poNewEntity, eCRUDMode peCRUDMode)
         {
             var loEx = new R_Exception();
 
             try
             {
+                poNewEntity.CRATE_OT_LIST = new List<LMM01051DTO>();
+                poNewEntity.CRATE_OT_LIST.AddRange(RateOTWDDetailListData);
+                poNewEntity.CRATE_OT_LIST.AddRange(RateOTWKDetailListData);
                 var loResult = await _LMM01050Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
 
                 RateOT = loResult;

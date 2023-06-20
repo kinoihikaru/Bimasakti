@@ -49,7 +49,7 @@ namespace LMM01000MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task SaveRatePC(LMM01040DTO poNewEntity, eCRUDMode peCRUDMode)
+        public async Task SaveRateGU(LMM01040DTO poNewEntity, eCRUDMode peCRUDMode)
         {
             var loEx = new R_Exception();
 

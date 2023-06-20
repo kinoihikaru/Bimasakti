@@ -15,6 +15,7 @@ using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,8 @@ namespace LMM01500FRONT
 
             R_DisplayException(loEx);
         }
+
+        private R_TabStrip _TabGeneral;
         private async Task PropertyDropdown_OnChange(object poParam)
         {
             var loEx = new R_Exception();
@@ -78,6 +81,23 @@ namespace LMM01500FRONT
             try
             {
                 await _Genereal_gridRef.R_RefreshGrid(null);
+
+                switch (_TabGeneral.ActiveTabIndex)
+                {
+                    case 1:
+                        _InvPinalty_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
+                        _InvPinalty_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
+
+                        var loParam = new LMM01520DTO();
+                        await _InvPinalty_conductorRef.R_GetEntity(loParam);
+                        break;
+                    case 2:
+                        _OtherCharges_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
+                        _OtherCharges_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
+                        await _OtherCharges_gridRef.R_RefreshGrid(null);
+                        break;
+                }
+
             }
             catch (Exception ex)
             {
@@ -94,21 +114,24 @@ namespace LMM01500FRONT
             var loEx = new R_Exception();
 
             try
-            { 
-                switch (eventArgs.Id)
+            {
+                if (!string.IsNullOrWhiteSpace(_Genereal_viewModel.Data.CINVGRP_CODE))
                 {
-                    case "Pinalty":
-                        _InvPinalty_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
-                        _InvPinalty_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
+                    switch (eventArgs.Id)
+                    {
+                        case "Pinalty":
+                            _InvPinalty_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
+                            _InvPinalty_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
 
-                        var loParam = new LMM01520DTO();
-                        await _InvPinalty_conductorRef.R_GetEntity(loParam);
-                        break;
-                    case "OtherCharges":
-                        _OtherCharges_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
-                        _OtherCharges_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
-                        await _OtherCharges_gridRef.R_RefreshGrid(null);
-                        break;
+                            var loParam = new LMM01520DTO();
+                            await _InvPinalty_conductorRef.R_GetEntity(loParam);
+                            break;
+                        case "OtherCharges":
+                            _OtherCharges_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
+                            _OtherCharges_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
+                            await _OtherCharges_gridRef.R_RefreshGrid(null);
+                            break;
+                    }
                 }
             }
             catch (Exception ex)
@@ -124,10 +147,13 @@ namespace LMM01500FRONT
 
             try
             {
-                _BankAccount_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
-                _BankAccount_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
+                if (!string.IsNullOrWhiteSpace(_Genereal_viewModel.Data.CINVGRP_CODE))
+                {
+                    _BankAccount_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
+                    _BankAccount_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
 
-                await _BankAccount_gridRef.R_RefreshGrid(null);
+                    await _BankAccount_gridRef.R_RefreshGrid(null);
+                }
             }
             catch (Exception ex)
             {
@@ -240,7 +266,8 @@ namespace LMM01500FRONT
             }
             loException.ThrowExceptionIfErrors();
         }
-        
+
+        private bool TabPinaltyChargesEnable = false;
         private void R_Display(R_DisplayEventArgs eventArgs)
         {
             if (eventArgs.ConductorMode == R_eConductorMode.Normal)
@@ -257,6 +284,8 @@ namespace LMM01500FRONT
                     _Genereal_lcLabel = "Inactive";
                     _Genereal_viewModel.StatusChange = false;
                 }
+
+                TabPinaltyChargesEnable = !string.IsNullOrWhiteSpace(loParam.CINVGRP_CODE);
             }
         }
         private void R_CheckAdd(R_CheckAddEventArgs eventArgs)

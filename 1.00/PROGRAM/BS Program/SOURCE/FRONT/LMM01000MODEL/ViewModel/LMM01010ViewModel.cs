@@ -60,7 +60,8 @@ namespace LMM01000MODEL
             var loEx = new R_Exception();
             try
             {
-                RateEC = await GetRateECCheckData(poParam);
+                var loData = await GetRateECCheckData(poParam);
+                RateEC = loData;
             }
             catch (Exception ex)
             {

@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace LMM01000FRONT
 {
@@ -170,8 +171,6 @@ namespace LMM01000FRONT
                         _General_viewModel.StatusChange = "90";
                     }
 
-                    var tes = _TabGeneral.ActiveTabIndex;
-                    tes = 1;
                 }
             }
             catch (Exception ex)
@@ -535,9 +534,15 @@ namespace LMM01000FRONT
         private async Task UtilityCharges_CopyFromBtn_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
         {
             var loTempData = (LMM01003DTO)eventArgs.Result;
+
             R_Exception loException = new R_Exception();
             try
             {
+                if (eventArgs.Result == null)
+                {
+                    return;
+                }
+
                 var loData = new LMM01000DTO()
                 {
                     CCHARGES_ID = loTempData.CNEW_CHARGES_ID,
@@ -561,17 +566,33 @@ namespace LMM01000FRONT
         private string _ChargesTypeVal = "";
         private string _ChargesIDVall = "";
 
-        private void _General_OnActiveTabIndexChanged(R_TabStripTab eventArgs)
+        private void _General_Before_Open_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
         {
             var loTempParam = _General_gridRef.CurrentSelectedData;
             var loTempParamUtility = _UtilityCharges_gridRef.CurrentSelectedData;
+            eventArgs.Parameter = loTempParamUtility;
 
-            if (eventArgs.Id == "Rate")
+
+            if (loTempParam.CCODE == "01" || loTempParam.CCODE == "02")
             {
-                _ChargesTypeVal = loTempParam.CCODE;
+                eventArgs.TargetPageType = typeof(LMM01010);
             }
-
+            else if (loTempParam.CCODE == "03" || loTempParam.CCODE == "04")
+            {
+                eventArgs.TargetPageType = typeof(LMM01020);
+            }
+            else if (loTempParam.CCODE == "05" || loTempParam.CCODE == "06")
+            {
+                eventArgs.TargetPageType = typeof(LMM01030);
+            }
+            else if (loTempParam.CCODE == "07")
+            {
+                eventArgs.TargetPageType = typeof(LMM01040);
+            }
+            else if (loTempParam.CCODE == "08")
+            {
+                eventArgs.TargetPageType = typeof(LMM01050);
+            }
         }
-
     }
 }

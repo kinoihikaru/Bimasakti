@@ -22,6 +22,8 @@ namespace LMM01000MODEL
             try
             {
                 loResult = await _LMM01030Model.R_ServiceGetRecordAsync(poParam);
+
+                RatePG = loResult;
             }
             catch (Exception ex)
             {

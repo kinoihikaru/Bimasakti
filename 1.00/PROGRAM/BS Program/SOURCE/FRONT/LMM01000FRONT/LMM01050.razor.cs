@@ -7,15 +7,16 @@ using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
+using R_CommonFrontBackAPI;
 
 namespace LMM01000FRONT
 {
     public partial class LMM01050 : R_Page
     {
-        private string chargesID;
-
         private LMM01050ViewModel _viewModel = new LMM01050ViewModel();
         private LMM01000UniversalViewModel _Universal_viewModel = new LMM01000UniversalViewModel();
 
@@ -28,38 +29,20 @@ namespace LMM01000FRONT
 
         [Inject] IClientHelper clientHelper { get; set; }
 
-
-        [Parameter]
-        public string ChargesID
-        {
-            get => chargesID;
-            set
-            {
-                chargesID = value;
-                if (_RateOT_conductorRef != null)
-                {
-                    InitFromMasterAsync(value);
-                }
-            }
-        }
-
-        [Parameter] public bool EnableAddEdit { get; set; }
-
-        [Parameter] public string ChargesName { get; set; }
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
 
             try
             {
+                var loParam = R_FrontUtility.ConvertObjectToObject<LMM01050DTO>(poParameter);
+
                 await RateOT_AdminFeeType_ServiceGetListRecord(null);
 
-                if (string.IsNullOrWhiteSpace(chargesID))
-                {
-                    await RateGU_CheckData(chargesID);
-                    await _RateOTDetailWD_gridRef.R_RefreshGrid(chargesID);
-                    await _RateOTDetailWK_gridRef.R_RefreshGrid(chargesID);
-                }
+                await RateOT_CheckData(loParam);
+                await _RateOTDetailWD_gridRef.R_RefreshGrid(loParam);
+                await _RateOTDetailWK_gridRef.R_RefreshGrid(loParam);
+                
             }
             catch (Exception ex)
             {
@@ -87,17 +70,13 @@ namespace LMM01000FRONT
             R_DisplayException(loEx);
         }
 
-        private async Task RateGU_CheckData(object poParam)
+        private async Task RateOT_CheckData(object poParam)
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loParam = new LMM01050DTO();
-                loParam.CCHARGES_ID = poParam.ToString();
-
-
-                var loCheck = await _viewModel.GetRateOTCheckData(loParam);
+                var loCheck = await _viewModel.GetRateOTCheckData((LMM01050DTO)poParam);
 
                 if (loCheck != null)
                 {
@@ -112,16 +91,13 @@ namespace LMM01000FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task RateWG_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        private async Task RateOT_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loParam = new LMM01050DTO();
-                loParam.CCHARGES_ID = eventArgs.Data.ToString();
-
-                await _viewModel.GetRateOT(loParam);
+                await _viewModel.GetRateOT((LMM01050DTO)eventArgs.Data);
 
                 eventArgs.Result = _viewModel.RateOT;
             }
@@ -133,18 +109,116 @@ namespace LMM01000FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private bool AdminFeePctEnable = false;
+        private bool AdminFeeAmtEnable = false;
+        private void RateOT_Admin_OnChange(object poParam)
+        {
+            AdminFeePctEnable = (string)poParam == "01";
+            if ((string)poParam == "01")
+                _viewModel.Data.NADMIN_FEE_AMT = 0;
+
+            AdminFeeAmtEnable = (string)poParam == "02";
+            if ((string)poParam == "02")
+                _viewModel.Data.NADMIN_FEE_PCT = 0;
+        }
+
+        private bool PrintBtnEnable = false;
+        private void RateOT_SetHasData(R_SetEventArgs eventArgs)
+        {
+            PrintBtnEnable = eventArgs.Enable;
+        }
+        private async Task RateOT_ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await _viewModel.SaveRateOT((LMM01050DTO)eventArgs.Data, (eCRUDMode)eventArgs.ConductorMode);
+
+                eventArgs.Result = _viewModel.RateOT;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private bool EnableEdit = false;
+        private void RateOT_SetEdit(R_SetEventArgs eventArgs)
+        {
+            EnableEdit = eventArgs.Enable;
+        }
+
+        private async Task RateOT_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<LMM01050DTO>(eventArgs.Data);
+
+                await _RateOTDetailWD_gridRef.R_RefreshGrid(loParam);
+                await _RateOTDetailWK_gridRef.R_RefreshGrid(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private async Task RateOT_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<LMM01050DTO>(eventArgs.Data);
+
+                await _RateOTDetailWD_gridRef.R_RefreshGrid(loParam);
+                await _RateOTDetailWK_gridRef.R_RefreshGrid(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private void RateOT_BeforeEdit(R_BeforeEditEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (_viewModel.RateOTWDDetailList.ToList().Count > 0)
+                    _viewModel.RateOTWDDetailListData = _viewModel.RateOTWDDetailList.ToList();
+                if (_viewModel.RateOTWKDetailList.ToList().Count > 0)
+                    _viewModel.RateOTWKDetailListData = _viewModel.RateOTWKDetailList.ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
         private async Task RateOTDetailWK_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
+                var loEventParam = (LMM01050DTO)eventArgs.Parameter;
+
                 var loParam = new LMM01051DTO();
-                loParam.CCHARGES_ID = eventArgs.Parameter.ToString();
+                loParam.CCHARGES_ID = loEventParam.CCHARGES_ID;
 
-                await _viewModel.GetRateOTWDDetailList(loParam);
+                await _viewModel.GetRateOTWKDetailList(loParam);
 
-                eventArgs.ListEntityResult = _viewModel.RateOTWDDetailList;
+                eventArgs.ListEntityResult = _viewModel.RateOTWKDetailList;
             }
             catch (Exception ex)
             {
@@ -160,12 +234,16 @@ namespace LMM01000FRONT
 
             try
             {
+                var loEventParam = (LMM01050DTO)eventArgs.Parameter;
+
                 var loParam = new LMM01051DTO();
-                loParam.CCHARGES_ID = eventArgs.Parameter.ToString();
+                loParam.CCHARGES_ID = loEventParam.CCHARGES_ID;
 
-                await _viewModel.GetRateOTWKDetailList(loParam);
+                await _viewModel.GetRateOTWDDetailList(loParam);
 
-                eventArgs.ListEntityResult = _viewModel.RateOTWKDetailList;
+                eventArgs.ListEntityResult = _viewModel.RateOTWDDetailList;
+
+                _viewModel.SavingBatchListOTWD(_viewModel.RateOTWDDetailList.ToList());
             }
             catch (Exception ex)
             {
@@ -185,5 +263,115 @@ namespace LMM01000FRONT
             eventArgs.Result = eventArgs.Data;
         }
 
+        private void RateOTWDDetail_Saving(R_SavingEventArgs eventArgs)
+        {
+            var loParentData = (LMM01050DTO)_RateOT_conductorRef.R_GetCurrentData();
+            var loData = (LMM01051DTO)eventArgs.Data;
+            loData.CCOMPANY_ID = loParentData.CCOMPANY_ID;
+            loData.CPROPERTY_ID = loParentData.CPROPERTY_ID;
+            loData.CCHARGES_TYPE = loParentData.CCHARGES_TYPE;
+            loData.CCHARGES_ID = loParentData.CCHARGES_ID;
+            loData.CDAY_TYPE = "WD";
+        }
+        private void RateOTWKDetail_Saving(R_SavingEventArgs eventArgs)
+        {
+            var loParentData = (LMM01050DTO)_RateOT_conductorRef.R_GetCurrentData();
+            var loData = (LMM01051DTO)eventArgs.Data;
+            loData.CCOMPANY_ID = loParentData.CCOMPANY_ID;
+            loData.CPROPERTY_ID = loParentData.CPROPERTY_ID;
+            loData.CCHARGES_TYPE = loParentData.CCHARGES_TYPE;
+            loData.CCHARGES_ID = loParentData.CCHARGES_ID;
+            loData.CDAY_TYPE = "WK";
+        }
+        private void RateOTWDDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            _RateOTDetailWD_conductorRef.R_SaveBatch();
+        }
+        private void RateOTWKDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            _RateOTDetailWK_conductorRef.R_SaveBatch();
+        }
+        private void RateOTWDDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = (List<LMM01051DTO>)eventArgs.Data;
+                _viewModel.SavingBatchListOTWD(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private void RateOTWKDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = (List<LMM01051DTO>)eventArgs.Data;
+
+                _viewModel.SavingBatchListOTWK(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+        }
+
+        private async Task RateOTWDDetail_Validation(R_ValidationEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            bool lCancel = false;
+            var loData = (LMM01051DTO)eventArgs.Data;
+            try
+            {
+                foreach (var item in _viewModel.Data.CRATE_OT_LIST)
+                {
+                    lCancel = item.ILEVEL == loData.ILEVEL;
+                    if (lCancel)
+                    {
+                        eventArgs.Cancel = lCancel;
+                        await R_MessageBox.Show("", "Duplicate Level", R_eMessageBoxButtonType.OK);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task RateOTWKDetail_Validation(R_ValidationEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            bool lCancel = false;
+            var loData = (LMM01051DTO)eventArgs.Data;
+            try
+            {
+                foreach (var item in _viewModel.Data.CRATE_OT_LIST)
+                {
+                    lCancel = item.ILEVEL == loData.ILEVEL;
+                    if (lCancel)
+                    {
+                        eventArgs.Cancel = lCancel;
+                        await R_MessageBox.Show("", "Duplicate Level", R_eMessageBoxButtonType.OK);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }
