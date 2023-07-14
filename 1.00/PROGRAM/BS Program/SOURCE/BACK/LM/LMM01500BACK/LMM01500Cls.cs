@@ -208,12 +208,13 @@ namespace LMM01500BACK
 
             try
             {
-                // set action delete
-                poEntity.CACTION = "DELETE";
 
                 lcQuery = "RSP_LM_MAINTAIN_INVOICE_GRP";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
+
+                // set action delete
+                poEntity.CACTION = "DELETE";
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
@@ -223,6 +224,7 @@ namespace LMM01500BACK
                 loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 50, poEntity.LACTIVE);
                 loDb.R_AddCommandParameter(loCmd, "@CINVOICE_DUE_MODE", DbType.String, 50, poEntity.CINVOICE_DUE_MODE);
                 loDb.R_AddCommandParameter(loCmd, "@CINVOICE_GROUP_MODE", DbType.String, 50, poEntity.CINVOICE_GROUP_MODE);
+                loDb.R_AddCommandParameter(loCmd, "@IDUE_DAYS", DbType.Int32, 50, poEntity.IDUE_DAYS);
                 loDb.R_AddCommandParameter(loCmd, "@IFIXED_DUE_DATE", DbType.Int32, 50, poEntity.IFIXED_DUE_DATE);
                 loDb.R_AddCommandParameter(loCmd, "@ILIMIT_INVOICE_DATE", DbType.Int32, 50, poEntity.ILIMIT_INVOICE_DATE);
                 loDb.R_AddCommandParameter(loCmd, "@IBEFORE_LIMIT_INVOICE_DATE", DbType.Int32, 50, poEntity.IBEFORE_LIMIT_INVOICE_DATE);
@@ -245,7 +247,7 @@ namespace LMM01500BACK
 
                 try
                 {
-                    loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                    loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
                 catch (Exception ex)
                 {

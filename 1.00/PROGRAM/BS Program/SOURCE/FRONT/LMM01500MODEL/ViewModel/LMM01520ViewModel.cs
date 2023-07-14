@@ -23,25 +23,42 @@ namespace LMM01500MODEL
         public bool MinPinaltyAmount { get; set; } = false;
         public bool MaxPinaltyAmount { get; set; } = false;
 
-
-        public int MonthlyAmmountValue;
-        public int MonthlyPercentageValue;
-        public int DailyAmmountValue;
-        public int DailyPercentageValue;
-        public int OneTimeAmmountValue;
-        public int OneTimePercentageValue;
-        public string CalcBaseonMonthValue = "";
-        public string CalcBaseonDaysValue = "";
-
-        public async Task GetInvoicePinalty(LMM01520DTO poParam)
+        public async Task GetInvoicePinalty()
         {
             var loEx = new R_Exception();
             try
             {
-                R_FrontContext.R_SetContext(ContextConstant.CPROPERTY_ID, PropertyValueContext);
-                R_FrontContext.R_SetContext(ContextConstant.CINVGRP_CODE, InvGrpCode);
+                if(!string.IsNullOrWhiteSpace(PropertyValueContext))
+                    R_FrontContext.R_SetContext(ContextConstant.CPROPERTY_ID, PropertyValueContext);
+                if (!string.IsNullOrWhiteSpace(InvGrpCode))
+                    R_FrontContext.R_SetContext(ContextConstant.CINVGRP_CODE, InvGrpCode);
 
-                var loResult = await _LMM01520Model.R_ServiceGetRecordAsync(poParam);
+                var loParam = new LMM01520DTO();
+                var loResult = await _LMM01520Model.R_ServiceGetRecordAsync(loParam);
+
+                switch (loResult.CPENALTY_TYPE)
+                {
+                    case "10":
+                        loResult.NPENALTY_TYPE_VALUE_MonthlyAmmount = loResult.NPENALTY_TYPE_VALUE;
+                        break;
+                    case "11":
+                        loResult.NPENALTY_TYPE_VALUE_MonthlyPercentage = loResult.NPENALTY_TYPE_VALUE;
+                        loResult.CPENALTY_TYPE_CALC_BASEON_CalcBaseonMonth = loResult.CPENALTY_TYPE_CALC_BASEON;
+                        break;
+                    case "20":
+                        loResult.NPENALTY_TYPE_VALUE_DailyAmmount = loResult.NPENALTY_TYPE_VALUE;
+                        break;
+                    case "21":
+                        loResult.NPENALTY_TYPE_VALUE_DailyPercentage = loResult.NPENALTY_TYPE_VALUE;
+                        loResult.CPENALTY_TYPE_CALC_BASEON_CalcBaseonDays = loResult.CPENALTY_TYPE_CALC_BASEON;
+                        break;
+                    case "30":
+                        loResult.NPENALTY_TYPE_VALUE_OneTimeAmmount = loResult.NPENALTY_TYPE_VALUE;
+                        break;
+                    case "31":
+                        loResult.NPENALTY_TYPE_VALUE_OneTimePercentage = loResult.NPENALTY_TYPE_VALUE;
+                        break;
+                }
 
                 InvPinalty = loResult;
             }
@@ -59,19 +76,39 @@ namespace LMM01500MODEL
 
             try
             {
-                R_FrontContext.R_SetContext(ContextConstant.CPROPERTY_ID, PropertyValueContext);
-                R_FrontContext.R_SetContext(ContextConstant.CINVGRP_CODE, InvGrpCode);
+                if (!string.IsNullOrEmpty(poNewEntity.CPENALTY_TYPE_CALC_BASEON_CalcBaseonMonth))
+                {
+                    poNewEntity.CPENALTY_TYPE_CALC_BASEON = poNewEntity.CPENALTY_TYPE_CALC_BASEON_CalcBaseonMonth;
+                }
+                else if (!string.IsNullOrEmpty(poNewEntity.CPENALTY_TYPE_CALC_BASEON_CalcBaseonDays))
+                {
+                    poNewEntity.CPENALTY_TYPE_CALC_BASEON = poNewEntity.CPENALTY_TYPE_CALC_BASEON_CalcBaseonDays;
+                }
 
-                //if (string.IsNullOrEmpty(PinaltyDays))
-                //{
-                //    poNewEntity.CPENALTY_TYPE_CALC_BASEON = PinaltyDays;
-                //}
-                //else if(string.IsNullOrEmpty(PinaltyMonth))
-                //{
-                //    poNewEntity.CPENALTY_TYPE_CALC_BASEON = PinaltyMonth;
-                //}
-
-
+                if (poNewEntity.NPENALTY_TYPE_VALUE_MonthlyAmmount > 0)
+                {
+                    poNewEntity.NPENALTY_TYPE_VALUE = poNewEntity.NPENALTY_TYPE_VALUE_MonthlyAmmount;
+                }
+                else if (poNewEntity.NPENALTY_TYPE_VALUE_MonthlyPercentage > 0)
+                {
+                    poNewEntity.NPENALTY_TYPE_VALUE = poNewEntity.NPENALTY_TYPE_VALUE_MonthlyPercentage;
+                }
+                else if (poNewEntity.NPENALTY_TYPE_VALUE_DailyAmmount > 0)
+                {
+                    poNewEntity.NPENALTY_TYPE_VALUE = poNewEntity.NPENALTY_TYPE_VALUE_DailyAmmount;
+                }
+                else if (poNewEntity.NPENALTY_TYPE_VALUE_DailyPercentage > 0)
+                {
+                    poNewEntity.NPENALTY_TYPE_VALUE = poNewEntity.NPENALTY_TYPE_VALUE_DailyPercentage;
+                }
+                else if (poNewEntity.NPENALTY_TYPE_VALUE_OneTimeAmmount > 0)
+                {
+                    poNewEntity.NPENALTY_TYPE_VALUE = poNewEntity.NPENALTY_TYPE_VALUE_OneTimeAmmount;
+                }
+                else if (poNewEntity.NPENALTY_TYPE_VALUE_OneTimePercentage > 0)
+                {
+                    poNewEntity.NPENALTY_TYPE_VALUE = poNewEntity.NPENALTY_TYPE_VALUE_OneTimePercentage;
+                }
 
                 var loResult = await _LMM01520Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
 

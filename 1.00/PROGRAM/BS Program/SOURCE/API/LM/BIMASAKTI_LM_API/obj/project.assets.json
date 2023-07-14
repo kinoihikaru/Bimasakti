@@ -2720,43 +2720,6 @@
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
       },
-      "BlazorMenuBack/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "BlazorMenuCommon": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/BlazorMenuBack.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuBack.dll": {}
-        }
-      },
-      "BlazorMenuCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuCommon.dll": {}
-        }
-      },
-      "BlazorMenuService/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "BlazorMenuBack": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
-        },
-        "compile": {
-          "bin/placeholder/BlazorMenuService.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorMenuService.dll": {}
-        }
-      },
       "LMM01000BACK/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -2838,6 +2801,84 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "LMM06500BACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LMM06500COMMON": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/LMM06500BACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LMM06500BACK.dll": {}
+        }
+      },
+      "LMM06500COMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/LMM06500COMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LMM06500COMMON.dll": {}
+        }
+      },
+      "LMM06500SERVICE/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "LMM06500BACK": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LMM06500SERVICE.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LMM06500SERVICE.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Lookup_LMBACK/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_LMCOMMON": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_LMBACK.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_LMBACK.dll": {}
+        }
+      },
+      "Lookup_LMCOMMON/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Lookup_LMCOMMON.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_LMCOMMON.dll": {}
+        }
+      },
+      "Lookup_LMSERVICES/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Lookup_LMBACK": "1.0.0",
+          "Lookup_LMCOMMON": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "compile": {
+          "bin/placeholder/Lookup_LMSERVICES.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Lookup_LMSERVICES.dll": {}
+        }
+      },
       "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -2846,84 +2887,6 @@
         },
         "runtime": {
           "bin/placeholder/RSP_LM_MAINTAIN_UTILITY_CHARGESResources.dll": {}
-        }
-      },
-      "R_SecurityPolicyBack/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "R_SecurityPolicyCommon": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/R_SecurityPolicyBack.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/R_SecurityPolicyBack.dll": {}
-        }
-      },
-      "R_SecurityPolicyCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "dependencies": {
-          "R_SecurityTokenCommon": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/R_SecurityPolicyCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/R_SecurityPolicyCommon.dll": {}
-        }
-      },
-      "R_SecurityPolicyService/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "R_SecurityPolicyBack": "1.0.0",
-          "R_SecurityTokenBack": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/R_SecurityPolicyService.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/R_SecurityPolicyService.dll": {}
-        }
-      },
-      "R_SecurityTokenBack/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "R_SecurityTokenCommon": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/R_SecurityTokenBack.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/R_SecurityTokenBack.dll": {}
-        }
-      },
-      "R_SecurityTokenCommon/1.0.0": {
-        "type": "project",
-        "framework": ".NETStandard,Version=v2.1",
-        "compile": {
-          "bin/placeholder/R_SecurityTokenCommon.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/R_SecurityTokenCommon.dll": {}
-        }
-      },
-      "R_SecurityTokenService/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "R_SecurityTokenBack": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/R_SecurityTokenService.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/R_SecurityTokenService.dll": {}
         }
       }
     }
@@ -8363,21 +8326,6 @@
         "system.xml.xmldocument.nuspec"
       ]
     },
-    "BlazorMenuBack/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/BlazorMenuBack/BlazorMenuBack.vbproj",
-      "msbuildProject": "../../../BACK/GS/BlazorMenuBack/BlazorMenuBack.vbproj"
-    },
-    "BlazorMenuCommon/1.0.0": {
-      "type": "project",
-      "path": "../../../COMMON/GS/BlazorMenuCommon/BlazorMenuCommon.vbproj",
-      "msbuildProject": "../../../COMMON/GS/BlazorMenuCommon/BlazorMenuCommon.vbproj"
-    },
-    "BlazorMenuService/1.0.0": {
-      "type": "project",
-      "path": "../../../SERVICE/GS/BlazorMenuService/BlazorMenuService.csproj",
-      "msbuildProject": "../../../SERVICE/GS/BlazorMenuService/BlazorMenuService.csproj"
-    },
     "LMM01000BACK/1.0.0": {
       "type": "project",
       "path": "../../../BACK/LM/LMM01000BACK/LMM01000BACK.csproj",
@@ -8408,49 +8356,48 @@
       "path": "../../../SERVICE/LM/LMM01500SERVICE/LMM01500SERVICE.csproj",
       "msbuildProject": "../../../SERVICE/LM/LMM01500SERVICE/LMM01500SERVICE.csproj"
     },
+    "LMM06500BACK/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/LM/LMM06500BACK/LMM06500BACK.csproj",
+      "msbuildProject": "../../../BACK/LM/LMM06500BACK/LMM06500BACK.csproj"
+    },
+    "LMM06500COMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../COMMON/LM/LMM06500COMMON/LMM06500COMMON.csproj",
+      "msbuildProject": "../../../COMMON/LM/LMM06500COMMON/LMM06500COMMON.csproj"
+    },
+    "LMM06500SERVICE/1.0.0": {
+      "type": "project",
+      "path": "../../../SERVICE/LM/LMM06500SERVICE/LMM06500SERVICE.csproj",
+      "msbuildProject": "../../../SERVICE/LM/LMM06500SERVICE/LMM06500SERVICE.csproj"
+    },
+    "Lookup_LMBACK/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_LMBACK/Lookup_LMBACK.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_LMBACK/Lookup_LMBACK.csproj"
+    },
+    "Lookup_LMCOMMON/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_LMCOMMON/Lookup_LMCOMMON.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/BACK/Lookup_LMCOMMON/Lookup_LMCOMMON.csproj"
+    },
+    "Lookup_LMSERVICES/1.0.0": {
+      "type": "project",
+      "path": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_LMSERVICES/Lookup_LMSERVICES.csproj",
+      "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_LMSERVICES/Lookup_LMSERVICES.csproj"
+    },
     "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0": {
       "type": "project",
       "path": "../../../BACK/LM/LM_SPR/RSP_LM_MAINTAIN_UTILITY_CHARGESResources/RSP_LM_MAINTAIN_UTILITY_CHARGESResources.csproj",
       "msbuildProject": "../../../BACK/LM/LM_SPR/RSP_LM_MAINTAIN_UTILITY_CHARGESResources/RSP_LM_MAINTAIN_UTILITY_CHARGESResources.csproj"
-    },
-    "R_SecurityPolicyBack/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/R_SecurityPolicyBack/R_SecurityPolicyBack.vbproj",
-      "msbuildProject": "../../../BACK/GS/R_SecurityPolicyBack/R_SecurityPolicyBack.vbproj"
-    },
-    "R_SecurityPolicyCommon/1.0.0": {
-      "type": "project",
-      "path": "../../../COMMON/GS/R_SecurityPolicyCommon/R_SecurityPolicyCommon.vbproj",
-      "msbuildProject": "../../../COMMON/GS/R_SecurityPolicyCommon/R_SecurityPolicyCommon.vbproj"
-    },
-    "R_SecurityPolicyService/1.0.0": {
-      "type": "project",
-      "path": "../../../SERVICE/GS/R_SecurityPolicyService/R_SecurityPolicyService.csproj",
-      "msbuildProject": "../../../SERVICE/GS/R_SecurityPolicyService/R_SecurityPolicyService.csproj"
-    },
-    "R_SecurityTokenBack/1.0.0": {
-      "type": "project",
-      "path": "../../../BACK/GS/R_SecurityTokenBack/R_SecurityTokenBack.vbproj",
-      "msbuildProject": "../../../BACK/GS/R_SecurityTokenBack/R_SecurityTokenBack.vbproj"
-    },
-    "R_SecurityTokenCommon/1.0.0": {
-      "type": "project",
-      "path": "../../../COMMON/GS/R_SecurityTokenCommon/R_SecurityTokenCommon.vbproj",
-      "msbuildProject": "../../../COMMON/GS/R_SecurityTokenCommon/R_SecurityTokenCommon.vbproj"
-    },
-    "R_SecurityTokenService/1.0.0": {
-      "type": "project",
-      "path": "../../../SERVICE/GS/R_SecurityTokenService/R_SecurityTokenService.csproj",
-      "msbuildProject": "../../../SERVICE/GS/R_SecurityTokenService/R_SecurityTokenService.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "BlazorMenuService >= 1.0.0",
       "LMM01000SERVICE >= 1.0.0",
       "LMM01500SERVICE >= 1.0.0",
-      "R_SecurityPolicyService >= 1.0.0",
-      "R_SecurityTokenService >= 1.0.0",
+      "LMM06500SERVICE >= 1.0.0",
+      "Lookup_LMSERVICES >= 1.0.0",
       "Realta.BackCollectionNuGet >= 1.0.0",
       "Realta.CommonCollectionNuGet >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
@@ -8490,20 +8437,17 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\BlazorMenuService\\BlazorMenuService.csproj"
-            },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityPolicyService\\R_SecurityPolicyService.csproj"
-            },
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\GS\\R_SecurityTokenService\\R_SecurityTokenService.csproj"
-            },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\LMM01000SERVICE\\LMM01000SERVICE.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\LMM01000SERVICE\\LMM01000SERVICE.csproj"
             },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\LMM01500SERVICE\\LMM01500SERVICE.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\LMM01500SERVICE\\LMM01500SERVICE.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\LMM06500SERVICE\\LMM06500SERVICE.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\SERVICE\\LM\\LMM06500SERVICE\\LMM06500SERVICE.csproj"
+            },
+            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_LMSERVICES\\Lookup_LMSERVICES.csproj": {
+              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\SERVICES\\Lookup_LMSERVICES\\Lookup_LMSERVICES.csproj"
             }
           }
         }

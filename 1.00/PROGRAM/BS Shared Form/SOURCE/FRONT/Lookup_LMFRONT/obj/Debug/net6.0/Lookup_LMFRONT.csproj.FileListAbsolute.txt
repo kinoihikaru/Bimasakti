@@ -1,0 +1,72 @@
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.staticwebassets.runtime.json
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.deps.json
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.pdb
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMCOMMON.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMModel.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_BlazorFrontEnd.Controls.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_BlazorFrontEnd.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_ContextFrontEnd.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_BusinessObjectFront.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_APIClient.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_AuthenticationEnumAndInterface.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMCOMMON.pdb
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMModel.pdb
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\id\R_BlazorFrontEnd.Controls.resources.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.csproj.AssemblyReference.cache
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.AssemblyInfoInputs.cache
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.AssemblyInfo.cs
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.csproj.CoreCompileInputs.cache
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.Lookup_LMFRONT.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.build.Lookup_LMFRONT.props
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Lookup_LMFRONT.props
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Lookup_LMFRONT.props
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets.pack.json
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets.build.json
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets.development.json
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\scopedcss\bundle\Lookup_LMFRONT.styles.css
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.csproj.CopyComplete
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\refint\Lookup_LMFRONT.dll
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.pdb
+D:\Work\Code\Backup 1.3 RSF\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\ref\Lookup_LMFRONT.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.staticwebassets.runtime.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMFRONT.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMCOMMON.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMModel.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_BlazorFrontEnd.Controls.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_BlazorFrontEnd.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_CommonFrontBackAPI.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_ContextFrontEnd.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_APICommonDTO.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_BusinessObjectFront.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_APIClient.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_ContextEnumAndInterface.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\R_AuthenticationEnumAndInterface.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMCOMMON.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\Lookup_LMModel.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\bin\Debug\net6.0\id\R_BlazorFrontEnd.Controls.resources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.csproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.AssemblyInfo.cs
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.csproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.Lookup_LMFRONT.Microsoft.AspNetCore.StaticWebAssets.props
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.build.Lookup_LMFRONT.props
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Lookup_LMFRONT.props
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Lookup_LMFRONT.props
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets.pack.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets.build.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\staticwebassets.development.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\scopedcss\bundle\Lookup_LMFRONT.styles.css
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.csproj.CopyComplete
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\refint\Lookup_LMFRONT.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\Lookup_LMFRONT.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\Lookup_LMFRONT\obj\Debug\net6.0\ref\Lookup_LMFRONT.dll

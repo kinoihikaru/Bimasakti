@@ -225,16 +225,6 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "BlazorClientHelper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        }
-      },
       "GFF00900COMMON/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -249,7 +239,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900COMMON": "1.0.0",
           "GFF00900Model": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
@@ -660,11 +649,6 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "BlazorClientHelper/1.0.0": {
-      "type": "project",
-      "path": "../../Menu/BlazorClientHelper/BlazorClientHelper.csproj",
-      "msbuildProject": "../../Menu/BlazorClientHelper/BlazorClientHelper.csproj"
     },
     "GFF00900COMMON/1.0.0": {
       "type": "project",

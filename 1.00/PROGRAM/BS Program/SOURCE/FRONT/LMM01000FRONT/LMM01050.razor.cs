@@ -8,6 +8,7 @@ using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
@@ -15,7 +16,7 @@ using R_CommonFrontBackAPI;
 
 namespace LMM01000FRONT
 {
-    public partial class LMM01050 : R_Page
+    public partial class LMM01050 : R_Page, R_ITabPage
     {
         private LMM01050ViewModel _viewModel = new LMM01050ViewModel();
         private LMM01000UniversalViewModel _Universal_viewModel = new LMM01000UniversalViewModel();
@@ -157,6 +158,8 @@ namespace LMM01000FRONT
 
             try
             {
+                AdminFeePctEnable = false;
+                AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01050DTO>(eventArgs.Data);
 
                 await _RateOTDetailWD_gridRef.R_RefreshGrid(loParam);
@@ -175,6 +178,8 @@ namespace LMM01000FRONT
 
             try
             {
+                AdminFeePctEnable = false;
+                AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01050DTO>(eventArgs.Data);
 
                 await _RateOTDetailWD_gridRef.R_RefreshGrid(loParam);
@@ -372,6 +377,11 @@ namespace LMM01000FRONT
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public Task RefreshTabPageAsync(object poParam)
+        {
+            throw new NotImplementedException();
         }
     }
 }

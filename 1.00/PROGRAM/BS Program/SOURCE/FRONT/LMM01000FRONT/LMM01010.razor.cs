@@ -8,6 +8,8 @@ using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Tab;
+using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
@@ -16,7 +18,7 @@ using System.Diagnostics.Tracing;
 
 namespace LMM01000FRONT
 {
-    public partial class LMM01010 : R_Page
+    public partial class LMM01010 : R_Page, R_ITabPage
     {
         private LMM01010ViewModel _viewModel = new LMM01010ViewModel();
         private LMM01000UniversalViewModel _Universal_viewModel = new LMM01000UniversalViewModel();
@@ -129,10 +131,10 @@ namespace LMM01000FRONT
             PrintBtnEnable = eventArgs.Enable;
         }
 
-        private bool EnableEdit = false;
+        private bool EnableEditGrid = false;
         private void RateUC_SetEdit(R_SetEventArgs eventArgs)
         {
-            EnableEdit = eventArgs.Enable;
+            EnableEditGrid = eventArgs.Enable;
         }
 
         private bool AdminFeePctEnable = false;
@@ -188,6 +190,8 @@ namespace LMM01000FRONT
 
             try
             {
+                AdminFeePctEnable = false;
+                AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01010DTO>(eventArgs.Data);
 
                 await _RateUCDetail_gridRef.R_RefreshGrid(loParam);
@@ -202,10 +206,13 @@ namespace LMM01000FRONT
 
         private async Task RateUC_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
         {
+            
             var loEx = new R_Exception();
 
             try
             {
+                AdminFeePctEnable = false;
+                AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01010DTO>(eventArgs.Data);
 
                 await _RateUCDetail_gridRef.R_RefreshGrid(loParam);
@@ -306,6 +313,7 @@ namespace LMM01000FRONT
                         await R_MessageBox.Show("", "Duplicate Usage (Kwh)", R_eMessageBoxButtonType.OK);
                     }
                 }
+
             }
             catch (Exception ex)
             {
@@ -314,17 +322,21 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
+        
+        private void RateUCDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
+        {
+            _viewModel.Data.CRATE_EC_LIST = new List<LMM01011DTO>();
+            _viewModel.Data.CRATE_EC_LIST = (List<LMM01011DTO>)eventArgs.Data;
+        }
 
         private void RateUCDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
         {
             _RateUCDetail_conductorRef.R_SaveBatch();
         }
 
-        private void RateUCDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
+        public Task RefreshTabPageAsync(object poParam)
         {
-            _viewModel.Data.CRATE_EC_LIST = new List<LMM01011DTO>();
-            _viewModel.Data.CRATE_EC_LIST = (List<LMM01011DTO>)eventArgs.Data;
+            throw new NotImplementedException();
         }
-        
     }
 }

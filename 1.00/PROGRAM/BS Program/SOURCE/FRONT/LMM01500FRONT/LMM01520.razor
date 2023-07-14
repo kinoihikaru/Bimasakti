@@ -2,7 +2,7 @@
 @using LMM01500COMMON
 @using LMM01500MODEL
 
-<R_StackLayout Class="mb-4">
+<R_StackLayout>
     <R_StackLayout Row>
         <R_ItemLayout xs="1">
             <R_Label Class="fw-bold" FontSize="11">Invoice Group</R_Label>
@@ -23,13 +23,11 @@
 
 <R_StackLayout>
     <R_StackLayout Row>
-        <R_ItemLayout xs="1">
+        <R_ItemLayout xs="3" Class="d-inline">
             <R_CheckBox @bind-Value="@_InvPinalty_viewModel.Data.LPENALTY"
                         R_ConductorSource="@_InvPinalty_conductorRef"
                         R_EnableEdit>
             </R_CheckBox>
-        </R_ItemLayout>
-        <R_ItemLayout xs="1">
             <R_Label>Enable Pinalty</R_Label>
         </R_ItemLayout>
     </R_StackLayout>
@@ -44,7 +42,7 @@
                        Enabled="false"></R_TextBox>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="6">
+        <R_ItemLayout xs="4">
             <R_TextBox @bind-Value="@_InvPinalty_viewModel.Data.CCHARGES_NAME"
                        R_ConductorSource="@_InvPinalty_conductorRef"
                        Enabled="false"></R_TextBox>
@@ -68,65 +66,64 @@
             </R_StackLayout>
             <R_StackLayout Class="col-2">
             <R_StackLayout Row="true">
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.MonthlyAmmountValue"
+                <R_ItemLayout xs="11">
+                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NPENALTY_TYPE_VALUE_MonthlyAmmount"
                                       R_ConductorSource="@_InvPinalty_conductorRef"
                                       Enabled="@MonthlyAmmountEnable"></R_NumericTextBox>
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout xs="2" Style="display: inline-block">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.MonthlyPercentageValue"
+                <R_ItemLayout xs="6">
+                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NPENALTY_TYPE_VALUE_MonthlyPercentage"
                                       R_ConductorSource="@_InvPinalty_conductorRef"
                                       Enabled="@MonthlyPercentageEnable"></R_NumericTextBox>
                 </R_ItemLayout>
                 <R_Label>%</R_Label>
             </R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.DailyAmmountValue"
+                <R_ItemLayout xs="11">
+                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NPENALTY_TYPE_VALUE_DailyAmmount"
                                       R_ConductorSource="@_InvPinalty_conductorRef"
                                       Enabled="@DailyAmmountEnable"></R_NumericTextBox>
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.DailyPercentageValue"
+                <R_ItemLayout xs="6">
+                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NPENALTY_TYPE_VALUE_DailyPercentage"
                                       R_ConductorSource="@_InvPinalty_conductorRef"
                                       Enabled="@DailyPercentageEnable"></R_NumericTextBox>
-
                 </R_ItemLayout>
                 <R_Label>%</R_Label>
             </R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.OneTimeAmmountValue"
+                <R_ItemLayout xs="11">
+                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NPENALTY_TYPE_VALUE_OneTimeAmmount"
                                       R_ConductorSource="@_InvPinalty_conductorRef"
                                       Enabled="@OneTimeAmmountEnable"></R_NumericTextBox>
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row="true">
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.OneTimePercentageValue"
+                <R_ItemLayout xs="6">
+                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NPENALTY_TYPE_VALUE_OneTimePercentage"
                                       R_ConductorSource="@_InvPinalty_conductorRef"
                                       Enabled="@OneTimePercentageEnable"></R_NumericTextBox>
                 </R_ItemLayout>
                 <R_Label>%</R_Label>
             </R_StackLayout>
             </R_StackLayout>
-            <R_StackLayout Class="col-6">
+            <R_StackLayout Class="col-5">
             <R_StackLayout Row="true">
                 <R_ItemLayout xs="2">
                     <R_Label></R_Label>
                 </R_ItemLayout>
             </R_StackLayout>
-            <R_StackLayout Class="ms-3" Row="true">
-                <R_ItemLayout xs="2">
+            <R_StackLayout Row="true">
+                <R_ItemLayout xs="3">
                     <R_Label>Calculation base on</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout xs="9">
                     <R_RadioGroup Data="@_InvPinalty_viewModel.RadioPinaltyTypeCalcBaseonMonth"
-                                  @bind-Value="@_InvPinalty_viewModel.CalcBaseonMonthValue"
+                                  @bind-Value="@_InvPinalty_viewModel.Data.CPENALTY_TYPE_CALC_BASEON_CalcBaseonMonth"
                                   ValueField="@nameof(RadioButton.Id)"
                                   TextField="@nameof(RadioButton.Text)"
                                   R_ConductorSource="@_InvPinalty_conductorRef"
@@ -138,13 +135,13 @@
                     <R_Label></R_Label>
                 </R_ItemLayout>
             </R_StackLayout>
-            <R_StackLayout Class="ms-3" Row="true">
-                <R_ItemLayout xs="2">
+            <R_StackLayout Row="true">
+                <R_ItemLayout xs="3">
                     <R_Label>Calculation base on</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout xs="9">
                     <R_RadioGroup Data="@_InvPinalty_viewModel.RadioPinaltyTypeCalcBaseonDays"
-                                  @bind-Value="@_InvPinalty_viewModel.CalcBaseonDaysValue"
+                                  @bind-Value="@_InvPinalty_viewModel.Data.CPENALTY_TYPE_CALC_BASEON_CalcBaseonDays"
                                   ValueField="@nameof(RadioButton.Id)"
                                   TextField="@nameof(RadioButton.Text)"
                                   R_ConductorSource="@_InvPinalty_conductorRef"
@@ -165,7 +162,7 @@
                         @bind-Value="_InvPinalty_viewModel.Data.IROUNDED"
                         ValueField="@nameof(RadioButtonInt.Id)"
                         TextField="@nameof(RadioButtonInt.Text)"
-                        R_EnableEdit="false">
+                        R_EnableEdit="true">
             </R_ComboBox>
         </R_ItemLayout>
     </R_StackLayout>
@@ -175,7 +172,7 @@
             <R_Label>Cut of Date By</R_Label>
         </R_ItemLayout>
 
-        <R_ItemLayout xs="2">
+        <R_ItemLayout xs="8">
             <R_RadioGroup Data="@_InvPinalty_viewModel.RadioCutOfDate"
                           @bind-Value="_InvPinalty_viewModel.Data.CCUTOFDATE_BY"
                           ValueField="@nameof(RadioButton.Id)"
@@ -236,13 +233,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row>
-        <R_ItemLayout xs="1">
+        <R_ItemLayout xs="2" Class="d-inline">
             <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
                         OnChanged="@Pinalty_OnCheckedMinAmmount" @bind-Value="@_InvPinalty_viewModel.MinPinaltyAmount"
                         R_EnableEdit="true"></R_CheckBox>
-        </R_ItemLayout>
-        <R_ItemLayout xs="2">
-            <R_Label>Penalty Fee Start from</R_Label>
+            <R_Label>Min Pinalty Ammount</R_Label>
         </R_ItemLayout>
         <R_ItemLayout xs="2">
             <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NMIN_PENALTY_AMOUNT"
@@ -253,13 +248,11 @@
     </R_StackLayout>
 
     <R_StackLayout Row>
-        <R_ItemLayout xs="1">
+        <R_ItemLayout xs="2" Class="d-inline">
             <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
                         OnChanged="@Pinalty_OnCheckedMaxAmmount" @bind-Value="@_InvPinalty_viewModel.MaxPinaltyAmount"
                         R_EnableEdit="true"></R_CheckBox>
-        </R_ItemLayout>
-        <R_ItemLayout xs="2">
-            <R_Label>Penalty Fee Start from</R_Label>
+            <R_Label>Max Pinalty Ammount</R_Label>
         </R_ItemLayout>
         <R_ItemLayout xs="2">
             <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NMAX_PENALTY_AMOUNT"
@@ -293,5 +286,9 @@
              R_IsHeader="true"
              R_ServiceGetRecord="@Pinalty_ServiceGetRecord"
              R_ServiceSave="@Pinalty_ServiceSave"
-             R_Validation="@Pinalty_Validation">
+             R_BeforeEdit="@Pinalty_BeforeEdit" 
+             R_BeforeCancel="@Pinalty_BeforeCancel"
+             R_AfterSave="@Pinalty_AfterSave"
+             >
 </R_Conductor>
+

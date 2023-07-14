@@ -73,8 +73,7 @@ namespace GSM03000SERVICE
                 loRtn = new GSM03000PropertyListDTO();
 
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loParameter.CUSER_ID ="admin";
-                //loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+                loParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 var loResult = loCls.GetProperty(loParameter);
                 loRtn.Data = loResult;

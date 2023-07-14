@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GSM03000FrontResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61465;http://localhost:61466"
+    }
+  }
+}

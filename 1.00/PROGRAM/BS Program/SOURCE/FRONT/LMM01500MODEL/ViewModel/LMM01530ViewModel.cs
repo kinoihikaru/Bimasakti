@@ -20,6 +20,7 @@ namespace LMM01500MODEL
 
         public string PropertyValueContext = "";
         public string InvGrpCode = "";
+        public string InvGrpName = "";
 
         public async Task GetOtherChargesList()
         {

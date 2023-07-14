@@ -8,3 +8,13 @@ D:\Realta NetCore Library\R_SecurityToken\R_SecurityTokenCommon\obj\Release\nets
 D:\Realta NetCore Library\R_SecurityToken\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.vbproj.CoreCompileInputs.cache
 D:\Realta NetCore Library\R_SecurityToken\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.dll
 D:\Realta NetCore Library\R_SecurityToken\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\bin\Release\netstandard2.1\R_SecurityTokenCommon.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\bin\Release\netstandard2.1\R_SecurityTokenCommon.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\bin\Release\netstandard2.1\R_SecurityTokenCommon.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.vbproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.AssemblyInfo.vb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.vbproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\COMMON\GS\R_SecurityTokenCommon\obj\Release\netstandard2.1\R_SecurityTokenCommon.pdb

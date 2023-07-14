@@ -32,11 +32,11 @@
 </R_StackLayout>
 
 
-<R_StackLayout Row>
+<R_StackLayout Row="true">
     <R_ItemLayout xs="3">
         <R_Label>Administration Fee (per Month)</R_Label>
     </R_ItemLayout>
-    <R_ItemLayout xs="3">
+    <R_ItemLayout xs="1" Class="fs-6">
         <R_RadioGroup Data="@_Universal_viewModel.AdminFeeTypeList"
                       @bind-Value="@_viewModel.Data.CADMIN_FEE"
                       ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
@@ -44,23 +44,28 @@
                       R_ConductorSource="@_RateOT_conductorRef" R_EnableEdit OnChanged="@RateOT_Admin_OnChange">
         </R_RadioGroup>
     </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row>
     <R_ItemLayout xs="4">
-    </R_ItemLayout>
-    <R_ItemLayout xs="1">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
-                          R_ConductorSource="@_RateOT_conductorRef"
-                          Enabled="AdminFeePctEnable">
-        </R_NumericTextBox>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="1">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
-                          R_ConductorSource="@_RateOT_conductorRef"
-                          Enabled="AdminFeeAmtEnable">
-        </R_NumericTextBox>
+        <R_StackLayout Row Class="mb-4">
+            <R_ItemLayout><R_Label></R_Label></R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row Class="mb-4">
+            <R_ItemLayout xs="6">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
+                                  R_ConductorSource="@_RateOT_conductorRef"
+                                  Min="0" Max="100"
+                                  Enabled="@AdminFeePctEnable">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout xs="6">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
+                                  R_ConductorSource="@_RateOT_conductorRef"
+                                  Min="0" Max="100"
+                                  Enabled="@AdminFeeAmtEnable">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
     </R_ItemLayout>
 </R_StackLayout>
 
@@ -216,7 +221,6 @@
              R_Saving="@RateOTWDDetail_Saving"
              R_AfterSave="@RateOTWDDetail_AfterSave"
              R_ServiceSaveBatch="@RateOTWDDetail_ServiceSaveBatch"
-             R_Validation="@RateOTWDDetail_Validation"
              
              >
 </R_ConductorGrid>
@@ -228,7 +232,6 @@
              R_Saving="@RateOTWKDetail_Saving"
              R_AfterSave="@RateOTWKDetail_AfterSave"
              R_ServiceSaveBatch="@RateOTWKDetail_ServiceSaveBatch"
-             R_Validation="@RateOTWKDetail_Validation"
 
              >
 </R_ConductorGrid>

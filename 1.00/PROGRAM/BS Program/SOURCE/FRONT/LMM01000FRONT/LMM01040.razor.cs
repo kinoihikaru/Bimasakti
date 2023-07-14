@@ -7,13 +7,14 @@ using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
+using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace LMM01000FRONT
 {
-    public partial class LMM01040 : R_Page
+    public partial class LMM01040 : R_Page, R_ITabPage
     {
         private string chargesID;
 
@@ -135,6 +136,23 @@ namespace LMM01000FRONT
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        private void RateGU_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            AdminFeePctEnable = false;
+            AdminFeeAmtEnable = false;
+        }
+
+        private void RateGU_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+        {
+            AdminFeePctEnable = false;
+            AdminFeeAmtEnable = false;
+        }
+
+        public Task RefreshTabPageAsync(object poParam)
+        {
+            throw new NotImplementedException();
         }
     }
 }

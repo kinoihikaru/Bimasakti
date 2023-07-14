@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GSM03000MODEL": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61471;http://localhost:61472"
+    }
+  }
+}

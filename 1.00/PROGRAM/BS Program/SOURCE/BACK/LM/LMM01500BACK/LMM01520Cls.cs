@@ -116,8 +116,20 @@ namespace LMM01500BACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poNewEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poNewEntity.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CINVGRP_CODE", DbType.String, 50, poNewEntity.CINVGRP_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CINVGRP_NAME", DbType.String, 50, poNewEntity.CINVGRP_NAME);
-
+                loDb.R_AddCommandParameter(loCmd, "@LPENALTY", DbType.Boolean, 50, poNewEntity.LPENALTY);
+                loDb.R_AddCommandParameter(loCmd, "@CPENALTY_ADD_ID", DbType.String, 50, poNewEntity.CPENALTY_ADD_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPENALTY_TYPE", DbType.String, 50, poNewEntity.CPENALTY_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@NPENALTY_TYPE_VALUE", DbType.Int32, 50, poNewEntity.NPENALTY_TYPE_VALUE);
+                loDb.R_AddCommandParameter(loCmd, "@CPENALTY_TYPE_CALC_BASEON", DbType.String, 50, poNewEntity.CPENALTY_TYPE_CALC_BASEON);
+                loDb.R_AddCommandParameter(loCmd, "@IROUNDED", DbType.Int32, 50, poNewEntity.IROUNDED);
+                loDb.R_AddCommandParameter(loCmd, "@CCUTOFDATE_BY", DbType.String, 50, poNewEntity.CCUTOFDATE_BY);
+                loDb.R_AddCommandParameter(loCmd, "@IGRACE_PERIOD", DbType.Int32, 50, poNewEntity.IGRACE_PERIOD);
+                loDb.R_AddCommandParameter(loCmd, "@CPENALTY_FEE_START_FROM", DbType.String, 50, poNewEntity.CPENALTY_FEE_START_FROM);
+                loDb.R_AddCommandParameter(loCmd, "@LEXCLUDE_SPECIAL_DAY_HOLIDAY", DbType.Boolean, 50, poNewEntity.LEXCLUDE_SPECIAL_DAY_HOLIDAY);
+                loDb.R_AddCommandParameter(loCmd, "@LEXCLUDE_SPECIAL_DAY_SATURDAY", DbType.Boolean, 50, poNewEntity.LEXCLUDE_SPECIAL_DAY_SATURDAY);
+                loDb.R_AddCommandParameter(loCmd, "@LEXCLUDE_SPECIAL_DAY_SUNDAY", DbType.Boolean, 50, poNewEntity.LEXCLUDE_SPECIAL_DAY_SUNDAY);
+                loDb.R_AddCommandParameter(loCmd, "@NMIN_PENALTY_AMOUNT", DbType.String, 50, poNewEntity.NMIN_PENALTY_AMOUNT);
+                loDb.R_AddCommandParameter(loCmd, "@NMAX_PENALTY_AMOUNT", DbType.String, 50, poNewEntity.NMAX_PENALTY_AMOUNT);
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poNewEntity.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
 

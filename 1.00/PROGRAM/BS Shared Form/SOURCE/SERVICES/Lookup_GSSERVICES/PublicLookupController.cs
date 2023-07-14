@@ -77,8 +77,10 @@ namespace Lookup_GSSERVICES
             try
             {
                 var loCls = new PublicLookupCls();
+                GSL00300ParameterDTO loParam = new GSL00300ParameterDTO();
 
-                var loResult = loCls.GetALLCurrency();
+                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                var loResult = loCls.GetALLCurrency(loParam);
 
 
                 loRtn = new GSLGenericList<GSL00300DTO> { Data = loResult };
@@ -158,6 +160,31 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCOA(poParameter);
 
                 loRtn = new GSLGenericList<GSL00510DTO> { Data = loResult };
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public GSLGenericList<GSL00520DTO> GSL00520GetGOACOAList(GSL00520ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            GSLGenericList<GSL00520DTO> loRtn = null;
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                var loResult = loCls.GetALLGOACOA(poParameter);
+
+                loRtn = new GSLGenericList<GSL00520DTO> { Data = loResult };
             }
             catch (Exception ex)
             {

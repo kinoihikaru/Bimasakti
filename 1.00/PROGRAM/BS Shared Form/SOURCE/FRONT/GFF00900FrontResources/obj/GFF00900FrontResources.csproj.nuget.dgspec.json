@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Fake\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj": {}
+    "D:\\Fake\\Future1\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj": {}
   },
   "projects": {
-    "D:\\Fake\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj": {
+    "D:\\Fake\\Future1\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Fake\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj",
+        "projectUniqueName": "D:\\Fake\\Future1\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj",
         "projectName": "GFF00900FrontResources",
-        "projectPath": "D:\\Fake\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj",
+        "projectPath": "D:\\Fake\\Future1\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\GFF00900FrontResources.csproj",
         "packagesPath": "C:\\Users\\ericson.codeid\\.nuget\\packages\\",
-        "outputPath": "D:\\Fake\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\obj\\",
+        "outputPath": "D:\\Fake\\Future1\\BIMASAKTI_11\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\FRONT\\GFF00900FrontResources\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

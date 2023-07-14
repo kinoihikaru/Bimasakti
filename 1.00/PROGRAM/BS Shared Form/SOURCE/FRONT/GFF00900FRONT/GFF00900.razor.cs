@@ -24,13 +24,17 @@ namespace GFF00900FRONT
 
         private bool AccessValidationVisibility = true;
 
+        private bool LayoutVisibility = true;
+
+        private int mode = 0;
+
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
 
             try
-            {
+                {
                 loViewModel.loParameter.ACTION_CODE = (string)poParameter;
                 loViewModel.ACTIVATE_INACTIVE_ACTIVITY_CODE = (string)poParameter;
 
@@ -40,14 +44,15 @@ namespace GFF00900FRONT
                     await loViewModel.RSP_ACTIVITY_VALIDITYMethodAsync();
                     if (loException.HasError == false)
                     {
-                        ReasonVisibility = false;
+                        mode = loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE;
                         if (loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 1)
                         {
                             await this.Close(true, true);
                         }
                         else if (loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 2)
                         {
-
+                            LayoutVisibility = false;
+                            ReasonVisibility = false;
                         }
                         else if (loViewModel.loRspActivityValidityResult.Data.IAPPROVAL_MODE == 3)
                         {
@@ -71,8 +76,11 @@ namespace GFF00900FRONT
 
         private void OnOKReason()
         {
-            ReasonVisibility = true;
-            AccessValidationVisibility = false;
+            if (mode == 2)
+            {
+                ReasonVisibility = true;
+                AccessValidationVisibility = false;
+            }
         }
 
         private async Task OnCancelReason()

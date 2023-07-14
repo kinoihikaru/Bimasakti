@@ -2762,6 +2762,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GFF00900COMMON": "1.0.0",
+          "RSP_ACTIVITY_VALIDITYResources": "1.0.0",
           "RSP_GS_VALIDATE_USER_ACT_APPRResources": "1.0.0"
         },
         "compile": {
@@ -2786,15 +2787,17 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "GFF00900BACK": "1.0.0",
-          "GFF00900COMMON": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "GFF00900COMMON": "1.0.0"
         },
         "compile": {
           "bin/placeholder/GFF00900SERVICES.dll": {}
         },
         "runtime": {
           "bin/placeholder/GFF00900SERVICES.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "GSM03000BACK/1.0.0": {
         "type": "project",
@@ -2876,6 +2879,16 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "RSP_ACTIVITY_VALIDITYResources/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/RSP_ACTIVITY_VALIDITYResources.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RSP_ACTIVITY_VALIDITYResources.dll": {}
+        }
       },
       "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
         "type": "project",
@@ -8469,6 +8482,11 @@
       "type": "project",
       "path": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GSSERVICES/Lookup_GSSERVICES.csproj",
       "msbuildProject": "../../../../../BS Shared Form/SOURCE/SERVICES/Lookup_GSSERVICES/Lookup_GSSERVICES.csproj"
+    },
+    "RSP_ACTIVITY_VALIDITYResources/1.0.0": {
+      "type": "project",
+      "path": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj",
+      "msbuildProject": "../../../BACK/GS/GS_SPR/RSP_ACTIVITY_VALIDITYResources/RSP_ACTIVITY_VALIDITYResources.csproj"
     },
     "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
       "type": "project",

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LMM01500COMMON
 {
-    public class LMM01530DTO : R_APIResultBaseDTO
+    public class LMM01530DTO 
     {
         // parameter
         public string CCOMPANY_ID { get; set; }

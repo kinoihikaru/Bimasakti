@@ -1,0 +1,10 @@
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\bin\Debug\netstandard2.1\GFF00900BackResources.deps.json
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\bin\Debug\netstandard2.1\GFF00900BackResources.dll
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\bin\Debug\netstandard2.1\GFF00900BackResources.pdb
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.csproj.AssemblyReference.cache
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.AssemblyInfoInputs.cache
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.AssemblyInfo.cs
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.csproj.CoreCompileInputs.cache
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.dll
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\BACK\GFF00900BackResources\obj\Debug\netstandard2.1\GFF00900BackResources.pdb

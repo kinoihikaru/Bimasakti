@@ -13,6 +13,7 @@ namespace Lookup_GSCOMMON
         GSLGenericList<GSL00400DTO> GSL00400GetJournalGroupList(GSL00400ParameterDTO poParameter);
         GSLGenericList<GSL00500DTO> GSL00500GetGLAccountList(GSL00500ParameterDTO poParameter);
         GSLGenericList<GSL00510DTO> GSL00510GetCOAList(GSL00510ParameterDTO poParameter);
+        GSLGenericList<GSL00520DTO> GSL00520GetGOACOAList(GSL00520ParameterDTO poParameter);
         GSLGenericList<GSL00550DTO> GSL00550GetGOAList(GSL00550ParameterDTO poParameter);
         GSLGenericList<GSL00600DTO> GSL00600GetUnitTypeCategoryList(GSL00600ParameterDTO poParameter);
         GSLGenericList<GSL00700DTO> GSL00700GetDepartmentList(GSL00700ParameterDTO poParameter);

@@ -4,19 +4,19 @@
 @using LMM01000MODEL
 
 <CascadingValue Value="this" Name="GeneralTabParent" IsFixed>
-    <R_StackLayout Class="mb-4 mt-3">
+    <R_StackLayout Class="mb-2">
         <R_StackLayout Row>
             <R_ItemLayout xs="1">
-                <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="15">Property</R_Label>
+                <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="12">Property</R_Label>
             </R_ItemLayout>
 
             <R_ItemLayout xs="2">
-                <R_DropDownList Data="@_General_viewModel.PropertyList"
+                <R_ComboBox Data="@_General_viewModel.PropertyList"
                                 @bind-Value="_General_viewModel.PropertyValueContext"
                                 ValueField="@nameof(LMM01000DTOPropety.CPROPERTY_ID)"
                                 TextField="@nameof(LMM01000DTOPropety.CPROPERTY_NAME)"
                                 OnChanged="@PropertyDropdown_OnChange">
-                </R_DropDownList>
+                </R_ComboBox>
             </R_ItemLayout>
         </R_StackLayout>
     </R_StackLayout>
@@ -25,19 +25,19 @@
         <R_TabStripTab Title="General Info" Id="General">
             <R_StackLayout Spacing="3" Row="true">
 
-                <R_StackLayout Class="col-2">
+                <R_ItemLayout xs="2">
                     <R_Grid @ref="@_General_gridRef"
                             DataSource="@_General_viewModel.ChargesTypeGrid"
                             R_ConductorSource="@_General_conductorRef"
                             R_GridType="@R_eGridType.Navigator"
                             R_ServiceGetListRecord="@ChargesTypeGrid_ServiceGetListRecord">
                         <R_GridColumns>
-                            <R_GridNumericColumn FieldName="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" HeaderText="Charges Type"></R_GridNumericColumn>
+                            <R_GridTextColumn FieldName="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" HeaderText="Charges Type"></R_GridTextColumn>
                         </R_GridColumns>
                     </R_Grid>
-                </R_StackLayout>
+                </R_ItemLayout>
 
-                <R_StackLayout Class="col-10">
+                <R_ItemLayout xs="10">
 
                     <R_StackLayout Row="true">
                         <R_Grid @ref="@_UtilityCharges_gridRef"
@@ -45,14 +45,16 @@
                                 R_ConductorSource="@_UtilityCharges_conductorRef"
                                 R_GridType="@R_eGridType.Navigator"
                                 Pageable="true"
-                                PageSize="5"
+                                Height="200px"
                                 R_ServiceGetListRecord="@UtilityCharges_ServiceGetListRecord">
                             <R_GridColumns>
-                                <R_GridNumericColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridNumericColumn>
-                                <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name"></R_GridTextColumn>
-                                <R_GridTextColumn FieldName="CSTATUS_DESCRIPTION" HeaderText="Status"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name" ></R_GridTextColumn>
+                                <R_GridTextColumn FieldName="CSTATUS_DESCRIPTION" HeaderText="Status" ></R_GridTextColumn>
                                 <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Update By"></R_GridTextColumn>
-                                <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Update Date"></R_GridTextColumn>
+                                <R_GridDatePickerColumn FieldName="DUPDATE_DATE" HeaderText="Update Date"></R_GridDatePickerColumn>
+                                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Create By"></R_GridTextColumn>
+                                <R_GridDatePickerColumn FieldName="DCREATE_DATE" HeaderText="Create Date"></R_GridDatePickerColumn>
                             </R_GridColumns>
                         </R_Grid>
                     </R_StackLayout>
@@ -208,7 +210,7 @@
                         <R_ItemLayout xs="2" Class="d-inline">
                             <R_CheckBox @bind-Value="@_General_viewModel.Data.LWITHHOLDING_TAX"
                                         R_ConductorSource="@_UtilityCharges_conductorRef"
-                                        R_EnableEdit R_EnableAdd OnChanged="@WithholdingTax_OnChange">
+                                        R_EnableEdit R_EnableAdd OnChanged="@WithholdingTax_OnChange" >
                             </R_CheckBox>
                             <R_Label>Withholding Tax</R_Label>
                             </R_ItemLayout>
@@ -223,9 +225,10 @@
                         </R_ItemLayout>
                         <R_ItemLayout xs="2">
                             <R_ComboBox Data="@_Universal_viewModel.WithholdingTaxList"
+                                        R_ConductorSource="@_UtilityCharges_conductorRef"
                                         @bind-Value="_General_viewModel.Data.CWITHHOLDING_TAX_TYPE"
                                         ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
-                                        TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@_General_viewModel.Data.LWITHHOLDING_TAX">
+                                        TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@WithholdingLookupEnable">
                             </R_ComboBox>
                         </R_ItemLayout>
                     </R_StackLayout>
@@ -244,7 +247,7 @@
                             </R_TextBox>
                         </R_ItemLayout>
                         <R_ItemLayout xs="1">
-                            <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup" Enabled="@_General_viewModel.Data.LWITHHOLDING_TAX">...</R_Lookup>
+                            <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup" Enabled="@WithholdingLookupEnable">...</R_Lookup>
                         </R_ItemLayout>
                         <R_ItemLayout xs="5">
                             <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_NAME"
@@ -266,7 +269,7 @@
 
                     <R_StackLayout Row>
                         <R_ItemLayout xs="2" Class="d-inline">
-                            <R_Label>Service Journal Group</R_Label>
+                            <R_Label>Utility Journal Group</R_Label>
                         </R_ItemLayout>
 
                         <R_ItemLayout xs="2">
@@ -286,7 +289,7 @@
                         </R_ItemLayout>
                     </R_StackLayout>
 
-                    <R_StackLayout Row>
+                    <R_StackLayout Row Class="justify-content-between">
                         <R_ItemLayout xs="1">
                             <R_AddButton R_Conductor="@_UtilityCharges_conductorRef"></R_AddButton>
                         </R_ItemLayout>
@@ -296,14 +299,14 @@
                         <R_ItemLayout xs="1">
                             <R_DeleteButton R_Conductor="@_UtilityCharges_conductorRef"></R_DeleteButton>
                         </R_ItemLayout>
-                        <R_ItemLayout xs="1">
-                            <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="@UtilityCharges_CopyFromBtn_Before_Open_Popup" R_After_Open_Popup="@UtilityCharges_CopyFromBtn_After_Open_Popup" Enabled="@CopyNewBtnEnable">Copy New</R_Popup>
+                        <R_ItemLayout xs="2">
+                            <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="@UtilityCharges_CopyFromBtn_Before_Open_Popup" R_After_Open_Popup="@UtilityCharges_CopyFromBtn_After_Open_Popup" Enabled="@CopyNewBtnEnable" R_EnableOther >Copy New</R_Popup>
                         </R_ItemLayout>
                         <R_ItemLayout xs="1">
-                            <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="UtilityCharges_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="UtilityCharges_R_After_Open_Popup_ActivateInactive" Enabled="@ActiveInactiveBtnEnable">@_Genereal_lcLabel</R_Popup>
+                            <R_Popup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Popup="UtilityCharges_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="UtilityCharges_R_After_Open_Popup_ActivateInactive" Enabled="@ActiveInactiveBtnEnable" R_EnableOther>@_Genereal_lcLabel</R_Popup>
                         </R_ItemLayout>
                         <R_ItemLayout xs="1">
-                            <R_Button R_ConductorSource="@_UtilityCharges_conductorRef">Print</R_Button>
+                            <R_Button R_ConductorSource="@_UtilityCharges_conductorRef" R_EnableOther>Print</R_Button>
                         </R_ItemLayout>
                         <R_ItemLayout xs="1">
                             <R_CancelButton R_Conductor="@_UtilityCharges_conductorRef"></R_CancelButton>
@@ -314,14 +317,14 @@
                     </R_StackLayout>
 
 
-                </R_StackLayout>
+                </R_ItemLayout>
 
             </R_StackLayout>
 
         </R_TabStripTab>
 
         <R_TabStripTab Title="Rate" Id="Rate">
-            <R_TabPage R_Before_Open_TabPage="@_General_Before_Open_TabPage"></R_TabPage>
+            <R_TabPage @ref="@_tabPageRate" R_Before_Open_TabPage="@_General_Before_Open_TabPage" ></R_TabPage>
         </R_TabStripTab>
 
     </R_TabStrip>
@@ -349,7 +352,7 @@
              R_SetHasData="@UtilityCharges_SetHasData"
              R_SetAdd="@UtilityCharges_SetAdd"
              R_SetEdit="@UtilityCharges_SetEdit"
-             
+             R_BeforeCancel="@UtilityCharges_BeforeCancel"
              >
 </R_Conductor>
   

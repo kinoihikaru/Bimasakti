@@ -1,94 +1,96 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>disable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-	<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>disable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
-    <PackageReference Include="EPPlus" Version="6.2.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
-	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
-    <PackageReference Include="Telerik.UI.for.Blazor" Version="3.7.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Blazored.LocalStorage" Version="4.2.0" />
+		<PackageReference Include="EPPlus" Version="6.2.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.14" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.14" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.14" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.23.1" />
+		<PackageReference Include="Telerik.UI.for.Blazor" Version="4.0.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\FRONT\GSM03000FRONT\GSM03000FRONT.csproj" />
-    <ProjectReference Include="..\..\FRONT\LMM01000FRONT\LMM01000FRONT.csproj" />
-    <ProjectReference Include="..\..\FRONT\LMM01500FRONT\LMM01500FRONT.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\FRONT\GLM00400FRONT\GLM00400FRONT.csproj" />
+		<ProjectReference Include="..\..\FRONT\GSM03000FRONT\GSM03000FRONT.csproj" />
+		<ProjectReference Include="..\..\FRONT\LMM01000FRONT\LMM01000FRONT.csproj" />
+		<ProjectReference Include="..\..\FRONT\LMM01500FRONT\LMM01500FRONT.csproj" />
+		<ProjectReference Include="..\..\FRONT\LMM06500FRONT\LMM06500FRONT.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="BlazorClientHelper">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorMenuCommon">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorMenuCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="BlazorMenuModel">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorMenuModel.dll</HintPath>
-    </Reference>
-    <Reference Include="R_APIClient">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APIClient.dll</HintPath>
-    </Reference>
-    <Reference Include="R_APICommonDTO">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
-    </Reference>
-    <Reference Include="R_AuthenticationEnumAndInterface">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_AuthenticationEnumAndInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="R_AuthenticationFront">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_AuthenticationFront.dll</HintPath>
-    </Reference>
-    <Reference Include="R_BlazorFrontEnd">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="R_BlazorFrontEnd.Authentication">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Authentication.dll</HintPath>
-    </Reference>
-    <Reference Include="R_BlazorFrontEnd.Controls">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="R_BlazorFrontEnd.Excel">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Excel.dll</HintPath>
-    </Reference>
-    <Reference Include="R_BlazorStartup">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorStartup.dll</HintPath>
-    </Reference>
-    <Reference Include="R_BusinessObjectFront">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BusinessObjectFront.dll</HintPath>
-    </Reference>
-    <Reference Include="R_CommonFrontBackAPI">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="R_ContextEnumAndInterface">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextEnumAndInterface.dll</HintPath>
-    </Reference>
-    <Reference Include="R_ContextFrontEnd">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextFrontEnd.dll</HintPath>
-    </Reference>
-    <Reference Include="R_CrossPlatformSecurity">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CrossPlatformSecurity.dll</HintPath>
-    </Reference>
-    <Reference Include="R_ProcessAndUploadFront">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
-    </Reference>
-    <Reference Include="R_SecurityPolicyCommon">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\R_SecurityPolicyCommon.dll</HintPath>
-    </Reference>
-    <Reference Include="R_SecurityPolicyFront">
-      <HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\R_SecurityPolicyFront.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="BlazorClientHelper">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorClientHelper.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuCommon">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorMenuCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="BlazorMenuModel">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\BlazorMenuModel.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APIClient">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APIClient.dll</HintPath>
+		</Reference>
+		<Reference Include="R_APICommonDTO">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_APICommonDTO.dll</HintPath>
+		</Reference>
+		<Reference Include="R_AuthenticationEnumAndInterface">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_AuthenticationEnumAndInterface.dll</HintPath>
+		</Reference>
+		<Reference Include="R_AuthenticationFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_AuthenticationFront.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd.Authentication">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Authentication.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd.Controls">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Controls.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorFrontEnd.Excel">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorFrontEnd.Excel.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BlazorStartup">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BlazorStartup.dll</HintPath>
+		</Reference>
+		<Reference Include="R_BusinessObjectFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_BusinessObjectFront.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CommonFrontBackAPI">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CommonFrontBackAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ContextEnumAndInterface">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextEnumAndInterface.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ContextFrontEnd">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ContextFrontEnd.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CrossPlatformSecurity">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_ProcessAndUploadFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyCommon">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\R_SecurityPolicyCommon.dll</HintPath>
+		</Reference>
+		<Reference Include="R_SecurityPolicyFront">
+			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Menu\R_SecurityPolicyFront.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
-    <!--<ItemGroup>
+	<!--<ItemGroup>
 	    <BlazorWebAssemblyLazyLoad Include="SAB00700Front.dll" />
     </ItemGroup>-->
 </Project>

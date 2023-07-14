@@ -1,0 +1,50 @@
+﻿@inherits R_Page
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="1">
+        <R_Label>Allocation Year</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_NumericTextBox ThousandSeparator="false" @bind-Value="@_AllocationPeriod_viewModel.Year"></R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_Button OnClick="@AllocationPeriod_Refresh_OnClick">Refresh</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="4">
+        <R_Grid @ref="@_AllocationPeriod_gridRef"
+                DataSource="@_AllocationPeriod_viewModel.AllocationPeriodGrid"
+                R_GridType="@R_eGridType.Navigator"
+                R_ServiceGetListRecord="@Allocation_Period_ServiceGetListRecord"
+                Pageable="true"
+                R_ConductorSource="@_AllocationPeriod_condutorRef"
+                Height="250px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCYEAR" HeaderText="Year"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CPERIOD_NO" HeaderText="Period"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+    <R_ItemLayout xs="6">
+        <R_Grid @ref="@_AllocationPeriodCenter_gridRef"
+                DataSource="@_AllocationPeriod_viewModel.AllocationPeriodCenterGrid"
+                R_ServiceGetListRecord="@Allocation_CenterPeriod_ServiceGetListRecord"
+                Pageable="true"
+                Height="250px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="Center Code"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="Center Name"></R_GridTextColumn>
+                <R_GridNumericColumn ThousandSeparator="false" FieldName="NVALUE" HeaderText="Formula Value"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_AllocationPeriod_condutorRef"
+             R_ViewModel="@_AllocationPeriod_viewModel"
+             R_IsHeader="true" 
+             R_ServiceGetRecord="@Allocation_Period_ServiceGetRecord"
+             R_Display="@Allocation_Period_Display"
+             />

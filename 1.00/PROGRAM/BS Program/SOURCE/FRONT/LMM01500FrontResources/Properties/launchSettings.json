@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "LMM01500FrontResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:61473;http://localhost:61474"
+    }
+  }
+}

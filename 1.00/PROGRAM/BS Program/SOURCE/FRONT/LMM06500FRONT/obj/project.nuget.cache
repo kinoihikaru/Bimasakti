@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GQixEhcfZxo2DTFaVUxFWYC6iMVvuM5XpEZ+9v8wf+2EXloIs+kR8YWTxdTImZJW+Zxb+K8pXvGjDIV24F9O4Q==",
+  "dgSpecHash": "j3SllbXpksmb95fOnIOeSvaC5+28KoXJzWd9cdbAGZMoEu3WP5/Z6mYqtA2/BBVKRBEyw5tTu+haJR6ZIXcFmA==",
   "success": true,
   "projectFilePath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\FRONT\\LMM06500FRONT\\LMM06500FRONT.csproj",
   "expectedPackageFiles": [
@@ -17,7 +17,9 @@
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\microsoft.jsinterop\\6.0.15\\microsoft.jsinterop.6.0.15.nupkg.sha512",
     "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
-    "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\fadel.codeid\\.nuget\\packages\\system.text.json\\6.0.0\\system.text.json.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -80,7 +80,7 @@ namespace LMM01500BACK
 
                 try
                 {
-                    loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                    loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
                 catch (Exception ex)
                 {

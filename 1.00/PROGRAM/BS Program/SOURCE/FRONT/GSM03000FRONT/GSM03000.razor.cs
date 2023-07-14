@@ -40,6 +40,14 @@ namespace GSM03000FRONT
             try
             {
                 await PropertyDropdown_ServiceGetListRecord(null);
+                if (Additional_viewModel.PropertyList.Count > 0)
+                {
+                    GSM03000PropertyDTO loParam = new GSM03000PropertyDTO();
+                    loParam = Additional_viewModel.PropertyList.FirstOrDefault();
+                    Additional_viewModel.PropertyValueContext = loParam.CPROPERTY_ID;
+                    await PropertyDropdown_OnChange(null);
+                }
+
             }
             catch (Exception ex)
             {
@@ -234,6 +242,8 @@ namespace GSM03000FRONT
                 CCHARGES_ID = loGetData,
             };
 
+            var loGetDataParam = (GSM03000DTO)Additional_viewModel.R_GetCurrentData();
+
             R_Exception loException = new R_Exception();
             try
             {
@@ -241,8 +251,9 @@ namespace GSM03000FRONT
                 if (result == true)
                 {
                     await Additional_viewModel.ActiveInactiveProcessAsync(loParam);
+                    await Additional_conductorRef.R_GetEntity(loGetDataParam);
+                    await Additional_conductorRef.R_SetCurrentData(Additional_viewModel.OtherChargesDetail);
                 }
-                await Additional_gridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -464,6 +475,7 @@ namespace GSM03000FRONT
             {
                 CCHARGES_ID = loGetData,
             };
+            var loGetDataParam = (GSM03000DTO)Additional_viewModel.R_GetCurrentData();
 
             R_Exception loException = new R_Exception();
             try
@@ -472,9 +484,9 @@ namespace GSM03000FRONT
                 if (result == true)
                 {
                     await Deducation_viewModel.ActiveInactiveProcessAsync(loParam);
+                    await Additional_conductorRef.R_GetEntity(loGetDataParam);
+                    await Additional_conductorRef.R_SetCurrentData(Deducation_viewModel.OtherChargesDetail);
                 }
-
-                await Deducation_gridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {

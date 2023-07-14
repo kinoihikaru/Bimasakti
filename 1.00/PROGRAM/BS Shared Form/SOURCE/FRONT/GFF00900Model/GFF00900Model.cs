@@ -14,7 +14,7 @@ namespace GFF00900Model
     {
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrl"; 
         private const string DEFAULT_SERVICEPOINT_NAME = "api/GFF00900";
-        private const string DEFAULT_MODULE = "GS";
+        private const string DEFAULT_MODULE = "gf";
 
         public GFF00900Model(string pcHttpClientName = DEFAULT_HTTP_NAME, 
             string pcRequestServiceEndPoint = DEFAULT_SERVICEPOINT_NAME, 

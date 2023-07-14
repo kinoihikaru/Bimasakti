@@ -1,0 +1,10 @@
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\bin\Debug\netstandard2.1\GFF00900FrontResources.deps.json
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\bin\Debug\netstandard2.1\GFF00900FrontResources.dll
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\bin\Debug\netstandard2.1\GFF00900FrontResources.pdb
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.csproj.AssemblyReference.cache
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.AssemblyInfoInputs.cache
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.AssemblyInfo.cs
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.csproj.CoreCompileInputs.cache
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.dll
+D:\Fake\BIMASAKTI_11\BIMASAKTI_11\1.00\PROGRAM\BS Shared Form\SOURCE\FRONT\GFF00900FrontResources\obj\Debug\netstandard2.1\GFF00900FrontResources.pdb

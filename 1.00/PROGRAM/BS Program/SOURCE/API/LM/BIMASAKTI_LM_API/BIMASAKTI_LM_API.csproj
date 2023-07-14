@@ -12,11 +12,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\SERVICE\GS\BlazorMenuService\BlazorMenuService.csproj" />
-		<ProjectReference Include="..\..\..\SERVICE\GS\R_SecurityPolicyService\R_SecurityPolicyService.csproj" />
-		<ProjectReference Include="..\..\..\SERVICE\GS\R_SecurityTokenService\R_SecurityTokenService.csproj" />
+		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_LMSERVICES.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01000SERVICE\LMM01000SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\LMM01500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM06500SERVICE\LMM06500SERVICE.csproj" />
 	</ItemGroup>
 
 
@@ -26,6 +25,9 @@
 		</Reference>
 		<Reference Include="R_CrossPlatformSecurity">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 

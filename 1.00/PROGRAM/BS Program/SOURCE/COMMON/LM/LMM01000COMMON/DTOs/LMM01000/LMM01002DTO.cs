@@ -17,6 +17,8 @@ namespace LMM01000COMMON
         public string CCHARGES_ID { get; set; }
         public string CCHARGES_NAME { get; set; }
         public string CSTATUS_DESCRIPTION { get; set; }
+        public string CCREATE_BY { get; set; }
+        public DateTime DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
         public DateTime DUPDATE_DATE { get; set; }
     }

@@ -1,0 +1,37 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows,browser
+build_property.RootNamespace = GLM00400FRONT
+build_property.RootNamespace = GLM00400FRONT
+build_property.ProjectDir = D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GLM00400FRONT\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\GLM00400FRONT
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/BIMASAKTI/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GLM00400FRONT/GLM00400.razor]
+build_metadata.AdditionalFiles.TargetPath = R0xNMDA0MDAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BIMASAKTI/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GLM00400FRONT/GLM00410.razor]
+build_metadata.AdditionalFiles.TargetPath = R0xNMDA0MTAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BIMASAKTI/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GLM00400FRONT/GLM00411.razor]
+build_metadata.AdditionalFiles.TargetPath = R0xNMDA0MTEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BIMASAKTI/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GLM00400FRONT/GLM00412.razor]
+build_metadata.AdditionalFiles.TargetPath = R0xNMDA0MTIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/BIMASAKTI/BIMASAKTI_11/1.00/PROGRAM/BS Program/SOURCE/FRONT/GLM00400FRONT/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 

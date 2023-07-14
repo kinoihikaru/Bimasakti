@@ -8,13 +8,14 @@ using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 
 namespace LMM01000FRONT
 {
-    public partial class LMM01020 : R_Page
+    public partial class LMM01020 : R_Page, R_ITabPage
     {
         private LMM01020ViewModel _viewModel = new LMM01020ViewModel();
         private LMM01000UniversalViewModel _Universal_viewModel = new LMM01000UniversalViewModel();
@@ -173,6 +174,8 @@ namespace LMM01000FRONT
 
             try
             {
+                AdminFeePctEnable = false;
+                AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01020DTO>(eventArgs.Data);
 
                 await _RateWGDetail_gridRef.R_RefreshGrid(loParam);
@@ -191,6 +194,8 @@ namespace LMM01000FRONT
 
             try
             {
+                AdminFeePctEnable = false;
+                AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01020DTO>(eventArgs.Data);
 
                 await _RateWGDetail_gridRef.R_RefreshGrid(loParam);
@@ -259,9 +264,15 @@ namespace LMM01000FRONT
         }
         private void RateWGDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
         {
+            AdminFeePctEnable = false;
+            AdminFeePctEnable = false;
             _RateWGDetail_conductorRef.R_SaveBatch();
         }
-
+        private void RateUCDetail_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+        {
+            AdminFeePctEnable = false;
+            AdminFeePctEnable = false;
+        }
         private void RateWGDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
         {
             _viewModel.Data.CRATE_WG_LIST = new List<LMM01021DTO>();
@@ -291,6 +302,11 @@ namespace LMM01000FRONT
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public Task RefreshTabPageAsync(object poParam)
+        {
+            throw new NotImplementedException();
         }
     }
 }

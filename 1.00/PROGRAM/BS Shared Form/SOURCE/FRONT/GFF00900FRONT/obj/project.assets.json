@@ -225,16 +225,6 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
-      "BlazorClientHelper/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v6.0",
-        "compile": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BlazorClientHelper.dll": {}
-        }
-      },
       "GFF00900COMMON/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -573,11 +563,6 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "BlazorClientHelper/1.0.0": {
-      "type": "project",
-      "path": "../../../../BS Program/SOURCE/Menu/BlazorClientHelper/BlazorClientHelper.csproj",
-      "msbuildProject": "../../../../BS Program/SOURCE/Menu/BlazorClientHelper/BlazorClientHelper.csproj"
-    },
     "GFF00900COMMON/1.0.0": {
       "type": "project",
       "path": "../../BACK/GFF00900COMMON/GFF00900COMMON.csproj",
@@ -591,7 +576,6 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "BlazorClientHelper >= 1.0.0",
       "GFF00900COMMON >= 1.0.0",
       "GFF00900Model >= 1.0.0",
       "Microsoft.AspNetCore.Components.Web >= 6.0.15"
@@ -631,9 +615,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj": {
-              "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Program\\SOURCE\\Menu\\BlazorClientHelper\\BlazorClientHelper.csproj"
-            },
             "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\GFF00900COMMON\\GFF00900COMMON.csproj": {
               "projectPath": "D:\\BIMASAKTI\\BIMASAKTI_11\\1.00\\PROGRAM\\BS Shared Form\\SOURCE\\BACK\\GFF00900COMMON\\GFF00900COMMON.csproj"
             },

@@ -131,6 +131,7 @@ namespace LMM01500SERVICE
 
             try
             {
+                poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 var loCls = new LMM01500Cls();

@@ -36,6 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="GSL00520.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <Content Update="GSL00510.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>

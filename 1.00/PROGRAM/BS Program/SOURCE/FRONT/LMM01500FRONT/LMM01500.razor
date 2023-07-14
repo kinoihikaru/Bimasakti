@@ -3,26 +3,25 @@
 @using LMM01500COMMON
 @using LMM01500MODEL
 
-<R_StackLayout Class="mb-4 mt-3">
+<R_StackLayout Class="mb-2">
     <R_StackLayout Row>
         <R_ItemLayout xs="1">
-            <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="15">Property</R_Label>
+            <R_Label FontColor="Red" Class="fw-bold ms-3" FontSize="12">Property</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout xs="2">
-            <R_DropDownList Data="@_Genereal_viewModel.PropertyList"
+            <R_ComboBox Data="@_Genereal_viewModel.PropertyList"
                             @bind-Value="_Genereal_viewModel.PropertyValueContext"
                             ValueField="@nameof(LMM01500DTOPropety.CPROPERTY_ID)"
                             TextField="@nameof(LMM01500DTOPropety.CPROPERTY_NAME)"
                             R_ConductorSource="@_Genereal_conductorRef" OnChanged="@PropertyDropdown_OnChange"
-                            
                            >
-            </R_DropDownList>
+            </R_ComboBox>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
 
-<R_TabStrip @ref="@_TabGeneral" OnActiveTabIndexChanged="@General_OnActiveTabIndexChanged" >
+<R_TabStrip @ref="@_TabGeneral">
 
     <R_TabStripTab Title="General Info" Id="General" >
 
@@ -38,7 +37,7 @@
                                 R_GridType="@R_eGridType.Navigator"
                                 R_ServiceGetListRecord="@GroupGrid_ServiceGetListRecord">
                             <R_GridColumns>
-                                <R_GridNumericColumn FieldName="CINVGRP_CODE_NAME" HeaderText="Invoice Group"></R_GridNumericColumn>
+                                <R_GridTextColumn FieldName="CINVGRP_CODE_NAME" HeaderText="Invoice Group"></R_GridTextColumn>
                             </R_GridColumns>
                         </R_Grid>
                     </R_StackLayout>
@@ -216,7 +215,7 @@
                             </R_ItemLayout>
                         </R_StackLayout>
 
-                        <R_GroupBox Title="All Department">
+                        <R_GroupBox Title="All Department" Enabled="@(!_Genereal_viewModel.Data.LBY_DEPARTMENT)">
                             <R_StackLayout Row="true">
                                 <R_ItemLayout xs="2">
                                     <R_Label>Invoice Template*</R_Label>
@@ -227,7 +226,7 @@
                                                Enabled="false"></R_TextBox>
                                 </R_ItemLayout>
                                 <R_ItemLayout xs="1">
-                                    <R_InputFile Enabled="@_Genereal_viewModel.Data.LBY_DEPARTMENT" >...</R_InputFile>
+                                    <R_InputFile Enabled="@(!_Genereal_viewModel.Data.LBY_DEPARTMENT)">...</R_InputFile>
                                 </R_ItemLayout>
                             </R_StackLayout>
 
@@ -245,7 +244,7 @@
                                                Enabled="false"></R_TextBox>
                                 </R_ItemLayout>
                                 <R_ItemLayout xs="1">
-                                    <R_Lookup Enabled="@_Genereal_viewModel.Data.LBY_DEPARTMENT" R_Before_Open_Lookup="@Department_Before_Open_Lookup" R_After_Open_Lookup="@General_Department_After_Open_Lookup">...</R_Lookup>
+                                    <R_Lookup Enabled="@(!_Genereal_viewModel.Data.LBY_DEPARTMENT)" R_Before_Open_Lookup="@Department_Before_Open_Lookup" R_After_Open_Lookup="@General_Department_After_Open_Lookup">...</R_Lookup>
                                 </R_ItemLayout>
                                 <R_ItemLayout xs="6">
                                     <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CDEPT_NAME"
@@ -264,7 +263,7 @@
                                                Enabled="false"></R_TextBox>
                                 </R_ItemLayout>
                                 <R_ItemLayout xs="1">
-                                    <R_Lookup Enabled="@_Genereal_viewModel.Data.LBY_DEPARTMENT" R_Before_Open_Lookup="@Bank_Before_Open_Lookup" R_After_Open_Lookup="@General_Bank_After_Open_Lookup">...</R_Lookup>
+                                    <R_Lookup Enabled="@(!_Genereal_viewModel.Data.LBY_DEPARTMENT)" R_Before_Open_Lookup="@Bank_Before_Open_Lookup" R_After_Open_Lookup="@General_Bank_After_Open_Lookup">...</R_Lookup>
                                 </R_ItemLayout>
                                 <R_ItemLayout xs="6">
                                     <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCB_NAME"
@@ -364,12 +363,13 @@
                              R_SetAdd="@R_SetAdd"
                              R_SetEdit="@R_SetEdit"
                              R_SetHasData="@R_SetHasData"
-                             >
+                             R_AfterSave="@General_AfterSave"
+                             R_BeforeCancel="@General_BeforeCancel">
                 </R_Conductor>
 
             </R_TabStripTab>
 
-            <R_TabStripTab Title="Template and Bank Account" Enabled="@_Genereal_viewModel.Data.LBY_DEPARTMENT">
+            <R_TabStripTab Title="Template and Bank Account" Enabled="@_Genereal_viewModel.InvoiceGroup.LBY_DEPARTMENT">
                 <R_StackLayout Class="mb-4">
                     <R_StackLayout Row>
                         <R_ItemLayout xs="2">
@@ -442,7 +442,7 @@
                                        Enabled="false"></R_TextBox>
                         </R_ItemLayout>
                         <R_ItemLayout xs="2">
-                            <R_InputFile R_ConductorSource="@_BankAccount_conductorRef" R_EnableAdd R_EnableEdit>...</R_InputFile>
+                            <R_InputFile >...</R_InputFile>
                         </R_ItemLayout>
                     </R_StackLayout>
 
@@ -516,355 +516,18 @@
                              R_ServiceSave="@BankAccount_ServiceSave"
                              R_ServiceDelete="@BankAccount_ServiceDelete">
                 </R_Conductor>
-            </R_TabStripTab>
+                </R_TabStripTab>
 
         </R_TabStrip>
         
     </R_TabStripTab>
 
     <R_TabStripTab Title="Pinalty" Id="Pinalty" Enabled="@TabPinaltyChargesEnable">
-        <R_StackLayout Class="mb-4">
-            <R_StackLayout Row>
-                <R_ItemLayout xs="1">
-                    <R_Label Class="fw-bold" FontSize="11">Invoice Group</R_Label>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="2">
-                    <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINVGRP_CODE"
-                               Enabled="false">
-                    </R_TextBox>
-                </R_ItemLayout>
-                <R_ItemLayout xs="4">
-                    <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINVGRP_NAME"
-                               Enabled="false">
-                    </R_TextBox>
-                </R_ItemLayout>
-            </R_StackLayout>
-        </R_StackLayout>
-
-        <R_StackLayout>
-            <R_StackLayout Row>
-                <R_ItemLayout xs="1" Class="d-inline">
-                    <R_CheckBox @bind-Value="@_InvPinalty_viewModel.Data.LPENALTY"
-                                R_ConductorSource="@_InvPinalty_conductorRef"
-                                R_EnableEdit>
-                    </R_CheckBox>
-                <R_Label>Enable Pinalty</R_Label>
-                </R_ItemLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2">
-                    <R_Label>Additional Id</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2">
-                    <R_TextBox @bind-Value="@_InvPinalty_viewModel.Data.CPENALTY_ADD_ID"
-                               R_ConductorSource="@_InvPinalty_conductorRef"
-                               Enabled="false"></R_TextBox>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="4">
-                    <R_TextBox @bind-Value="@_InvPinalty_viewModel.Data.CCHARGES_NAME"
-                               R_ConductorSource="@_InvPinalty_conductorRef"
-                               Enabled="false"></R_TextBox>
-                </R_ItemLayout>
-                <R_ItemLayout xs="1">
-                    <R_Lookup R_ConductorSource="@_InvPinalty_conductorRef" R_Before_Open_Lookup="@Pinalty_OtherCharges_Before_Open_Lookup" R_After_Open_Lookup="@Pinalty_OtherCharges_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
-                </R_ItemLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row="true">
-                <R_StackLayout Class="col-1">
-                    <R_Label>Penalty Type *</R_Label>
-                </R_StackLayout>
-                <R_StackLayout Class="col-2">
-                    <R_RadioGroup R_ConductorSource="@_InvPinalty_conductorRef"
-                                  Class="d-block" Data="@_InvPinalty_viewModel.RadioPinaltyType"
-                                  @bind-Value="@_InvPinalty_viewModel.Data.CPENALTY_TYPE"
-                                  ValueField="@nameof(RadioButton.Id)"
-                                  TextField="@nameof(RadioButton.Text)"
-                                    R_EnableEdit OnChanged="@Pinalty_RadioButtonOnChange"></R_RadioGroup>
-                </R_StackLayout>
-                <R_StackLayout Class="col-2">
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="11">
-                            <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.MonthlyAmmountValue"
-                                              R_ConductorSource="@_InvPinalty_conductorRef"
-                                              Enabled="@MonthlyAmmountEnable"></R_NumericTextBox>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="6">
-                                <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.MonthlyPercentageValue"
-                                                  R_ConductorSource="@_InvPinalty_conductorRef"
-                                                  Enabled="@MonthlyPercentageEnable"></R_NumericTextBox>
-                        </R_ItemLayout>
-                         <R_Label>%</R_Label>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="11">
-                            <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.DailyAmmountValue"
-                                              R_ConductorSource="@_InvPinalty_conductorRef"
-                                              Enabled="@DailyAmmountEnable"></R_NumericTextBox>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="6">
-                            <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.DailyPercentageValue"
-                                              R_ConductorSource="@_InvPinalty_conductorRef"
-                                              Enabled="@DailyPercentageEnable"></R_NumericTextBox>
-                        </R_ItemLayout>
-                        <R_Label>%</R_Label>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="11">
-                            <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.OneTimeAmmountValue"
-                                              R_ConductorSource="@_InvPinalty_conductorRef"
-                                              Enabled="@OneTimeAmmountEnable"></R_NumericTextBox>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="6">
-                            <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.OneTimePercentageValue"
-                                              R_ConductorSource="@_InvPinalty_conductorRef"
-                                              Enabled="@OneTimePercentageEnable"></R_NumericTextBox>
-                        </R_ItemLayout>
-                        <R_Label>%</R_Label>
-                    </R_StackLayout>
-                </R_StackLayout>
-                <R_StackLayout Class="col-5">
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="2">
-                            <R_Label></R_Label>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="3">
-                            <R_Label>Calculation base on</R_Label>
-                        </R_ItemLayout>
-                        <R_ItemLayout xs="9">
-                            <R_RadioGroup Data="@_InvPinalty_viewModel.RadioPinaltyTypeCalcBaseonMonth"
-                                          @bind-Value="@_InvPinalty_viewModel.CalcBaseonMonthValue"
-                                          ValueField="@nameof(RadioButton.Id)"
-                                          TextField="@nameof(RadioButton.Text)"
-                                          R_ConductorSource="@_InvPinalty_conductorRef"
-                                          Enabled="@CalcBaseonMonthEnable"></R_RadioGroup>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="2">
-                            <R_Label></R_Label>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                    <R_StackLayout Row="true">
-                        <R_ItemLayout xs="3">
-                            <R_Label>Calculation base on</R_Label>
-                        </R_ItemLayout>
-                        <R_ItemLayout xs="9">
-                            <R_RadioGroup Data="@_InvPinalty_viewModel.RadioPinaltyTypeCalcBaseonDays"
-                                          @bind-Value="@_InvPinalty_viewModel.CalcBaseonDaysValue"
-                                          ValueField="@nameof(RadioButton.Id)"
-                                          TextField="@nameof(RadioButton.Text)"
-                                          R_ConductorSource="@_InvPinalty_conductorRef"
-                                          Enabled="@CalcBaseonDaysEnable"></R_RadioGroup>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                </R_StackLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2">
-                    <R_Label>Rounded</R_Label>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="2">
-                    <R_ComboBox R_ConductorSource="@_InvPinalty_conductorRef"
-                                Data="@_InvPinalty_viewModel.RadioRounded"
-                                @bind-Value="_InvPinalty_viewModel.Data.IROUNDED"
-                                ValueField="@nameof(RadioButtonInt.Id)"
-                                TextField="@nameof(RadioButtonInt.Text)"
-                                R_EnableEdit="true">
-                    </R_ComboBox>
-                </R_ItemLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2">
-                    <R_Label>Cut of Date By</R_Label>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="8">
-                    <R_RadioGroup Data="@_InvPinalty_viewModel.RadioCutOfDate"
-                                  @bind-Value="_InvPinalty_viewModel.Data.CCUTOFDATE_BY"
-                                  ValueField="@nameof(RadioButton.Id)"
-                                  TextField="@nameof(RadioButton.Text)"
-                                  R_ConductorSource="@_InvPinalty_conductorRef">
-                    </R_RadioGroup>
-                </R_ItemLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2">
-                    <R_Label>Grace Priod</R_Label>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="1">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.IGRACE_PERIOD"
-                                      R_ConductorSource="@_InvPinalty_conductorRef"
-                                      R_EnableEdit="true"></R_NumericTextBox>
-                </R_ItemLayout>
-                <R_ItemLayout xs="1">
-                    <R_Label>days</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2">
-                    <R_Label>Penalty Fee Start from</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="5">
-                    <R_RadioGroup Data="@_InvPinalty_viewModel.RadioPinaltyFeeStartFrom"
-                                  @bind-Value="_InvPinalty_viewModel.Data.CPENALTY_FEE_START_FROM"
-                                  ValueField="@nameof(RadioButton.Id)"
-                                  TextField="@nameof(RadioButton.Text)"
-                                  R_ConductorSource="@_InvPinalty_conductorRef">
-                    </R_RadioGroup>
-                </R_ItemLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2">
-                    <R_Label>Exclude Spesial Day</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2">
-                    <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
-                                @bind-Value="@_InvPinalty_viewModel.Data.LEXCLUDE_SPECIAL_DAY_HOLIDAY"
-                                R_EnableEdit="true">Holiday</R_CheckBox>
-                    <R_Label>Holiday</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2" Class="d-inline">
-                    <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
-                                @bind-Value="@_InvPinalty_viewModel.Data.LEXCLUDE_SPECIAL_DAY_SATURDAY"
-                                R_EnableEdit="true"></R_CheckBox>
-                    <R_Label Class="ms-2">Saturday</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2" Class="d-inline">
-                    <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
-                                @bind-Value="@_InvPinalty_viewModel.Data.LEXCLUDE_SPECIAL_DAY_SUNDAY"
-                                R_EnableEdit="true"></R_CheckBox>
-                    <R_Label Class="ms-2">Sunday</R_Label>
-                </R_ItemLayout>
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2" Class="d-inline">
-                    <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
-                                OnChanged="@Pinalty_OnCheckedMinAmmount" @bind-Value="@_InvPinalty_viewModel.MinPinaltyAmount"
-                                R_EnableEdit="true"></R_CheckBox>
-                    <R_Label>Min Pinalty Ammount</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NMIN_PENALTY_AMOUNT"
-                                      R_ConductorSource="@_InvPinalty_conductorRef"
-                                      Enabled="@MinAmmountEnable"></R_NumericTextBox>
-                </R_ItemLayout>
-
-            </R_StackLayout>
-
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2" Class="d-inline">
-                    <R_CheckBox R_ConductorSource="@_InvPinalty_conductorRef"
-                                OnChanged="@Pinalty_OnCheckedMaxAmmount" @bind-Value="@_InvPinalty_viewModel.MaxPinaltyAmount"
-                                R_EnableEdit="true"></R_CheckBox>
-                    <R_Label>Max Pinalty Ammount</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout xs="2">
-                    <R_NumericTextBox @bind-Value="@_InvPinalty_viewModel.Data.NMAX_PENALTY_AMOUNT"
-                                      R_ConductorSource="@_InvPinalty_conductorRef"
-                                      Enabled="@MaxAmmountEnable"></R_NumericTextBox>
-                </R_ItemLayout>
-
-            </R_StackLayout>
-
-            <R_StackLayout Row="true">
-                <R_StackLayout Class="col-1">
-                    <R_EditButton R_Conductor="@_InvPinalty_conductorRef"></R_EditButton>
-                </R_StackLayout>
-                <R_StackLayout Class="col-7">
-                    <R_StackLayout Row="true" Class="justify-content-end">
-                        <R_ItemLayout xs="1">
-                            <R_CancelButton R_Conductor="@_InvPinalty_conductorRef"></R_CancelButton>
-                        </R_ItemLayout>
-                        <R_ItemLayout xs="1">
-                            <R_SaveButton R_Conductor="@_InvPinalty_conductorRef"></R_SaveButton>
-                        </R_ItemLayout>
-                    </R_StackLayout>
-                </R_StackLayout>
-
-            </R_StackLayout>
-
-        </R_StackLayout>
-
-        <R_Conductor @ref="@_InvPinalty_conductorRef"
-                     R_ViewModel="@_InvPinalty_viewModel"
-                     R_ConductorParent="@_Genereal_conductorRef"
-                     
-                     R_ServiceGetRecord="@Pinalty_ServiceGetRecord"
-                     R_ServiceSave="@Pinalty_ServiceSave"
-                     R_Validation="@Pinalty_Validation">
-        </R_Conductor>
-
+          <R_TabPage @ref="@_tabPagePinalty" R_Before_Open_TabPage="@_PinaltyTab_Before_Open_TabPage"></R_TabPage>
     </R_TabStripTab>
 
     <R_TabStripTab Title="Charges" Id="OtherCharges" Enabled="@TabPinaltyChargesEnable">
-        <R_StackLayout Class="mb-4">
-            <R_StackLayout Row>
-                <R_ItemLayout xs="2">
-                    <R_Label Class="fw-bold" FontSize="11">Invoice Group</R_Label>
-                </R_ItemLayout>
-
-                <R_ItemLayout xs="2">
-                    <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINVGRP_CODE"
-                               R_ConductorSource="@_Genereal_conductorRef"
-                               Enabled="false">
-                    </R_TextBox>
-                </R_ItemLayout>
-                <R_ItemLayout xs="5">
-                    <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CINVGRP_NAME"
-                               R_ConductorSource="@_Genereal_conductorRef"
-                               Enabled="false">
-                    </R_TextBox>
-                </R_ItemLayout>
-            </R_StackLayout>
-        </R_StackLayout>
-
-        <R_StackLayout>
-            <R_Grid @ref="@_OtherCharges_gridRef"
-                    DataSource="@_OtherCharges_viewModel.OtherChargesGrid"
-                    Pageable="true"
-                    R_ConductorGridSource="@_OtherCharges_conductorRef"
-                    R_GridType="@R_eGridType.Original"
-                    AllowAddNewRow="true"
-                    AllowEditRow="false"
-                    AllowDeleteRow="true"
-                    R_Before_Open_Grid_Lookup="@OtherCharges_Before_Open_Grid_Lookup"
-                    R_After_Open_Grid_Lookup="@OtherCharges_After_Open_Grid_Lookup"
-                    R_ServiceGetListRecord="@OtherCharges_Grid_R_ServiceGetListRecord">
-                <R_GridColumns>
-                    <R_GridLookupColumn FieldName="CCHARGES_ID" HeaderText="Charges Id" R_EnableAdd="true"></R_GridLookupColumn>
-                    <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name" R_EnableAdd="false"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="UNIT_UTILITY_CHARGE" HeaderText="Unit/Utility Charges" R_EnableAdd="false"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="CCHARGES_TYPE_DESCR" HeaderText="Charges Type" R_EnableAdd="false"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By" R_EnableAdd="false"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date" R_EnableAdd="false"></R_GridTextColumn>
-                </R_GridColumns>
-            </R_Grid>
-        </R_StackLayout>
-
-        <R_ConductorGrid @ref="@_OtherCharges_conductorRef"
-                         R_ViewModel="@_OtherCharges_viewModel"
-                         R_ConductorParent="@_Genereal_conductorRef"
-                         R_ServiceGetRecord="@OtherCharges_ServiceGetRecord"
-                         R_ServiceSave="@OtherCharges_ServiceSave"
-                         R_ServiceDelete="@OtherCharges_ServiceDelete"></R_ConductorGrid>
-
+          <R_TabPage @ref="@_tabPageOtherCharges" R_Before_Open_TabPage="@_OtherCharges_Before_Open_TabPage"></R_TabPage>
     </R_TabStripTab>
     
 </R_TabStrip>

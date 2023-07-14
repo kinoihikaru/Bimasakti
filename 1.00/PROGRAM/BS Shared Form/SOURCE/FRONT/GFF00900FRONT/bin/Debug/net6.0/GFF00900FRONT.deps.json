@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v6.0": {
       "GFF00900FRONT/1.0.0": {
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900COMMON": "1.0.0",
           "GFF00900Model": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15",

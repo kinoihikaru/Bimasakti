@@ -15,7 +15,7 @@
           "Lookup_GSCOMMON": "1.0.0",
           "Lookup_GSFRONT": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15",
-          "BlazorClientHelper.Reference": "1.0.0.0",
+          "BlazorClientHelper": "1.0.0.0",
           "R_BlazorFrontEnd.Controls": "1.0.0.0",
           "R_BlazorFrontEnd": "1.0.0.0",
           "R_CommonFrontBackAPI": "1.0.0.0",
@@ -160,7 +160,6 @@
       },
       "GFF00900FRONT/1.0.0": {
         "dependencies": {
-          "BlazorClientHelper": "1.0.0",
           "GFF00900COMMON": "1.0.0",
           "GFF00900Model": "1.0.0",
           "Microsoft.AspNetCore.Components.Web": "6.0.15"
@@ -219,7 +218,7 @@
           "Lookup_GSModel.dll": {}
         }
       },
-      "BlazorClientHelper.Reference/1.0.0.0": {
+      "BlazorClientHelper/1.0.0.0": {
         "runtime": {
           "BlazorClientHelper.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -463,7 +462,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "BlazorClientHelper.Reference/1.0.0.0": {
+    "BlazorClientHelper/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

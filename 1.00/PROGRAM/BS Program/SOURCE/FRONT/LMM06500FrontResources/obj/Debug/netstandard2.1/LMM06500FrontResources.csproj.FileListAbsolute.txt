@@ -1,0 +1,10 @@
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\bin\Debug\netstandard2.1\LMM06500FrontResources.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\bin\Debug\netstandard2.1\LMM06500FrontResources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\bin\Debug\netstandard2.1\LMM06500FrontResources.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.csproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.AssemblyInfo.cs
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.csproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\FRONT\LMM06500FrontResources\obj\Debug\netstandard2.1\LMM06500FrontResources.pdb

@@ -236,7 +236,42 @@ namespace Lookup_GSModel
             return loResult;
         }
         #endregion
-        
+
+        #region GSL00520
+        public GSLGenericList<GSL00520DTO> GSL00520GetGOACOAList(GSL00520ParameterDTO poParameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<GSLGenericList<GSL00520DTO>> GSL00520GetGOACOAListAsync(GSL00520ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            GSLGenericList<GSL00520DTO> loResult = new GSLGenericList<GSL00520DTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericList<GSL00520DTO>, GSL00520ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL00520GetGOACOAList),
+                    poParameter,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        #endregion
+
         #region GSL00550
         public GSLGenericList<GSL00550DTO> GSL00550GetGOAList(GSL00550ParameterDTO poParameter)
         {

@@ -1457,6 +1457,7 @@
       "GFF00900BACK/1.0.0": {
         "dependencies": {
           "GFF00900COMMON": "1.0.0",
+          "RSP_ACTIVITY_VALIDITYResources": "1.0.0",
           "RSP_GS_VALIDATE_USER_ACT_APPRResources": "1.0.0"
         },
         "runtime": {
@@ -1471,8 +1472,7 @@
       "GFF00900SERVICES/1.0.0": {
         "dependencies": {
           "GFF00900BACK": "1.0.0",
-          "GFF00900COMMON": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+          "GFF00900COMMON": "1.0.0"
         },
         "runtime": {
           "GFF00900SERVICES.dll": {}
@@ -1529,6 +1529,11 @@
         },
         "runtime": {
           "Lookup_GSSERVICES.dll": {}
+        }
+      },
+      "RSP_ACTIVITY_VALIDITYResources/1.0.0": {
+        "runtime": {
+          "RSP_ACTIVITY_VALIDITYResources.dll": {}
         }
       },
       "RSP_GS_MAINTAIN_OTHER_CHARGESResources/1.0.0": {
@@ -2873,6 +2878,11 @@
       "sha512": ""
     },
     "Lookup_GSSERVICES/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_ACTIVITY_VALIDITYResources/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

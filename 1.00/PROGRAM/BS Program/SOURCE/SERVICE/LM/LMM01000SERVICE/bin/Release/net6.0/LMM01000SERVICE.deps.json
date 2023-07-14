@@ -10,6 +10,7 @@
         "dependencies": {
           "LMM01000BACK": "1.0.0",
           "LMM01000COMMON": "1.0.0",
+          "RSP_LM_MAINTAIN_UTILITY_CHARGESResources": "1.0.0.0",
           "R_APIBackEnd": "1.0.0.0",
           "R_APICommon": "1.0.0.0",
           "R_CommonFrontBackAPI": "1.0.0.0"
@@ -21,7 +22,7 @@
       "LMM01000BACK/1.0.0": {
         "dependencies": {
           "LMM01000COMMON": "1.0.0",
-          "RSP_LM_MAINTAIN_UTILITY_CHARGESResources": "1.0.0"
+          "LMM06500COMMON": "1.0.0"
         },
         "runtime": {
           "LMM01000BACK.dll": {}
@@ -32,9 +33,17 @@
           "LMM01000COMMON.dll": {}
         }
       },
-      "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0": {
+      "LMM06500COMMON/1.0.0": {
         "runtime": {
           "RSP_LM_MAINTAIN_UTILITY_CHARGESResources.dll": {}
+        }
+      },
+      "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0.0": {
+        "runtime": {
+          "RSP_LM_MAINTAIN_UTILITY_CHARGESResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "R_APIBackEnd/1.0.0.0": {
@@ -119,8 +128,13 @@
       "serviceable": false,
       "sha512": ""
     },
-    "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0": {
+    "LMM06500COMMON/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     },

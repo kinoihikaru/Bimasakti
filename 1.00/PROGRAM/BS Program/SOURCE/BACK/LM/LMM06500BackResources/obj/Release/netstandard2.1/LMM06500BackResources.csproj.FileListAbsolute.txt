@@ -1,0 +1,10 @@
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\bin\Release\netstandard2.1\LMM06500BackResources.deps.json
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\bin\Release\netstandard2.1\LMM06500BackResources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\bin\Release\netstandard2.1\LMM06500BackResources.pdb
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.csproj.AssemblyReference.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.GeneratedMSBuildEditorConfig.editorconfig
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.AssemblyInfoInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.AssemblyInfo.cs
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.csproj.CoreCompileInputs.cache
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.dll
+D:\BIMASAKTI\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\BACK\LM\LMM06500BackResources\obj\Release\netstandard2.1\LMM06500BackResources.pdb

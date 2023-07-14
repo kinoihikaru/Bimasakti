@@ -2,7 +2,7 @@
 @using LMM01000COMMON
 
 <R_StackLayout Row>
-    <R_ItemLayout xs="3">
+    <R_ItemLayout xs="2">
         <R_Label>Utility Charges ID*</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="3">
@@ -20,7 +20,7 @@
 </R_StackLayout>
 
 <R_StackLayout Row>
-    <R_ItemLayout xs="3">
+    <R_ItemLayout xs="2">
         <R_Label>Currency Code</R_Label>
     </R_ItemLayout>
     <R_ItemLayout xs="2">
@@ -47,179 +47,200 @@
 </R_StackLayout>
 
 <R_StackLayout Row>
-    <R_ItemLayout xs="3">
+    <R_ItemLayout xs="2">
         <R_Label FontColor="red" Class="fw-bold">Charges</R_Label>
     </R_ItemLayout>
 
-    <R_ItemLayout xs="3" Class="bg-success text-center fw-bold">
+    <R_ItemLayout xs="2" Class="bg-success text-center fw-bold">
         <R_Label FontColor="white">Buying Price</R_Label>
     </R_ItemLayout>
 
-    <R_ItemLayout xs="3" Class="bg-danger text-center fw-bold">
+    <R_ItemLayout xs="2" Class="bg-danger text-center fw-bold">
         <R_Label FontColor="white">Selling Price</R_Label>
     </R_ItemLayout>
 </R_StackLayout>
 
 <R_StackLayout Row>
-    <R_ItemLayout xs="3">
-        <R_Label>Standing Charges</R_Label>
+    <R_ItemLayout xs="6" Class="me-4">
+        
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4">
+                <R_Label>Standing Charges</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_STANDING_CHARGE"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                        R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout xs="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NSTANDING_CHARGE"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                        R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4">
+                <R_Label>Usage Rate Mode</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="8">
+                <R_RadioGroup Data="@_Universal_viewModel.UsageRateModeList"
+                              @bind-Value="@_viewModel.Data.CUSAGE_RATE_MODE"
+                              ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
+                              TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
+                              R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit>
+                </R_RadioGroup>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4">
+                <R_Label>Usage Charges Rate*</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_USAGE_CHARGE_RATE"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                        R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_CHARGE_RATE"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                        R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4" Class="d-inline">
+                <R_CheckBox @bind-Value="@_viewModel.Data.LUSAGE_MIN_CHARGE"
+                            R_ConductorSource="@_RateWG_conductorRef"
+                            R_EnableEdit>
+                </R_CheckBox>
+                <R_Label>Usage Minimum Charges</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_MIN_CHARGE_AMT"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                  Enabled="@_viewModel.Data.LUSAGE_MIN_CHARGE">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout xs="3" Class="d-inline">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4" Class="d-inline">
+                <R_Label>Maintenance Fee</R_Label>
+                <R_Label>(per month)</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NMAINTENANCE_FEE"
+                                  R_ConductorSource="@_RateWG_conductorRef"
+                                        R_EnableEdit>
+                </R_NumericTextBox>
+            </R_ItemLayout>
+
+        </R_StackLayout>
     </R_ItemLayout>
-    <R_ItemLayout xs="3">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_STANDING_CHARGE"
-                   R_ConductorSource="@_RateWG_conductorRef"
-                   R_EnableEdit>
-        </R_NumericTextBox>
-    </R_ItemLayout>
-    <R_ItemLayout xs="3">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NSTANDING_CHARGE"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          R_EnableEdit>
-        </R_NumericTextBox>
+    <R_ItemLayout xs="6">
+        <R_StackLayout Row="true">
+            <R_ItemLayout xs="4">
+                <R_Label>Administration Fee (per Month)</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout xs="3">
+                <R_RadioGroup Data="@_Universal_viewModel.AdminFeeTypeList"
+                              @bind-Value="@_viewModel.Data.CADMIN_FEE"
+                              ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
+                              TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
+                              R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit OnChanged="@RateWG_Admin_OnChange">
+                </R_RadioGroup>
+            </R_ItemLayout>
+            <R_ItemLayout xs="6">
+                <R_StackLayout Row Class="mb-5">
+                    <R_ItemLayout><R_Label></R_Label></R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row Class="mb-3">
+                    <R_ItemLayout xs="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Min="0" Max="100"
+                                          Enabled="@AdminFeePctEnable">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout xs="6">
+                        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
+                                          R_ConductorSource="@_RateWG_conductorRef"
+                                          Min="0" Max="100"
+                                          Enabled="@AdminFeeAmtEnable">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4" Class="d-inline">
+                <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_TAX"
+                            R_ConductorSource="@_RateWG_conductorRef"
+                            R_EnableEdit>
+                </R_CheckBox>
+                <R_Label>Taxable</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout xs="4">
+                <R_Label>Administration Fee For</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout xs="4">
+                <R_StackLayout Row>
+                    <R_ItemLayout xs="12" Class="d-inline">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_SC"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit>
+                        </R_CheckBox>
+                        <R_Label>Standing Charges</R_Label>
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout xs="12" Class="d-inline">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_USAGE"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit>
+                        </R_CheckBox>
+                        <R_Label>Usage</R_Label>
+
+                    </R_ItemLayout>
+                </R_StackLayout>
+                <R_StackLayout Row>
+                    <R_ItemLayout xs="12" Class="d-inline">
+                        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_MAINTENANCE"
+                                    R_ConductorSource="@_RateWG_conductorRef"
+                                    R_EnableEdit>
+                        </R_CheckBox>
+                        <R_Label>Maintenance</R_Label>
+
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
     </R_ItemLayout>
 </R_StackLayout>
 
 
-<R_StackLayout Row>
-    <R_ItemLayout xs="3">
-        <R_Label>Usage Rate Mode</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="8">
-        <R_RadioGroup Data="@_Universal_viewModel.UsageRateModeList"
-                      @bind-Value="@_viewModel.Data.CUSAGE_RATE_MODE"
-                      ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
-                      TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
-                      R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit>
-        </R_RadioGroup>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row>
-    <R_ItemLayout xs="3">
-        <R_Label>Usage Charges Rate*</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="3">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NBUY_USAGE_CHARGE_RATE"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          R_EnableEdit>
-        </R_NumericTextBox>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="3">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_CHARGE_RATE"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          R_EnableEdit>
-        </R_NumericTextBox>
-    </R_ItemLayout>
-</R_StackLayout>
-
-
-<R_StackLayout Row>
-    <R_ItemLayout xs="3" Class="d-inline">
-        <R_CheckBox @bind-Value="@_viewModel.Data.LUSAGE_MIN_CHARGE"
-                    R_ConductorSource="@_RateWG_conductorRef"
-                    R_EnableEdit>
-        </R_CheckBox>
-        <R_Label>Usage Minimum Charges</R_Label>
-        <R_Label>(per month)</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="3">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_MIN_CHARGE_AMT"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          Enabled="@_viewModel.Data.LUSAGE_MIN_CHARGE">
-        </R_NumericTextBox>
-    </R_ItemLayout>
-
-</R_StackLayout>
-
-<R_StackLayout Row>
-    <R_ItemLayout xs="3" Class="d-inline">
-        <R_Label>Maintenance Fee</R_Label>
-        <R_Label>(per month)</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="3">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NMAINTENANCE_FEE"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          R_EnableEdit>
-        </R_NumericTextBox>
-    </R_ItemLayout>
-
-</R_StackLayout>
-
-
-<R_StackLayout Row>
-    <R_ItemLayout xs="3">
-        <R_Label>Administration Fee (per Month)</R_Label>
-    </R_ItemLayout>
-    <R_ItemLayout xs="3">
-        <R_RadioGroup Data="@_Universal_viewModel.AdminFeeTypeList"
-                      @bind-Value="@_viewModel.Data.CADMIN_FEE"
-                      ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
-                      TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
-                      R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit OnChanged="@RateWG_Admin_OnChange">
-        </R_RadioGroup>
-    </R_ItemLayout>
-    <R_ItemLayout xs="1" Class="d-inline">
-        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_TAX"
-                    R_ConductorSource="@_RateWG_conductorRef"
-                    R_EnableEdit>
-        </R_CheckBox>
-        <R_Label>Taxable</R_Label>
-    </R_ItemLayout>
-</R_StackLayout>
-<R_StackLayout Row>
-    <R_ItemLayout xs="4">
-    </R_ItemLayout>
-    <R_ItemLayout xs="1">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          Enabled="AdminFeePctEnable">
-        </R_NumericTextBox>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="1">
-        <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
-                          R_ConductorSource="@_RateWG_conductorRef"
-                          Enabled="AdminFeeAmtEnable">
-        </R_NumericTextBox>
-    </R_ItemLayout>
-</R_StackLayout>
-
-<R_StackLayout Row>
-    <R_ItemLayout xs="3" >
-        <R_Label>Administration Fee For</R_Label>
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2" Class="d-inline">
-        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_SC"
-                    R_ConductorSource="@_RateWG_conductorRef"
-                    R_EnableEdit>
-        </R_CheckBox>
-        <R_Label>Standing Charges</R_Label>
-
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2" Class="d-inline">
-        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_USAGE"
-                    R_ConductorSource="@_RateWG_conductorRef"
-                    R_EnableEdit>
-        </R_CheckBox>
-        <R_Label>Usage</R_Label>
-
-    </R_ItemLayout>
-
-    <R_ItemLayout xs="2" Class="d-inline">
-        <R_CheckBox @bind-Value="@_viewModel.Data.LADMIN_FEE_MAINTENANCE"
-                    R_ConductorSource="@_RateWG_conductorRef"
-                    R_EnableEdit >
-        </R_CheckBox>
-        <R_Label>Maintenance</R_Label>
-
-    </R_ItemLayout>
-</R_StackLayout>
 
 
 <R_StackLayout Row>
@@ -270,6 +291,7 @@
              R_AfterSave="@RateWG_AfterSave"
              R_BeforeEdit="@RateWG_BeforeEdit"
              R_BeforeCancel="@RateWG_BeforeCancel"
+             
              >
 </R_Conductor>
 
@@ -280,7 +302,6 @@
              R_Saving="@RateWGDetail_Saving"
              R_AfterSave="@RateWGDetail_AfterSave"
              R_ServiceSaveBatch="@RateWGDetail_ServiceSaveBatch"
-             R_Validation="@RateWGDetail_Validation"
 
              >
 </R_ConductorGrid>

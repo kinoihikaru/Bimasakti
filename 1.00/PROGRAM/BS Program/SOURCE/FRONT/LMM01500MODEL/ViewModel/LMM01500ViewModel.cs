@@ -7,6 +7,7 @@ using R_BlazorFrontEnd;
 using System.Collections.ObjectModel;
 using R_CommonFrontBackAPI;
 using R_BlazorFrontEnd.Helpers;
+using System.Diagnostics.Tracing;
 
 namespace LMM01500MODEL
 {
@@ -100,6 +101,90 @@ namespace LMM01500MODEL
                 var loResult = await _LMM01500Model.R_ServiceSaveAsync(poNewEntity, peCRUDMode);
 
                 InvoiceGroup = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public void ValidationInvoiceGrp(LMM01500DTO poParam)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                bool lCancel;
+
+                lCancel = string.IsNullOrEmpty(poParam.CINVGRP_CODE);
+                if (lCancel)
+                {
+                    loEx.Add("", "Invoice Group Code is required");
+                }
+
+                lCancel = string.IsNullOrEmpty(poParam.CINVGRP_NAME);
+
+                if (lCancel)
+                {
+                    loEx.Add("", "Invoice Group Name is required");
+
+                }
+
+                lCancel = poParam.IBEFORE_LIMIT_INVOICE_DATE < poParam.ILIMIT_INVOICE_DATE;
+
+                if (lCancel)
+                {
+                    loEx.Add("", "Before Limit Invoice Date cannot be smaller than Limit Invoice Dates*");
+                }
+
+                lCancel = poParam.IAFTER_LIMIT_INVOICE_DATE > poParam.ILIMIT_INVOICE_DATE;
+
+                if (lCancel)
+                {
+                    loEx.Add("", "After Limit Invoice Date cannot be smaller than Limit Invoice Dates*");
+                }
+
+                if (poParam.LUSE_STAMP)
+                {
+                    lCancel = string.IsNullOrEmpty(poParam.CSTAMP_ADD_ID);
+
+                    if (lCancel)
+                    {
+                        loEx.Add("", "Additional Id and Name is required");
+                    }
+                }
+
+                if (!poParam.LBY_DEPARTMENT)
+                {
+                    lCancel = string.IsNullOrEmpty(poParam.CINVOICE_TEMPLATE);
+
+                    if (lCancel)
+                    {
+                        loEx.Add("", "Invoice Template Is Required");
+                    }
+
+                    lCancel = string.IsNullOrEmpty(poParam.CDEPT_CODE);
+
+                    if (lCancel)
+                    {
+                        loEx.Add("", "Departement Is Required");
+                    }
+
+                    lCancel = string.IsNullOrEmpty(poParam.CBANK_CODE);
+
+                    if (lCancel)
+                    {
+                        loEx.Add("", "Bank Is Required");
+                    }
+
+                    lCancel = string.IsNullOrEmpty(poParam.CBANK_ACCOUNT);
+                    if (lCancel)
+                    {
+                        loEx.Add("", "Bank Account Is Required");
+                    }
+                }
             }
             catch (Exception ex)
             {

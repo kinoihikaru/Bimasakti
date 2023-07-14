@@ -1,0 +1,52 @@
+﻿@inherits R_Page
+@using LMM01500COMMON
+@using LMM01500MODEL
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label Class="fw-bold" FontSize="11">Invoice Group</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_TextBox @bind-Value="@_OtherCharges_viewModel.InvGrpCode"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="5">
+            <R_TextBox @bind-Value="@_OtherCharges_viewModel.InvGrpName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_Grid @ref="@_OtherCharges_gridRef"
+            DataSource="@_OtherCharges_viewModel.OtherChargesGrid"
+            Pageable="true"
+            R_ConductorGridSource="@_OtherCharges_conductorRef"
+            R_GridType="@R_eGridType.Original"
+            AllowAddNewRow="true"
+            AllowEditRow="false"
+            AllowDeleteRow="true"
+            R_Before_Open_Grid_Lookup="@OtherCharges_Before_Open_Grid_Lookup"
+            R_After_Open_Grid_Lookup="@OtherCharges_After_Open_Grid_Lookup"
+            R_ServiceGetListRecord="@OtherCharges_Grid_R_ServiceGetListRecord">
+        <R_GridColumns>
+            <R_GridLookupColumn FieldName="CCHARGES_ID" HeaderText="Charges Id" R_EnableAdd></R_GridLookupColumn>
+            <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name" R_EnableAdd="true"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="UNIT_UTILITY_CHARGE" HeaderText="Unit/Utility Charges" R_EnableAdd="false"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCHARGES_TYPE_DESCR" HeaderText="Charges Type" R_EnableAdd="false"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By" R_EnableAdd="false"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date" R_EnableAdd="false"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_OtherCharges_conductorRef"
+                 R_ViewModel="@_OtherCharges_viewModel"
+                 R_IsHeader="true"
+                 R_ServiceGetRecord="@OtherCharges_ServiceGetRecord"
+                 R_ServiceSave="@OtherCharges_ServiceSave"
+                 R_ServiceDelete="@OtherCharges_ServiceDelete"></R_ConductorGrid>

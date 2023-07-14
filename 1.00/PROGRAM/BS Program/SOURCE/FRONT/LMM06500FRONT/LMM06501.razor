@@ -1,0 +1,97 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Upload File")]
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="2" Class="d-inline">
+        <R_Label>Property</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout xs="3">
+        <R_TextBox @bind-Value="@_viewModel.PropertyValue"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="6">
+        <R_TextBox @bind-Value="@_viewModel.PropertyName"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="2" Class="d-inline">
+        <R_Label>Source File</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout xs="7">
+        <R_TextBox @bind-Value="@_viewModel.SourceFileName"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_InputFile OnChange="@_Staff_SourceUpload_OnChange" Accepts="@accepts"></R_InputFile>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="@_StaffMoveDetail_gridRef"
+            DataSource="@_viewModel.StaffValidateUploadError"
+            Pageable
+            R_GridType="@R_eGridType.Batch"
+            PageSize="5"
+            Width="650px"
+            R_RowRender="@((R_GridRowRenderEventArgs args) => R_RowRender(args))"
+            R_ServiceGetListRecord="@_Staff_Upload_ServiceGetListRecord" >
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="StaffId" HeaderText="Staff Id" Width="100px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="StaffName" HeaderText="Staff Name" Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="Active" HeaderText="Active" Width="90px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="Department" HeaderText="Department" Width="100px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="Position" HeaderText="Position" Width="100px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="JoinDate" HeaderText="JoinDate" Width="100px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="EmailAddress" HeaderText="EmailAddress" Width="150px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="MobileNo1" HeaderText="MobileNo1" Width="130px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="MobileNo2" HeaderText="MobileNo2" Width="130px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="Gender" HeaderText="Gender" Width="90px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="Address" HeaderText="Address" Width="150px"></R_GridTextColumn>
+            <R_GridDatePickerColumn FieldName="InActiveDate" HeaderText="InActiveDate" Width="100px"></R_GridDatePickerColumn>
+            <R_GridTextColumn FieldName="InactiveNote" HeaderText="InActiveNote"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="ErrorMessage" HeaderText="ErrorMessage" Visible="@_viewModel.VisibleError"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="12">
+        <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="11">
+        <R_Label>Note : Red color indicate the record already exist in master Staff</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="5" Class="d-inline">
+        <R_CheckBox @bind-Value="@_viewModel.OverwriteData"
+                    Enabled="true">
+        </R_CheckBox>
+        <R_Label>Overwrite existing record</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-end mt-2">
+    <R_ItemLayout xs="2">
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            Cancel
+        </R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout xs="2">
+        <R_Button Enabled="@_viewModel.BtnSave" OnClick="Button_OnClickOkAsync">
+            Save
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>

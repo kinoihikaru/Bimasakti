@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Lookup_LMFRONT.props" />
+</Project>

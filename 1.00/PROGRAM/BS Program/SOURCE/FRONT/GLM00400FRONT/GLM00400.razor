@@ -1,0 +1,38 @@
+﻿@page "/GLM00400"
+@inherits R_Page
+@attribute [R_Page(Title = "Allocation List")]
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="12">
+        <R_Grid @ref="@_AllocationJournalHD_gridRef"
+                DataSource="@_AllocationJournalHD_viewModel.AllocationJournalHDGrid"
+                R_ServiceGetListRecord="@AllocationJournal_HD_ServiceGetListRecord"
+                Pageable="true"
+                Height="400px" Width="1100px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="CDEPARTMENT_NAME" HeaderText="Department"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CSOURCE_CENTER_NAME" HeaderText="Source Center"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CCURRENT_CENTER_NAME" HeaderText="Current Center"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CALLOC_NO" HeaderText="Allocation No."></R_GridTextColumn>
+                <R_GridTextColumn FieldName="CALLOC_NAME" HeaderText="Allocation Name"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="Active"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Updated By"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="DUPDATE_DATE" HeaderText="Updated Date"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout xs="1">
+        <R_Button OnClick="ResfreshGrid_OnClickOkAsync">
+            Refresh
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_PredefinedDock R_InstantiateDock="@AllocationEntry_InstantiateDock"
+                  Title="Allocation Entry"></R_PredefinedDock> 

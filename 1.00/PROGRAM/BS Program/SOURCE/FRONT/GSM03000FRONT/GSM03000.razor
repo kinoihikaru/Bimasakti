@@ -4,19 +4,19 @@
 @using GSM03000Common.DTOs
 @inject R_ILocalizer<GSM03000FrontResources.Resources_Dummy_Class> _localizer
 
-<R_StackLayout Class="mb-4 mt-3">
+<R_StackLayout Class="mb-2">
     <R_StackLayout Row>
         <R_ItemLayout xs="1">
-            <R_Label FontColor="Red" Class="fw-bold" FontSize="15">Property</R_Label>
+            <R_Label FontColor="Red" Class="fw-bold" FontSize="12">Property</R_Label>
         </R_ItemLayout>
 
         <R_ItemLayout xs="2">
-            <R_DropDownList Data="@Additional_viewModel.PropertyList"
+            <R_ComboBox Data="@Additional_viewModel.PropertyList"
                             @bind-Value="Additional_viewModel.PropertyValueContext"
                             ValueField="@nameof(GSM03000PropertyDTO.CPROPERTY_ID)"
                             TextField="@nameof(GSM03000PropertyDTO.CPROPERTY_NAME)"
                             R_ConductorSource="@Additional_conductorRef" OnChanged="@PropertyDropdown_OnChange">
-            </R_DropDownList>
+            </R_ComboBox>
         </R_ItemLayout>
     </R_StackLayout>
 </R_StackLayout>
@@ -29,15 +29,15 @@
                     R_ConductorSource="@Additional_conductorRef"
                     R_GridType="@R_eGridType.Navigator"
                     Pageable="true"
-                    R_ServiceGetListRecord="@Additional_ServiceGetListRecord">
+                    R_ServiceGetListRecord="@Additional_ServiceGetListRecord" Height="200px">
                 <R_GridColumns>
-                    <R_GridNumericColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridTextColumn>
                     <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name"></R_GridTextColumn>
                     <R_GridTextColumn FieldName="CSTATUS_DESCRIPTION" HeaderText="Status"></R_GridTextColumn>
                     <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"></R_GridDatePickerColumn>
                     <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridDatePickerColumn>
                 </R_GridColumns>
             </R_Grid>
         </R_StackLayout>
@@ -177,15 +177,15 @@
                     R_ConductorSource="@Deducation_conductorRef"
                     R_GridType="@R_eGridType.Navigator"
                     Pageable="true"
-                    R_ServiceGetListRecord="@GridDeducation_ServiceGetListRecord">
+                    R_ServiceGetListRecord="@GridDeducation_ServiceGetListRecord" Height="200px">
                 <R_GridColumns>
-                    <R_GridNumericColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="Charges Id"></R_GridTextColumn>
                     <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="Charges Name"></R_GridTextColumn>
                     <R_GridTextColumn FieldName="CSTATUS_DESCRIPTION" HeaderText="Status"></R_GridTextColumn>
                     <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Last Update By"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="DUPDATE_DATE" HeaderText="Last Update Date"></R_GridDatePickerColumn>
                     <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"></R_GridTextColumn>
-                    <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridDatePickerColumn>
                 </R_GridColumns>
             </R_Grid>
         </R_StackLayout>

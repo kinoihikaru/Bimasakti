@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Web;
+using R_BlazorFrontEnd.Controls.Tab;
 
 namespace LMM01000FRONT
 {
@@ -47,6 +48,14 @@ namespace LMM01000FRONT
                 await UtilityCharges_Status_ServiceGetListRecord(null);
                 await UtilityCharges_TaxExemption_ServiceGetListRecord(null);
                 await UtilityCharges_WithholdingTax_ServiceGetListRecord(null);
+
+                if (_General_viewModel.PropertyList.Count > 0)
+                {
+                    LMM01000DTOPropety loParam = new LMM01000DTOPropety();
+                    loParam = _General_viewModel.PropertyList.FirstOrDefault();
+                    _General_viewModel.PropertyValueContext = loParam.CPROPERTY_ID;
+                    await PropertyDropdown_OnChange(null);
+                }
             }
             catch (Exception ex)
             {
@@ -55,6 +64,9 @@ namespace LMM01000FRONT
 
             R_DisplayException(loEx);
         }
+
+        private R_TabPage _tabPageRate;
+
         private async Task PropertyDropdown_ServiceGetListRecord(object eventArgs)
         {
             var loEx = new R_Exception();
@@ -75,10 +87,15 @@ namespace LMM01000FRONT
         private async Task PropertyDropdown_OnChange(object poParam)
         {
             var loEx = new R_Exception();
+            var loData = _General_gridRef.CurrentSelectedData;
 
             try
             {
                 await _General_gridRef.R_RefreshGrid(null);
+                if (loData is not null && !string.IsNullOrWhiteSpace(_General_viewModel.PropertyValueContext))
+                {
+                    await _UtilityCharges_gridRef.R_RefreshGrid(loData);
+                }
             }
             catch (Exception ex)
             {
@@ -136,7 +153,10 @@ namespace LMM01000FRONT
             {
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
-                    await _UtilityCharges_gridRef.R_RefreshGrid(loTempParam);
+                    if (!string.IsNullOrWhiteSpace(_General_viewModel.PropertyValueContext))
+                    {
+                        await _UtilityCharges_gridRef.R_RefreshGrid(loTempParam);
+                    }
                 }
 
             }
@@ -150,12 +170,14 @@ namespace LMM01000FRONT
 
         #region Utility 
         private R_TabStrip _TabGeneral;
-        private void UtilityCharges_Display(R_DisplayEventArgs eventArgs)
+        private async Task UtilityCharges_Display(R_DisplayEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
+                await _UtilityCharges_gridRef.AutoFitAllColumnsAsync();
+
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
                     var loParam = (LMM01000DTO)eventArgs.Data;
@@ -386,9 +408,11 @@ namespace LMM01000FRONT
             }
         }
 
+        private bool WithholdingLookupEnable = false;
         private void WithholdingTax_OnChange(object poParam)
         {
             var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
+            WithholdingLookupEnable = (bool)poParam;
 
             if (!(bool)poParam)
             {
@@ -426,20 +450,7 @@ namespace LMM01000FRONT
             eventArgs.Allow = !string.IsNullOrEmpty(_General_viewModel.PropertyValueContext);
         }
 
-        private void UtilityCharges_AfterSave(R_AfterSaveEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
 
         private async Task UtilityCharges_ServiceSave(R_ServiceSaveEventArgs eventArgs)
         {
@@ -503,10 +514,9 @@ namespace LMM01000FRONT
                 if (result == true)
                 {
                     await _General_viewModel.ActiveInactiveProcessAsync(loGetData);
+                    await _General_conductorRef.R_GetEntity(loGetData);
+                    await _General_conductorRef.R_SetCurrentData(_General_viewModel.UtilityCharges);
                 }
-
-                var loTempParam = _General_gridRef.CurrentSelectedData;
-                await _UtilityCharges_gridRef.R_RefreshGrid(loTempParam);
             }
             catch (Exception ex)
             {
@@ -594,5 +604,22 @@ namespace LMM01000FRONT
                 eventArgs.TargetPageType = typeof(LMM01050);
             }
         }
+
+        private void UtilityCharges_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+        {
+            TaxExemptionEnable = false;
+            TaxExemptionCodeEnable = false;
+            OtherTaxLookupEnable = false;
+            WithholdingLookupEnable = false;
+        }
+
+        private void UtilityCharges_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            TaxExemptionEnable = false;
+            TaxExemptionCodeEnable = false;
+            OtherTaxLookupEnable = false;
+            WithholdingLookupEnable = false;
+        }
+
     }
 }

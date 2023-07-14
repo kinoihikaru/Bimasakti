@@ -9,16 +9,11 @@ using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Forms;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LMM01500FRONT
 {
@@ -26,17 +21,12 @@ namespace LMM01500FRONT
     {
         private LMM01500ViewModel _Genereal_viewModel = new LMM01500ViewModel();
         private LMM01510ViewModel _BankAccount_viewModel = new LMM01510ViewModel();
-        private LMM01520ViewModel _InvPinalty_viewModel = new LMM01520ViewModel();
-        private LMM01530ViewModel _OtherCharges_viewModel = new LMM01530ViewModel();
 
         private R_Grid<LMM01501DTO> _Genereal_gridRef;
         private R_Grid<LMM01510DTO> _BankAccount_gridRef;
-        private R_Grid<LMM01530DTO> _OtherCharges_gridRef;
 
         private R_Conductor _Genereal_conductorRef;
         private R_Conductor _BankAccount_conductorRef;
-        private R_Conductor _InvPinalty_conductorRef;
-        private R_ConductorGrid _OtherCharges_conductorRef;
 
         private string _Genereal_lcLabel = "Actived";
         [Inject] IClientHelper clientHelper { get; set; }
@@ -49,6 +39,14 @@ namespace LMM01500FRONT
             try
             {
                 await PropertyDropdown_ServiceGetListRecord(poParameter);
+
+                if (_Genereal_viewModel.PropertyList.Count > 0)
+                {
+                    LMM01500DTOPropety loParam = new LMM01500DTOPropety();
+                    loParam = _Genereal_viewModel.PropertyList.FirstOrDefault();
+                    _Genereal_viewModel.PropertyValueContext = loParam.CPROPERTY_ID;
+                    await PropertyDropdown_OnChange(null);
+                }
             }
             catch (Exception ex)
             {
@@ -74,63 +72,32 @@ namespace LMM01500FRONT
         }
 
         private R_TabStrip _TabGeneral;
+        private R_TabPage _tabPagePinalty;
+        private R_TabPage _tabPageOtherCharges;
+        private R_TabPage _tabPageBankAccount;
+
         private async Task PropertyDropdown_OnChange(object poParam)
         {
+            TabPinaltyChargesEnable = false;
+
             var loEx = new R_Exception();
 
             try
             {
+                var loParam = _Genereal_gridRef.CurrentSelectedData;
+                var loData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
+
                 await _Genereal_gridRef.R_RefreshGrid(null);
 
-                switch (_TabGeneral.ActiveTabIndex)
+                if (_Genereal_conductorRef.R_ConductorMode == R_eConductorMode.Normal)
                 {
-                    case 1:
-                        _InvPinalty_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
-                        _InvPinalty_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
-
-                        var loParam = new LMM01520DTO();
-                        await _InvPinalty_conductorRef.R_GetEntity(loParam);
-                        break;
-                    case 2:
-                        _OtherCharges_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
-                        _OtherCharges_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
-                        await _OtherCharges_gridRef.R_RefreshGrid(null);
-                        break;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
-
-        #region TabStrip
-
-        private async Task General_OnActiveTabIndexChanged(R_TabStripTab eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(_Genereal_viewModel.Data.CINVGRP_CODE))
-                {
-                    switch (eventArgs.Id)
+                    if (_TabGeneral.ActiveTab.Id == "Pinalty")
                     {
-                        case "Pinalty":
-                            _InvPinalty_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
-                            _InvPinalty_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
-
-                            var loParam = new LMM01520DTO();
-                            await _InvPinalty_conductorRef.R_GetEntity(loParam);
-                            break;
-                        case "OtherCharges":
-                            _OtherCharges_viewModel.PropertyValueContext = _Genereal_viewModel.PropertyValueContext;
-                            _OtherCharges_viewModel.InvGrpCode = _Genereal_viewModel.Data.CINVGRP_CODE;
-                            await _OtherCharges_gridRef.R_RefreshGrid(null);
-                            break;
+                            await _tabPagePinalty.InvokeRefreshTabPageAsync(loData);
+                    }
+                    else if (_TabGeneral.ActiveTab.Id == "Pinalty")
+                    {
+                            await _tabPageOtherCharges.InvokeRefreshTabPageAsync(loData);
                     }
                 }
             }
@@ -141,6 +108,8 @@ namespace LMM01500FRONT
 
             R_DisplayException(loEx);
         }
+
+        #region TabStrip
         private async Task BankAccount_OnActiveTabIndexChanged(R_TabStripTab eventArgs)
         {
             var loEx = new R_Exception();
@@ -190,6 +159,7 @@ namespace LMM01500FRONT
             {
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01500DTO>(eventArgs.Data);
                 await _Genereal_viewModel.GetInvoiceGroup(loParam);
+                TabPinaltyChargesEnable = !string.IsNullOrWhiteSpace(loParam.CINVGRP_CODE);
 
                 eventArgs.Result = _Genereal_viewModel.InvoiceGroup;
             }
@@ -257,8 +227,9 @@ namespace LMM01500FRONT
                 if (result == true)
                 {
                     await _Genereal_viewModel.ActiveInactiveProcessAsync(loParam);
+                    await _Genereal_conductorRef.R_GetEntity(loParam);
+                    await _Genereal_conductorRef.R_SetCurrentData(_Genereal_viewModel.InvoiceGroup);
                 }
-                await _Genereal_gridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -267,15 +238,18 @@ namespace LMM01500FRONT
             loException.ThrowExceptionIfErrors();
         }
 
-        private bool TabPinaltyChargesEnable = false;
+        private bool TabPinaltyChargesEnable;
         private void R_Display(R_DisplayEventArgs eventArgs)
         {
+                var loParam = (LMM01500DTO)eventArgs.Data;
+            var loData = _Genereal_gridRef.CurrentSelectedData;
+
             if (eventArgs.ConductorMode == R_eConductorMode.Normal)
             {
-                var loParam = (LMM01500DTO)eventArgs.Data;
 
                 if (loParam.LACTIVE != true)
                 {
+
                     _Genereal_lcLabel = "Activate";
                     _Genereal_viewModel.StatusChange = true;
                 }
@@ -284,9 +258,9 @@ namespace LMM01500FRONT
                     _Genereal_lcLabel = "Inactive";
                     _Genereal_viewModel.StatusChange = false;
                 }
-
-                TabPinaltyChargesEnable = !string.IsNullOrWhiteSpace(loParam.CINVGRP_CODE);
             }
+
+
         }
         private void R_CheckAdd(R_CheckAddEventArgs eventArgs)
         {
@@ -308,91 +282,13 @@ namespace LMM01500FRONT
             GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
         }
 
-        private async Task R_Validation(R_ValidationEventArgs eventArgs)
+        private void R_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                bool lCancel;
-
-                lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CINVGRP_CODE); 
-                if (lCancel)
-                {
-                    eventArgs.Cancel = lCancel;
-                    await R_MessageBox.Show("", "Invoice Group Code is required", R_eMessageBoxButtonType.OK);
-                }
-
-                lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CINVGRP_NAME);
-
-                if (lCancel)
-                {
-                    eventArgs.Cancel = lCancel;
-                    await R_MessageBox.Show("", "Invoice Group Name is required", R_eMessageBoxButtonType.OK);
-                }
-
-                lCancel = _Genereal_viewModel.Data.IBEFORE_LIMIT_INVOICE_DATE < _Genereal_viewModel.Data.ILIMIT_INVOICE_DATE;
-
-                if (lCancel)
-                {
-                    eventArgs.Cancel = lCancel;
-                    await R_MessageBox.Show("", "Before Limit Invoice Date cannot be smaller than Limit Invoice Dates*", R_eMessageBoxButtonType.OK);
-                }
-
-                lCancel = _Genereal_viewModel.Data.IAFTER_LIMIT_INVOICE_DATE > _Genereal_viewModel.Data.ILIMIT_INVOICE_DATE;
-
-                if (lCancel)
-                {
-                    eventArgs.Cancel = lCancel;
-                    await R_MessageBox.Show("", "After Limit Invoice Date cannot be smaller than Limit Invoice Dates*", R_eMessageBoxButtonType.OK);
-                }
-
-                if (_Genereal_viewModel.Data.LUSE_STAMP)
-                {
-                    lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CSTAMP_ADD_ID);
-
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Additional Id and Name is required", R_eMessageBoxButtonType.OK);
-                    }
-                }
-
-                if (_Genereal_viewModel.Data.LBY_DEPARTMENT)
-                {
-                    lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CINVOICE_TEMPLATE);
-
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Invoice Template Is Required", R_eMessageBoxButtonType.OK);
-                    }
-
-                    lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE);
-
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Departement Is Required", R_eMessageBoxButtonType.OK);
-                    }
-
-                    lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
-
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Bank Is Required", R_eMessageBoxButtonType.OK);
-                    }
-
-                    lCancel = string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_ACCOUNT);
-
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Bank Account Is Required", R_eMessageBoxButtonType.OK);
-                    }
-                }
-
+                _Genereal_viewModel.ValidationInvoiceGrp((LMM01500DTO)eventArgs.Data);
             }
             catch (Exception ex)
             {
@@ -434,6 +330,26 @@ namespace LMM01500FRONT
             ILimitDueDateEnable = poParam.ToString() == "03";
             IBeforeLimitEnable = poParam.ToString() == "03";
             IAfterLimitEnable = poParam.ToString() == "03";
+        }
+
+        private void General_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            InvGrpModeEnable = false;
+            IDueDaysEnable = false;
+            IFixDueDateEnable = false;
+            ILimitDueDateEnable = false;
+            IBeforeLimitEnable = false;
+            IAfterLimitEnable = false;
+        }
+
+        private void General_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+        {
+            InvGrpModeEnable = false;
+            IDueDaysEnable = false;
+            IFixDueDateEnable = false;
+            ILimitDueDateEnable = false;
+            IBeforeLimitEnable = false;
+            IAfterLimitEnable = false;
         }
 
         #endregion
@@ -564,231 +480,6 @@ namespace LMM01500FRONT
             {
                 LMM01511DTO loData = (LMM01511DTO)eventArgs.Data;
                 await _BankAccount_viewModel.DeleteTemplateBankAccount(loData);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        #endregion
-
-        #region Pinalty
-        private async Task Pinalty_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                LMM01520DTO loParam = new LMM01520DTO();
-                await _InvPinalty_viewModel.GetInvoicePinalty(loParam);
-
-                eventArgs.Result = _InvPinalty_viewModel.InvPinalty;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private bool MonthlyAmmountEnable;
-        private bool MonthlyPercentageEnable;
-        private bool DailyAmmountEnable;
-        private bool DailyPercentageEnable;
-        private bool OneTimeAmmountEnable;
-        private bool OneTimePercentageEnable;
-        private bool CalcBaseonMonthEnable;
-        private bool CalcBaseonDaysEnable;
-
-        private void Pinalty_RadioButtonOnChange(object poParam)
-        {
-            MonthlyAmmountEnable = poParam.ToString() == "10";
-            if (poParam.ToString() == "10")
-            {
-
-            }
-            MonthlyPercentageEnable = poParam.ToString() == "11";
-            CalcBaseonMonthEnable = poParam.ToString() == "11";
-            if (poParam.ToString() != "11")
-            {
-                _InvPinalty_viewModel.CalcBaseonMonthValue = "";
-            }
-            DailyAmmountEnable = poParam.ToString() == "20";
-            if (poParam.ToString() == "20")
-            {
-
-            }
-            DailyPercentageEnable = poParam.ToString() == "21";
-            CalcBaseonDaysEnable = poParam.ToString() == "21";
-            if (poParam.ToString() != "21")
-            {
-                _InvPinalty_viewModel.CalcBaseonDaysValue = "";
-            }
-            OneTimeAmmountEnable = poParam.ToString() == "30";
-            if (poParam.ToString() != "30")
-            {
-                _InvPinalty_viewModel.CalcBaseonDaysValue = "";
-            }
-            OneTimePercentageEnable = poParam.ToString() == "31";
-            if (poParam.ToString() != "30")
-            {
-                _InvPinalty_viewModel.CalcBaseonDaysValue = "";
-            }
-
-        }
-
-        private async Task Pinalty_ServiceSave(R_ServiceSaveEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                await _InvPinalty_viewModel.SaveInvoicePinalty(
-                    (LMM01520DTO)eventArgs.Data,
-                    (eCRUDMode)eventArgs.ConductorMode);
-
-                eventArgs.Result = _InvPinalty_viewModel.InvPinalty;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private bool MinAmmountEnable;
-        private void Pinalty_OnCheckedMinAmmount(object poParam)
-        {
-            MinAmmountEnable = (bool)poParam;
-        }
-
-        private bool MaxAmmountEnable;
-        private void Pinalty_OnCheckedMaxAmmount(object poParam)
-        {
-            MaxAmmountEnable = (bool)poParam;
-        }
-
-        private void Pinalty_Validation(R_ValidationEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                switch (0)
-                {
-                    case var _ when 0 == _InvPinalty_viewModel.MonthlyAmmountValue:
-                        break;
-                    case var _ when 0 == _InvPinalty_viewModel.MonthlyPercentageValue:
-                        break;
-                    case var _ when 0 == _InvPinalty_viewModel.DailyAmmountValue:
-                        break;
-                    case var _ when 0 == _InvPinalty_viewModel.DailyPercentageValue:
-                        break;
-                    case var _ when 0 == _InvPinalty_viewModel.OneTimeAmmountValue:
-                        break;
-                    case var _ when 0 == _InvPinalty_viewModel.OneTimePercentageValue:
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private void Pinalty_OtherCharges_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
-        {
-            eventArgs.TargetPageType = typeof(LMM01522);
-        }
-
-        private void Pinalty_OtherCharges_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
-        {
-            var loTempResult = (LMM01522DTO)eventArgs.Result;
-            if (loTempResult == null)
-            {
-                return;
-            }
-
-            _InvPinalty_viewModel.Data.CPENALTY_ADD_ID = loTempResult.CCHARGES_ID;
-            _InvPinalty_viewModel.Data.CCHARGES_NAME = loTempResult.CCHARGES_NAME;
-        }
-
-        #endregion
-
-        #region Other Charges
-        private async Task OtherCharges_Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                await _OtherCharges_viewModel.GetOtherChargesList();
-                eventArgs.ListEntityResult = _OtherCharges_viewModel.OtherChargesGrid;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private async Task OtherCharges_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
-        {
-            R_Exception loException = new R_Exception();
-
-            try
-            {
-                LMM01530DTO loParam = (LMM01530DTO)eventArgs.Data;
-                await _OtherCharges_viewModel.GetOtherCharges(loParam);
-
-                eventArgs.Result = _OtherCharges_viewModel.OtherCharges;
-            }
-            catch (Exception ex)
-            {
-                loException.Add(ex);
-            }
-
-            loException.ThrowExceptionIfErrors();
-        }
-
-        private async Task OtherCharges_ServiceSave(R_ServiceSaveEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                await _OtherCharges_viewModel.SaveOtherCharges(
-                    (LMM01530DTO)eventArgs.Data,
-                    (eCRUDMode)eventArgs.ConductorMode);
-
-                eventArgs.Result = _OtherCharges_viewModel.OtherCharges;
-
-                
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private async Task OtherCharges_ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                LMM01530DTO loData = (LMM01530DTO)eventArgs.Data;
-                await _OtherCharges_viewModel.DeleteOtherCharges(loData);
             }
             catch (Exception ex)
             {
@@ -948,32 +639,22 @@ namespace LMM01500FRONT
             _BankAccount_viewModel.Data.CBANK_ACCOUNT = loTempResult.CCB_ACCOUNT_NO;
         }
 
-        private void OtherCharges_Before_Open_Grid_Lookup(R_BeforeOpenGridLookupColumnEventArgs eventArgs)
-        {
-
-            var param = new LMM01531DTO()
-            {
-                CPROPERTY_ID = _Genereal_viewModel.PropertyValueContext,
-                CUSER_LANGUANGE = clientHelper.CultureUI.TwoLetterISOLanguageName
-            };
-            eventArgs.Parameter = param;
-            eventArgs.TargetPageType = typeof(LMM01531);
-        }
-
-        private void OtherCharges_After_Open_Grid_Lookup(R_AfterOpenGridLookupColumnEventArgs eventArgs)
-        {
-            var loTempResult = (LMM01531DTO)eventArgs.Result;
-            var loData = (LMM01530DTO)eventArgs.ColumnData;
-
-            loData.CPROPERTY_ID = _Genereal_viewModel.PropertyValueContext;
-            loData.CINVGRP_CODE = _Genereal_viewModel.Data.CINVGRP_CODE;
-            loData.CCHARGES_ID = loTempResult.CCHARGES_ID;
-            loData.CCHARGES_NAME = loTempResult.CCHARGES_NAME;
-            loData.UNIT_UTILITY_CHARGE = loTempResult.UNIT_UTILITY_CHARGE;
-            loData.CCHARGES_TYPE = loTempResult.CCHARGES_TYPE;
-            loData.CCHARGES_TYPE_DESCR = loTempResult.CCHARGES_TYPE_DESCR;
-        }
-
         #endregion
+
+        private void _PinaltyTab_Before_Open_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
+        {
+            var loParam = _Genereal_gridRef.CurrentSelectedData;
+            loParam.CPROPERTY_ID = _Genereal_viewModel.PropertyValueContext;
+            eventArgs.TargetPageType = typeof(LMM01520);
+            eventArgs.Parameter = loParam;
+        }
+        private void _OtherCharges_Before_Open_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
+        {
+            var loParam = _Genereal_gridRef.CurrentSelectedData;
+            loParam.CPROPERTY_ID = _Genereal_viewModel.PropertyValueContext;
+            eventArgs.TargetPageType = typeof(LMM01530);
+            eventArgs.Parameter = loParam;
+        }
+
     }
 }

@@ -1,0 +1,151 @@
+﻿@inherits R_Page
+@using LMM01500COMMON
+@using LMM01500MODEL
+
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label Class="fw-bold" FontSize="11">Invoice Group</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout xs="2">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CINVGRP_CODE"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="5">
+            @*<R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CINVGRP_NAME"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false">
+            </R_TextBox>*@
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mb-3">
+    <R_Grid @ref="@_BankAccount_gridRef"
+            DataSource="@_BankAccount_viewModel.TemplateBankAccountGrid"
+            R_ConductorSource="@_BankAccount_conductorRef"
+            R_GridType="@R_eGridType.Navigator"
+            Pageable="true"
+            R_ServiceGetListRecord="@BankAccount_ServiceGetListRecord">
+        <R_GridColumns>
+            <R_GridNumericColumn FieldName="CDEPT_NAME" HeaderText="Department"></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="CBANK_NAME" HeaderText="Bank"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CBANK_ACCOUNT" HeaderText="Bank Account"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CBANK_ACCOUNT" HeaderText="Invoice Template"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="Update By"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="DUPDATE_DATE" HeaderText="Update Date"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="Created By"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="DCREATE_DATE" HeaderText="Created Date"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label>Department</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CDEPT_CODE"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="1">
+            <R_Lookup R_ConductorSource="@_BankAccount_conductorRef" R_Before_Open_Lookup="@Department_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_Department_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout xs="6">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CDEPT_NAME"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label Class="ms-2">Invoice Template*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout xs="6">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CINVOICE_TEMPLATE"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="2">
+            <R_InputFile R_ConductorSource="@_BankAccount_conductorRef" R_EnableAdd R_EnableEdit>...</R_InputFile>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Label FontColor="Red" Class="fw-bold" FontSize="13">Bank Receipt Info</R_Label>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label>Bank*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout xs="3">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CBANK_CODE"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="1">
+            <R_Lookup R_ConductorSource="@_BankAccount_conductorRef" R_Before_Open_Lookup="@BankAccount_Bank_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_Bank_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout xs="6">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CBANK_NAME"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout xs="2">
+            <R_Label>Bank Account*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout xs="3">
+            <R_TextBox @bind-Value="@_BankAccount_viewModel.Data.CBANK_ACCOUNT"
+                       R_ConductorSource="@_BankAccount_conductorRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout xs="1">
+            <R_Lookup Enabled="@BankAccountButtonEnable" R_Before_Open_Lookup="@BankAccount_BankAccount_Before_Open_Lookup" R_After_Open_Lookup="@BankAccount_BankAccount_After_Open_Lookup">...</R_Lookup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="d-flex justify-content-between">
+
+    <R_ItemLayout xs="1">
+        <R_AddButton R_Conductor="@_BankAccount_conductorRef"></R_AddButton>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_EditButton R_Conductor="@_BankAccount_conductorRef"></R_EditButton>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_DeleteButton R_Conductor="@_BankAccount_conductorRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_CancelButton R_Conductor="@_BankAccount_conductorRef"></R_CancelButton>
+    </R_ItemLayout>
+    <R_ItemLayout xs="1">
+        <R_SaveButton R_Conductor="@_BankAccount_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_BankAccount_conductorRef"
+             R_ViewModel="@_BankAccount_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@BankAccount_ServiceGetRecord"
+             R_SetAdd="@BankAccount_SetAdd"
+             R_SetEdit="@BankAccount_SetEdit"
+             R_Validation="@BankAccount_Validation"
+             R_ServiceSave="@BankAccount_ServiceSave"
+             R_ServiceDelete="@BankAccount_ServiceDelete">
+</R_Conductor>

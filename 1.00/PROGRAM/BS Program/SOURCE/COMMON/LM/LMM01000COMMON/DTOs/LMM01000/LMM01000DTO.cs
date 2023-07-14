@@ -20,6 +20,7 @@ namespace LMM01000COMMON
         public string CCHARGES_NAME { get; set; } = "";
         public string CDESCRIPTION { get; set; } = "";
         public string CSTATUS { get; set; } = "00";
+        public string CSTATUS_DESCRIPTION { get; set; }
         public bool LACCRUAL { get; set; }
         public bool LTAXABLE { get; set; }
         public bool LTAX_EXEMPTION { get; set; }

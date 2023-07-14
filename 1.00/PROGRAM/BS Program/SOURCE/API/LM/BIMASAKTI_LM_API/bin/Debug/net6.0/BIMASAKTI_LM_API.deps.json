@@ -8,16 +8,16 @@
     ".NETCoreApp,Version=v6.0": {
       "BIMASAKTI_LM_API/1.0.0": {
         "dependencies": {
-          "BlazorMenuService": "1.0.0",
           "LMM01000SERVICE": "1.0.0",
           "LMM01500SERVICE": "1.0.0",
-          "R_SecurityPolicyService": "1.0.0",
-          "R_SecurityTokenService": "1.0.0",
+          "LMM06500SERVICE": "1.0.0",
+          "Lookup_LMSERVICES": "1.0.0",
           "Realta.BackCollectionNuGet": "1.0.0",
           "Realta.CommonCollectionNuGet": "1.0.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "R_APIStartUp": "1.0.0.0",
-          "R_CrossPlatformSecurity": "1.0.0.0"
+          "R_CrossPlatformSecurity": "1.0.0.0",
+          "R_HelperController": "1.0.0.0"
         },
         "runtime": {
           "BIMASAKTI_LM_API.dll": {}
@@ -1431,28 +1431,6 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "BlazorMenuBack/1.0.0": {
-        "dependencies": {
-          "BlazorMenuCommon": "1.0.0"
-        },
-        "runtime": {
-          "BlazorMenuBack.dll": {}
-        }
-      },
-      "BlazorMenuCommon/1.0.0": {
-        "runtime": {
-          "BlazorMenuCommon.dll": {}
-        }
-      },
-      "BlazorMenuService/1.0.0": {
-        "dependencies": {
-          "BlazorMenuBack": "1.0.0",
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
-        },
-        "runtime": {
-          "BlazorMenuService.dll": {}
-        }
-      },
       "LMM01000BACK/1.0.0": {
         "dependencies": {
           "LMM01000COMMON": "1.0.0",
@@ -1474,14 +1452,6 @@
         },
         "runtime": {
           "LMM01000SERVICE.dll": {}
-        },
-        "resources": {
-          "id/R_APIBackEnd.resources.dll": {
-            "locale": "id"
-          },
-          "ja/R_APIBackEnd.resources.dll": {
-            "locale": "ja"
-          }
         }
       },
       "LMM01500BACK/1.0.0": {
@@ -1506,57 +1476,62 @@
           "LMM01500SERVICE.dll": {}
         }
       },
+      "LMM06500BACK/1.0.0": {
+        "dependencies": {
+          "LMM06500COMMON": "1.0.0",
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "runtime": {
+          "LMM06500BACK.dll": {}
+        }
+      },
+      "LMM06500COMMON/1.0.0": {
+        "runtime": {
+          "LMM06500COMMON.dll": {}
+        }
+      },
+      "LMM06500SERVICE/1.0.0": {
+        "dependencies": {
+          "LMM06500BACK": "1.0.0"
+        },
+        "runtime": {
+          "LMM06500SERVICE.dll": {}
+        }
+      },
+      "Lookup_LMBACK/1.0.0": {
+        "dependencies": {
+          "Lookup_LMCOMMON": "1.0.0"
+        },
+        "runtime": {
+          "Lookup_LMBACK.dll": {}
+        }
+      },
+      "Lookup_LMCOMMON/1.0.0": {
+        "runtime": {
+          "Lookup_LMCOMMON.dll": {}
+        }
+      },
+      "Lookup_LMSERVICES/1.0.0": {
+        "dependencies": {
+          "Lookup_LMBACK": "1.0.0",
+          "Lookup_LMCOMMON": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.5"
+        },
+        "runtime": {
+          "Lookup_LMSERVICES.dll": {}
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
+          }
+        }
+      },
       "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0": {
         "runtime": {
           "RSP_LM_MAINTAIN_UTILITY_CHARGESResources.dll": {}
-        }
-      },
-      "R_SecurityPolicyBack/1.0.0": {
-        "dependencies": {
-          "R_SecurityPolicyCommon": "1.0.0"
-        },
-        "runtime": {
-          "R_SecurityPolicyBack.dll": {}
-        }
-      },
-      "R_SecurityPolicyCommon/1.0.0": {
-        "dependencies": {
-          "R_SecurityTokenCommon": "1.0.0"
-        },
-        "runtime": {
-          "R_SecurityPolicyCommon.dll": {}
-        }
-      },
-      "R_SecurityPolicyService/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "R_SecurityPolicyBack": "1.0.0",
-          "R_SecurityTokenBack": "1.0.0"
-        },
-        "runtime": {
-          "R_SecurityPolicyService.dll": {}
-        }
-      },
-      "R_SecurityTokenBack/1.0.0": {
-        "dependencies": {
-          "R_SecurityTokenCommon": "1.0.0"
-        },
-        "runtime": {
-          "R_SecurityTokenBack.dll": {}
-        }
-      },
-      "R_SecurityTokenCommon/1.0.0": {
-        "runtime": {
-          "R_SecurityTokenCommon.dll": {}
-        }
-      },
-      "R_SecurityTokenService/1.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "R_SecurityTokenBack": "1.0.0"
-        },
-        "runtime": {
-          "R_SecurityTokenService.dll": {}
         }
       },
       "R_APIStartUp/1.0.0.0": {
@@ -1575,33 +1550,17 @@
           }
         }
       },
+      "R_HelperController/1.0.0.0": {
+        "runtime": {
+          "R_HelperController.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "R_APICommon/1.0.0.0": {
         "runtime": {
           "R_APICommon.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_AuthenticationBack/1.0.0.0": {
-        "runtime": {
-          "R_AuthenticationBack.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_CommonFrontBackAPI/1.0.0.0": {
-        "runtime": {
-          "R_CommonFrontBackAPI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "R_AuthenticationEnumAndInterface/1.0.0.0": {
-        "runtime": {
-          "R_AuthenticationEnumAndInterface.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1623,9 +1582,9 @@
           }
         }
       },
-      "R_ContextBackEnd/1.0.0.0": {
+      "R_CommonFrontBackAPI/1.0.0.0": {
         "runtime": {
-          "R_ContextBackEnd.dll": {
+          "R_CommonFrontBackAPI.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1642,6 +1601,22 @@
       "R_ControllerPlugins/1.0.0.0": {
         "runtime": {
           "R_ControllerPlugins.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_AuthenticationBack/1.0.0.0": {
+        "runtime": {
+          "R_AuthenticationBack.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextBackEnd/1.0.0.0": {
+        "runtime": {
+          "R_ContextBackEnd.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -1671,17 +1646,25 @@
           }
         }
       },
-      "R_ContextEnumAndInterface/1.0.0.0": {
+      "R_PluginsCommon/1.0.0.0": {
         "runtime": {
-          "R_ContextEnumAndInterface.dll": {
+          "R_PluginsCommon.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
       },
-      "R_PluginsCommon/1.0.0.0": {
+      "R_AuthenticationEnumAndInterface/1.0.0.0": {
         "runtime": {
-          "R_PluginsCommon.dll": {
+          "R_AuthenticationEnumAndInterface.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "R_ContextEnumAndInterface/1.0.0.0": {
+        "runtime": {
+          "R_ContextEnumAndInterface.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
@@ -2787,21 +2770,6 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
-    "BlazorMenuBack/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BlazorMenuCommon/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "BlazorMenuService/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
     "LMM01000BACK/1.0.0": {
       "type": "project",
       "serviceable": false,
@@ -2832,37 +2800,37 @@
       "serviceable": false,
       "sha512": ""
     },
+    "LMM06500BACK/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LMM06500COMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LMM06500SERVICE/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_LMBACK/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_LMCOMMON/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Lookup_LMSERVICES/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "RSP_LM_MAINTAIN_UTILITY_CHARGESResources/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_SecurityPolicyBack/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_SecurityPolicyCommon/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_SecurityPolicyService/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_SecurityTokenBack/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_SecurityTokenCommon/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_SecurityTokenService/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -2877,22 +2845,12 @@
       "serviceable": false,
       "sha512": ""
     },
+    "R_HelperController/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "R_APICommon/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_AuthenticationBack/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_CommonFrontBackAPI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_AuthenticationEnumAndInterface/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2902,7 +2860,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "R_ContextBackEnd/1.0.0.0": {
+    "R_CommonFrontBackAPI/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2913,6 +2871,16 @@
       "sha512": ""
     },
     "R_ControllerPlugins/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_AuthenticationBack/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextBackEnd/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -2932,12 +2900,17 @@
       "serviceable": false,
       "sha512": ""
     },
-    "R_ContextEnumAndInterface/1.0.0.0": {
+    "R_PluginsCommon/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
-    "R_PluginsCommon/1.0.0.0": {
+    "R_AuthenticationEnumAndInterface/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "R_ContextEnumAndInterface/1.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

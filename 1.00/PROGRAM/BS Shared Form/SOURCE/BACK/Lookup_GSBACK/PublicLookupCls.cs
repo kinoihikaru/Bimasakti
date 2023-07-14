@@ -3,6 +3,7 @@ using R_BackEnd;
 using R_Common;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +65,7 @@ namespace Lookup_GSLBACK
             return loResult;
         }
 
-        public List<GSL00300DTO> GetALLCurrency()
+        public List<GSL00300DTO> GetALLCurrency(GSL00300ParameterDTO poEntity)
         {
             var loEx = new R_Exception();
             List<GSL00300DTO> loResult = null;
@@ -74,9 +75,17 @@ namespace Lookup_GSLBACK
                 var loDb = new R_Db();
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
 
-                var lcQuery = $"SELECT CCURRENCY_CODE, CCURRENCY_NAME, CCURRENCY_SYMBOL FROM GSM_CURRENCY (NOLOCK) ";
+                var loCmd = loDb.GetCommand();
 
-                loResult = loDb.SqlExecObjectQuery<GSL00300DTO>(lcQuery, loConn, true);
+                var lcQuery = $"SELECT CCURRENCY_CODE, CCURRENCY_NAME, CCURRENCY_SYMBOL FROM GSM_CURRENCY (NOLOCK) " +
+                    $"WHERE CCOMPANY_ID = @CCOMPANY_ID ";
+                loCmd.CommandText = lcQuery;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL00300DTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {
@@ -166,6 +175,33 @@ namespace Lookup_GSLBACK
 
 
                 loResult = loDb.SqlExecObjectQuery<GSL00510DTO>(lcQuery, loConn, true);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL00520DTO> GetALLGOACOA(GSL00520ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL00520DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+
+                var lcQuery = $"EXEC RSP_GS_GET_GOA_COA_LIST " +
+                    $"@CCOMPANY_ID = '{poEntity.CCOMPANY_ID}', " +
+                    $"@CGOA_CODE = '{poEntity.CGOA_CODE}'";
+
+
+                loResult = loDb.SqlExecObjectQuery<GSL00520DTO>(lcQuery, loConn, true);
             }
             catch (Exception ex)
             {
