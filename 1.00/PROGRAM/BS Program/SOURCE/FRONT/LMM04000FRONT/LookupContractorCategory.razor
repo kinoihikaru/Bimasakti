@@ -1,0 +1,34 @@
+﻿@inherits R_Page
+@using LMM04000COMMON.DTOs.LMM04010
+@attribute [R_Page(Title = "Contractor Category")]
+
+<R_StackLayout Style="width:600px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridRef"
+                    DataSource="@loViewModel.loContractorCategoryList"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    Height="300px"
+                    PageSize="5">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(GetContractorCategoryDTO.CCATEGORY_ID)" HeaderText="Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GetContractorCategoryDTO.CCATEGORY_NAME)" HeaderText="Name"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+            </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    </R_StackLayout>

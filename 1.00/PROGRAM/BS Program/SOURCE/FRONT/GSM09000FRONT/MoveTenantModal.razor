@@ -1,0 +1,114 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "User List")]
+@using GSM09000COMMON.DTOs.GSM09001;
+@using GSM09001MODEL;
+
+<R_StackLayout Style="width:800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label Class="fw-bold" FontSize="15">From Tenant Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@loMoveTenantViewModel.loFromTenantCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorMoveTenantRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@loMoveTenantViewModel.loFromTenantCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorMoveTenantRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label Class="fw-bold" FontSize="15">To Tenant Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@loMoveTenantViewModel.loToTenantCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorMoveTenantRef" Enabled="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Lookup R_ConductorGridSource="@_conductorMoveTenantRef" R_Before_Open_Lookup="BeforeOpenTenantListLookUp" R_After_Open_Lookup="AfterOpenTenantListLookUp" Enabled="true">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@loMoveTenantViewModel.loToTenantCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorMoveTenantRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Spacing="3" Class="mb-3" Row="true">
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridMoveTenantRef"
+                    DataSource="@loMoveTenantViewModel.loTenantList"
+                    R_ConductorGridSource="@_conductorMoveTenantRef"
+                    R_GridType="@R_eGridType.Batch"
+                    AllowAddNewRow="false"
+                    AllowEditRow="true"
+                    AllowDeleteRow="false"
+                    Height="300px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridCheckBoxSelectColumn FieldName="@nameof(TenantListForMoveProcessDTO.LSELECTED)" R_EnableEdit ShowSelectAllHeader></R_GridCheckBoxSelectColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantListForMoveProcessDTO.CTENANT_ID)" HeaderText="Tenant Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(TenantListForMoveProcessDTO.CTENANT_NAME)" HeaderText="Tenant Name"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickCancelButton">
+                Cancel
+            </R_Button>
+            <R_Button OnClick="OnClickProcessButton">
+                Process
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+@*
+<div hidden="@IsTenantCategoryHidden">
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridTenantCategoryRef"
+                    DataSource="loTenantCategoryViewModel.loTenantCategoryList"
+                    R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                    Pageable
+                    PageSize="5">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(GetTenantCategoryDTO.CCATEGORY_ID)" HeaderText="Tenant Category Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GetTenantCategoryDTO.CCATEGORY_NAME)" HeaderText="Tenant Category Name"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickOk">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickClose">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</div>
+*@
+<R_ConductorGrid @ref="@_conductorMoveTenantRef"
+                 R_ViewModel="@loMoveTenantViewModel"
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_IsHeader="true"></R_ConductorGrid>

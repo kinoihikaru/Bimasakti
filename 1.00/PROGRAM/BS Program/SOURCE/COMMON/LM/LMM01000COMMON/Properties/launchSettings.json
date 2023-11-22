@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "LMM01000COMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51283;http://localhost:51284"
+    }
+  }
+}

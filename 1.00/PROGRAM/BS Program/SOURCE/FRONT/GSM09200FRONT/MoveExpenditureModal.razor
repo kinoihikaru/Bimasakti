@@ -1,0 +1,84 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "User List")]
+@using GSM09200COMMON.DTOs.GSM09210;
+@using GSM09200MODEL;
+
+<R_StackLayout Style="width:800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label Class="fw-bold" FontSize="15">From Expenditure Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@loMoveExpenditureViewModel.loFromExpenditureCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorMoveExpenditureRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@loMoveExpenditureViewModel.loFromExpenditureCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorMoveExpenditureRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label Class="fw-bold" FontSize="15">To Expenditure Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@loMoveExpenditureViewModel.loToExpenditureCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorMoveExpenditureRef" Enabled="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Lookup R_ConductorGridSource="@_conductorMoveExpenditureRef" R_Before_Open_Lookup="BeforeOpenExpenditureListLookUp" R_After_Open_Lookup="AfterOpenExpenditureListLookUp" Enabled="true">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_TextBox @bind-Value="@loMoveExpenditureViewModel.loToExpenditureCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorMoveExpenditureRef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Spacing="3" Class="mb-3" Row="true">
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridMoveExpenditureRef"
+                    DataSource="@loMoveExpenditureViewModel.loExpenditureList"
+                    R_ConductorGridSource="@_conductorMoveExpenditureRef"
+                    R_GridType="@R_eGridType.Batch"
+                    AllowAddNewRow="false"
+                    AllowEditRow="true"
+                    AllowDeleteRow="false"
+                    Height="300px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridCheckBoxSelectColumn FieldName="@nameof(ExpenditureListForMoveProcessDTO.LSELECTED)" R_EnableEdit ShowSelectAllHeader></R_GridCheckBoxSelectColumn>
+                    <R_GridTextColumn FieldName="@nameof(ExpenditureListForMoveProcessDTO.CEXPENDITURE_ID)" HeaderText="Expenditure Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(ExpenditureListForMoveProcessDTO.CEXPENDITURE_NAME)" HeaderText="Expenditure Name"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickCancelButton">
+                Cancel
+            </R_Button>
+            <R_Button OnClick="OnClickProcessButton">
+                Process
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorMoveExpenditureRef"
+                 R_ViewModel="@loMoveExpenditureViewModel"
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_IsHeader="true"></R_ConductorGrid>

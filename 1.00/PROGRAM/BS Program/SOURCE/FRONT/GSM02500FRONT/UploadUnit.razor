@@ -1,0 +1,164 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Upload")]
+@using GSM02500COMMON.DTOs.GSM02530
+<R_StackLayout Style="width:1000px">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Property</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitViewModel.loParameter.PropertyData.CPROPERTY_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitViewModel.loParameter.PropertyData.CPROPERTY_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Building</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitViewModel.loParameter.BuildingData.CBUILDING_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitViewModel.loParameter.BuildingData.CBUILDING_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Floor</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitViewModel.loParameter.FloorData.CFLOOR_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox R_ConductorGridSource="_conGridUploadUnitRef"
+                           Enabled="false"
+                           @bind-Value="loUploadUnitViewModel.loParameter.FloorData.CFLOOR_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_InputFile OnChange="OnChangeInputFile" Accepts="@accepts"></R_InputFile>
+        </R_StackLayout>
+    </R_StackLayout>
+
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridUploadUnitRef"
+                        DataSource="@loUploadUnitViewModel.loUploadUnitDisplayList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conGridUploadUnitRef"
+                        R_GridType="@R_eGridType.Batch"
+                        Height="350px"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.No) HeaderText="No" Enabled="false" Width="100px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitId) HeaderText="Unit Code" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitName) HeaderText="Unit Name" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitType) HeaderText="Unit Type" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitView) HeaderText="Unit View" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.GrossSize) HeaderText="Gross Size" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.NetSize) HeaderText="Net Size" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridNumericColumn FieldName=@nameof(UploadUnitDTO.CommonArea) HeaderText="Common Area" Enabled="false" Width="150px"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.UnitCategory) HeaderText="Unit Category" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridCheckBoxColumn FieldName=@nameof(UploadUnitDTO.Active) HeaderText="Active" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.NonActiveDate) HeaderText="Non Active Date" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.Valid) HeaderText="Valid" Enabled="false" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadUnitDTO.Notes) HeaderText="Notes" Enabled="false" Width="300px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@loUploadUnitViewModel.Message" MaxValue="100" Value="@loUploadUnitViewModel.Percentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Total Row(s)</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loUploadUnitViewModel.SumList"
+                                    Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Valid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="bg-success">
+                        <R_NumericTextBox @bind-Value="@loUploadUnitViewModel.SumValid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Invalid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="badge bg-danger">
+                        <R_NumericTextBox @bind-Value="@loUploadUnitViewModel.SumInvalid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@loUploadUnitViewModel.VisibleError">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            Cancel
+                        </R_Button>
+                        <R_Button OnClick="OnProcess" Enabled="@IsProcessEnabled">
+                            Proses
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+                <R_ItemLayout col="4" hidden="@(!loUploadUnitViewModel.VisibleError)">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            Cancel
+                        </R_Button>
+                        <R_Button OnClick="@OnSaveToExcel">
+                            Save To Excel
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+     </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridUploadUnitRef"
+                 R_ViewModel="@loUploadUnitViewModel"
+                 R_IsHeader
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch">
+</R_ConductorGrid>

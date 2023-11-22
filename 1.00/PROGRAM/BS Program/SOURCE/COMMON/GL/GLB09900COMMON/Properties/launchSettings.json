@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLB09900COMMON": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57179;http://localhost:57180"
+    }
+  }
+}

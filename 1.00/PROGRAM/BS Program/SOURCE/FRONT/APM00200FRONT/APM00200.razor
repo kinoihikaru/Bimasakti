@@ -1,0 +1,310 @@
+﻿@page "/APM00200"
+@using APM00200COMMON.DTOs.APM00200;
+@inherits R_Page
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>Property</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@loExpenditureViewModel.loPropertyList"
+                    Value="loExpenditureViewModel.loProperty.CPROPERTY_ID"
+                    ValueField="@nameof(GetPropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(GetPropertyDTO.CPROPERTY_NAME)"
+                    Enabled="@_comboboxEnabled"
+                    R_ConductorSource="@_conGridExpenditureRef" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_Button R_ConductorSource="@_conGridExpenditureRef" R_EnableOther OnClick="OnClickRefresh">Refresh</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridExpenditureRef"
+                        DataSource="@loExpenditureViewModel.loExpenditureList"
+                        R_ConductorSource="@_conGridExpenditureRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        Height="350px"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(APM00200DTO.CEXPENDITURE_ID)" HeaderText="Expenditure ID" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(APM00200DTO.CEXPENDITURE_NAME)" HeaderText="Expenditure Name" Width="200px"></R_GridTextColumn>
+                        <R_GridCheckBoxColumn FieldName="@nameof(APM00200DTO.LACTIVE)" HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="8">
+        <R_GroupBox Title="Detail" ShowBorder>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Expenditure ID*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CEXPENDITURE_ID"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               R_EnableAdd="true" R_EnableEdit="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>Status</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_CheckBox @bind-Value="@loExpenditureViewModel.Data.LACTIVE"
+                                R_ConductorSource="@_conGridExpenditureRef"
+                                Enabled="false"></R_CheckBox>
+                    <R_Label>  Active</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Expenditure Name*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="9">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CEXPENDITURE_NAME"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Description</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="9">
+                    <R_TextArea @bind-Value="@loExpenditureViewModel.Data.CEXPENDITURE_DESC"
+                                R_ConductorSource="@_conGridExpenditureRef"
+                                R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Journal Group*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CJRNGRP_CODE"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Lookup R_ConductorSource="@_conGridExpenditureRef"
+                              R_After_Open_Lookup="R_After_Open_JournalGroup_Lookup"
+                              R_Before_Open_Lookup="R_Before_Open_JournalGroup_Lookup"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CJRNGRP_NAME"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Category*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CCATEGORY_ID"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Lookup R_ConductorSource="@_conGridExpenditureRef"
+                              R_After_Open_Lookup="R_After_Open_Category_Lookup"
+                              R_Before_Open_Lookup="R_Before_Open_Category_Lookup"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CCATEGORY_NAME"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Other Tax</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.COTHER_TAX_ID"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Lookup R_ConductorSource="@_conGridExpenditureRef"
+                              R_After_Open_Lookup="R_After_Open_OtherTax_Lookup"
+                              R_Before_Open_Lookup="R_Before_Open_OtherTax_Lookup"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.COTHER_TAX_NAME"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Unit*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CUNIT"
+                               R_ConductorSource="@_conGridExpenditureRef" MaxLength=10
+                               R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_CheckBox @bind-Value="@loExpenditureViewModel.Data.LTAXABLE"
+                                R_ConductorSource="@_conGridExpenditureRef"
+                                R_EnableAdd="true" R_EnableEdit="true"></R_CheckBox>
+                    <R_Label>Taxable</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_CheckBox Value="@loExpenditureViewModel.Data.LWITHHOLDING_TAX"
+                                R_ConductorSource="@_conGridExpenditureRef"
+                                ValueChanged="@((bool value) => WithholdingTaxCheckBox_ValueChanged(value))"
+                                R_EnableAdd="true" R_EnableEdit="true"></R_CheckBox>
+                    <R_Label>  Withholding Tax</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="1"></R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Tax Type</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_ComboBox Data="@loExpenditureViewModel.loWithholdingTaxTypeList"
+                                Value="loExpenditureViewModel.Data.CWITHHOLDING_TAX_TYPE"
+                                ValueField="@nameof(GetWithholdingTaxTypeDTO.CCODE)"
+                                TextField="@nameof(GetWithholdingTaxTypeDTO.CNAME)"
+                                Enabled="@IsWitholdingTaxEnabled"
+                                R_ConductorSource="@_conGridExpenditureRef" 
+                                ValueChanged="@((string value) => WithholdingTaxType_ValueChanged(value))"></R_ComboBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="1"></R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Tax Id</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CWITHHOLDING_TAX_ID"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Lookup R_ConductorSource="@_conGridExpenditureRef"
+                              R_After_Open_Lookup="R_After_Open_WithholdingTax_Lookup"
+                              R_Before_Open_Lookup="R_Before_Open_WithholdingTax_Lookup"
+                              Enabled="@IsWitholdingTaxIdEnabled">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CWITHHOLDING_TAX_NAME"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="4"></R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Updated By</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CUPDATE_BY"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_DateTimePicker @bind-Value="@loExpenditureViewModel.Data.DUPDATE_DATE"
+                                      R_ConductorSource="@_conGridExpenditureRef"
+                                      Enabled="false">
+                    </R_DateTimePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="4"></R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Created By</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@loExpenditureViewModel.Data.CCREATE_BY"
+                               R_ConductorSource="@_conGridExpenditureRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_DateTimePicker @bind-Value="@loExpenditureViewModel.Data.DCREATE_DATE"
+                                      R_ConductorSource="@_conGridExpenditureRef"
+                                      Enabled="false">
+                    </R_DateTimePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-between mt-3">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conGridExpenditureRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_conGridExpenditureRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conGridExpenditureRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button R_ConductorSource="@_conGridExpenditureRef" R_EnableOther OnClick="ActivateDeactivateOnClick">@loLabel</R_Button>
+        <R_Button R_ConductorSource="_conGridExpenditureRef" >Copy From</R_Button>
+        @*
+        <R_Popup R_ConductorSource="@_conGridExpenditureRef" R_EnableOther
+                 R_Before_Open_Popup="Before_Open_CopyFrom_Popup"
+                 R_After_Open_Popup="After_Open_CopyFrom_Popup">Copy From</R_Popup>
+        *@
+        <R_Popup R_ConductorSource="@_conGridExpenditureRef" R_EnableOther
+                 R_Before_Open_Popup="Before_Open_Upload_Popup"
+                 R_After_Open_Popup="After_Open_Upload_Popup">Upload</R_Popup>
+        
+        <R_Button R_ConductorSource="@_conGridExpenditureRef" R_EnableOther OnClick="OnClickTemplate">Template</R_Button>
+    </R_ItemLayout>
+    <R_ItemLayout>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conGridExpenditureRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conGridExpenditureRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conGridExpenditureRef"
+             R_ViewModel="@loExpenditureViewModel"
+             R_ConvertToGridEntity="Grid_ConvertToGridEntity"
+             R_Display="Grid_Display"
+             R_ServiceSave="@Grid_ServiceSave"
+             R_Saving="Grid_Saving"
+             R_BeforeEdit="Grid_BeforeEdit"
+             R_BeforeCancel="Grid_BeforeCancel"
+             R_ServiceDelete="@Grid_ServiceDelete"
+             R_SetOther="@Grid_SetOther"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_ServiceGetRecord">
+</R_Conductor>
+
+
+
+
+
+

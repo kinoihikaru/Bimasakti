@@ -1,0 +1,46 @@
+﻿@page "/GSM07010"
+@inherits R_Page
+@using GSM07000COMMON.DTOs
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout xs="12">
+            <R_Grid @ref="@_gridActivityApprovalUserRef"
+                    DataSource="@loActivityApprovalUserViewModel.loActivityApprovalUserList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorActivityApprovalUserGridRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="true"
+                    AllowEditRow="false"
+                    AllowDeleteRow="true"
+                    Height="390px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetActivityApprovalUserListRecord"
+                    R_After_Open_Grid_Lookup="@Grid_AfterlookUpUser"
+                    R_Before_Open_Grid_Lookup="@Grid_BeforelookUpUser">
+                <R_GridColumns>
+                    <R_GridLookupColumn FieldName="@nameof(GSM07010DTO.CAPPROVAL_USER)" HeaderText="User Id" R_EnableAdd></R_GridLookupColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM07010DTO.CUSER_NAME) HeaderText="User Name"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM07010DTO.CCREATE_BY) HeaderText="Created By"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName=@nameof(GSM07010DTO.DCREATE_DATE) HeaderText="Created Date"></R_GridDatePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row="true" Spacing="3">
+
+        <R_ItemLayout xs="2">
+            <R_Popup R_ConductorGridSource="@_conductorActivityApprovalUserGridRef"
+                     R_Before_Open_Popup="@R_Before_Open_Popup"
+                     R_After_Open_Popup="@R_After_Open_Popup"
+                     R_EnableOther>Multiple Assignment</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorActivityApprovalUserGridRef"
+                 R_ViewModel="@loActivityApprovalUserViewModel"
+                 R_IsHeader
+                 R_Display="@Grid_ActivityApprovalUserDisplay"
+                 R_ServiceGetRecord="@Grid_ServiceGetActivityApprovalUserRecord"
+                 R_ServiceDelete="@Grid_ServiceActivityApprovalUserDelete"
+                 R_ServiceSave="@Grid_ServiceActivityApprovalUserSave"></R_ConductorGrid>

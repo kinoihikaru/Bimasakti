@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "DesainFormGL": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:50306;http://localhost:50307"
+    }
+  }
+}

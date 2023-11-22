@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GLB00600MODEL": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57905;http://localhost:57906"
+    }
+  }
+}

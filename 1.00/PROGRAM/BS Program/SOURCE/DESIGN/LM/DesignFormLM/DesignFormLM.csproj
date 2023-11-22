@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FastReport.Net.Pro" Version="2023.2.21" />
+	</ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\COMMON\LM\LMM01000COMMON\LMM01000COMMON.csproj" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="BaseHeaderReportCOMMON">
+			<HintPath>..\..\..\COMMON\BaseHeaderCOMMON\BaseHeaderReportCommonDLL\BaseHeaderReportCOMMON.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+</Project>

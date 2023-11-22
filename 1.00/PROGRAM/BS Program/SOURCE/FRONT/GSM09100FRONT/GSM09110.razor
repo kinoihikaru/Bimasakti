@@ -1,0 +1,44 @@
+﻿@inherits R_Page
+@using GSM09100COMMON
+@using GSM09100MODEL
+@inject R_ILocalizer<GSM09100FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_ParentCategory"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_viewModel.ProductCategoryId" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@_viewModel.ProductCategoryName" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Grid @ref="@_gridRef"
+            DataSource="@_viewModel.ProductGrid"
+            R_ConductorSource="@_conductorRef"
+            R_GridType="@R_eGridType.Navigator"
+            R_ServiceGetListRecord="@Product_ServiceGetListRecord"
+            Height="300px"
+            >
+        <R_GridColumns>
+            <R_GridTextColumn FieldName="CPRODUCT_ID" HeaderText="@_localizer["_ProductId"]" Width="100px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CPRODUCT_NAME" HeaderText="@_localizer["_ProductName"]" Width="300px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CALIAS_ID" HeaderText="@_localizer["_AliasId"]" Width="100px"></R_GridTextColumn>
+            <R_GridTextColumn FieldName="CALIAS_NAME" HeaderText="@_localizer["_AliasName"]" Width="300px"></R_GridTextColumn>
+        </R_GridColumns>
+    </R_Grid>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_Popup R_ConductorSource="@_conductorRef" R_Before_Open_Popup="@Product_Before_Open_Popup" R_After_Open_Popup="@Product_After_Open_Popup" R_EnableHasData>@_localizer["_MoveBtn"]</R_Popup>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Product_ServiceGetRecord"
+             >
+</R_Conductor>

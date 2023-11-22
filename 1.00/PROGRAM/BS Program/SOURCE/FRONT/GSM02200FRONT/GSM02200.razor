@@ -1,0 +1,193 @@
+﻿@page "/GSM02200" 
+@inherits R_Page
+@using GSM02200COMMON
+@using GSM02200MODEL
+@inject R_ILocalizer<GSM02200FrontResources.Resources_Dummy_Class> _localizer
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="4">
+        <R_StackLayout Row>
+            <R_CheckBox Value="@_viewModel.ShowInactiveGeography" ValueChanged="@((bool value) => ShowInactiveCheckbox_OnChange(value))" />
+            <R_Label>@_localizer["_ShowInactiveGeo"]</R_Label>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_TreeView @ref="@_treeRef"
+                        R_ConductorSource="@_conductorRef"
+                        DataSource="@_viewModel.GeographyList"
+                        TextField="@nameof(GSM02200DTO.CCODE_CNAME_DISPLAY)"
+                        IdField="@nameof(GSM02200DTO.CCODE)"
+                        ParentIdField="@nameof(GSM02200DTO.CPARENT_CODE)"
+                        HasChildrenField="@nameof(GSM02200DTO.LHAS_CHILD)"
+                        Height="400px"
+                        Enabled="@_PageOnCRUDMode"
+                        R_ServiceGetListRecord="@Geography_ServiceGetListRecord"
+                        R_RefreshTreeViewState="@Geography_R_RefreshTreeViewState"
+                        >
+            </R_TreeView>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="8">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_ParentCode"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPARENT_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_ParentDesc"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="8">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPARENT_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_GeoCode"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox @ref="@GeoCode_TextBox"
+                           @bind-Value="@_viewModel.Data.CCODE"
+                           R_ConductorSource="@_conductorRef"
+                           R_EnableAdd R_EnableEdit="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_GeoDesc"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="8">
+                <R_TextBox @ref="@GeoName_TextBox"
+                           @bind-Value="@_viewModel.Data.CNAME"
+                           R_ConductorSource="@_conductorRef"
+                           R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_Status"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_CheckBox @bind-Value="@_viewModel.Data.LACTIVE" R_ConductorSource="@_conductorRef" Enabled="false" />
+                <R_Label>@_localizer["_Active"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_RefCode"]</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="5">
+                <R_TextBox @bind-Value="@_viewModel.Data.CREF_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        @*Spasing*@
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        @*Spasing*@
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="6">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_CreateBy"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CCREATOR_NAME" R_ConductorSource="@_conductorRef" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_CreateDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_DateInput @bind-Value="@_viewModel.Data.DCREATE_DATE" R_ConductorSource="@_conductorRef" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="6">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_UpdateBy"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" R_ConductorSource="@_conductorRef" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>@_localizer["_UpdateDate"]</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="5">
+                        <R_DateInput @bind-Value="@_viewModel.Data.DUPDATE_DATE" R_ConductorSource="@_conductorRef" Enabled="false" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        @*Spasing*@
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout col="3"><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        @*Spasing*@
+
+        <R_StackLayout Row Class="mt-2">
+            <R_ItemLayout col="4">
+                <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+                <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+                <R_Button R_ConductorSource="@_conductorRef" OnClick="@Geography_ActiveInactive_OnClick" R_EnableHasData>@_lcLabelActivate</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_Button R_ConductorSource="@_conductorRef" OnClick="@Geography_TemplateBtn_OnClick">@_localizer["_TemplateBtn"]</R_Button>
+                <R_Popup R_ConductorSource="@_conductorRef" R_Before_Open_Popup="@Geography_Upload_Before_Open_Popup" R_After_Open_Popup="@Geography_Upload_After_Open_Popup">@_localizer["_UploadBtn"]</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Geography_ServiceGetRecord"
+             R_Display="@Geography_Display"
+             R_CheckEdit="@Geography_CheckEdit"
+             R_CheckAdd="@Geography_CheckAdd"
+             R_SetOther="@Geography_SetOther"
+             R_AfterAdd="@Geography_AfterAdd"
+             R_Validation="@Geography_Validation"
+             R_ServiceSave="@Geography_ServiceSave"
+             R_ConvertToGridEntity="@Geography_ConvertToGridEntity"
+             >
+</R_Conductor>

@@ -1,0 +1,69 @@
+﻿@inherits R_Page
+@using GSM09000COMMON.DTOs.GSM09000
+@using GSM09000COMMON.DTOs.GSM09001
+@using GSM09000COMMON
+@using GSM09000MODEL
+
+
+<R_StackLayout>
+    <R_StackLayout Row="true">
+        <R_ItemLayout col="2">
+            <R_Label>Tenant Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loTenantViewModel.loTenantCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorTenantRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loTenantViewModel.loTenantCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorTenantRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridTenantRef"
+                    DataSource="@loTenantViewModel.loTenantList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorTenantRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    Height="300px"
+                    R_ServiceGetListRecord="@Grid_Tenant_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(GSM09001DTO.CTENANT_ID) HeaderText="Tenant Id" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM09001DTO.CTENANT_NAME) HeaderText="Tenant Name" Width="200px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CTENANT_CATEGORY_NAME)" HeaderText="Tenant Group" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CTENANT_TYPE_NAME)" HeaderText="Tenant Type" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CUNIT_NAME)" HeaderText="Units" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CPHONE1)" HeaderText="Phone 1" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CEMAIL)" HeaderText="Email" Width="200px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CUPDATE_BY)" HeaderText="Updated By" Width="150px"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="@nameof(GSM09001DTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="150px"></R_GridDatePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(GSM09001DTO.CCREATE_BY)" HeaderText="Created By" Width="150px"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName="@nameof(GSM09001DTO.DCREATE_DATE)" HeaderText="Created Date" Width="150px"></R_GridDatePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Popup R_ConductorGridSource="@_conductorTenantRef"
+                 R_Before_Open_Popup="@R_Before_Open_Popup_Tenant_Move"
+                 R_After_Open_Popup="@R_After_Open_Popup_Tenant_Move">
+            Move
+        </R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorTenantRef"
+                 R_ViewModel="@loTenantViewModel"
+                 R_IsHeader>
+</R_ConductorGrid>

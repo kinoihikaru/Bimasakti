@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="301" xml:space="preserve">
+    <value>Please Select Property!</value>
+  </data>
+  <data name="302" xml:space="preserve">
+    <value>Please input keyword to search!</value>
+  </data>
+  <data name="303" xml:space="preserve">
+    <value>Minimum search keyword is 3 characters!</value>
+  </data>
+  <data name="304" xml:space="preserve">
+    <value>Supplier ID is required!</value>
+  </data>
+  <data name="305" xml:space="preserve">
+    <value>Supplier Name is required!</value>
+  </data>
+  <data name="306" xml:space="preserve">
+    <value>Journal Group is required!</value>
+  </data>
+  <data name="307" xml:space="preserve">
+    <value>Category is required!</value>
+  </data>
+  <data name="308" xml:space="preserve">
+    <value>Term is required!</value>
+  </data>
+  <data name="309" xml:space="preserve">
+    <value>Currency is required!</value>
+  </data>
+  <data name="310" xml:space="preserve">
+    <value>Line of Business is required!</value>
+  </data>
+  <data name="311" xml:space="preserve">
+    <value>Address is required!</value>
+  </data>
+  <data name="312" xml:space="preserve">
+    <value>City is required!</value>
+  </data>
+  <data name="313" xml:space="preserve">
+    <value>Phone 1 is required!</value>
+  </data>
+  <data name="314" xml:space="preserve">
+    <value>Email 1 is invalid!</value>
+  </data>
+  <data name="315" xml:space="preserve">
+    <value>Email 2 is invalid!</value>
+  </data>
+  <data name="316" xml:space="preserve">
+    <value>Contact Person 1 Email is invalid!</value>
+  </data>
+  <data name="317" xml:space="preserve">
+    <value>Contact Person 2 Email is invalid!</value>
+  </data>
+  <data name="318" xml:space="preserve">
+    <value>Tax Type is required!</value>
+  </data>
+  <data name="319" xml:space="preserve">
+    <value>Tax Name is required for Registrant Tax Type!</value>
+  </data>
+  <data name="320" xml:space="preserve">
+    <value>Tax Registration ID is required for Registrant Tax Type!</value>
+  </data>
+  <data name="321" xml:space="preserve">
+    <value>Tax Registration Date is required for Registrant Tax Type!</value>
+  </data>
+  <data name="322" xml:space="preserve">
+    <value>Bank Code is required!</value>
+  </data>
+  <data name="323" xml:space="preserve">
+    <value>Account No. is required!</value>
+  </data>
+  <data name="324" xml:space="preserve">
+    <value>Account Name is required!</value>
+  </data>
+  <data name="325" xml:space="preserve">
+    <value>Favorite is required!</value>
+  </data>
+  <data name="326" xml:space="preserve">
+    <value>Branch is required!</value>
+  </data>
+  <data name="_AccountName" xml:space="preserve">
+    <value>Account Name</value>
+  </data>
+  <data name="_AccountNo" xml:space="preserve">
+    <value>Account No</value>
+  </data>
+  <data name="_Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="_Addr" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="_Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="_Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="_Branch" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="_CancelBtn" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="_City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="_Copy From" xml:space="preserve">
+    <value>Copy From</value>
+  </data>
+  <data name="_Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="_CP1" xml:space="preserve">
+    <value>Contact Person 1</value>
+  </data>
+  <data name="_CP2" xml:space="preserve">
+    <value>Contact Person 2</value>
+  </data>
+  <data name="_CreateBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CreateDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_DeliverOptions" xml:space="preserve">
+    <value>Delivery Options</value>
+  </data>
+  <data name="_DPAmount" xml:space="preserve">
+    <value>DP Amount</value>
+  </data>
+  <data name="_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="_ExcludeDelivery" xml:space="preserve">
+    <value>Exclude Delivery Fee, Insurance, etc.</value>
+  </data>
+  <data name="_FavName" xml:space="preserve">
+    <value>Favorite Name</value>
+  </data>
+  <data name="_Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="_IncludeDelivery" xml:space="preserve">
+    <value>Include Delivery Fee, Insurance, etc.</value>
+  </data>
+  <data name="_JrnlGrp" xml:space="preserve">
+    <value>Journal Group</value>
+  </data>
+  <data name="_LAstPayment" xml:space="preserve">
+    <value>Last Payment</value>
+  </data>
+  <data name="_LastPurch" xml:space="preserve">
+    <value>Last Purchase</value>
+  </data>
+  <data name="_LineOfBusiness" xml:space="preserve">
+    <value>Line Of Business</value>
+  </data>
+  <data name="_LOBCode" xml:space="preserve">
+    <value>Line of Business Code*</value>
+  </data>
+  <data name="_MainInfo" xml:space="preserve">
+    <value>Main Info</value>
+  </data>
+  <data name="_Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="_NoPayment" xml:space="preserve">
+    <value>No Payment</value>
+  </data>
+  <data name="_NoPurchase" xml:space="preserve">
+    <value>No Purchase</value>
+  </data>
+  <data name="_NoPurchasePayment" xml:space="preserve">
+    <value>No Purchase &amp; No Payment</value>
+  </data>
+  <data name="_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="_OkBtn" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="_OneTime" xml:space="preserve">
+    <value>One Time</value>
+  </data>
+  <data name="_Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="_PoAmount" xml:space="preserve">
+    <value>PO Amount</value>
+  </data>
+  <data name="_Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="_ProcessBtn" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="_SeqNo" xml:space="preserve">
+    <value>Sequence No.</value>
+  </data>
+  <data name="_ShowAll" xml:space="preserve">
+    <value>Show All</value>
+  </data>
+  <data name="_State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Supp" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="_SuppDetail" xml:space="preserve">
+    <value>Supplier Detail</value>
+  </data>
+  <data name="_SuppId" xml:space="preserve">
+    <value>Supplier ID</value>
+  </data>
+  <data name="_SuppIdName" xml:space="preserve">
+    <value>Supplier ID / Name*</value>
+  </data>
+  <data name="_SuppName" xml:space="preserve">
+    <value>Supplier Name</value>
+  </data>
+  <data name="_SuppStatus" xml:space="preserve">
+    <value>Supplier Status</value>
+  </data>
+  <data name="_TabAddrContact" xml:space="preserve">
+    <value>Address &amp; Contact</value>
+  </data>
+  <data name="_TabtaxBalance" xml:space="preserve">
+    <value>Tax &amp; Balance Info</value>
+  </data>
+  <data name="_TabTaxInfo" xml:space="preserve">
+    <value>Tax Info</value>
+  </data>
+  <data name="_TaxName" xml:space="preserve">
+    <value>Tax Name</value>
+  </data>
+  <data name="_TaxRegDate" xml:space="preserve">
+    <value>Tax Registarion Date</value>
+  </data>
+  <data name="_TaxRegID" xml:space="preserve">
+    <value>Tax Registarion ID</value>
+  </data>
+  <data name="_TaxType" xml:space="preserve">
+    <value>Tax Type</value>
+  </data>
+  <data name="_Term" xml:space="preserve">
+    <value>Term</value>
+  </data>
+  <data name="_UpdateBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_UpdateDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_ZipCode" xml:space="preserve">
+    <value>Zip Code</value>
+  </data>
+</root>

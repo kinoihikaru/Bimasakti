@@ -1,0 +1,182 @@
+﻿@inherits R_Page
+@using GSM02500COMMON.DTOs.GSM02500
+@using GSM02500COMMON.DTOs.GSM02541
+@using GSM02500COMMON.DTOs;
+@using GSM02500MODEL
+@using GSM02500MODEL.View_Model;
+
+<R_StackLayout Spacing="3" Row="true">
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridUnitPromotionRef"
+                DataSource="@loUnitPromotionViewModel.loUnitPromotionList"
+                R_ConductorSource="@_conductorUnitPromotionRef"
+                R_GridType="@R_eGridType.Navigator"
+                Height="150px"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetUnitPromotionListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CUNIT_PROMOTION_ID)" HeaderText="Unit Promotion Id" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CUNIT_PROMOTION_NAME)" HeaderText="Unit Promotion Name" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CUNIT_PROMOTION_TYPE_NAME)" HeaderText="Unit Promotion Type" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CBUILDING_NAME)" HeaderText="Building" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CFLOOR_NAME)" HeaderText="Floor" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CLOCATION)" HeaderText="Location" Width="150px"></R_GridTextColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(GSM02541DTO.LACTIVE)" HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CUPDATE_BY)" HeaderText="Updated By" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02541DTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(GSM02541DTO.CCREATE_BY)" HeaderText="Created By" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(GSM02541DTO.DCREATE_DATE)" HeaderText="Created Date" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true" Class="justify-content-end">
+    <R_ItemLayout col="1">
+        <R_CheckBox @bind-Value="@loUnitPromotionViewModel.Data.LACTIVE"
+                    R_ConductorSource="@_conductorUnitPromotionRef"
+                    Enabled="false">
+        </R_CheckBox>
+        <R_Label>Active</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true">
+
+    <R_ItemLayout col="2">
+        <R_Label>Unit Promotion*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@loUnitPromotionViewModel.Data.CUNIT_PROMOTION_ID"
+                   R_ConductorSource="@_conductorUnitPromotionRef"
+                   R_EnableAdd="true"
+                   R_EnableEdit="false"
+                   @ref="@UnitPromotionIdRef">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@loUnitPromotionViewModel.Data.CUNIT_PROMOTION_NAME"
+                   R_ConductorSource="@_conductorUnitPromotionRef"
+                   R_EnableAdd="true"
+                   R_EnableEdit="true">
+        </R_TextBox>
+    </R_ItemLayout>
+@*
+    <R_ItemLayout col="1">
+        <R_CheckBox @bind-Value="@loUnitPromotionViewModel.Data.LACTIVE"
+                    R_ConductorSource="@_conductorUnitPromotionRef"
+                    Enabled="false">
+        </R_CheckBox>
+        <R_Label>Active</R_Label>
+    </R_ItemLayout>
+*@
+</R_StackLayout>
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Label>Description</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="9">
+        <R_TextArea @bind-Value="@loUnitPromotionViewModel.Data.CDESCRIPTION"
+                    R_ConductorSource="@_conductorUnitPromotionRef"
+                    R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Label>Unit Promotion Type*</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_DropDownList Data="@loUnitPromotionViewModel.loUnitPromotionTypeList"
+                        @bind-Value="loUnitPromotionViewModel.Data.CUNIT_PROMOTION_TYPE_ID"
+                        ValueField="@nameof(UnitPromotionTypeDTO.CUNIT_PROMOTION_TYPE_ID)"
+                        TextField="@nameof(UnitPromotionTypeDTO.CUNIT_PROMOTION_TYPE_NAME)"
+                        R_ConductorSource="@_conductorUnitPromotionRef"
+                        R_EnableAdd="true" R_EnableEdit="true">
+        </R_DropDownList>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Label>Building</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_DropDownList Data="@loUnitPromotionViewModel.loBuildingList"
+                        Value="loUnitPromotionViewModel.Data.CBUILDING_ID"
+                        ValueField="@nameof(BuildingDTO.CBUILDING_ID)"
+                        TextField="@nameof(BuildingDTO.CBUILDING_NAME)"
+                        R_ConductorSource="@_conductorUnitPromotionRef"
+                        R_EnableAdd="true" R_EnableEdit="true" ValueChanged="((string value) => BuildingDropdownValueChanged(value))">
+        </R_DropDownList>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Label>Floor</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_DropDownList Data="@loUnitPromotionViewModel.loFloorList"
+                        @bind-Value="loUnitPromotionViewModel.Data.CFLOOR_ID"
+                        ValueField="@nameof(FloorDTO.CFLOOR_ID)"
+                        TextField="@nameof(FloorDTO.CFLOOR_NAME)"
+                        R_ConductorSource="@_conductorUnitPromotionRef"
+                        R_EnableAdd="true" R_EnableEdit="true">
+        </R_DropDownList>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row="true">
+    <R_ItemLayout col="2">
+        <R_Label>Location*</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="9">
+        <R_TextBox @bind-Value="@loUnitPromotionViewModel.Data.CLOCATION"
+                   R_ConductorSource="@_conductorUnitPromotionRef"
+                   R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorUnitPromotionRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorUnitPromotionRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorUnitPromotionRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_Button R_ConductorSource="@_conductorUnitPromotionRef" R_EnableOther OnClick="OnClickTemplate">Template</R_Button>
+        <R_Popup R_ConductorSource="@_conductorUnitPromotionRef"
+                 R_EnableOther
+                 R_Before_Open_Popup="Before_Open_Upload_Popup"
+                 R_After_Open_Popup="After_Open_Upload_Popup">Upload</R_Popup>
+        <R_Popup R_ConductorSource="@_conductorUnitPromotionRef"
+                 R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactiveUnitPromotion"
+                 R_After_Open_Popup="@R_After_Open_Popup_ActivateInactiveUnitPromotion"
+                 R_EnableOther>@loUnitPromotionLabel</R_Popup>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorUnitPromotionRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorUnitPromotionRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorUnitPromotionRef"
+             R_ViewModel="@loUnitPromotionViewModel"
+             R_Display="Grid_DisplayUnitPromotion"
+             R_ServiceSave="@Grid_ServiceSaveUnitPromotion"
+             R_Saving="Grid_SavingUnitPromotion"
+             R_AfterAdd="Grid_AfterAddUnitPromotion"
+             R_Validation="Grid_ValidationUnitPromotion"
+             R_SetOther="UnitPromotion_SetOther"
+             R_BeforeAdd="@Grid_BeforeAddUnitPromotion"
+             R_ServiceDelete="@Grid_ServiceDeleteUnitPromotion"
+             R_IsHeader
+             R_ServiceGetRecord="@Grid_ServiceGetUnitPromotionRecord">
+</R_Conductor>
+

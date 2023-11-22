@@ -1,0 +1,140 @@
+﻿@inherits R_Page
+@using LMM03500COMMON.DTOs.LMM03501
+@attribute [R_Page(Title = "Upload")]
+
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Property</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox R_ConductorGridSource="_conGridUploadTenantRef"
+                           Enabled="false"
+                           @bind-Value="loUploadTenantViewModel.loParameter.PropertyData.CPROPERTY_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox R_ConductorGridSource="_conGridUploadTenantRef"
+                           Enabled="false"
+                           @bind-Value="loUploadTenantViewModel.loParameter.PropertyData.CPROPERTY_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_InputFile OnChange="OnChangeInputFile" Accepts="@accepts"></R_InputFile>
+        </R_StackLayout>
+    </R_StackLayout>
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridUploadTenantRef"
+                        DataSource="@loUploadTenantViewModel.loUploadTenantDisplayList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conGridUploadTenantRef"
+                        R_GridType="@R_eGridType.Batch"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="250px"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.NO) HeaderText="No" Enabled="false" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.TenantId) HeaderText="Tenant Id" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.TenantName) HeaderText="Tenant Name" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Address) HeaderText="Address" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.City) HeaderText="City" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Province) HeaderText="Province" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Country) HeaderText="Country" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.ZipCode) HeaderText="Zip Code" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Email) HeaderText="Email" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.PhoneNo1) HeaderText="Phone No 1" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.PhoneNo2) HeaderText="Phone No 2" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.TenantGroup) HeaderText="Tenant Group" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.TenantCategory) HeaderText="Tenant Category" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.TenantType) HeaderText="Tenant Type" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.JournalGroup) HeaderText="Journal Group" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.PaymentTerm) HeaderText="Payment Term" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Currency) HeaderText="Currency" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Salesman) HeaderText="Salesman" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.LineOfBusiness) HeaderText="Line Of Business" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.FamilyCard) HeaderText="Family Card" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Valid) HeaderText="Tenant Id" Enabled="false" Width="100px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadTenantDTO.Notes) HeaderText="Notes" Enabled="false" Width="350px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@loUploadTenantViewModel.Message" MaxValue="100" Value="@loUploadTenantViewModel.Percentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Total Row(s)</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loUploadTenantViewModel.SumList"
+                                    Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Valid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="bg-success">
+                        <R_NumericTextBox @bind-Value="@loUploadTenantViewModel.SumValid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Invalid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="badge bg-danger">
+                        <R_NumericTextBox @bind-Value="@loUploadTenantViewModel.SumInvalid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@loUploadTenantViewModel.VisibleError">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            Cancel
+                        </R_Button>
+                        <R_Button OnClick="OnProcess" Enabled="@IsProcessEnabled">
+                            Proses
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+                <R_ItemLayout col="4" hidden="@(!loUploadTenantViewModel.VisibleError)">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            Cancel
+                        </R_Button>
+                        <R_Button OnClick="@OnSaveToExcel">
+                            Save To Excel
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridUploadTenantRef"
+                 R_ViewModel="@loUploadTenantViewModel"
+                 R_IsHeader
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch">
+</R_ConductorGrid>

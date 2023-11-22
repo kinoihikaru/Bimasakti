@@ -1,0 +1,36 @@
+﻿@page "/GLB00600"
+@inherits R_Page
+@attribute [R_Page(Title = "Closing Entries")]
+@inject R_ILocalizer<GLB00600FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row Class="justify-content-center">
+    <R_ItemLayout col="2"> <R_Label FontSize="16">@_localizer["_LabelClosingEntriesDept"]</R_Label></R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="@_CloseEntries_viewModel.SystemParam.CCLOSE_DEPT_CODE_NAME"
+                   Enabled="false" MaxLength="20">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-center">
+    <R_ItemLayout col="2"> <R_Label FontSize="16">@_localizer["_CurrentPeriod"]</R_Label></R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="@_CloseEntries_viewModel.SystemParam.CURRENT_PERIOD_DISPLAY"
+                   Enabled="false" MaxLength="20">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Label FontSize="16" FontColor="@R_eFontColor.Primary">@_localizer["_DescClosingEntriesDept"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-2 justify-content-center">
+    <R_ItemLayout>
+        <R_Button OnClick="@Button_OnClickPeriodEndAsync" FontSize="16">@_localizer["_CancelBtn"]</R_Button>
+        <R_Button OnClick="@Button_OnClickCloseAsync" FontSize="16">@_localizer["_ProcessBtn"]</R_Button>
+
+    </R_ItemLayout>
+</R_StackLayout>

@@ -1,0 +1,197 @@
+﻿@page "/GSM09200"
+@inherits R_Page
+@using GSM09200COMMON.DTOs.GSM09200
+@using GSM09200COMMON.DTOs.GSM09210
+@using GSM09200COMMON
+@using GSM09200MODEL
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label FontColor="R_eFontColor.Danger" Class="fw-bold ms-3" FontSize="15">Property</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_ComboBox Data="@loExpenditureCategoryViewModel.loPropertyList"
+                        Value="loExpenditureCategoryViewModel.loProperty.CPROPERTY_ID"
+                        ValueField="@nameof(GetPropertyListDTO.CPROPERTY_ID)"
+                        TextField="@nameof(GetPropertyListDTO.CPROPERTY_NAME)"
+                        Enabled=@IsCRUDMode
+                        R_ConductorSource="@_conductorExpenditureCategoryRef" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="@_TabStripRef" OnActiveTabIndexChanging="OnActiveTabIndexChanging">
+    <R_TabStripTab Title="Expenditure Category" Id="Expenditure Category">
+        <R_StackLayout Spacing="3" Row="true">
+
+            @* Lay-Out Table Grid List *@
+            <R_ItemLayout col="4">
+                <R_Grid @ref="@_gridExpenditureCategoryRef"
+                        DataSource="@loExpenditureCategoryViewModel.loExpenditureCategoryList"
+                        R_ConductorSource="@_conductorExpenditureCategoryRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        Height="350px"
+                        R_ServiceGetListRecord="@Grid_ExpenditureCategory_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridNumericColumn FieldName="@nameof(GSM09200DTO.ILEVEL)" Width="100px" HeaderText="Level"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM09200DTO.CCATEGORY_ID)" Width="100px" HeaderText="Code"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM09200DTO.CCATEGORY_NAME)" Width="150px" HeaderText="Name"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+
+            @* Lay-Out Navigator *@
+            <R_ItemLayout col="8">
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>Parent Category*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_DropDownList Data="@loParentPositionBindingList"
+                                        @bind-Value="loExpenditureCategoryViewModel.Data.CPARENT"
+                                        ValueField="@nameof(GSM09200DetailDTO.CCATEGORY_ID)"
+                                        TextField="@nameof(GSM09200DetailDTO.CCATEGORY_NAME)"
+                                        R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                        Enabled="false"> 
+                        </R_DropDownList>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Level*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_NumericTextBox @bind-Value="@loExpenditureCategoryViewModel.Data.ILEVEL"
+                                   R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Category Code*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_TextBox @bind-Value="@loExpenditureCategoryViewModel.Data.CCATEGORY_ID"
+                                   R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Category Name*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_TextBox @bind-Value="@loExpenditureCategoryViewModel.Data.CCATEGORY_NAME"
+                                   R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="true">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Notes</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="9">
+                        <R_TextArea @bind-Value="@loExpenditureCategoryViewModel.Data.CNOTE"
+                                    R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Updated By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@loExpenditureCategoryViewModel.Data.CUPDATE_BY"
+                                   R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_DateTimePicker @bind-Value="@loExpenditureCategoryViewModel.Data.DUPDATE_DATE"
+                                          R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                          Enabled="false"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Created By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@loExpenditureCategoryViewModel.Data.CCREATE_BY"
+                                   R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_DateTimePicker @bind-Value="@loExpenditureCategoryViewModel.Data.DCREATE_DATE"
+                                          R_ConductorSource="@_conductorExpenditureCategoryRef"
+                                          Enabled="false"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="justify-content-between">
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="@_conductorExpenditureCategoryRef" Enabled="IsLevelNotThree"></R_AddButton>
+                        <R_EditButton R_Conductor="@_conductorExpenditureCategoryRef" Enabled="IsLevelNotZero"></R_EditButton>
+                        <R_DeleteButton R_Conductor="@_conductorExpenditureCategoryRef" Enabled="IsLevelNotZero"></R_DeleteButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_conductorExpenditureCategoryRef"></R_CancelButton>
+                        <R_SaveButton R_Conductor="@_conductorExpenditureCategoryRef"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+            </R_ItemLayout>
+            
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab Title="Expenditure List" Id="Expenditure List">
+                <R_TabPage R_Before_Open_TabPage="Before_Open_ExpenditureList_TabPage" @ref="_tabExpenditureListRef"></R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+
+
+<R_Conductor @ref="@_conductorExpenditureCategoryRef"
+             R_ViewModel="@loExpenditureCategoryViewModel"
+             R_Display="Grid_ExpenditureCategory_Display"
+             R_Saving="@Grid_SavingExpenditureCategory"
+             R_ServiceSave="@Grid_ExpenditureCategory_ServiceSave"
+             R_AfterAdd="@Grid_ExpenditureCategory_AfterAdd"
+             R_BeforeEdit="@Grid_ExpenditureCategory_BeforeEdit"
+             R_BeforeCancel="@Grid_ExpenditureCategory_BeforeCancel"
+             R_AfterSave="Grid_ExpenditureCategory_AfterSave"
+             R_AfterDelete="Grid_ExpenditureCategory_AfterDelete"
+             R_ServiceDelete="@Grid_ExpenditureCategory_ServiceDelete"
+             R_SetOther="Grid_ExpenditureCategory_SetOther"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_ExpenditureCategory_ServiceGetRecord">
+</R_Conductor>
+
+@*
+<R_ConductorGrid @ref="@_conductorExpenditureRef"
+             R_ViewModel="@loExpenditureViewModel"
+             R_ConductorParent="@_conductorExpenditureCategoryRef">
+</R_ConductorGrid>*@

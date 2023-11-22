@@ -1,0 +1,60 @@
+﻿@inherits R_Page
+@using GSM09200COMMON.DTOs.GSM09200
+@using GSM09200COMMON.DTOs.GSM09210
+@using GSM09200COMMON
+@using GSM09200MODEL
+
+
+<R_StackLayout>
+    <R_StackLayout Row="true">
+        <R_ItemLayout col="2">
+            <R_Label>Expenditure Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loExpenditureViewModel.loExpenditureCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorExpenditureRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loExpenditureViewModel.loExpenditureCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorExpenditureRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridExpenditureRef"
+                    DataSource="@loExpenditureViewModel.loExpenditureList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorExpenditureRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    Height="300px"
+                    R_ServiceGetListRecord="@Grid_Expenditure_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(GSM09210DTO.CEXPENDITURE_ID) HeaderText="Expenditure Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM09210DTO.CEXPENDITURE_NAME) HeaderText="Expenditure Name"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Popup R_ConductorGridSource="@_conductorExpenditureRef"
+                 R_Before_Open_Popup="@R_Before_Open_Popup_Expenditure_Move"
+                 R_After_Open_Popup="@R_After_Open_Popup_Expenditure_Move">
+            Move
+        </R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorExpenditureRef"
+                 R_ViewModel="@loExpenditureViewModel"
+                      R_IsHeader>
+</R_ConductorGrid>

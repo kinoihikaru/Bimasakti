@@ -1,0 +1,35 @@
+#Persiapan runtime di app directory
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 80
+
+#Persiapan SDK di src directory
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+
+#copy all directory from solution directory
+COPY Library ./Library
+COPY AP ./AP
+COPY ./NuGet.Config .
+
+#build API Project
+RUN dotnet build "AP/BIMASAKTI_AP_API/BIMASAKTI_AP_API.csproj" -c Release -o /app/build
+
+#publish
+FROM build AS publish
+RUN dotnet publish "AP/BIMASAKTI_AP_API/BIMASAKTI_AP_API.csproj" -c Release -o /app/publish
+
+#Copy into APP with runtime 
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+
+RUN apt-get update && apt-get install -y libfontconfig1
+
+COPY fonts ./fonts
+RUN mkdir -p /usr/share/fonts/truetype
+RUN install -m644 ./fonts/*.ttc /usr/share/fonts/truetype/
+RUN rm ./fonts/*.ttc
+RUN rmdir -p fonts
+
+ENTRYPOINT ["dotnet", "BIMASAKTI_AP_API.dll"]

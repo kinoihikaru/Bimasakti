@@ -1,0 +1,60 @@
+﻿@inherits R_Page
+@using GSM09300COMMON.DTOs.GSM09300
+@using GSM09300COMMON.DTOs.GSM09310
+@using GSM09300COMMON
+@using GSM09300MODEL
+
+
+<R_StackLayout>
+    <R_StackLayout Row="true">
+        <R_ItemLayout col="2">
+            <R_Label>Supplier Category</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loSupplierViewModel.loSupplierCategory.CCATEGORY_ID"
+                       R_ConductorGridSource="@_conductorSupplierRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+            <R_TextBox @bind-Value="@loSupplierViewModel.loSupplierCategory.CCATEGORY_NAME"
+                       R_ConductorGridSource="@_conductorSupplierRef"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridSupplierRef"
+                    DataSource="@loSupplierViewModel.loSupplierList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorSupplierRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    Height="300px"
+                    R_ServiceGetListRecord="@Grid_Supplier_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(GSM09310DTO.CSUPPLIER_ID) HeaderText="Supplier Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM09310DTO.CSUPPLIER_NAME) HeaderText="Supplier Name"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Popup R_ConductorGridSource="@_conductorSupplierRef"
+                 R_Before_Open_Popup="@R_Before_Open_Popup_Supplier_Move"
+                 R_After_Open_Popup="@R_After_Open_Popup_Supplier_Move">
+            Move
+        </R_Popup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorSupplierRef"
+                 R_ViewModel="@loSupplierViewModel"
+                      R_IsHeader>
+</R_ConductorGrid>

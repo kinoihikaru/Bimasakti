@@ -1,0 +1,55 @@
+﻿@inherits R_Page
+@using LMM03500COMMON.DTOs.LMM03500
+@using LMM03500COMMON.DTOs.LMM03508
+@using LMM03500COMMON.DTOs;
+@using LMM03500MODEL
+@using LMM03500MODEL.ViewModel;
+
+<R_StackLayout Class="mb-4">
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label Class="fw-bold" FontSize="15">Tenant</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loFixVAViewModel.loTenant.CTENANT_ID"
+                       R_ConductorGridSource="@_conductorFixVARef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="8">
+            <R_TextBox @bind-Value="@loFixVAViewModel.loTenant.CTENANT_NAME"
+                       R_ConductorGridSource="@_conductorFixVARef"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridFixVARef"
+                DataSource="@loFixVAViewModel.loFixVAList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorFixVARef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                Height="300px"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetFixVAListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(LMM03508DTO.CBANK_CODE)" HeaderText="Bank Id"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(LMM03508DTO.CVA_CODE)" HeaderText="VA Code"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(LMM03508DTO.CUPDATE_BY)" HeaderText="Updated By"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(LMM03508DTO.DUPDATE_DATE)" HeaderText="Updated Date"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conductorFixVARef"
+             R_ViewModel="@loFixVAViewModel"
+             R_SetOther="FixVA_SetOther"
+             R_IsHeader="true">
+</R_ConductorGrid>

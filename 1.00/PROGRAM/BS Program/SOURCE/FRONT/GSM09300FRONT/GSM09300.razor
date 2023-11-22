@@ -1,0 +1,191 @@
+﻿@page "/GSM09300"
+@inherits R_Page
+@using GSM09300COMMON.DTOs.GSM09300
+@using GSM09300COMMON.DTOs.GSM09310
+@using GSM09300COMMON
+@using GSM09300MODEL
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label FontColor="R_eFontColor.Danger" Class="fw-bold ms-3" FontSize="15">Property</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="5">
+        <R_ComboBox Data="@loSupplierCategoryViewModel.loPropertyList"
+                        Value="loSupplierCategoryViewModel.loProperty.CPROPERTY_ID"
+                        ValueField="@nameof(GetPropertyListDTO.CPROPERTY_ID)"
+                        TextField="@nameof(GetPropertyListDTO.CPROPERTY_NAME)"
+                        Enabled=@IsCRUDMode
+                        R_ConductorSource="@_conductorSupplierCategoryRef" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="@_TabStripRef" OnActiveTabIndexChanging="OnActiveTabIndexChanging">
+    <R_TabStripTab Title="Supplier Category" Id="Supplier Category">
+        <R_StackLayout Spacing="3" Row="true">
+
+            @* Lay-Out Table Grid List *@
+            <R_ItemLayout col="4">
+                <R_Grid @ref="@_gridSupplierCategoryRef"
+                        DataSource="@loSupplierCategoryViewModel.loSupplierCategoryList"
+                        R_ConductorSource="@_conductorSupplierCategoryRef"
+                        R_GridType="@R_eGridType.Navigator"
+                        Height="350px"
+                        R_ServiceGetListRecord="@Grid_SupplierCategory_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridNumericColumn FieldName="@nameof(GSM09300DTO.ILEVEL)" Width="100px" HeaderText="Level"></R_GridNumericColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM09300DTO.CCATEGORY_ID)" Width="100px" HeaderText="Code"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(GSM09300DTO.CCATEGORY_NAME)" Width="150px" HeaderText="Name"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+
+
+            @* Lay-Out Navigator *@
+            <R_ItemLayout col="8">
+
+                <R_StackLayout Row>
+                    <R_ItemLayout col="2">
+                        <R_Label>Parent Category*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_DropDownList Data="@loParentPositionBindingList"
+                                        @bind-Value="loSupplierCategoryViewModel.Data.CPARENT"
+                                        ValueField="@nameof(GSM09300DetailDTO.CCATEGORY_ID)"
+                                        TextField="@nameof(GSM09300DetailDTO.CCATEGORY_NAME)"
+                                        R_ConductorSource="@_conductorSupplierCategoryRef"
+                                        Enabled="false"> 
+                        </R_DropDownList>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Level*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_NumericTextBox @bind-Value="@loSupplierCategoryViewModel.Data.ILEVEL"
+                                   R_ConductorSource="@_conductorSupplierCategoryRef"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Category Code*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_TextBox @bind-Value="@loSupplierCategoryViewModel.Data.CCATEGORY_ID"
+                                   R_ConductorSource="@_conductorSupplierCategoryRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="false">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Category Name*</R_Label>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="9">
+                        <R_TextBox @bind-Value="@loSupplierCategoryViewModel.Data.CCATEGORY_NAME"
+                                   R_ConductorSource="@_conductorSupplierCategoryRef"
+                                   R_EnableAdd="true"
+                                   R_EnableEdit="true">
+                        </R_TextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Notes</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="9">
+                        <R_TextArea @bind-Value="@loSupplierCategoryViewModel.Data.CNOTE"
+                                    R_ConductorSource="@_conductorSupplierCategoryRef"
+                                    R_EnableAdd="true" R_EnableEdit="true"></R_TextArea>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Updated By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@loSupplierCategoryViewModel.Data.CUPDATE_BY"
+                                   R_ConductorSource="@_conductorSupplierCategoryRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_DateTimePicker @bind-Value="@loSupplierCategoryViewModel.Data.DUPDATE_DATE"
+                                          R_ConductorSource="@_conductorSupplierCategoryRef"
+                                          Enabled="false"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row="true">
+                    <R_ItemLayout col="2">
+                        <R_Label>Created By</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_TextBox @bind-Value="@loSupplierCategoryViewModel.Data.CCREATE_BY"
+                                   R_ConductorSource="@_conductorSupplierCategoryRef"
+                                   Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Date</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="4">
+                        <R_DateTimePicker @bind-Value="@loSupplierCategoryViewModel.Data.DCREATE_DATE"
+                                          R_ConductorSource="@_conductorSupplierCategoryRef"
+                                          Enabled="false"></R_DateTimePicker>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="justify-content-between">
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="@_conductorSupplierCategoryRef" Enabled="IsLevelNotThree"></R_AddButton>
+                        <R_EditButton R_Conductor="@_conductorSupplierCategoryRef" Enabled="IsLevelNotZero"></R_EditButton>
+                        <R_DeleteButton R_Conductor="@_conductorSupplierCategoryRef" Enabled="IsLevelNotZero"></R_DeleteButton>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="@_conductorSupplierCategoryRef"></R_CancelButton>
+                        <R_SaveButton R_Conductor="@_conductorSupplierCategoryRef"></R_SaveButton>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+            </R_ItemLayout>
+            
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab Title="Supplier List" Id="Supplier List">
+                <R_TabPage R_Before_Open_TabPage="Before_Open_SupplierList_TabPage" @ref="_tabSupplierListRef"></R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+
+
+<R_Conductor @ref="@_conductorSupplierCategoryRef"
+             R_ViewModel="@loSupplierCategoryViewModel"
+             R_Display="Grid_SupplierCategory_Display"
+             R_Saving="@Grid_SavingSupplierCategory"
+             R_ServiceSave="@Grid_SupplierCategory_ServiceSave"
+             R_AfterAdd="@Grid_SupplierCategory_AfterAdd"
+             R_BeforeEdit="@Grid_SupplierCategory_BeforeEdit"
+             R_BeforeCancel="@Grid_SupplierCategory_BeforeCancel"
+             R_AfterSave="Grid_SupplierCategory_AfterSave"
+             R_AfterDelete="Grid_SupplierCategory_AfterDelete"
+             R_ServiceDelete="@Grid_SupplierCategory_ServiceDelete"
+             R_SetOther="Grid_SupplierCategory_SetOther"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Grid_SupplierCategory_ServiceGetRecord">
+</R_Conductor>

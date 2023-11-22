@@ -1,0 +1,43 @@
+﻿@inherits R_Page
+@attribute [R_BlazorFrontEnd.Controls.Attributes.R_Page(Title = "Multiple User Assignment")]
+@using GSM07000COMMON.DTOs
+
+<R_StackLayout Style="width:800px">
+    <R_StackLayout Row>
+        <R_ItemLayout xs="12">
+            <R_Grid @ref="@_gridRef"
+                    DataSource="@loViewModel.loMultipleUserAssignmentList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conGridRef"
+                    R_GridType="@R_eGridType.Batch"
+                    AllowAddNewRow="false"
+                    AllowEditRow="true"
+                    AllowDeleteRow="false"
+                    Height="300px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridCheckBoxSelectColumn FieldName="@nameof(GSM07011DTO.LSELECTED)"
+                                                R_EnableEdit="true"
+                                                                    ShowSelectAllHeader />
+                    <R_GridTextColumn FieldName=@nameof(GSM07011DTO.CUSER_ID) HeaderText="User Id" R_EnableEdit="false"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM07011DTO.CUSER_NAME) HeaderText="User Name" R_EnableEdit="false"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button R_ConductorGridSource="_conGridRef" OnClick="OnCancel">Cancel</R_Button>
+            <R_Button R_ConductorGridSource="_conGridRef" OnClick="OnProcess">Process</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridRef"
+                 R_ViewModel="@loViewModel"
+                 R_ServiceGetRecord="Grid_ServiceGetRecord"
+                 R_Display="@Grid_Display"
+                 R_IsHeader="true"
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch"></R_ConductorGrid>

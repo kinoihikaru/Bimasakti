@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GSM01500COMMON.DTOs
+{
+    public class ContextConstant
+    {
+        public const string CENTER_CODE_STREAM_CONTEXT = "CENTER_CODE";
+        public const string COPY_FROM_COMPANY_ID_CONTEXT = "COPY_FROM_COMPANY_ID";
+        public const string ACTIVE_INACTIVE_CENTER_CODE_CONTEXT = "ACTIVE_INACTIVE_CENTER_CODE_CONTEXT";
+        public const string ACTIVE_INACTIVE_LACTIVE_CONTEXT = "ACTIVE_INACTIVE_LACTIVE_CONTEXT";
+        public const string UPLOAD_CENTER_PARAMETER_CONTEXT = "UPLOAD_CENTER_PARAMETER_CONTEXT";
+        public const string UPLOAD_CENTER_IS_OVERWRITE_CONTEXT = "UPLOAD_CENTER_IS_OVERWRITE_CONTEXT";
+        public const string UPLOAD_CENTER_ERROR_GUID_STREAMING_CONTEXT = "UPLOAD_CENTER_ERROR_GUID_STREAMING_CONTEXT";
+        public const string UPLOAD_CENTER_PARAMETER_STREAMING_CONTEXT = "UPLOAD_CENTER_PARAMETER_STREAMING_CONTEXT";
+    }
+}

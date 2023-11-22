@@ -1,0 +1,65 @@
+﻿@page "/GSM01500"
+@inherits R_Page
+@using GSM01500COMMON.DTOs
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridCenterRef"
+                    DataSource="@CenterViewModel.loCenterList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conGridCenterRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="true"
+                    AllowEditRow="true"
+                    AllowDeleteRow="true"
+                    Height="410px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(GSM01500DTO.CCENTER_CODE) HeaderText="Center Code" Width="150px" R_EnableAdd></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM01500DTO.CCENTER_NAME) HeaderText="Center Name" Width="200px" R_EnableAdd R_EnableEdit></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName=@nameof(GSM01500DTO.LACTIVE) HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM01500DTO.CUPDATE_BY) HeaderText="Updated By" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName=@nameof(GSM01500DTO.DUPDATE_DATE) HeaderText="Updated Date" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName=@nameof(GSM01500DTO.CCREATE_BY) HeaderText="Created By" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName=@nameof(GSM01500DTO.DCREATE_DATE) HeaderText="Created Date" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row Class="justify-content-start">
+        <R_ItemLayout>
+            <R_Popup R_ConductorGridSource="@_conGridCenterRef"
+                     R_Before_Open_Popup="@R_Before_Open_Popup_CopyFrom"
+                     R_After_Open_Popup="@R_After_Open_Popup_CopyFrom"
+                     R_EnableOther>Copy From</R_Popup>
+            <R_Button R_ConductorGridSource="@_conGridCenterRef" R_EnableOther OnClick="OnClickTemplate">Template</R_Button>
+            <R_Popup R_ConductorGridSource="@_conGridCenterRef" R_EnableOther R_Before_Open_Popup="Before_Open_Upload_Popup" R_After_Open_Popup="After_Open_Upload_Popup">Upload</R_Popup>
+            <R_Popup R_ConductorGridSource="@_conGridCenterRef"
+                     R_Before_Open_Popup="@R_Before_Open_Popup_ActivateInactive"
+                     R_After_Open_Popup="@R_After_Open_Popup_ActivateInactive"
+                     R_EnableOther>@loLabel</R_Popup>
+            <R_Popup R_ConductorGridSource="@_conGridCenterRef"
+                     R_Before_Open_Popup="@R_Before_Open_Popup_PrintCenter"
+                     R_After_Open_Popup="@R_After_Open_Popup_PrintCenter"
+                     R_EnableOther>Print</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_PredefinedDock R_InstantiateDock="@PreDock_InstantiateDock"
+                  R_AfterOpenPredefinedDock="@R_AfterOpenPredefinedDock"
+                  Enabled="IsEnabled"
+                  Title="Department"></R_PredefinedDock>
+
+<R_ConductorGrid @ref="@_conGridCenterRef"
+                 R_ViewModel="@CenterViewModel"
+                 R_IsHeader
+                 R_Display="@Grid_Display"
+                 R_ServiceGetRecord="@Grid_ServiceGetRecord"
+                 R_Saving="@Grid_Saving"
+                 R_Validation="Grid_Validation"
+                 R_SetOther="Grid_SetOther"
+                 R_ServiceSave="@Grid_ServiceSave"
+                 R_ServiceDelete="@Grid_ServiceDelete">
+</R_ConductorGrid>

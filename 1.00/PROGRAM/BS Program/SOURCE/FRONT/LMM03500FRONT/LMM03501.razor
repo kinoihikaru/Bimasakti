@@ -1,0 +1,53 @@
+﻿@inherits R_Page
+@using LMM03500COMMON.DTOs.LMM03500
+@using LMM03500COMMON.DTOs.LMM03501
+@using LMM03500COMMON.DTOs
+@using LMM03500COMMON
+@using LMM03500MODEL
+
+<CascadingValue Value="this" Name="LMM03501Ref" IsFixed>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridTenantRef"
+                    DataSource="@loTenantViewModel.loTenantList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conductorTenantRef"
+                    R_GridType="@R_eGridType.Original"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    R_ServiceGetListRecord="@Grid_Tenant_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(LMM03501DTO.CTENANT_ID) HeaderText="Tenant Id"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(LMM03501DTO.CTENANT_NAME) HeaderText="Tenant Name"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CTENANT_CATEGORY_NAME)" HeaderText="Tenant Group"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CTENANT_TYPE_NAME)" HeaderText="Tenant Type"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CUNIT_NAME)" HeaderText="Units"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CPHONE1)" HeaderText="Phone 1"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CEMAIL)" HeaderText="Email"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CUPDATE_BY)" HeaderText="Updated By"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(LMM03501DTO.DUPDATE_DATE)" HeaderText="Updated Date"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(LMM03501DTO.CCREATE_BY)" HeaderText="Created By"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(LMM03501DTO.DCREATE_DATE)" HeaderText="Created Date"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Button R_ConductorGridSource="@_conductorTenantRef" R_EnableOther OnClick="OnClickTemplate">Template</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_Popup R_ConductorGridSource="@_conductorTenantRef" R_EnableOther R_Before_Open_Popup="Before_Open_Upload_Popup" R_After_Open_Popup="After_Open_Upload_Popup">Upload</R_Popup>
+        </R_ItemLayout>
+    </R_StackLayout>
+</CascadingValue>
+
+
+<R_ConductorGrid @ref="@_conductorTenantRef"
+                 R_IsHeader
+                 R_Display="@Grid_Tenant_Display"
+                 R_ViewModel="@loTenantViewModel">
+</R_ConductorGrid>

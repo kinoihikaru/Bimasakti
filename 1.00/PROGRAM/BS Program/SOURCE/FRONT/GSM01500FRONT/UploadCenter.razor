@@ -1,0 +1,124 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Upload")]
+@using GSM01500COMMON.DTOs
+
+<R_StackLayout Style="width:1000px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Company</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox R_ConductorGridSource="_conGridUploadCenterRef" 
+                       Enabled="false" 
+                       @bind-Value="loUploadCenterViewModel.loCompany.CCOMPANY_ID">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="8">
+            <R_TextBox R_ConductorGridSource="_conGridUploadCenterRef" 
+                       Enabled="false"
+                       @bind-Value="loUploadCenterViewModel.loCompany.CCOMPANY_NAME">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_InputFile OnChange="OnChangeInputFile" Accepts="@accepts"></R_InputFile>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridUploadCenterRef"
+                    DataSource="@loUploadCenterViewModel.loUploadCenterDisplayList"
+                    Pageable="true"
+                    R_ConductorGridSource="@_conGridUploadCenterRef"
+                    R_GridType="@R_eGridType.Batch"
+                    AllowAddNewRow="false"
+                    AllowEditRow="false"
+                    AllowDeleteRow="false"
+                    Height="400px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridNumericColumn FieldName=@nameof(UploadCenterDTO.INO) HeaderText="No" Enabled="false" Width="100px"></R_GridNumericColumn>
+                    <R_GridTextColumn FieldName=@nameof(UploadCenterDTO.CCENTER_CODE) HeaderText="Center Code" Enabled="false" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(UploadCenterDTO.CCENTER_NAME) HeaderText="Center Name" Enabled="false" Width="200px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName=@nameof(UploadCenterDTO.LACTIVE) HeaderText="Active" Enabled="false" Width="100px"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName=@nameof(UploadCenterDTO.NONACTIVE_DATE) HeaderText="Non Active Date" Enabled="false" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(UploadCenterDTO.CVALID) HeaderText="Valid" Enabled="false" Width="100px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName=@nameof(UploadCenterDTO.CNOTES) HeaderText="Notes" Enabled="false" Width="300px"></R_GridTextColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_ProgressBar Label="@loUploadCenterViewModel.Message" MaxValue="100" Value="@loUploadCenterViewModel.Percentage"></R_ProgressBar>
+        </R_ItemLayout>
+    </R_StackLayout>
+    
+    <R_StackLayout Row>
+        <R_ItemLayout col="8">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Total Row(s)</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_NumericTextBox @bind-Value="@loUploadCenterViewModel.SumList"
+                                Arrows="false"
+                               Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>Valid</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="bg-success">
+                    <R_NumericTextBox @bind-Value="@loUploadCenterViewModel.SumValid"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label>Invalid</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2" Class="badge bg-danger">
+                    <R_NumericTextBox @bind-Value="@loUploadCenterViewModel.SumInvalid"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="4" hidden="@loUploadCenterViewModel.VisibleError">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="OnCancel">
+                        Cancel
+                    </R_Button>
+                    <R_Button OnClick="OnProcess" Enabled="@IsProcessEnabled">
+                        Proses
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@(!loUploadCenterViewModel.VisibleError)">
+            <R_StackLayout Row Class="justify-content-end">
+                <R_ItemLayout>
+                    <R_Button OnClick="OnCancel">
+                        Cancel
+                    </R_Button>
+                    <R_Button OnClick="@OnSaveToExcel">
+                        Save To Excel
+                    </R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conGridUploadCenterRef"
+                 R_ViewModel="@loUploadCenterViewModel"
+                 R_IsHeader
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch">
+</R_ConductorGrid>

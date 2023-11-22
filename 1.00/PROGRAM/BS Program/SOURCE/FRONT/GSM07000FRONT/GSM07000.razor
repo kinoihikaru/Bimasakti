@@ -1,0 +1,49 @@
+﻿@page "/GSM07000"
+@attribute [R_Page(Title = "Activity Approval")]
+@inherits R_Page
+@using GSM07000COMMON.DTOs
+
+<R_StackLayout Row>
+    <R_ItemLayout xs="12">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@loViewModel.loActivityApprovalList"
+                Pageable="true"
+                R_ConductorGridSource="@_conGridRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="false"
+                AllowEditRow="true"
+                AllowDeleteRow="false"
+                Height="410px"
+                R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridComboBoxColumn Data="@loViewModel._approvalRtn"
+                                          ValueField="@nameof(ApprovalDTO.CCODE)"
+                                          TextField="@nameof(ApprovalDTO.CDESCRIPTION)"
+                                          FieldName="@nameof(GSM07000DTO.CAPPROVAL_OPTION)"
+                                          HeaderText="Approval Flag"
+                                          Width="150px"
+                                                            R_EnableEdit />
+                <R_GridTextColumn FieldName=@nameof(GSM07000DTO.CAPPROVAL_NAME) HeaderText="Approval Description" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM07000DTO.CAPPROVAL_CODE) HeaderText="Approval Code" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM07000DTO.CAPV_LOG_GRP) HeaderText="Group" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName=@nameof(GSM07000DTO.CUPDATE_BY) HeaderText="Updated By" Width="150px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName=@nameof(GSM07000DTO.DUPDATE_DATE) HeaderText="Updated Date" Width="150px"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_PredefinedDock R_InstantiateDock="@PreDock_InstantiateDock" 
+                  R_AfterOpenPredefinedDock="@R_AfterOpenPredefinedDock"
+                  Enabled="@IsListExist"
+                  Title="Activity Approval User"></R_PredefinedDock>
+
+<R_ConductorGrid @ref="@_conGridRef"
+                 R_ViewModel="@loViewModel"
+                 R_IsHeader
+                 R_Display="@Grid_Display"
+                 R_ServiceGetRecord="@Grid_ServiceGetRecord"
+                 R_ServiceSave="@Grid_ServiceSave"
+                 ></R_ConductorGrid>
+

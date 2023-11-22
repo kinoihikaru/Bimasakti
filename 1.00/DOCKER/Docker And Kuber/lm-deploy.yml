@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lm-api-v1-0-0-0
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: lm-api-v1-0-0-0
+    spec:
+      containers:
+      - name: lm-api-v1-0-0-0
+        image: realtadev/lm-api:v1.0.0.0
+        ports:
+        - containerPort: 80
+        env:
+        - name: RedisCacheUrl
+          value: redis
+        - name: R_DBSection__CommandTimeout
+          value: "600"
+        - name: R_DBSection_R_DBConfigs0_Name
+          value: R_DefaultConnectionString
+        - name: R_DBSection_R_DBConfigs0_ConnectionString
+          value: server=172.16.0.62,49672;Initial Catalog=BIMASAKTI_11;User ID=sa;Password=993B428C56EA88C108F8AF1213EF3C7F;
+        - name: R_DBSection_R_DBConfigs0_ProviderName
+          value: System.Data.SqlClient
+        - name: R_DBSection_R_DBConfigs0_KeywordForPassword
+          value: Password
+                    
+        - name: R_DBSection_R_DBConfigs1_Name
+          value: R_ReportConnectionString
+        - name: R_DBSection_R_DBConfigs1_ConnectionString
+          value: server=172.16.0.62,49672;Initial Catalog=BIMASAKTI_11;User ID=sa;Password=993B428C56EA88C108F8AF1213EF3C7F;
+        - name: R_DBSection_R_DBConfigs1_ProviderName
+          value: System.Data.SqlClient
+        - name: R_DBSection_R_DBConfigs1_KeywordForPassword
+          value: Password
+  selector:
+    matchLabels:
+      app: lm-api-v1-0-0-0
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lm-api-v1-0-0-0
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: lm-api-v1-0-0-0

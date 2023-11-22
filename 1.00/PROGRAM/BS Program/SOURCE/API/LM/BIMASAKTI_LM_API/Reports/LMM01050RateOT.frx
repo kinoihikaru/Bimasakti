@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="09/27/2023 14:51:47" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void PageHeader1_AfterData(object sender, EventArgs e)
+    {
+      string BaseHeaderCode = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CPRINT_CODE&quot;);
+      string BaseHeaderName = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CCOMPANY_NAME&quot;);
+      
+      if (string.IsNullOrWhiteSpace(BaseHeaderCode))
+      {
+		     Text33.Text = BaseHeaderName;
+      }else
+      {
+         Text33.Text = BaseHeaderCode + &quot; - &quot; + BaseHeaderName;
+      }
+    }
+
+    private void Data1_AfterData(object sender, EventArgs e)
+    {
+      string adminFee = (string)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.CADMIN_FEE&quot;);
+      string adminFeeDesc = (string)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.CADMIN_FEE_DESCR&quot;);
+      decimal adminFeePCT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.NADMIN_FEE_PCT&quot;);
+      decimal adminFeeAMT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RateOT.HeaderData.NADMIN_FEE_AMT&quot;);
+      
+      if (adminFee == &quot;00&quot;)
+      {
+        Text103.Text = &quot;&quot;;
+      }else if (adminFee == &quot;01&quot;)
+      {
+        Text103.Text = adminFeePCT.ToString();
+      }else if (adminFee == &quot;02&quot;)
+      {
+        Text103.Text = adminFeeAMT.ToString();
+      }
+    }
+    
+    private void Table1_ManualBuild(object sender, EventArgs e)
+    {
+      
+      // get the data source by its name
+      DataSourceBase rowData = Report.GetDataSource(&quot;ResponseDataModel.RateOT.DetailWDData&quot;);
+      // initialize it
+      rowData.Init();
+      
+      while (rowData.HasMoreRows)
+      {
+        // printing the table row
+        Table1.PrintRow(0);
+        Table1.PrintColumns();
+
+        // select the next data row
+        rowData.Next();
+      }
+    }
+
+    private void Table2_ManualBuild(object sender, EventArgs e)
+    {
+      // get the data source by its name
+      DataSourceBase rowData = Report.GetDataSource(&quot;ResponseDataModel.RateOT.DetailWKData&quot;);
+      // initialize it
+      rowData.Init();
+      
+      while (rowData.HasMoreRows)
+      {
+        // printing the table row
+        Table2.PrintRow(0);
+        Table2.PrintColumns();
+
+        // select the next data row
+        rowData.Next();
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="RateOT" DataType="LMM01000COMMON.LMM01050ResultPrintDTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="HeaderData" DataType="LMM01000COMMON.LMM01050DTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CACTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+          <Column Name="CCURENCY_CODE" DataType="System.String"/>
+          <Column Name="CADMIN_FEE" DataType="System.String"/>
+          <Column Name="CADMIN_FEE_DESCR" DataType="System.String"/>
+          <Column Name="NADMIN_FEE_PCT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="NUNIT_AREA_VALID_FROM" DataType="System.Decimal"/>
+          <Column Name="NUNIT_AREA_VALID_TO" DataType="System.Decimal"/>
+          <Column Name="LCUT_OFF_WEEKDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LHOLIDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LSATURDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LSUNDAY" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <BusinessObjectDataSource Name="BusinessObjectDataSource1" Alias="CRATE_OT_LIST" Enabled="false" DataType="System.Collections.Generic.List`1[[LMM01000COMMON.LMM01051DTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" PropName="CRATE_OT_LIST"/>
+        </Column>
+        <BusinessObjectDataSource Name="DetailWKData" DataType="System.Collections.Generic.List`1[[LMM01000COMMON.LMM01051DTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CDAY_TYPE" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="ILEVEL" DataType="System.Int32"/>
+          <Column Name="CLEVEL_DESC" DataType="System.String"/>
+          <Column Name="IHOURS_FROM" DataType="System.Int32"/>
+          <Column Name="IHOURS_TO" DataType="System.Int32"/>
+          <Column Name="NRATE_HOUR" DataType="System.Decimal"/>
+        </BusinessObjectDataSource>
+        <BusinessObjectDataSource Name="DetailWDData" DataType="System.Collections.Generic.List`1[[LMM01000COMMON.LMM01051DTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CDAY_TYPE" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="ILEVEL" DataType="System.Int32"/>
+          <Column Name="CLEVEL_DESC" DataType="System.String"/>
+          <Column Name="IHOURS_FROM" DataType="System.Int32"/>
+          <Column Name="IHOURS_TO" DataType="System.Int32"/>
+          <Column Name="NRATE_HOUR" DataType="System.Decimal"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text41"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text42"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="90.38" Width="718.2" Height="37.8">
+        <TextObject Name="Text92" Width="245.7" Height="18.9" Text="[ResponseDataModel.RateOT.Header]" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="133.52" Width="718.2" Height="217.35" AfterDataEvent="Data1_AfterData">
+      <TextObject Name="Text46" Left="37.8" Top="18.9" Width="198.45" Height="18.9" Text="Currency" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text94" Left="255.15" Top="18.9" Width="274.05" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.CCURENCY_CODE]" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text57" Left="37.8" Top="94.5" Width="198.45" Height="18.9" Text="Unit Area Validation (sqm)" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text60" Left="37.8" Top="56.7" Width="217.35" Height="18.9" Text="Administration Fee (per month)" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text103" Left="255.15" Top="56.7" Width="132.3" Height="18.9" Text="This Condition" HorzAlign="Center" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text93" Left="255.15" Width="340.2" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.CCHARGES_ID] - [ResponseDataModel.RateOT.HeaderData.CCHARGES_NAME]" VertAlign="Center" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text45" Left="37.8" Width="198.45" Height="18.9" Text="Utility Charges" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text136" Left="255.15" Top="94.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.NUNIT_AREA_VALID_FROM]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text137" Left="349.65" Top="94.5" Width="37.8" Height="18.9" Text="To" HorzAlign="Center" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text138" Left="387.45" Top="94.5" Width="94.5" Height="18.9" Text="[ResponseDataModel.RateOT.HeaderData.NUNIT_AREA_VALID_TO]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text61" Left="56.7" Top="179.55" Width="170.1" Height="18.9" Text="Cut Off Over Weekday" Font="MS Gothic, 10pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="37.8" Top="179.55" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LCUT_OFF_WEEKDAY"/>
+      <TextObject Name="Text132" Left="670.95" Top="179.55" Width="56.7" Height="18.9" Text="Sunday&#13;&#10;" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text133" Left="576.45" Top="179.55" Width="66.15" Height="18.9" Text="Saturday&#13;&#10;" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text134" Left="491.4" Top="179.55" Width="56.7" Height="18.9" Text="Holiday" Font="MS Gothic, 10pt"/>
+      <CheckBoxObject Name="CheckBox2" Left="472.5" Top="179.55" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LHOLIDAY"/>
+      <CheckBoxObject Name="CheckBox3" Left="557.55" Top="179.55" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LSATURDAY"/>
+      <CheckBoxObject Name="CheckBox4" Left="652.05" Top="179.55" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RateOT.HeaderData.LSUNDAY"/>
+      <DataBand Name="Data2" Top="400.23" Width="718.2" Height="28.35">
+        <TableObject Name="Table2" Left="368.55" Width="349.65" Height="28.35" Border.Lines="Left, Right, Bottom" PrintOnParent="true" ManualBuildEvent="Table2_ManualBuild">
+          <TableColumn Name="Column6" Width="47.25"/>
+          <TableColumn Name="Column7" Width="113.4"/>
+          <TableColumn Name="Column8" Width="47.25"/>
+          <TableColumn Name="Column9" Width="47.25"/>
+          <TableColumn Name="Column10" Width="94.5"/>
+          <TableRow Name="Row2" Height="28.35">
+            <TableCell Name="Cell6" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.ILEVEL]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell7" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.CLEVEL_DESC]" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell8" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.IHOURS_FROM]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell9" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWKData.IHOURS_TO]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell10" Text="[ResponseDataModel.RateOT.DetailWKData.NRATE_HOUR]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <TableObject Name="Table1" Width="349.65" Height="28.35" Border.Lines="Left, Right, Bottom" ManualBuildEvent="Table1_ManualBuild">
+          <TableColumn Name="Column1" Width="47.25"/>
+          <TableColumn Name="Column2" Width="113.4"/>
+          <TableColumn Name="Column3" Width="47.25"/>
+          <TableColumn Name="Column4" Width="47.25"/>
+          <TableColumn Name="Column5" Width="94.5"/>
+          <TableRow Name="Row1" Height="28.35">
+            <TableCell Name="Cell1" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.ILEVEL]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell2" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.CLEVEL_DESC]" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell3" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.IHOURS_FROM]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell4" Border.Lines="Right" Text="[ResponseDataModel.RateOT.DetailWDData.IHOURS_TO]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+            <TableCell Name="Cell5" Text="[ResponseDataModel.RateOT.DetailWDData.NRATE_HOUR]" HorzAlign="Right" Font="MS Gothic, 10pt"/>
+          </TableRow>
+        </TableObject>
+        <DataHeaderBand Name="DataHeader1" Top="356.2" Width="718.2" Height="38.7">
+          <ShapeObject Name="Shape4" Width="349.65" Height="37.8" Fill.Color="DarkBlue"/>
+          <TextObject Name="Text120" Width="349.65" Height="18.9" Text="Weekday Overtime Rate" HorzAlign="Center" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text85" Top="18.9" Width="47.25" Height="18.9" Text="Level" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text86" Left="50.85" Top="18" Width="113.4" Height="18.9" Text="Description" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text112" Left="160.65" Top="18.9" Width="47.25" Height="18.9" Text="From" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text113" Left="207.9" Top="18.9" Width="47.25" Height="18.9" Text="To" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text114" Left="255.15" Top="18.9" Width="103.95" Height="18.9" Text="Rate per Hour&#13;&#10;" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text121" Left="368.55" Width="359.1" Height="18.9" Text="Weekday Overtime Rate" HorzAlign="Center" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <ShapeObject Name="Shape5" Left="368.55" Width="349.65" Height="37.8" Fill.Color="DarkBlue"/>
+          <TextObject Name="Text135" Left="368.55" Width="349.65" Height="18.9" Text="Weekday Overtime Rate" HorzAlign="Center" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text116" Left="368.55" Top="19.8" Width="47.25" Height="18.9" Text="Level" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text115" Left="419.4" Top="18.9" Width="113.4" Height="18.9" Text="Description" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text117" Left="529.2" Top="19.8" Width="47.25" Height="18.9" Text="From" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text118" Left="576.45" Top="19.8" Width="47.25" Height="18.9" Text="To" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+          <TextObject Name="Text119" Left="623.7" Top="19.8" Width="103.95" Height="18.9" Text="Rate per Hour&#13;&#10;" VertAlign="Center" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+        </DataHeaderBand>
+      </DataBand>
+    </DataBand>
+  </inherited>
+</inherited>

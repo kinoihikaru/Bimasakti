@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Template\Contractor.xlsx" />
+    <None Remove="Template\Tenant.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+	 <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.0" />
+	 <!--<PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />-->
+    <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />-->
+  </ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Image\CompanyLogo.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Template\Contractor.xlsx" />
+		<EmbeddedResource Include="Template\Staff.xlsx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Template\Tenant.xlsx" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_LMSERVICES.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01000SERVICE\LMM01000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\LMM01500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM03500SERVICE\LMM03500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM04000SERVICE\LMM04000SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM06500SERVICE\LMM06500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM07000SERVICE\LMM07000SERVICE.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Reference Include="R_APIStartUp">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIStartUp.dll</HintPath>
+		</Reference>
+		<Reference Include="R_CrossPlatformSecurity">
+			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CrossPlatformSecurity.dll</HintPath>
+		</Reference>
+		<Reference Include="R_HelperController">
+		  <HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_HelperController.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Update="Reports\LMM01000UtilityCharges.frx">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\LMM01010RateEC.frx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\LMM01020RateWG.frx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\LMM01030RatePG.frx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\LMM01040RateGU.frx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="Reports\LMM01050RateOT.frx">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,61 @@
+﻿@inherits R_Page
+@using LMM03500COMMON.DTOs.LMM03500
+@using LMM03500COMMON.DTOs.LMM03505
+@using LMM03500COMMON.DTOs
+@using LMM03500COMMON
+@using LMM03500MODEL
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>Tenant</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_TextBox @bind-Value="@loBankInfoViewModel.loTenant.CTENANT_ID"
+                   R_ConductorGridSource="@_conductorBankInfoRef"
+                   Enabled=false></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@loBankInfoViewModel.loTenant.CTENANT_NAME"
+                   R_ConductorGridSource="@_conductorBankInfoRef"
+                   Enabled=false></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridBankInfoRef"
+                DataSource="@loBankInfoViewModel.loBankInfoList"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorBankInfoRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="true"
+                AllowEditRow="false"
+                AllowDeleteRow="true"
+                Height="330px"
+                R_After_Open_Grid_Lookup="@Grid_AfterlookUp"
+                R_Before_Open_Grid_Lookup="@Grid_BeforelookUp"
+                R_ServiceGetListRecord="@Grid_BankInfo_R_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridLookupColumn FieldName=@nameof(LMM03505DTO.CBANK_CODE) R_EnableAdd HeaderText="Bank Code" Width="150px"></R_GridLookupColumn>
+                <R_GridTextColumn FieldName="@nameof(LMM03505DTO.CBANK_NAME)" HeaderText="Bank Name" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(LMM03505DTO.CBANK_ACCOUNT_NO)" HeaderText="Account No" R_EnableAdd Width="150px"></R_GridTextColumn>
+                <R_GridLookupColumn FieldName=@nameof(LMM03505DTO.CCURRENCY_CODE) R_EnableAdd HeaderText="Currency" Width="150px"></R_GridLookupColumn>
+                <R_GridTextColumn FieldName="@nameof(LMM03505DTO.CUPDATE_BY)" HeaderText="Updated By" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(LMM03505DTO.DUPDATE_DATE)" HeaderText="Updated Date" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(LMM03505DTO.CCREATE_BY)" HeaderText="Created By" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(LMM03505DTO.DCREATE_DATE)" HeaderText="Created Date" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+            </R_Grid>
+            </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_ConductorGrid @ref="@_conductorBankInfoRef"
+                 R_ViewModel="@loBankInfoViewModel"
+                      R_IsHeader
+                 R_Display="@Grid_BankInfo_Display"
+                 R_ServiceGetRecord="@Grid_BankInfo_R_ServiceGetRecord"
+                 R_SetOther="Bank_SetOther"
+                 R_ServiceSave="@Grid_BankInfo_ServiceSave"
+                 R_ServiceDelete="@Grid_BankInfo_ServiceDelete"></R_ConductorGrid>

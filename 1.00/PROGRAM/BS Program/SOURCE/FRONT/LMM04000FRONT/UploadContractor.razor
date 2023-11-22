@@ -1,0 +1,136 @@
+﻿@inherits R_Page
+@using LMM04000COMMON.DTOs.LMM04010
+@attribute [R_Page(Title = "Upload")]
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>Property</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox R_ConductorGridSource="_conGridUploadContractorRef"
+                           Enabled="false"
+                           @bind-Value="loUploadContractorViewModel.loParameter.PropertyData.CPROPERTY_ID">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="8">
+                <R_TextBox R_ConductorGridSource="_conGridUploadContractorRef"
+                           Enabled="false"
+                           @bind-Value="loUploadContractorViewModel.loParameter.PropertyData.CPROPERTY_NAME">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_InputFile OnChange="OnChangeInputFile" Accepts="@accepts"></R_InputFile>
+        </R_StackLayout>
+    </R_StackLayout>
+
+
+    <R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_Grid @ref="@_gridUploadContractorRef"
+                        DataSource="@loUploadContractorViewModel.loUploadContractorDisplayList"
+                        Pageable="true"
+                        R_ConductorGridSource="@_conGridUploadContractorRef"
+                        R_GridType="@R_eGridType.Batch"
+                        AllowAddNewRow="false"
+                        AllowEditRow="false"
+                        AllowDeleteRow="false"
+                        Height="250px"
+                        R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.TenantId) HeaderText="Contractor Id" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.TenantName) HeaderText="Contractor Name" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.Address) HeaderText="Address" Enabled="false" Width="250px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.City) HeaderText="City" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.Province) HeaderText="Province" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.Country) HeaderText="Country" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.ZipCode) HeaderText="Zip Code" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.Email) HeaderText="Email" Enabled="false" Width="200px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.PhoneNo1) HeaderText="Phone No 1" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.PhoneNo2) HeaderText="Phone No 2" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.TenantGroup) HeaderText="Contractor Group" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.TenantCategory) HeaderText="Contractor Category" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.JournalGroup) HeaderText="Journal Group" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.PaymentTerm) HeaderText="Payment Term" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.Currency) HeaderText="Currency" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.LineOfBusiness) HeaderText="Line Of Business" Enabled="false" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName=@nameof(UploadContractorDTO.Notes) HeaderText="Notes" Enabled="false" Width="250px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="12">
+                <R_ProgressBar Label="@loUploadContractorViewModel.Message" MaxValue="100" Value="@loUploadContractorViewModel.Percentage"></R_ProgressBar>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="8">
+                <R_StackLayout Row>
+                    <R_ItemLayout col="3">
+                        <R_Label>Total Row(s)</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2">
+                        <R_NumericTextBox @bind-Value="@loUploadContractorViewModel.SumList"
+                                    Arrows="false"
+                                   Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Valid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="bg-success">
+                        <R_NumericTextBox @bind-Value="@loUploadContractorViewModel.SumValid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="1">
+                        <R_Label>Invalid</R_Label>
+                    </R_ItemLayout>
+                    <R_ItemLayout col="2" Class="badge bg-danger">
+                        <R_NumericTextBox @bind-Value="@loUploadContractorViewModel.SumInvalid"
+                                          Arrows="false"
+                                          Enabled="false">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="4" hidden="@loUploadContractorViewModel.VisibleError">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            Cancel
+                        </R_Button>
+                        <R_Button OnClick="OnProcess" Enabled="@IsProcessEnabled">
+                            Proses
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+                <R_ItemLayout col="4" hidden="@(!loUploadContractorViewModel.VisibleError)">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Button OnClick="OnCancel">
+                            Cancel
+                        </R_Button>
+                        <R_Button OnClick="@OnSaveToExcel">
+                            Save To Excel
+                        </R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+                </R_StackLayout>
+</R_StackLayout>
+
+            <R_ConductorGrid @ref="@_conGridUploadContractorRef"
+                 R_ViewModel="@loUploadContractorViewModel"
+                      R_IsHeader
+                 R_BeforeSaveBatch="@R_BeforeSaveBatch"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch"
+                 R_AfterSaveBatch="@R_AfterSaveBatch">
+</R_ConductorGrid>

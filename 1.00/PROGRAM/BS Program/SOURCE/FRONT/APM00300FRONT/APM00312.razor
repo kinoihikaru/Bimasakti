@@ -1,0 +1,186 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Supplier Detail")]
+@using APM00300COMMON
+@using APM00300MODEL
+@inject R_ILocalizer<APM00300FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@(_localizer["_Supp"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_TextBox @bind-Value="@_Supplier_viewModel.Data.CSUPPLIER_ID"
+                   R_ConductorSource="@_Supplier_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_Supplier_viewModel.Data.CSUPPLIER_NAME"
+                   R_ConductorSource="@_Supplier_conductorRef"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@(_localizer["_TaxType"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_Supplier_viewModel.TaxTypeList"
+                    @bind-Value="@_Supplier_viewModel.Data.CTAX_TYPE"
+                    ValueField="@nameof(APM00300TaxTypeDTO.CCODE)"
+                    TextField="@nameof(APM00300TaxTypeDTO.CNAME)"
+                    R_ConductorSource="@_Supplier_conductorRef" R_EnableEdit>
+        </R_ComboBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@(_localizer["_TaxName"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_Supplier_viewModel.Data.CTAX_NAME"
+                   R_ConductorSource="@_Supplier_conductorRef"
+                   R_EnableEdit>
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@(_localizer["_TaxRegID"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_Supplier_viewModel.Data.CTAX_REG_ID"
+                   R_ConductorSource="@_Supplier_conductorRef"
+                   R_EnableEdit>
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@(_localizer["_TaxRegDate"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="3">
+        <R_DatePicker @bind-Value="@_Supplier_viewModel.Data.CTAX_REG_DATE_DISPLAY"
+                   R_ConductorSource="@_Supplier_conductorRef"
+                   R_EnableEdit>
+        </R_DatePicker>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout>
+        <R_Label></R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@(_localizer["_PoAmount"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_Supplier_viewModel.Data.NPO_BALANCE"
+                      R_ConductorSource="@_Supplier_conductorRef"
+                      Arrows="false"
+                      Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+            <R_Label>@(_localizer["_LastPurch"])</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_Supplier_viewModel.Data.NLAST_PURCHASE"
+                          R_ConductorSource="@_Supplier_conductorRef"
+                          Arrows="false"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_Supplier_viewModel.Data.CLAST_PURCHASE_DATE_DISPLAY"
+                          R_ConductorSource="@_Supplier_conductorRef"
+                          Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@(_localizer["_DPAmount"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_Supplier_viewModel.Data.NDP_BALANCE"
+                          R_ConductorSource="@_Supplier_conductorRef"
+                          Arrows="false"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+            <R_Label>@(_localizer["_LAstPayment"])</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_Supplier_viewModel.Data.NLAST_PAYMENT"
+                          R_ConductorSource="@_Supplier_conductorRef"
+                          Arrows="false"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_Supplier_viewModel.Data.CLAST_PAYMENT_DATE_DISPLAY"
+                     R_ConductorSource="@_Supplier_conductorRef"
+                     Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@(_localizer["_Balance"])</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_NumericTextBox @bind-Value="@_Supplier_viewModel.Data.NBALANCE"
+                          R_ConductorSource="@_Supplier_conductorRef"
+                          Arrows="false"
+                          Enabled="false">
+        </R_NumericTextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="mt-2">
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_AddButton R_Conductor="@_Supplier_conductorRef"></R_AddButton>
+            <R_EditButton R_Conductor="@_Supplier_conductorRef"></R_EditButton>
+            <R_DeleteButton R_Conductor="@_Supplier_conductorRef"></R_DeleteButton>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_Button>@(_localizer["_Bank"])</R_Button>
+            <R_Button Enabled="@_Supplier_viewModel.Data.LONETIME">@(_localizer["_OneTime"])</R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_CancelButton R_Conductor="@_Supplier_conductorRef"></R_CancelButton>
+            <R_SaveButton R_Conductor="@_Supplier_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_Supplier_conductorRef"
+             R_ViewModel="@_Supplier_viewModel"
+             R_IsHeader="true" 
+             R_ServiceGetRecord="@Supplier_ServiceGetRecord"
+             R_CheckAdd="@Supplier_CheckAdd"
+             R_Validation="@Supplier_Validation"
+             R_ServiceSave="@Supplier_ServiceSave"
+             R_ServiceDelete="@Supplier_ServiceDelete"
+             />

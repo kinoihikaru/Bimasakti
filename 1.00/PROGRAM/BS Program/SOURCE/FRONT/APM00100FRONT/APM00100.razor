@@ -1,0 +1,160 @@
+﻿@page "/APM00100"
+@inherits R_Page
+
+<R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label>Default Department*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CDEPT_CODE"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       R_EnableAdd="false"
+                       R_EnableEdit="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Lookup R_ConductorSource="@_conductorAPSystemParam"
+                      R_After_Open_Lookup="R_After_Open_Department_Lookup"
+                      R_Before_Open_Lookup="R_Before_Open_Department_Lookup"
+                      R_EnableAdd="false"
+                      R_EnableEdit="true">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CDEPT_NAME"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label>Currency Rate Type*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CCUR_RATETYPE_CODE"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       OnLostFocus="@OnLostFocusCurrencyRateType"
+                       R_EnableAdd="false"
+                       R_EnableEdit="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Lookup R_ConductorSource="@_conductorAPSystemParam"
+                      R_After_Open_Lookup="R_After_Open_Currency_Rate_Type_Lookup"
+                      R_Before_Open_Lookup="R_Before_Open_Currency_Rate_Type_Lookup"
+                      R_EnableAdd="false"
+                      R_EnableEdit="true">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CCUR_RATETYPE_DESCRIPTION"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="4">
+            <R_Label>Default Department*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CTAX_RATETYPE_CODE"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       OnLostFocus="@OnLostFocusTaxRateType"
+                       R_EnableAdd="false"
+                       R_EnableEdit="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Lookup R_ConductorSource="@_conductorAPSystemParam"
+                      R_After_Open_Lookup="R_After_Open_Tax_Rate_Type_Lookup"
+                      R_Before_Open_Lookup="R_Before_Open_Tax_Rate_Type_Lookup"
+                      R_EnableAdd="false"
+                      R_EnableEdit="true">...</R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CTAX_RATETYPE_DESCRIPTION"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_CheckBox @bind-Value="@loAPSystemParamViewModel.Data.LGLLINK"
+                        R_ConductorSource="@_conductorAPSystemParam"
+                        R_EnableEdit="@IsAllowEditGLLink"
+                        R_EnableAdd="false">
+            </R_CheckBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_Label>
+                Linked to GL
+            </R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_CheckBox @bind-Value="@loAPSystemParamViewModel.Data.LBACKDATE"
+                        R_ConductorSource="@_conductorAPSystemParam"
+                        R_EnableEdit="true"
+                        R_EnableAdd="false">
+            </R_CheckBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_Label>
+                Enable Back Date Transaction
+            </R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Updated By</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CUPDATE_BY"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_DateTimePicker @bind-Value="@loAPSystemParamViewModel.Data.DUPDATE_DATE"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       Enabled="false">
+            </R_DateTimePicker>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>Created By</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@loAPSystemParamViewModel.Data.CCREATE_BY"
+                       R_ConductorSource="@_conductorAPSystemParam"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_DateTimePicker @bind-Value="@loAPSystemParamViewModel.Data.DCREATE_DATE"
+                              R_ConductorSource="@_conductorAPSystemParam"
+                              Enabled="false">
+            </R_DateTimePicker>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout>
+            <R_EditButton R_Conductor="_conductorAPSystemParam"></R_EditButton>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="_conductorAPSystemParam"></R_CancelButton>
+            <R_SaveButton R_Conductor="@_conductorAPSystemParam"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conductorAPSystemParam"
+             R_ViewModel="@loAPSystemParamViewModel"
+              R_IsHeader
+             R_Saving="Grid_SavingAPSystemParam"
+             R_ServiceSave="@Grid_ServiceSaveAPSystemParam"
+             R_ServiceGetRecord="@Grid_ServiceGetRecordAPSystemParam">
+</R_Conductor>

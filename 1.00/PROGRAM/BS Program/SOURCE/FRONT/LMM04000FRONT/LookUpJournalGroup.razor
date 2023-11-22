@@ -1,0 +1,32 @@
+﻿@inherits R_Page
+@using LMM04000COMMON.DTOs.LMM04010
+@attribute [R_Page(Title = "Journal Group")]
+
+<R_StackLayout Style="width:600px">
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@loViewModel.loJournalGroupList"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                Height="300px"
+                Pageable
+                PageSize="5">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GetJournalGroupDTO.CJRNGRP_CODE)" HeaderText="Id"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GetJournalGroupDTO.CJRNGRP_NAME)" HeaderText="Name"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickOkAsync">
+                OK
+            </R_Button>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

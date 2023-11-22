@@ -1,0 +1,47 @@
+﻿@using APM00200COMMON.DTOs.APM00200;
+@inherits R_Page
+
+<R_StackLayout Style="width:800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="3">
+            <R_Label>Property</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_ComboBox Data="@loExpenditureViewModel.loPropertyList"
+                        Value="loExpenditureViewModel.loProperty.CPROPERTY_ID"
+                        ValueField="@nameof(GetPropertyDTO.CPROPERTY_ID)"
+                        TextField="@nameof(GetPropertyDTO.CPROPERTY_NAME)"
+                        ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+            </R_ComboBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_Button OnClick="OnClickRefresh">Refresh</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="12">
+            <R_Grid @ref="@_gridExpenditureRef"
+                    DataSource="@loExpenditureViewModel.loExpenditureList"
+                    R_GridType="@R_eGridType.Navigator"
+                    Height="350px"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(APM00200DTO.CEXPENDITURE_ID)" HeaderText="Expenditure ID" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(APM00200DTO.CEXPENDITURE_NAME)" HeaderText="Expenditure Name" Width="200px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName="@nameof(APM00200DTO.LACTIVE)" HeaderText="Active" Width="100px"></R_GridCheckBoxColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-start">
+        <R_ItemLayout>
+            <R_Button OnClick="OnClickCancel">Cancel</R_Button>
+            <R_Button OnClick="OnClickOK">OK</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+
