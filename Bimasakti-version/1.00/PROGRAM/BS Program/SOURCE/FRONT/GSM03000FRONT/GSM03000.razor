@@ -1,0 +1,280 @@
+﻿@page "/GSM03000" 
+@inherits R_Page
+@using GSM03000MODEL.ViewModel
+@using GSM03000Common.DTOs
+@inject R_ILocalizer<GSM03000FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Class="mb-2">
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold" FontSize="11">@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="2">
+            <R_ComboBox Data="@Additional_viewModel.PropertyList"
+                            Value="Additional_viewModel.PropertyValueContext"
+                            ValueField="@nameof(GSM03000PropertyDTO.CPROPERTY_ID)"
+                            TextField="@nameof(GSM03000PropertyDTO.CPROPERTY_NAME)"
+                            Enabled="@(_pageSupplierOnCRUDmode)"
+                            PopupMaxHeight="140px"
+                            R_ConductorSource="@Additional_conductorRef" ValueChanged="@((string value) => PropertyDropdown_OnChange(value))">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_TabStrip @ref="@TabParent" OnActiveTabIndexChanged="@OnActiveTabIndexChanged" OnActiveTabIndexChanging="@OnActiveTabIndexChanging">
+    <R_TabStripTab Title="@_localizer["_AdditionalTabTittle"]">
+        <R_StackLayout>
+            <R_Grid @ref="@Additional_gridRef"
+                    DataSource="@Additional_viewModel.OtherChargeList"
+                    R_ConductorSource="@Additional_conductorRef"
+                    R_GridType="@R_eGridType.Navigator"
+                    Pageable="true"
+                    Enabled="@_pageSupplierOnCRUDmode"
+                    R_ServiceGetListRecord="@Additional_ServiceGetListRecord" Height="180px" >
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="@_localizer["_ChargesId"]" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="@_localizer["_ChargesName"]" Width="300px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="@_localizer["_UpdateBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="@_localizer["_UpdateDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="@_localizer["_CreateBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="@_localizer["_CreateDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_ChargesIdAdditional"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @ref="@Additional_ChargesIdTextBox"
+                               @bind-Value="@Additional_viewModel.Data.CCHARGES_ID"
+                               R_ConductorSource="@Additional_conductorRef"
+                               R_EnableAdd="true" R_EnableEdit="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @ref="@Additional_ChargesNameTextBox"
+                               @bind-Value="@Additional_viewModel.Data.CCHARGES_NAME"
+                               R_ConductorSource="@Additional_conductorRef"
+                               R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_CheckBox @bind-Value="@Additional_viewModel.Data.LACTIVE"
+                                R_ConductorSource="@Additional_conductorRef"
+                                Enabled="false">
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_Active"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_ChargesDesc"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextArea @bind-Value="@Additional_viewModel.Data.CDESCRIPTION"
+                                R_ConductorSource="@Additional_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"></R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold" FontSize="11">@_localizer["_GLAccountSetup"]</R_Label>
+                    <R_Label>@_localizer["_GLAccountSetupDesc"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_GLAccountNo"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@Additional_viewModel.Data.CGLACCOUNT_NO"
+                               R_ConductorSource="@Additional_conductorRef"
+                               OnLostFocus="@AdditionalGLAccount_OnLostFocus"
+                               R_EnableAdd R_EnableEdit></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@Additional_conductorRef" R_Before_Open_Lookup="@Additional_Before_Open_Lookup" R_After_Open_Lookup="@Additional_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 420px">
+                    <R_TextBox @bind-Value="@Additional_viewModel.Data.CGLACCOUNT_NAME"
+                               R_ConductorSource="@Additional_conductorRef"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mt-2 justify-content-between">
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@Additional_conductorRef"></R_AddButton>
+                <R_EditButton R_Conductor="@Additional_conductorRef"></R_EditButton>
+                <R_DeleteButton R_Conductor="@Additional_conductorRef"></R_DeleteButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Popup R_ConductorSource="@Additional_conductorRef" R_EnableHasData R_Before_Open_Popup="@Additional_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="@Additional_R_After_Open_Popup_ActivateInactive">@Additional_lcLabel</R_Popup>
+                <R_Popup R_ConductorSource="@Additional_conductorRef" R_EnableHasData R_Before_Open_Popup="@Additional_R_Before_Open_Popup_Print">@_localizer["_PrintBtn"]</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@Additional_conductorRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@Additional_conductorRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Conductor @ref="@Additional_conductorRef"
+                     R_ViewModel="@Additional_viewModel"
+                     R_IsHeader="true"
+                     R_ServiceGetRecord="@Additional_ServiceGetRecord"
+                     R_ServiceSave="@Additional_ServiceSave"
+                     R_ServiceDelete="@Additional_ServiceDelete"
+                     R_SetHasData="@Additional_R_SetHasData"
+                     R_CheckAdd="@Additional_R_CheckAdd"
+                     R_Display="@Additional_R_Display"
+                     R_Validation="@Additional_Validation"
+                     R_Saving="@Additional_Saving"
+                     R_SetOther="@Additional_SetOther"
+                     R_AfterAdd="@Additioanl_AfterAdd"
+                     >
+        </R_Conductor>
+
+    </R_TabStripTab>
+
+    <R_TabStripTab Title="@_localizer["_DeducationTabTittle"]">
+        <R_StackLayout>
+            <R_Grid @ref="@Deducation_gridRef"
+                    DataSource="@Deducation_viewModel.OtherChargeList"
+                    R_ConductorSource="@Deducation_conductorRef"
+                    R_GridType="@R_eGridType.Navigator"
+                    Pageable="true"
+                    Enabled="@_pageSupplierOnCRUDmode"
+                    R_ServiceGetListRecord="@GridDeducation_ServiceGetListRecord" Height="180px">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="@_localizer["_ChargesId"]" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="@_localizer["_ChargesName"]" Width="300px"></R_GridTextColumn>
+                    <R_GridCheckBoxColumn FieldName="LACTIVE" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                    <R_GridTextColumn FieldName="CUPDATE_BY" HeaderText="@_localizer["_UpdateBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="DUPDATE_DATE" HeaderText="@_localizer["_UpdateDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="CCREATE_BY" HeaderText="@_localizer["_CreateBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="DCREATE_DATE" HeaderText="@_localizer["_CreateDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+
+        <R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_ChargesIdDeducation"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @ref="@Deducation_ChargesIdTextBox"
+                               @bind-Value="@Deducation_viewModel.Data.CCHARGES_ID"
+                               R_ConductorSource="@Deducation_conductorRef"
+                               R_EnableAdd="true" R_EnableEdit="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @ref="@Deducation_ChargesNameTextBox"
+                               @bind-Value="@Deducation_viewModel.Data.CCHARGES_NAME"
+                               R_ConductorSource="@Deducation_conductorRef"
+                               R_EnableAdd="true" R_EnableEdit="true"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_CheckBox @bind-Value="@Deducation_viewModel.Data.LACTIVE"
+                                R_ConductorSource="@Deducation_conductorRef"
+                                Enabled="false">
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_Active"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_ChargesDesc"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="7">
+                    <R_TextArea @bind-Value="@Deducation_viewModel.Data.CDESCRIPTION"
+                                R_ConductorSource="@Deducation_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"></R_TextArea>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="12">
+                    <R_Label FontColor="@R_eFontColor.Danger" Class="fw-bold" FontSize="11">@_localizer["_GLAccountSetup"]</R_Label>
+                    <R_Label>@_localizer["_GLAccountSetupDesc"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>@_localizer["_GLAccountNo"]</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@Deducation_viewModel.Data.CGLACCOUNT_NO"
+                               R_ConductorSource="@Deducation_conductorRef"
+                               OnLostFocus="@DeducationGLAccount_OnLostFocus"
+                               R_EnableAdd R_EnableEdit></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@Deducation_conductorRef" R_Before_Open_Lookup="@GridDeducation_Before_Open_Lookup" R_After_Open_Lookup="@GridDeducation_After_Open_Lookup" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 420px">
+                    <R_TextBox @bind-Value="@Deducation_viewModel.Data.CGLACCOUNT_NAME"
+                               R_ConductorSource="@Deducation_conductorRef"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Class="mt-2 justify-content-between">
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@Deducation_conductorRef"></R_AddButton>
+                <R_EditButton R_Conductor="@Deducation_conductorRef"></R_EditButton>
+                <R_DeleteButton R_Conductor="@Deducation_conductorRef"></R_DeleteButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Popup R_ConductorSource="@Deducation_conductorRef" R_EnableHasData R_Before_Open_Popup="@GridDeducation_R_Before_Open_Popup_ActivateInactive" R_After_Open_Popup="@GridDeducation_R_After_Open_Popup_ActivateInactive">@Deducation_lcLabel</R_Popup>
+                <R_Popup R_ConductorSource="@Deducation_conductorRef" R_EnableHasData R_Before_Open_Popup="@GridDeducation_R_Before_Open_Popup_Print">@_localizer["_PrintBtn"]</R_Popup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@Deducation_conductorRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@Deducation_conductorRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_Conductor @ref="@Deducation_conductorRef"
+                     R_ViewModel="@Deducation_viewModel"
+                     R_ConductorParent="@Additional_conductorRef"
+                     R_ServiceGetRecord="@GridDeducation_ServiceGetRecord"
+                     R_ServiceSave="@GridDeducation_ServiceSave"
+                     R_ServiceDelete="@GridDeducation_ServiceDelete"
+                     R_SetHasData="@GridDeducation_R_SetHasData"
+                     R_CheckAdd="@GridDeducation_R_CheckAdd"
+                     R_Display="@GridDeducation_R_Display"
+                     R_AfterAdd="@GridDeducation_AfterAdd"
+                     R_Validation="@GridDeducation_Validation"
+                     R_Saving="@GridDeducation_Saving"
+                     R_SetOther="@GridDeducation_SetOther"
+                     >
+        </R_Conductor>
+    </R_TabStripTab>
+</R_TabStrip>
+

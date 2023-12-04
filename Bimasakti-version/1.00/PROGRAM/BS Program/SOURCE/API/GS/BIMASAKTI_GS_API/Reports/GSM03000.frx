@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GS\BIMASAKTI_GS_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/29/2023 17:22:48" ReportInfo.CreatorVersion="2023.2.21.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="OtherCharges" DataType="GSM03000Common.DTOs.GSM03000ResultPrintDTO, GSM03000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <BusinessObjectDataSource Name="Data" DataType="System.Collections.Generic.List`1[[GSM03000Common.DTOs.GSM03000ResultDTO, GSM03000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]" Enabled="true">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_NAME" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+          <Column Name="LACTIVE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CSTATUS_NAME" DataType="System.String"/>
+          <Column Name="CGL_ACCOUNT_NAME" DataType="System.String"/>
+          <Column Name="CDESCRIPTION" DataType="System.String"/>
+          <Column Name="CLOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+          <Column Name="CGLACCOUNT_NO" DataType="System.String"/>
+        </BusinessObjectDataSource>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text41"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text42"/>
+      <ChildBand Name="Child2" ZOrder="-1" Top="88.5" Width="718.2" Height="28.35">
+        <TextObject Name="Text44" Top="9.45" Width="264.6" Height="18.9" Text="[ResponseDataModel.OtherCharges.Header]" Font="MS Gothic, 10pt"/>
+      </ChildBand>
+    </inherited>
+    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="120.3" Width="718.2" Height="20.25" Fill.Color="DarkBlue">
+      <TextObject Name="Text45" Width="122.85" Height="18.9" Text="Charges Id" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+      <TextObject Name="Text46" Left="122.1" Top="1.35" Width="122.85" Height="18.9" Text="Charges Name" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+      <TextObject Name="Text47" Left="274.05" Width="75.6" Height="18.9" Text="Status" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+      <TextObject Name="Text48" Left="349.65" Width="189" Height="18.9" Text="GL Account" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+      <TextObject Name="Text49" Left="538.65" Width="179.55" Height="18.9" Text="Description" Font="MS Gothic, 10pt" TextFill.Color="White"/>
+    </ColumnHeaderBand>
+    <DataBand Name="Data1" ZOrder="0" Top="143.99" Width="718.2" Height="18.9" CanGrow="true" FirstRowStartsNewPage="true" DataSource="Data">
+      <TextObject Name="Text50" Width="122.85" Height="18.9" CanGrow="true" Text="[ResponseDataModel.OtherCharges.Data.CCHARGES_ID]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text51" Left="122.85" Width="151.2" Height="18.9" CanGrow="true" Text="[ResponseDataModel.OtherCharges.Data.CCHARGES_NAME]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text53" Left="349.65" Width="189" Height="18.9" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.OtherCharges.Data.CGLACCOUNT_NO] - [ResponseDataModel.OtherCharges.Data.CGL_ACCOUNT_NAME]" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text54" Left="538.65" Width="179.55" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.OtherCharges.Data.CDESCRIPTION]" Font="MS Gothic, 10pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="292.95" Width="18.9" Height="18.9" DataColumn="ResponseDataModel.OtherCharges.Data.LACTIVE"/>
+    </DataBand>
+  </inherited>
+</inherited>

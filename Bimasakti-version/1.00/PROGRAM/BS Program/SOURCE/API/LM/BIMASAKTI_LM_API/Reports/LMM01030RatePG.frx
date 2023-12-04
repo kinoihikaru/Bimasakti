@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<inherited BaseReport="BaseHeaderCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\LM\BIMASAKTI_LM_API\Reports\BaseHeaderCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/30/2023 09:46:42" ReportInfo.CreatorVersion="2023.2.21.0">
+  <ScriptText>using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Data;
+using FastReport;
+using FastReport.Data;
+using FastReport.Dialog;
+using FastReport.Barcode;
+using FastReport.Table;
+using FastReport.Utils;
+
+namespace FastReport
+{
+  public class ReportScript
+  {
+
+    private void PageHeader1_AfterData(object sender, EventArgs e)
+    {
+      string BaseHeaderCode = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CPRINT_CODE&quot;);
+      string BaseHeaderName = (string)Report.GetColumnValue(&quot;ResponseDataModel.BaseHeaderData.CCOMPANY_NAME&quot;);
+      
+      if (string.IsNullOrWhiteSpace(BaseHeaderCode))
+      {
+		     Text33.Text = BaseHeaderName;
+      }else
+      {
+         Text33.Text = BaseHeaderCode + &quot; - &quot; + BaseHeaderName;
+      }
+    }
+
+    private void Data1_AfterData(object sender, EventArgs e)
+    {
+      string adminFee = (string)Report.GetColumnValue(&quot;ResponseDataModel.RatePG.HeaderData.CADMIN_FEE&quot;);
+      string adminFeeDesc = (string)Report.GetColumnValue(&quot;ResponseDataModel.RatePG.HeaderData.CADMIN_FEE_DESCR&quot;);
+      decimal adminFeePCT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RatePG.HeaderData.NADMIN_FEE_PCT&quot;);
+      decimal adminFeeAMT = (decimal)Report.GetColumnValue(&quot;ResponseDataModel.RatePG.HeaderData.NADMIN_FEE_AMT&quot;);
+      
+      if (adminFee == &quot;00&quot;)
+      {
+        Text103.Text = &quot;&quot;;
+      }else if (adminFee == &quot;01&quot;)
+      {
+        Text103.Text = adminFeePCT.ToString();
+      }else if (adminFee == &quot;02&quot;)
+      {
+        Text103.Text = adminFeeAMT.ToString();
+      }
+    }
+  }
+}
+</ScriptText>
+  <Dictionary>
+    <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
+      <Column Name="RatePG" DataType="LMM01000COMMON.LMM01030ResultPrintDTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="Title" DataType="System.String"/>
+        <Column Name="Header" DataType="System.String"/>
+        <Column Name="HeaderData" DataType="LMM01000COMMON.LMM01030DTO, LMM01000COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Column Name="CCOMPANY_ID" DataType="System.String"/>
+          <Column Name="CPROPERTY_ID" DataType="System.String"/>
+          <Column Name="CCHARGES_TYPE" DataType="System.String"/>
+          <Column Name="CCHARGES_ID" DataType="System.String"/>
+          <Column Name="CUSER_ID" DataType="System.String"/>
+          <Column Name="CACTION" DataType="System.String"/>
+          <Column Name="CCHARGES_NAME" DataType="System.String"/>
+          <Column Name="CCURENCY_CODE" DataType="System.String"/>
+          <Column Name="NBUY_STANDING_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NSTANDING_CHARGE" DataType="System.Decimal"/>
+          <Column Name="NBUY_USAGE_CHARGE_RATE" DataType="System.Decimal"/>
+          <Column Name="NUSAGE_CHARGE_RATE" DataType="System.Decimal"/>
+          <Column Name="NMAINTENANCE_FEE" DataType="System.Decimal"/>
+          <Column Name="CADMIN_FEE" DataType="System.String"/>
+          <Column Name="CADMIN_FEE_DESCR" DataType="System.String"/>
+          <Column Name="NADMIN_FEE_PCT" DataType="System.Decimal"/>
+          <Column Name="NADMIN_FEE_AMT" DataType="System.Decimal"/>
+          <Column Name="LADMIN_FEE_TAX" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_SC" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_USAGE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="LADMIN_FEE_MAINTENANCE" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="CLOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+        </Column>
+      </Column>
+      <Column Name="BaseHeaderData" DataType="BaseHeaderReportCOMMON.BaseHeaderDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <Column Name="BLOGO_COMPANY" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="CPRINT_CODE" DataType="System.String"/>
+        <Column Name="CCOMPANY_NAME" DataType="System.String"/>
+        <Column Name="CPRINT_NAME" DataType="System.String"/>
+        <Column Name="CUSER_ID" DataType="System.String"/>
+      </Column>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <inherited Name="Page1">
+    <inherited Name="PageHeader1">
+      <inherited Name="Picture1"/>
+      <inherited Name="Text33"/>
+      <inherited Name="Text40">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </inherited>
+      <inherited Name="Text36"/>
+      <inherited Name="Text38"/>
+      <inherited Name="Text41"/>
+      <inherited Name="Text34"/>
+      <inherited Name="Text37"/>
+      <inherited Name="Text39"/>
+      <inherited Name="Text42"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="88.5" Width="718.2" Height="28.35">
+        <TextObject Name="Text92" Width="245.7" Height="18.9" Text="[ResponseDataModel.RatePG.Header]" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      </ChildBand>
+    </inherited>
+    <DataBand Name="Data1" ZOrder="0" Top="120.3" Width="718.2" Height="226.8" AfterDataEvent="Data1_AfterData">
+      <TextObject Name="Text45" Left="28.35" Width="198.45" Height="18.9" Text="Utility Charges" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text46" Left="28.35" Top="18.9" Width="198.45" Height="18.9" Text="Currency" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text49" Left="28.35" Top="56.7" Width="103.95" Height="18.9" Text="CHARGES" Font="MS Gothic, 10pt, style=Bold, Underline" TextFill.Color="Red"/>
+      <TextObject Name="Text50" Left="28.35" Top="85.05" Width="207.9" Height="18.9" Text="Standing Charges" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text51" Left="245.7" Top="56.7" Width="132.3" Height="18.9" Border.Lines="All" Fill.Color="Red" Text="Buying Price" HorzAlign="Center" Font="MS Gothic, 10pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text52" Left="387.45" Top="56.7" Width="132.3" Height="18.9" Border.Lines="All" Fill.Color="Green" Text="Selling Price" HorzAlign="Center" Font="MS Gothic, 10pt, style=Bold" TextFill.Color="White"/>
+      <TextObject Name="Text54" Left="28.35" Top="103.95" Width="207.9" Height="18.9" Text="Usage Charge Rate (per month)" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text57" Left="28.35" Top="141.75" Width="207.9" Height="18.9" Text="Maintenance Fee (per month)" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text60" Left="28.35" Top="160.65" Width="217.35" Height="18.9" Text="Administration Fee (per month)" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text61" Left="28.35" Top="189" Width="207.9" Height="18.9" Text="Administration Fee for" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text93" Left="245.7" Width="340.2" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.CCHARGES_ID] - [ResponseDataModel.RatePG.HeaderData.CCHARGES_NAME]" VertAlign="Center" Font="MS Gothic, 10pt">
+        <Formats>
+          <GeneralFormat/>
+          <GeneralFormat/>
+        </Formats>
+      </TextObject>
+      <TextObject Name="Text94" Left="245.7" Top="18.9" Width="274.05" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.CCURENCY_CODE]" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text96" Left="245.7" Top="85.05" Width="132.3" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.NBUY_STANDING_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text98" Left="387.45" Top="85.05" Width="132.3" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.NSTANDING_CHARGE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text99" Left="245.7" Top="103.95" Width="132.3" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.NBUY_USAGE_CHARGE_RATE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text100" Left="387.45" Top="103.95" Width="132.3" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.NUSAGE_CHARGE_RATE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text102" Left="245.7" Top="141.75" Width="132.3" Height="18.9" Text="[ResponseDataModel.RatePG.HeaderData.NMAINTENANCE_FEE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
+      <TextObject Name="Text103" Left="245.7" Top="160.65" Width="132.3" Height="18.9" Text="This Condition" HorzAlign="Center" VertAlign="Center" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text104" Left="406.35" Top="160.65" Width="113.4" Height="18.9" Text="Taxable" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text105" Left="264.6" Top="189" Width="113.4" Height="18.9" Text="Standing Charge" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text106" Left="406.35" Top="189" Width="113.4" Height="18.9" Text="Usage" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text107" Left="548.1" Top="189" Width="113.4" Height="18.9" Text="Maintenance" Font="MS Gothic, 10pt"/>
+      <CheckBoxObject Name="CheckBox1" Left="387.45" Top="160.65" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RatePG.HeaderData.LADMIN_FEE_TAX"/>
+      <CheckBoxObject Name="CheckBox2" Left="245.7" Top="189" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RatePG.HeaderData.LADMIN_FEE_SC"/>
+      <CheckBoxObject Name="CheckBox3" Left="387.45" Top="189" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RatePG.HeaderData.LADMIN_FEE_USAGE"/>
+      <CheckBoxObject Name="CheckBox4" Left="529.2" Top="189" Width="18.9" Height="18.9" Border.Lines="All" DataColumn="ResponseDataModel.RatePG.HeaderData.LADMIN_FEE_MAINTENANCE"/>
+    </DataBand>
+  </inherited>
+</inherited>

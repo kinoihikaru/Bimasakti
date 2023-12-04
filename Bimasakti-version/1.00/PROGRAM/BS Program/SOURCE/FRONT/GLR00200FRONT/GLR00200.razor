@@ -1,0 +1,235 @@
+﻿@page "/GLR00200" 
+@attribute [R_Page(Title = "GLR00200 GL Account Ledger")]
+@inherits R_Page
+@using GLR00200COMMON;
+@using GLR00200MODEL
+@inject R_ILocalizer<GLR00200FrontResources.Resources_Dummy_Class> _localizer
+
+<R_StackLayout Class="border p-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_ReportOption"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_CurrType"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_RadioGroup @ref="@ReportOptions_RadioGrp"
+                        Data="@_viewModel.CurrentTypeList"
+                        @bind-Value="_viewModel.Data.CCURRENCY_TYPE"
+                        ValueField="@nameof(RadioModel.Id)"
+                        Layout="R_eRadioGroupLayout.Horizontal"
+                        TextField="@nameof(RadioModel.Text)">
+            </R_RadioGroup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_PrintMethod"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_ComboBox Data="@_viewModel.GetPrintMethodList"
+                        @bind-Value="_viewModel.Data.CPRINT_METHOD"
+                        PopupMaxHeight="140px"
+                        ValueField="@nameof(GLR00200UniversalDTO.CCODE)"
+                        TextField="@nameof(GLR00200UniversalDTO.CNAME)">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_StackLayout Class="border p-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_Account"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_From"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.Data.CFROM_ACCOUNT_NO"
+                       OnLostFocus="@FromAccount_OnLostFocus"
+                      Enabled="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_Before_Open_Lookup="GLR00200_Account_Before_Open_Lookup" R_After_Open_Lookup="GLR00200_Account_From_After_Open_Lookup">
+                ...
+            </R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_viewModel.FromAccountName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_To"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.Data.CTO_ACCOUNT_NO"
+                       OnLostFocus="@ToAccount_OnLostFocus"
+                       Enabled="true">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_Before_Open_Lookup="GLR00200_Account_Before_Open_Lookup" R_After_Open_Lookup="GLR00200_Account_To_After_Open_Lookup">
+                ...
+            </R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_viewModel.ToAccountName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_StackLayout Class="border p-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="3">
+            <R_CheckBox Value="@_viewModel.LPrintbyCenter" ValueChanged="@((bool value) => PrintByCenter_OnChange(value))"></R_CheckBox>
+            <R_Label FontStyle="R_eFontStyle.Bold" FontColor="R_eFontColor.Danger">@_localizer["_PrintByCenter"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_From"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.Data.CFROM_CENTER_CODE"
+                       OnLostFocus="@FromCenter_OnLostFocus"
+                       Enabled="@_viewModel.LPrintbyCenter">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_Before_Open_Lookup="GLR00200_Center_Before_Open_Lookup" R_After_Open_Lookup="GLR00200_Center_From_After_Open_Lookup" Enabled="@_viewModel.LPrintbyCenter">
+                ...
+            </R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_viewModel.FromCenterName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_To"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.Data.CTO_CENTER_CODE"
+                       OnLostFocus="@ToCenter_OnLostFocus"
+                       Enabled="@_viewModel.LPrintbyCenter">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Lookup R_Before_Open_Lookup="GLR00200_Center_Before_Open_Lookup" R_After_Open_Lookup="GLR00200_Center_To_After_Open_Lookup" Enabled="@_viewModel.LPrintbyCenter">
+                ...
+            </R_Lookup>
+        </R_ItemLayout>
+        <R_ItemLayout col="4">
+            <R_TextBox @bind-Value="@_viewModel.ToCenterName"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+<R_StackLayout Class="border p-1">
+    <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_RadioGroup Data="@_viewModel.PeriodTypeList"
+                          Value="@_viewModel.Data.CPERIOD_MODE"
+                          Layout="R_eRadioGroupLayout.Horizontal"
+                          ValueField="@nameof(RadioModel.Id)"
+                          TextField="@nameof(RadioModel.Text)" Class="text-danger fw-bold" ValueChanged="@((string value) => PriodMode_OnChange(value))">
+            </R_RadioGroup>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_Year"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_NumericTextBox Value="@_viewModel.IYEAR"
+                       Enabled="@(_viewModel.Data.CPERIOD_MODE == "P")"
+                       Min="@_viewModel.InitialVar.IMIN_YEAR" 
+                       Max="@_viewModel.InitialVar.IMAX_YEAR"
+                       ValueChanged="@((int value) => GLR00200_YearOnCHange(value))"
+                       ThousandSeparator="false">
+            </R_NumericTextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Label>@_localizer["_From"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_ComboBox Data="@_viewModel.PeriodFromToList"
+                          @bind-Value="@_viewModel.Data.CFROM_PERIOD_NO"
+                          ValueField="@nameof(GLR00200PeriodDTO.CPERIOD_NO)"
+                          TextField="@nameof(GLR00200PeriodDTO.CPERIOD_NO_DISPLAY)"
+                          PopupMaxHeight="150px"
+                          Enabled="@(_viewModel.Data.CPERIOD_MODE == "P")">
+            </R_ComboBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="0">
+            <R_Label>@_localizer["_To"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_ComboBox Data="@_viewModel.PeriodFromToList"
+                        @bind-Value="@_viewModel.Data.CTO_PERIOD_NO"
+                        ValueField="@nameof(GLR00200PeriodDTO.CPERIOD_NO)"
+                        TextField="@nameof(GLR00200PeriodDTO.CPERIOD_NO_DISPLAY)"
+                        PopupMaxHeight="150px"
+                        Enabled="@(_viewModel.Data.CPERIOD_MODE == "P")">
+            </R_ComboBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_From"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="@_viewModel.IFROMDATE"
+                          Enabled="@(_viewModel.Data.CPERIOD_MODE == "D")">
+            </R_DatePicker>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_To"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="@_viewModel.ITODATE"
+                          Enabled="@(_viewModel.Data.CPERIOD_MODE == "D")">
+            </R_DatePicker>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_CheckBox @bind-Value="@_viewModel.Data.LINCLUDE_AUDIT_JRN" Enabled="@(_viewModel.Data.CPERIOD_MODE == "D")"></R_CheckBox>
+            <R_Label>@_localizer["_IncludeAuditJrnl"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-end mt-2">
+    <R_ItemLayout>
+        <R_Button OnClick="Button_OnClickOkAsync">
+            @_localizer["_PrintBtn"]
+        </R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
