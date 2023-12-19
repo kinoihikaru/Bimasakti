@@ -67,7 +67,7 @@ namespace GSM05000MODEL_FMC
                 R_HTTPClientWrapper.httpClientName = DEFAULT_HTTP_NAME;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSM05020DeptDTO>(
                     _RequestServiceEndPoint,
-                    nameof(IGSM05020.GetApprovalListStream),
+                    nameof(IGSM05020.GetDeptTransListStream),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
