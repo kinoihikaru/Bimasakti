@@ -105,7 +105,6 @@ public partial class GSM05023 : R_Page
 
         try
         {
-
             await _viewModel.SaveBacthSeqApproval();
             await this.Close(true, true);
         }

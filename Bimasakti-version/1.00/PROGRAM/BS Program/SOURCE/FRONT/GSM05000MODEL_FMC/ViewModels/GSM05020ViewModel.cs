@@ -235,13 +235,13 @@ namespace GSM05000MODEL_FMC
             try
             {
                 liData1 = SwapDataList.IndexOf(poSelectedData);
+                liData2 = SwapDataList.Count;
 
                 if (poBtnClick == GetBtnClickUpOrDown.Up)
                 {
-
                     liData2 = liData1 + 1;
                 }
-                else
+                else if (poBtnClick == GetBtnClickUpOrDown.Down)
                 {
                     liData2 = liData1 - 1;
                 }
@@ -253,6 +253,9 @@ namespace GSM05000MODEL_FMC
 
                 //Enable Up Down Btn
                 GetEnableMethod(poSelectedData);
+
+                //Change Index after swap
+                SwapDataList = SwapDataList.OrderBy(x => x.ISEQUENCE).ToList();
                 await Task.CompletedTask;
             }
             catch (Exception ex)
