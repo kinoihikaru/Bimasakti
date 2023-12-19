@@ -7,9 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.PaymentTermGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Height="300px"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CPAY_TERM_CODE" HeaderText="@_localizer["_TOPCode"]" Width="200px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CPAY_TERM_NAME" HeaderText="@_localizer["_TOPName"]" Width="300px"></R_GridTextColumn>

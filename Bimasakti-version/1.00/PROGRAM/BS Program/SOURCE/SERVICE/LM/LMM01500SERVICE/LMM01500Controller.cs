@@ -104,10 +104,10 @@ namespace LMM01500SERVICE
         }
 
         [HttpPost]
-        public LMM01500DTO LMM01500ActiveInactive(LMM01500DTO poParam)
+        public LMM01500SingleResult<LMM01500DTO> LMM01500ActiveInactive(LMM01500DTO poParam)
         {
             R_Exception loException = new R_Exception();
-            LMM01500DTO loRtn = new LMM01500DTO();
+            LMM01500SingleResult<LMM01500DTO> loRtn = new LMM01500SingleResult<LMM01500DTO>();
             LMM01500Cls loCls = new LMM01500Cls();
             _Logger.LogInfo("Start LMM01500ActiveInactive");
 

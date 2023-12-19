@@ -12,14 +12,17 @@ namespace Lookup_GSModel.ViewModel
         private PublicLookupModel _model = new PublicLookupModel();
 
         public ObservableCollection<GSL00510DTO> COAGrid = new ObservableCollection<GSL00510DTO>();
-
-        public async Task GetCOAList(GSL00510ParameterDTO poParam)
+        public GSL00510ParameterDTO COAParameter {  get; set; } = new GSL00510ParameterDTO();
+        public bool Inactive_Coa { get; set; } = false;
+        public async Task GetCOAList()
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loResult = await _model.GSL00510GetCOAListAsync(poParam);
+                //set Inactive COA Param
+                COAParameter.LINACTIVE_COA = Inactive_Coa;
+                var loResult = await _model.GSL00510GetCOAListAsync(COAParameter);
 
                 COAGrid = new ObservableCollection<GSL00510DTO>(loResult);
             }

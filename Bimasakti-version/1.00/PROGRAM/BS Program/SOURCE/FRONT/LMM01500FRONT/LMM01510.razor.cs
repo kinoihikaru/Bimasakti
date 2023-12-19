@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Popup;
@@ -196,7 +197,7 @@ namespace LMM01500FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
+        private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Doc };
         private async Task _BankAccount_InvTemplateUpload_OnChange(InputFileChangeEventArgs eventArgs)
         {
             var loEx = new R_Exception();

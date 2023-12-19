@@ -7,9 +7,8 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.GOAGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
                 Height="300px"
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CGOA_CODE" HeaderText="@_localizer["_GOACode"]" Width="100px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CGOA_NAME" HeaderText="@_localizer["_GOAName"]" Width="300px"></R_GridTextColumn>

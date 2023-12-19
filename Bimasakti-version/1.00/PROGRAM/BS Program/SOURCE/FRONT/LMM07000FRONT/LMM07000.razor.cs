@@ -198,10 +198,10 @@ namespace LMM07000FRONT
 
             try
             {
+                var loParam = (LMM07000DTO)eventArgs.Data;
 
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
-                    var loParam = (LMM07000DTO)eventArgs.Data;
 
                     if (loParam.LACTIVE)
                     {
@@ -213,9 +213,16 @@ namespace LMM07000FRONT
                         _Genereal_lcLabel = "Activate";
                         _LMM07000ViewModel.StatusChange = true;
                     }
-                }
 
-                if (eventArgs.ConductorMode == R_eConductorMode.Edit)
+                    _LMM07000ViewModel.FromPeriodYear = int.Parse(loParam.CAPPLY_PERIOD_NO_FROM);
+                    _LMM07000ViewModel.ToPeriodYear = int.Parse(loParam.CAPPLY_PERIOD_NO_TO);
+                }
+                else if (eventArgs.ConductorMode == R_eConductorMode.Add)
+                {
+                    _LMM07000ViewModel.FromPeriodYear = DateTime.Now.Month;
+                    _LMM07000ViewModel.ToPeriodYear = DateTime.Now.Month;
+                }
+                else if (eventArgs.ConductorMode == R_eConductorMode.Edit)
                 {
                     await DiscountName_TextBox.FocusAsync();
                 }
@@ -258,7 +265,6 @@ namespace LMM07000FRONT
                     //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                     if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                     {
-                        var loActiveData = await _LMM07000ViewModel.ActiveInactiveProcessAsync(loData);
                     }
                     else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
                     {
@@ -278,7 +284,6 @@ namespace LMM07000FRONT
                         bool result = (bool)loResult.Result;
                         if (result == true)
                         {
-                            var loActiveData = await _LMM07000ViewModel.ActiveInactiveProcessAsync(loData);
                         }
                         else
                         {
@@ -422,16 +427,7 @@ namespace LMM07000FRONT
             try
             {
                 _LMM07000ViewModel.Data.CDISCOUNT_TYPE = poParam;
-
-                if (poParam == "03")
-                {
-                    _LMM07000ViewModel.Data.NDISCOUNT_VALUE = 100;
-                }
-                else
-                {
-                    _DiscValEnable = true;
-                    _LMM07000ViewModel.Data.NDISCOUNT_VALUE = 0;
-                }
+                _LMM07000ViewModel.Data.NDISCOUNT_VALUE = 1;
             }
             catch (Exception ex)
             {

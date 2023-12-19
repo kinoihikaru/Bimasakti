@@ -19,10 +19,10 @@ namespace LMM07000COMMON
         public string CDISCOUNT_TYPE { get; set; }
         public string CDESCRIPTION { get; set; } = "";
         public string CDISCOUNT_TYPE_NAME { get; set; }
-        public decimal NDISCOUNT_VALUE { get; set; }
-        public string CAPPLY_PERIOD_YEAR_FROM { get; set; }
+        public decimal NDISCOUNT_VALUE { get; set; } = 1;
+        public string CAPPLY_PERIOD_YEAR_FROM { get; set; } = DateTime.Now.ToString("yyyy");
         public string CAPPLY_PERIOD_NO_FROM { get; set; }
-        public string CAPPLY_PERIOD_YEAR_TO { get; set; }
+        public string CAPPLY_PERIOD_YEAR_TO { get; set; } = DateTime.Now.ToString("yyyy");
         public string CAPPLY_PERIOD_NO_TO { get; set; }
         public string CAPPLY_DATE_FROM { get; set; }
         public string CAPPLY_DATE_TO { get; set; }

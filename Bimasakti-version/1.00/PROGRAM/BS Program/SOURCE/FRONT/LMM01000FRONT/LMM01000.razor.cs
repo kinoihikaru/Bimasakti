@@ -311,6 +311,7 @@ namespace LMM01000FRONT
             TaxExemptionEnable = (bool)poParam;
             var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
 
+            TaxExemptionCodeEnable = (bool)poParam && loData.LTAX_EXEMPTION;
             if (!(bool)poParam)
             {
                 loData.LTAX_EXEMPTION = false;
@@ -439,7 +440,6 @@ namespace LMM01000FRONT
                         //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                         if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                         {
-                            var loActiveData = await _General_viewModel.ActiveInactiveProcessAsync(loGetData);
                         }
                         else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
                         {
@@ -460,7 +460,6 @@ namespace LMM01000FRONT
                             bool result = (bool)loResult.Result;
                             if (result == true)
                             {
-                                var loActiveData = await _General_viewModel.ActiveInactiveProcessAsync(loGetData);
                             }
                             else
                             {

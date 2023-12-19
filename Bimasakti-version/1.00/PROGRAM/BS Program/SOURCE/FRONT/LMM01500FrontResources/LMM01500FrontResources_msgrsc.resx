@@ -222,6 +222,9 @@
   <data name="_Desc" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="_DescMinPinalty" xml:space="preserve">
+    <value>(valid for Percentage Calculation Pinalty Type Only)</value>
+  </data>
   <data name="_DueDate" xml:space="preserve">
     <value>Due Date</value>
   </data>

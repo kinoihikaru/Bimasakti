@@ -162,7 +162,7 @@ namespace LMM01500MODEL
 
                 if (!poParam.LBY_DEPARTMENT)
                 {
-                    lCancel = string.IsNullOrEmpty(poParam.FileName);
+                    lCancel = string.IsNullOrEmpty(poParam.FileNameExtension);
 
                     if (lCancel)
                     {

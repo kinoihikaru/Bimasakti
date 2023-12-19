@@ -6,9 +6,8 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CashFlowGrpTypeGrid"
-                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_CODE" HeaderText="@_localizer["_CashFlowGrpId"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCASH_FLOW_GROUP_NAME" HeaderText="@_localizer["_CashFlowGrpName"]"></R_GridTextColumn>

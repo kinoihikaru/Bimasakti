@@ -25,9 +25,8 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CashFlowDetailGrid"
-                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CSEQUENCE" HeaderText="@_localizer["_Seq"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCASH_FLOW_CODE" HeaderText="@_localizer["_CashFlowCode"]"></R_GridTextColumn>

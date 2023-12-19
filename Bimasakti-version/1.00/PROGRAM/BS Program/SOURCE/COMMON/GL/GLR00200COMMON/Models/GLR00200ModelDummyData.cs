@@ -78,55 +78,61 @@ namespace GLR00200COMMON.Models
                 }
             }
 
+            // Grouping logic
             var loTempResultDetail = loDetailData.GroupBy(g =>
-                new
-                { 
-                    g.CACCOUNT, g.CDBCR, g.CBSIS,  g.NBEGIN_BALANCE,
-                    g.CGLACCOUNT_NO, g.CGLACCOUNT_NAME
-                },
-                g => new GLR00204DTO()
-                {
-                    CGLACCOUNT_NO = g.CGLACCOUNT_NO,
-                    
-                    CREF_DATE = DateTime.ParseExact(g.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy"),
-                    CSOURCE_MODULE = g.CSOURCE_MODULE,
-                    CREF_NO = g.CREF_NO,
-                    CDETAIL_DESC = g.CDETAIL_DESC,
-                    CCENTER_CODE = g.CCENTER_CODE,
-                    CDOCUMENT_NO = g.CDOCUMENT_NO,
-                    CCUSTOMER_SUPPLIER = g.CCUSTOMER_SUPPLIER,
-                    NLDEBIT_AMOUNT = g.NLDEBIT_AMOUNT,
-                    NCREDIT_AMOUNT = g.NCREDIT_AMOUNT,
-                    NEND_BALANCE = g.NEND_BALANCE,
-                    CDOCUMENT_DATE = !string.IsNullOrWhiteSpace(g.CDOCUMENT_DATE)
-                                    ? DateTime.ParseExact(g.CDOCUMENT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy")
-                                    : "",
+               new
+               {
+                   g.CACCOUNT,
+                   g.CDBCR,
+                   g.CBSIS,
+                   g.NBEGIN_BALANCE,
+                   g.CGLACCOUNT_NO,
+                   g.CGLACCOUNT_NAME
+               },
+               g => new GLR00204DTO()
+               {
+                   CGLACCOUNT_NO = g.CGLACCOUNT_NO,
 
-                    CREC_ID = g.CREC_ID,
-                    CREF_PRD = g.CREF_PRD,
-                    NDEBIT_AMOUNT = g.NDEBIT_AMOUNT,
-                    NBDEBIT_AMOUNT = g.NBDEBIT_AMOUNT,
-                    NLCREDIT_AMOUNT = g.NLCREDIT_AMOUNT,
-                    NBCREDIT_AMOUNT = g.NBCREDIT_AMOUNT,
-                    CCURRENCY = g.CCURRENCY,
-                    CFROM_ACCOUNT_NO = g.CFROM_ACCOUNT_NO,
-                    CTO_ACCOUNT_NO = g.CTO_ACCOUNT_NO,
-                    CFROM_CENTER_CODE = g.CFROM_CENTER_CODE,
-                    CTO_CENTER_CODE = g.CTO_CENTER_CODE,
-                    CPRINT_METHOD_NAME = g.CPRINT_METHOD_NAME,
-                    CINCLUDE_AUDIT_JOURNAL = g.CINCLUDE_AUDIT_JOURNAL
-                }).Select(s => new GLR00202DTO
-                {
-                    CACCOUNT = s.Key.CACCOUNT,
-                    CDBCR = s.Key.CDBCR,
-                    CBSIS = s.Key.CBSIS,
-                    CGLACCOUNT_NO = s.Key.CGLACCOUNT_NO,
-                    CGLACCOUNT_NAME = s.Key.CGLACCOUNT_NAME,
-                    NBEGIN_BALANCE = s.Key.NBEGIN_BALANCE,
-                    NDEBIT_AMOUNT_SUM = s.Sum(item => item.NDEBIT_AMOUNT),
-                    NCREDIT_AMOUNT_SUM = s.Sum(item => item.NCREDIT_AMOUNT),
-                    PeriodDetailData = s.ToList()
-                }).ToList();
+                   CREF_DATE = DateTime.ParseExact(g.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy"),
+                   CSOURCE_MODULE = g.CSOURCE_MODULE,
+                   CREF_NO = g.CREF_NO,
+                   CDETAIL_DESC = g.CDETAIL_DESC,
+                   CCENTER_CODE = g.CCENTER_CODE,
+                   CDOCUMENT_NO = g.CDOCUMENT_NO,
+                   CCUSTOMER_SUPPLIER = g.CCUSTOMER_SUPPLIER,
+                   NLDEBIT_AMOUNT = g.NLDEBIT_AMOUNT,
+                   NCREDIT_AMOUNT = g.NCREDIT_AMOUNT,
+                   NEND_BALANCE = g.NEND_BALANCE,
+                   CDOCUMENT_DATE = !string.IsNullOrWhiteSpace(g.CDOCUMENT_DATE)
+                                   ? DateTime.ParseExact(g.CDOCUMENT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy")
+                                   : "",
+
+                   CREC_ID = g.CREC_ID,
+                   CREF_PRD = g.CREF_PRD,
+                   NDEBIT_AMOUNT = g.NDEBIT_AMOUNT,
+                   NBDEBIT_AMOUNT = g.NBDEBIT_AMOUNT,
+                   NLCREDIT_AMOUNT = g.NLCREDIT_AMOUNT,
+                   NBCREDIT_AMOUNT = g.NBCREDIT_AMOUNT,
+                   CCURRENCY = g.CCURRENCY,
+                   CFROM_ACCOUNT_NO = g.CFROM_ACCOUNT_NO,
+                   CTO_ACCOUNT_NO = g.CTO_ACCOUNT_NO,
+                   CFROM_CENTER_CODE = g.CFROM_CENTER_CODE,
+                   CTO_CENTER_CODE = g.CTO_CENTER_CODE,
+                   CPRINT_METHOD_NAME = g.CPRINT_METHOD_NAME,
+                   CINCLUDE_AUDIT_JOURNAL = g.CINCLUDE_AUDIT_JOURNAL
+               }).Select(s => new GLR00202DTO
+               {
+                   CACCOUNT = s.Key.CACCOUNT,
+                   CDBCR = s.Key.CDBCR,
+                   CBSIS = s.Key.CBSIS,
+                   CGLACCOUNT_NO = s.Key.CGLACCOUNT_NO,
+                   CGLACCOUNT_NAME = s.Key.CGLACCOUNT_NAME,
+                   NBEGIN_BALANCE = s.Key.NBEGIN_BALANCE,
+                   NDEBIT_AMOUNT_SUM = s.Sum(item => item.NDEBIT_AMOUNT),
+                   NCREDIT_AMOUNT_SUM = s.Sum(item => item.NCREDIT_AMOUNT),
+                   PeriodDetailData = s.ToList()
+               }).ToList();
+
 
             loData.SummaryData = loSummaryData;
             loData.DetailData = loTempResultDetail;
@@ -147,7 +153,7 @@ namespace GLR00200COMMON.Models
             GLR00200ResultWithBaseHeaderPrintDTO loRtn = new GLR00200ResultWithBaseHeaderPrintDTO();
 
             loRtn.BaseHeaderData = loParam;
-            loRtn.GLR = GenerateDataModelGLR00200.DefaultData();
+            loRtn.GLR = DefaultData();
 
             return loRtn;
         }

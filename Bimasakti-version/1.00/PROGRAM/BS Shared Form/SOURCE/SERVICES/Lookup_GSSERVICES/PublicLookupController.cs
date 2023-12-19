@@ -260,6 +260,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CGLACCOUNT_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CGLACCOUNT_TYPE);
+                poParameter.LINACTIVE_COA = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LINACTIVE_COA);
 
                 _Logger.LogInfo("Call Back Method GetALLCOA");
                 var loResult = loCls.GetALLCOA(poParameter);
@@ -396,6 +397,7 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL00700GetDepartmentList");
                 poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+                poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLDepartment");
                 var loResult = loCls.GetALLDepartment(poParameter);

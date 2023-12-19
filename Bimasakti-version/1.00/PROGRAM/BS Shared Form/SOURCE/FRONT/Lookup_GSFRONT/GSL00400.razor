@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.JournalGroupGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CJRNGRP_CODE" HeaderText="@_localizer["_JrnlGrpCode"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CJRNGRP_NAME" HeaderText="@_localizer["_JrnlGrpName"]"></R_GridTextColumn>

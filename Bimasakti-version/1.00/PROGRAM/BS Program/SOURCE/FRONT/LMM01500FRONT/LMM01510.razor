@@ -79,7 +79,7 @@
                        Enabled="false"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_InputFile OnChange="@_BankAccount_InvTemplateUpload_OnChange" R_ConductorSource="@_BankAccount_conductorRef" R_EnableAdd R_EnableEdit>...</R_InputFile>
+            <R_OpenFileDialogButton Class="text-white bg-dark" OnChange="@_BankAccount_InvTemplateUpload_OnChange" R_ConductorSource="@_BankAccount_conductorRef" Accepts="@accepts" R_EnableAdd R_EnableEdit>Browse File</R_OpenFileDialogButton>
         </R_ItemLayout>
     </R_StackLayout>
 

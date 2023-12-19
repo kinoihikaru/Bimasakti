@@ -106,7 +106,7 @@ namespace LMM07000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discount Value must not be minus.
+        ///   Looks up a localized string similar to Discount Value must greater than 0.
         /// </summary>
         internal static string _7015 {
             get {
@@ -115,7 +115,7 @@ namespace LMM07000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Discount Value must between of 0 and 100.
+        ///   Looks up a localized string similar to Discount Value must greater than 0 and less than 100.
         /// </summary>
         internal static string _7016 {
             get {
@@ -142,7 +142,7 @@ namespace LMM07000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invoice Period From Value must smaller or equal {0}.
+        ///   Looks up a localized string similar to Invoice Period From Value must between of 1 and {0}.
         /// </summary>
         internal static string _7019 {
             get {
@@ -151,7 +151,7 @@ namespace LMM07000FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invoice Period To Value must smaller or equal {0}.
+        ///   Looks up a localized string similar to Invoice Period To Value must between of 1 and {0}.
         /// </summary>
         internal static string _7020 {
             get {

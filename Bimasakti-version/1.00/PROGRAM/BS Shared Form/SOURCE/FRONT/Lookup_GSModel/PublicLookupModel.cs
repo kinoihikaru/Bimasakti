@@ -259,6 +259,7 @@ namespace Lookup_GSModel
             {
                 //Set Context
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CGLACCOUNT_TYPE, poParam.CGLACCOUNT_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LINACTIVE_COA, poParam.LINACTIVE_COA);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00510DTO>(
@@ -387,13 +388,15 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
 
-        public async Task<List<GSL00700DTO>> GSL00700GetDepartmentListAsync()
+        public async Task<List<GSL00700DTO>> GSL00700GetDepartmentListAsync(GSL00700ParameterDTO poParameter)
         {
             var loEx = new R_Exception();
             List<GSL00700DTO> loResult = null;
 
             try
             {
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_CODE, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID );
+
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00700DTO>(
                     _RequestServiceEndPoint,

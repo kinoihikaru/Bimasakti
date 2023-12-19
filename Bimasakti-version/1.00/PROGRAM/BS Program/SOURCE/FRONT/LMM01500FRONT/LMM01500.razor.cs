@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Popup;
@@ -350,16 +351,6 @@ namespace LMM01500FRONT
         }
 
         private bool GeneralButtonEnable = false;
-
-        private void R_SetAdd(R_SetEventArgs eventArgs)
-        {
-            GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
-        }
-        private void R_SetEdit(R_SetEventArgs eventArgs)
-        {
-            GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
-        }
-
         private async Task R_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -383,7 +374,6 @@ namespace LMM01500FRONT
                         //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                         if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                         {
-                            var loActiveData = await _Genereal_viewModel.ActiveInactiveProcessAsync(loGetData);
                         }
                         else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
                         {
@@ -403,11 +393,11 @@ namespace LMM01500FRONT
                             bool result = (bool)loResult.Result;
                             if (result == true)
                             {
-                                var loActiveData = await _Genereal_viewModel.ActiveInactiveProcessAsync(loGetData);
                             }
                             else
                             {
                                 eventArgs.Cancel = true;
+                                return;
                             }
                         }
                     }
@@ -427,8 +417,8 @@ namespace LMM01500FRONT
         private void R_SetHasData(R_SetEventArgs eventArgs)
         {
             
-            R_EnableTabHasData = eventArgs.Enable;
             TabEnalbleDept = eventArgs.Enable && _Genereal_viewModel.TabDept;
+            R_EnableTabHasData = eventArgs.Enable;
         }
 
         private bool InvGrpModeEnable = false;
@@ -440,7 +430,18 @@ namespace LMM01500FRONT
             if (InvGrpModeEnable == false)
             {
                 _Genereal_viewModel.Data.CINVOICE_GROUP_MODE = "";
+                IDueDaysEnable = false;
             }
+            else
+            {
+                _Genereal_viewModel.Data.CINVOICE_GROUP_MODE = "01";
+                IDueDaysEnable = true;
+            }
+
+            ILimitDueDateEnable = false;
+            IBeforeLimitEnable = false;
+            IAfterLimitEnable = false;
+            IFixDueDateEnable = false;
         }
 
         private bool ByDeptEnalble = false;
@@ -491,6 +492,7 @@ namespace LMM01500FRONT
             IBeforeLimitEnable = false;
             IAfterLimitEnable = false;
             ByDeptEnalble = false;
+            GeneralButtonEnable = false;
 
             _Genereal_gridRef.CurrentSelectedData.CINVGRP_CODE_NAME = string.Format("{0} - {1}", _Genereal_gridRef.CurrentSelectedData.CINVGRP_CODE, _Genereal_gridRef.CurrentSelectedData.CINVGRP_NAME);
 
@@ -505,6 +507,7 @@ namespace LMM01500FRONT
             IBeforeLimitEnable = false;
             IAfterLimitEnable = false;
             ByDeptEnalble = false;
+            GeneralButtonEnable = false;
         }
 
         private void General_SetOther(R_SetEventArgs eventArgs)
@@ -518,6 +521,8 @@ namespace LMM01500FRONT
 
             eventArgs.GridData = loData;
         }
+
+        private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Doc };
         private async Task _General_InvTemplateUpload_OnChange(InputFileChangeEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -525,14 +530,15 @@ namespace LMM01500FRONT
             try
             {
                 var loData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
-
+                string loFileName = _Genereal_viewModel.PropertyValueContext.Trim() + loData.CINVGRP_CODE;
+                string loExtensionFile = Path.GetExtension(eventArgs.File.Name);
                 // Set Data
-                loData.FileNameExtension = eventArgs.File.Name;
                 var loMS = new MemoryStream();
                 await eventArgs.File.OpenReadStream().CopyToAsync(loMS);
                 loData.Data = loMS.ToArray();
-                loData.FileExtension = Path.GetExtension(eventArgs.File.Name);
-                loData.FileName = Path.GetFileNameWithoutExtension(eventArgs.File.Name);
+                loData.FileExtension = loExtensionFile;
+                loData.FileName = loFileName;
+                loData.FileNameExtension = eventArgs.File.Name;
             }
             catch (Exception ex)
             {
@@ -623,7 +629,7 @@ namespace LMM01500FRONT
         }
         private void BankAccount_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            var loGetData = _Genereal_viewModel.InvoiceGroup;
+            var loGetData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
 
             var param = new GSL01300ParameterDTO()
             {
@@ -642,7 +648,8 @@ namespace LMM01500FRONT
                 return;
             }
 
-            _Genereal_viewModel.Data.CBANK_ACCOUNT = loTempResult.CCB_ACCOUNT_NO;
+            var loGetData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
+            loGetData.CBANK_ACCOUNT = loTempResult.CCB_ACCOUNT_NO;
         }
         #endregion
 

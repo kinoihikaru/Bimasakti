@@ -340,6 +340,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include Inactive COA.
+        /// </summary>
+        internal static string _EnableCOA {
+            get {
+                return ResourceManager.GetString("_EnableCOA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GL Account.
         /// </summary>
         internal static string _GLAccount {

@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.UserApprovalGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CUSER_ID" HeaderText="@_localizer["_UserId"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CUSER_NAME" HeaderText="@_localizer["_UserName"]"></R_GridTextColumn>

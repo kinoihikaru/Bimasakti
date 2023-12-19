@@ -87,7 +87,7 @@ namespace LMM01500MODEL
             return loResult;
         }
 
-        public LMM01500DTO LMM01500ActiveInactive(LMM01500DTO poParam)
+        public LMM01500SingleResult<LMM01500DTO> LMM01500ActiveInactive(LMM01500DTO poParam)
         {
             throw new NotImplementedException();
         }
@@ -95,13 +95,13 @@ namespace LMM01500MODEL
         public async Task LMM01500ActiveInactiveAsync(LMM01500DTO poParam)
         {
             var loEx = new R_Exception();
-            LMM01500DTO loRtn = null;
+            LMM01500SingleResult<LMM01500DTO> loRtn = new LMM01500SingleResult<LMM01500DTO>();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
-                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<LMM01500DTO, LMM01500DTO>(
+                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<LMM01500SingleResult<LMM01500DTO>, LMM01500DTO>(
                     _RequestServiceEndPoint,
                     nameof(ILMM01500.LMM01500ActiveInactive),
                     poParam,

@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CurrencyRateTypeGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CRATETYPE_CODE" HeaderText="@_localizer["_RateTypeCode"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CRATETYPE_DESCRIPTION" HeaderText="@_localizer["_RateTypeName"]"></R_GridTextColumn>

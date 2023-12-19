@@ -31,7 +31,7 @@ namespace LMM01500MODEL
             {
                 var loResult = await _LMM01510Model.LMM01510TemplateAndBankAccountListAsync(PropertyValueContext, InvGrpCode);
 
-                TemplateBankAccountGrid = new ObservableCollection<LMM01510DTO>(loResult.Data);
+                TemplateBankAccountGrid = new ObservableCollection<LMM01510DTO>(loResult);
             }
             catch (Exception ex)
             {

@@ -11,6 +11,7 @@
         public const string CDBCR = "CDBCR";
         public const string LCENTER_RESTR = "LCENTER_RESTR";
         public const string LUSER_RESTR = "LUSER_RESTR";
+        public const string LINACTIVE_COA = "LINACTIVE_COA";
         public const string CCENTER_CODE = "CCENTER_CODE";
         public const string CGLACCOUNT_TYPE = "CGLACCOUNT_TYPE";
         public const string CGOA_CODE = "CGOA_CODE";

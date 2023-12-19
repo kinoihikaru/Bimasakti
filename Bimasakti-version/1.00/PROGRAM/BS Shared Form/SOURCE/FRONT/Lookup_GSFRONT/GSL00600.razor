@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.UnitTypeCategoryGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_ID" HeaderText="@_localizer["_UntTypeCatId"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CUNIT_TYPE_CATEGORY_NAME" HeaderText="@_localizer["_UntTypeCatName"]"></R_GridTextColumn>

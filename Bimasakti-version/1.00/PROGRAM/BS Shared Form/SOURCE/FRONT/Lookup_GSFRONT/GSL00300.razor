@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CurrencyGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCURRENCY_NAME_CODE" HeaderText="@_localizer["_Currency"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCURRENCY_SYMBOL" HeaderText="@_localizer["_Symbol"]"></R_GridTextColumn>

@@ -29,10 +29,10 @@ namespace LMM01500MODEL
         {
             throw new NotImplementedException();
         }
-        public async Task<LMM01500List<LMM01530DTO>> GetAllOtherChargerListAsync(string poPropertyId, string poInvGrpId)
+        public async Task<List<LMM01530DTO>> GetAllOtherChargerListAsync(string poPropertyId, string poInvGrpId)
         {
             var loEx = new R_Exception();
-            LMM01500List<LMM01530DTO> loResult = new LMM01500List<LMM01530DTO>();
+            List<LMM01530DTO> loResult = new List<LMM01530DTO>();
 
             try
             {
@@ -41,7 +41,7 @@ namespace LMM01500MODEL
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
-                loResult.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LMM01530DTO>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LMM01530DTO>(
                     _RequestServiceEndPoint,
                     nameof(ILMM01530.GetAllOtherChargerList),
                     DEFAULT_MODULE,

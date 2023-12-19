@@ -19,7 +19,7 @@ namespace Lookup_GSModel.ViewModel
 
             try
             {
-                var loResult = await _model.GSL00700GetDepartmentListAsync();
+                var loResult = await _model.GSL00700GetDepartmentListAsync(poParam);
 
                 DepartmentGrid = new ObservableCollection<GSL00700DTO>(loResult);
             }

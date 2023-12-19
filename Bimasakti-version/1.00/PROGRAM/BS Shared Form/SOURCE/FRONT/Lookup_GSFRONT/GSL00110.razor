@@ -7,7 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.TaxByDateGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
+                Pageable="true"
                 Height="300px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CTAX_ID" HeaderText="@_localizer["_TaxId"]" Width="100px"></R_GridTextColumn>

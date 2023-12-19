@@ -214,7 +214,6 @@ namespace GSM03000FRONT
                     //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                     if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                     {
-                        var loData = await Additional_viewModel.ActiveInactiveProcessAsync(loParam);
                     }
                     else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
                     {
@@ -234,7 +233,6 @@ namespace GSM03000FRONT
                         bool result = (bool)loResult.Result;
                         if (result == true)
                         {
-                            var loData = await Additional_viewModel.ActiveInactiveProcessAsync(loParam);
                         }
                         else
                         {
@@ -556,9 +554,6 @@ namespace GSM03000FRONT
                     //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                     if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                     {
-                        var loData = await Deducation_viewModel.ActiveInactiveProcessAsync(loParam); //Ganti jadi method ActiveInactive masing masing
-                        await Deducation_conductorRef.R_SetCurrentData(loData);
-                        return;
                     }
                     else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
                     {
@@ -578,8 +573,6 @@ namespace GSM03000FRONT
                         bool result = (bool)loResult.Result;
                         if (result == true)
                         {
-                            var loData = await Deducation_viewModel.ActiveInactiveProcessAsync(loParam); //Ganti jadi method ActiveInactive masing masing
-                            await Deducation_conductorRef.R_SetCurrentData(loData);
                         }
                         else
                         {

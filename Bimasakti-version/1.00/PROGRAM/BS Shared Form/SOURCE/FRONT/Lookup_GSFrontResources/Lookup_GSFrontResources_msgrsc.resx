@@ -210,6 +210,9 @@
   <data name="_Desc" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="_EnableCOA" xml:space="preserve">
+    <value>Include Inactive COA</value>
+  </data>
   <data name="_GLAccount" xml:space="preserve">
     <value>GL Account</value>
   </data>

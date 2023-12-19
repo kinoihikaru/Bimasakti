@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.OtherChargesGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5">
+                Pageable="true">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCHARGES_ID" HeaderText="@_localizer["_ChargesId"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCHARGES_NAME" HeaderText="@_localizer["_ChargesName"]"></R_GridTextColumn>

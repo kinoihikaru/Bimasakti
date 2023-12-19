@@ -133,10 +133,10 @@
     <value>Discount type is required</value>
   </data>
   <data name="7015" xml:space="preserve">
-    <value>Discount Value must not be minus</value>
+    <value>Discount Value must greater than 0</value>
   </data>
   <data name="7016" xml:space="preserve">
-    <value>Discount Value must between of 0 and 100</value>
+    <value>Discount Value must greater than 0 and less than 100</value>
   </data>
   <data name="7017" xml:space="preserve">
     <value>Invoice Period From and Invoice Period To is required</value>
@@ -145,10 +145,10 @@
     <value>Invoice Period To must greater or equal to Invoice Period From</value>
   </data>
   <data name="7019" xml:space="preserve">
-    <value>Invoice Period From Value must smaller or equal {0}</value>
+    <value>Invoice Period From Value must between of 1 and {0}</value>
   </data>
   <data name="7020" xml:space="preserve">
-    <value>Invoice Period To Value must smaller or equal {0}</value>
+    <value>Invoice Period To Value must between of 1 and {0}</value>
   </data>
   <data name="_Active" xml:space="preserve">
     <value>Active</value>

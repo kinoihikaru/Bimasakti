@@ -206,12 +206,29 @@ namespace GLR00200FRONT
 
                 await _viewModel.ValidationGLAccountLedger(loData);
 
-                await _reportService.GetReport(
-                "R_DefaultServiceUrlGL",
-                "GL",
-                "rpt/GLR00200Print/AllGLAccountLedgerPost",
-                "rpt/GLR00200Print/AllStreamGLAccountLedgersGet",
-                loData);
+                var loValidate = await R_MessageBox.Show("", "Are you sure to print this?", R_eMessageBoxButtonType.YesNo);
+
+                if (loValidate == R_eMessageBoxResult.Yes)
+                {
+                    if (_viewModel.LPrintbyCenter)
+                    {
+                        await _reportService.GetReport(
+                                       "R_DefaultServiceUrlGL",
+                                       "GL",
+                                       "rpt/GLR00210Print/AllGLAccountLedgerPost",
+                                       "rpt/GLR00210Print/AllStreamGLAccountLedgersGet",
+                                       loData);
+                    }
+                    else
+                    {
+                        await _reportService.GetReport(
+                                        "R_DefaultServiceUrlGL",
+                                        "GL",
+                                        "rpt/GLR00200Print/AllGLAccountLedgerPost",
+                                        "rpt/GLR00200Print/AllStreamGLAccountLedgersGet",
+                                        loData);
+                    }
+                }
             }
             catch (Exception ex)
             {

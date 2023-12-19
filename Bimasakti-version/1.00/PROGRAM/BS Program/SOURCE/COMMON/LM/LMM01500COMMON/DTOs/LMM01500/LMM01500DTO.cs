@@ -3,7 +3,7 @@ using System;
 
 namespace LMM01500COMMON
 {
-    public class LMM01500DTO : R_APIResultBaseDTO
+    public class LMM01500DTO
     {
         private int _CSCSEQUENCEInt;
         // parameter
@@ -26,6 +26,7 @@ namespace LMM01500COMMON
         public string FileNameExtension { get; set; }
         public Byte[] Data { get; set; }
         public string CINVOICE_TEMPLATE { get; set; } = "";
+        public string CSTORAGE_ID { get; set; }
 
 
         public string CINVOICE_GROUP_MODE { get; set; } = "";

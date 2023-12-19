@@ -33,6 +33,7 @@
             BaseHeaderLandscapeCommon = new Button();
             BaseHeaderCommon = new Button();
             GLTR00100 = new Button();
+            GLR00210 = new Button();
             SuspendLayout();
             // 
             // GLR00200
@@ -85,11 +86,22 @@
             GLTR00100.UseVisualStyleBackColor = true;
             GLTR00100.Click += GLTR00100_Click;
             // 
+            // GLR00210
+            // 
+            GLR00210.Location = new Point(12, 99);
+            GLR00210.Name = "GLR00210";
+            GLR00210.Size = new Size(193, 22);
+            GLR00210.TabIndex = 5;
+            GLR00210.Text = "GLR00210";
+            GLR00210.UseVisualStyleBackColor = true;
+            GLR00210.Click += GLR00210_Click;
+            // 
             // DesainGLReport
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(GLR00210);
             Controls.Add(GLTR00100);
             Controls.Add(BaseHeaderLandscapeCommon);
             Controls.Add(BaseHeaderCommon);
@@ -108,5 +120,6 @@
         private Button BaseHeaderLandscapeCommon;
         private Button BaseHeaderCommon;
         private Button GLTR00100;
+        private Button GLR00210;
     }
 }

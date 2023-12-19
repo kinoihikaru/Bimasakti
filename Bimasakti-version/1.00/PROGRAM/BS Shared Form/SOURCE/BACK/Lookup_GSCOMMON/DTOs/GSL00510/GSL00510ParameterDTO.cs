@@ -5,6 +5,7 @@
         public string CCOMPANY_ID { get; set; }
         public string CGLACCOUNT_TYPE { get; set; } = "";
         public string CUSER_ID { get; set; }
+        public bool LINACTIVE_COA { get; set; } = false;
     }
 
 }

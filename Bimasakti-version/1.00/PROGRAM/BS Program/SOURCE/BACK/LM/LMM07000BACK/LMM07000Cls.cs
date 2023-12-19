@@ -246,7 +246,7 @@ namespace LMM07000BACK
                 loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_CODE", DbType.String, 20, poNewEntity.CDISCOUNT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_NAME", DbType.String, 100, poNewEntity.CDISCOUNT_NAME);
                 loDb.R_AddCommandParameter(loCmd, "@CDISCOUNT_TYPE", DbType.String, 2, poNewEntity.CDISCOUNT_TYPE);
-                loDb.R_AddCommandParameter(loCmd, "@NDISCOUNT_VALUE", DbType.Decimal, 50, poNewEntity.NDISCOUNT_VALUE);
+                loDb.R_AddCommandParameter(loCmd, "@NDISCOUNT_VALUE", DbType.Decimal, 100, poNewEntity.NDISCOUNT_VALUE);
                 loDb.R_AddCommandParameter(loCmd, "@CAPPLY_PERIOD_YEAR_FROM", DbType.String, 20, poNewEntity.CAPPLY_PERIOD_YEAR_FROM);
                 loDb.R_AddCommandParameter(loCmd, "@CAPPLY_PERIOD_NO_FROM", DbType.String, 20, poNewEntity.CAPPLY_PERIOD_NO_FROM);
                 loDb.R_AddCommandParameter(loCmd, "@CAPPLY_PERIOD_YEAR_TO", DbType.String, 30, poNewEntity.CAPPLY_PERIOD_YEAR_TO);

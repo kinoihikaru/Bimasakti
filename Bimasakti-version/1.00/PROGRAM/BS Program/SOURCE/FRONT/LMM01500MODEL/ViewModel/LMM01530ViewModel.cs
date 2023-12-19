@@ -28,7 +28,7 @@ namespace LMM01500MODEL
             {
                 var loResult = await _LMM01530Model.GetAllOtherChargerListAsync(poParam.CPROPERTY_ID, poParam.CINVGRP_CODE);
 
-                OtherChargesGrid = new ObservableCollection<LMM01530DTO>(loResult.Data);
+                OtherChargesGrid = new ObservableCollection<LMM01530DTO>(loResult);
             }
             catch (Exception ex)
             {

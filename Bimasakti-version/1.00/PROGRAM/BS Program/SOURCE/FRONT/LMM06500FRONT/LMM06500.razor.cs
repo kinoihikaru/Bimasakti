@@ -117,6 +117,7 @@ namespace LMM06500FRONT
         }
 
         private R_TextBox StaffName_TextBox;
+        private bool EnableInativeNote = false;
         private async Task Staff_Display(R_DisplayEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -137,7 +138,11 @@ namespace LMM06500FRONT
                         _Staff_lcLabel = "Activate";
                         _Staff_viewModel.StatusChange = true;
                     }
-
+                    EnableInativeNote = false;
+                }
+                else
+                {
+                    EnableInativeNote = loParam.LACTIVE == false;
                 }
 
                 if (eventArgs.ConductorMode == R_eConductorMode.Edit)
@@ -190,7 +195,6 @@ namespace LMM06500FRONT
         }
 
         private bool SupervisorLookup = false;
-        private bool CinactiveNote = false;
         private void Staff_Position_OnChange(string poParam)
         {
             _Staff_viewModel.Data.CPOSITION = poParam;
@@ -313,7 +317,6 @@ namespace LMM06500FRONT
                         //Jika Approval User ALL dan Approval Code 1, maka akan langsung menjalankan ActiveInactive
                         if (loValidateViewModel.loRspActivityValidityList.FirstOrDefault().CAPPROVAL_USER == "ALL" && loValidateViewModel.loRspActivityValidityResult.Data.FirstOrDefault().IAPPROVAL_MODE == 1)
                         {
-                           var loActiveData = await _Staff_viewModel.ActiveInactiveProcessAsync(loData);
                         }
                         else //Disini Approval Code yang didapat adalah 2, yang berarti Active Inactive akan dijalankan jika User yang diinput ada di RSP_ACTIVITY_VALIDITY
                         {
@@ -333,7 +336,6 @@ namespace LMM06500FRONT
                             result = (bool)loResult.Result;
                             if (result == true)
                             {
-                                var loActiveData = await _Staff_viewModel.ActiveInactiveProcessAsync(loData);
                             }
                             else
                             {
@@ -397,13 +399,11 @@ namespace LMM06500FRONT
         private void Staff_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
         {
             SupervisorLookup = false;
-            CinactiveNote = false;
         }
 
         private void Staff_AfterSave(R_AfterSaveEventArgs eventArgs)
         {
             SupervisorLookup = false;
-            CinactiveNote = false;
         }
         private async Task _Staff_DownloadBtn_OnClick()
         {

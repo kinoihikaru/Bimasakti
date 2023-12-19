@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.GLAccountList"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5"
+                Pageable="true"
                 Height="300px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="@_localizer["_AccountNo"]" Width="200px"></R_GridTextColumn>

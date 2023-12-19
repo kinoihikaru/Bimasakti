@@ -26,8 +26,8 @@ namespace LMM07000MODEL
         public List<LMM07000PeriodDTO> InvoicePeriodList { get; set; } = new List<LMM07000PeriodDTO>();
         public List<LMM07000DTOUniversal> DiscountTypeList { get; set; } = new List<LMM07000DTOUniversal>();
 
-        public int FromPeriodYear;
-        public int ToPeriodYear;
+        public int FromPeriodYear { get; set; } = 1;
+        public int ToPeriodYear { get; set; } = 12;
         public bool StatusChange = false;
 
         public async Task GetPropertyList()
@@ -192,9 +192,9 @@ namespace LMM07000MODEL
                         "7014"));
                 }
 
-                llCancel = poParam.NDISCOUNT_VALUE < 0 || poParam.NDISCOUNT_VALUE > 100;
+                llCancel = poParam.NDISCOUNT_VALUE <= 0 || poParam.NDISCOUNT_VALUE > 100;
 
-                if (poParam.CDISCOUNT_TYPE == "02")
+                if (poParam.CDISCOUNT_TYPE == "02" || poParam.CDISCOUNT_TYPE == "03")
                 {
                     if (llCancel)
                     {
@@ -204,9 +204,9 @@ namespace LMM07000MODEL
                     }
                 }
 
-                llCancel = poParam.NDISCOUNT_VALUE < 0;
+                llCancel = poParam.NDISCOUNT_VALUE <= 0;
 
-                if (poParam.CDISCOUNT_TYPE == "01" || poParam.CDISCOUNT_TYPE == "03")
+                if (poParam.CDISCOUNT_TYPE == "01" )
                 {
                     if (llCancel)
                     {
@@ -226,7 +226,7 @@ namespace LMM07000MODEL
                 }
                 else
                 {
-                    if (int.Parse(poParam.CAPPLY_PERIOD_YEAR_TO) < int.Parse(poParam.CAPPLY_PERIOD_YEAR_FROM))
+                    if (FromPeriodYear  > ToPeriodYear)
                     {
                         loEx.Add(R_FrontUtility.R_GetError(
                         typeof(Resources_Dummy_Class),
@@ -236,17 +236,17 @@ namespace LMM07000MODEL
                     MaxPeriodParam.CYEAR = poParam.CAPPLY_PERIOD_YEAR_FROM;
                     MaxPeriod = await _LMM07000Model.GetMaxInvoicePeriodValueAsync(MaxPeriodParam);
 
-                    if (FromPeriodYear > MaxPeriod.INO_PERIOD)
+                    if (FromPeriodYear > MaxPeriod.INO_PERIOD || FromPeriodYear < 1)
                     {
-                        loEx.Add("7019", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "7014"), MaxPeriod.INO_PERIOD));
+                        loEx.Add("7019", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "7019"), MaxPeriod.INO_PERIOD));
                     }
 
                     MaxPeriodParam.CYEAR = poParam.CAPPLY_PERIOD_YEAR_TO;
                     MaxPeriod = await _LMM07000Model.GetMaxInvoicePeriodValueAsync(MaxPeriodParam);
 
-                    if (ToPeriodYear > MaxPeriod.INO_PERIOD)
+                    if (ToPeriodYear > MaxPeriod.INO_PERIOD || ToPeriodYear < 1)
                     {
-                        loEx.Add("7020", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "7015"), MaxPeriod.INO_PERIOD));
+                        loEx.Add("7020", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "7020"), MaxPeriod.INO_PERIOD));
                     }
                 }
             }

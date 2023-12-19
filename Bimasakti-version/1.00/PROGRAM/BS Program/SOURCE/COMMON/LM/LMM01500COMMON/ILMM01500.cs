@@ -9,7 +9,7 @@ namespace LMM01500COMMON
 
         IAsyncEnumerable<LMM01501DTO> GetInvoiceGrpList();
 
-        LMM01500DTO LMM01500ActiveInactive(LMM01500DTO poParam);
+        LMM01500SingleResult<LMM01500DTO> LMM01500ActiveInactive(LMM01500DTO poParam);
 
         IAsyncEnumerable<LMM01502DTO> LMM01500LookupBank();
     }

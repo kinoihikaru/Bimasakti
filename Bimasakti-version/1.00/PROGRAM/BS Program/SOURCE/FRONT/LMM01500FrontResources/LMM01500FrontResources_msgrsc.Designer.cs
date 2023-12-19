@@ -376,6 +376,15 @@ namespace LMM01500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (valid for Percentage Calculation Pinalty Type Only).
+        /// </summary>
+        internal static string _DescMinPinalty {
+            get {
+                return ResourceManager.GetString("_DescMinPinalty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due Date.
         /// </summary>
         internal static string _DueDate {

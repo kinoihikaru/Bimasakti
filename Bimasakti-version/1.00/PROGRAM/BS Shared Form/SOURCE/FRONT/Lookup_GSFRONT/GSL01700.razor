@@ -38,9 +38,8 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CurrencyRateGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Height="300px"
-                Pageable
-                PageSize="5">
+                Pageable="true"
+                Height="300px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCURRENCY_CODE" HeaderText="@_localizer["_CurrCode"]" Width="100px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCURRENCY_NAME" HeaderText="@_localizer["_CurrName"]" Width="300px"></R_GridTextColumn>

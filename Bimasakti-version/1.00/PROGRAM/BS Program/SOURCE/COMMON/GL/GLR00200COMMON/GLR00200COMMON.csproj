@@ -16,4 +16,8 @@
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_CommonFrontBackAPI.dll</HintPath>
 		</Reference>
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="DTOs\GLR00200\" />
+	</ItemGroup>
 </Project>

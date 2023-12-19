@@ -286,16 +286,18 @@ namespace Lookup_GSLBACK
                 var lcQuery = "EXEC RSP_GS_GET_COA_LOOKUP_LIST " +
                     "@CCOMPANY_ID, " +
                     "@CGL_ACCOUNT_TYPE, " +
-                    "@CUSER_ID ";
+                    "@CUSER_ID," +
+                    "@LINACTIVE_COA ";
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CGL_ACCOUNT_TYPE", DbType.String, 50, poEntity.CGLACCOUNT_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LINACTIVE_COA", DbType.Boolean, 50, poEntity.LINACTIVE_COA);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
                 _Logger.LogDebug("EXEC RSP_GS_GET_COA_LOOKUP_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
@@ -448,6 +450,7 @@ namespace Lookup_GSLBACK
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()

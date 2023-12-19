@@ -7,8 +7,7 @@
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.WithholdingTaxGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
-                Pageable
-                PageSize="5" 
+                Pageable="true"
                 Height="300px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CTAX_TYPE_DESCR" HeaderText="@_localizer["_TaxType"]" Width="100px"></R_GridTextColumn>

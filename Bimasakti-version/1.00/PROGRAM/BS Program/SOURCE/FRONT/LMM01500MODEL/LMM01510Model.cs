@@ -29,10 +29,10 @@ namespace LMM01500MODEL
             throw new NotImplementedException();
         }
 
-        public async Task<LMM01500List<LMM01510DTO>> LMM01510TemplateAndBankAccountListAsync(string poPropertyId, string poInvGrpId)
+        public async Task<List<LMM01510DTO>> LMM01510TemplateAndBankAccountListAsync(string poPropertyId, string poInvGrpId)
         {
             var loEx = new R_Exception();
-            LMM01500List<LMM01510DTO> loResult = new LMM01500List<LMM01510DTO>();
+            List<LMM01510DTO> loResult = new List<LMM01510DTO>();
 
             try
             {
@@ -41,7 +41,7 @@ namespace LMM01500MODEL
                 R_FrontContext.R_SetStreamingContext(ContextConstant.CINVGRP_CODE, poInvGrpId);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LMM01510DTO>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<LMM01510DTO>(
                     _RequestServiceEndPoint,
                     nameof(ILMM01510.LMM01510TemplateAndBankAccountList),
                     DEFAULT_MODULE,
