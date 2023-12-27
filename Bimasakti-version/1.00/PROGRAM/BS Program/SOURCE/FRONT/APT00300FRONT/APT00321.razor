@@ -1,0 +1,414 @@
+﻿@using APT00300COMMON;
+@inherits R_Page
+@attribute [R_Page(Title = "Item Entry")]
+
+<R_StackLayout Row>
+    <R_ItemLayout col="5">
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_ProductDept"])*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPROD_DEPT_CODE"
+                           @ref="_productDeptRef"
+                           OnLostFocus="@ProductDeptID_OnLostFocus"
+                           R_ConductorSource="@_conductorRef"
+                           R_EnableAdd R_EnableEdit>
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_conductorRef"
+                          R_Before_Open_Lookup="@R_Before_Open_LookupProductDept"
+                          R_After_Open_Lookup="@R_After_Open_LookupProductDept"
+                          R_EnableAdd
+                          R_EnableEdit>...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPROD_DEPT_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_ProductType"])</R_Label>
+            </R_ItemLayout>
+
+            <R_ItemLayout col="9" Class="pe-3">
+                <R_ComboBox Data="@_viewModel.GSBCodeList"
+                            Value="@_viewModel.Data.CPROD_TYPE"
+                            R_ConductorSource="@_conductorRef"
+                            ValueField="@nameof(APT00300GSBCodeDTO.CCODE)"
+                            TextField="@nameof(APT00300GSBCodeDTO.CNAME)"
+                            ValueChanged="@((string value) => ProductTypeComboBox_ValueChanged(value))"
+                            R_EnableAdd
+                            R_EnableEdit>
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@lcExpProdLabel</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPRODUCT_ID"
+                           R_ConductorSource="@_conductorRef"
+                           OnLostFocus="@ProductExpenditureID_OnLostFocus"
+                           R_EnableAdd R_EnableEdit>
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_conductorRef"
+                          R_Before_Open_Lookup="@R_Before_Open_LookupProductExpenditure"
+                          R_After_Open_Lookup="@R_After_Open_LookupProductExpenditure"
+                          R_EnableAdd
+                          R_EnableEdit>...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.Data.CPRODUCT_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_SuppProduct"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CSUP_PRODUCT_ID"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="7" Class="pe-3">
+                <R_TextBox @bind-Value="@_viewModel.Data.CSUP_PRODUCT_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_AllocID"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CALLOC_ID"
+                           R_ConductorSource="@_conductorRef"
+                           OnLostFocus="@AllocationID_OnLostFocus"
+                           Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.CPROD_TYPE.Trim() == "P")">
+                </R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_conductorRef"
+                          R_Before_Open_Lookup="@R_Before_Open_LookupAllocation"
+                          R_After_Open_Lookup="@R_After_Open_LookupAllocation"
+                          Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.CPROD_TYPE.Trim() == "P")">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox @bind-Value="@_viewModel.Data.CALLOC_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false">
+                </R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_Notes"])*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="9" Class="pe-3">
+                <R_TextArea @bind-Value="@_viewModel.Data.CDETAIL_DESC"
+                            R_ConductorSource="@_conductorRef"
+                            R_EnableAdd R_EnableEdit>
+                </R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_UpdateBy"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                    <R_Label>@(_localizer["_Date"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="pe-4">
+                <R_DateTimePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row="true">
+            <R_ItemLayout col="3">
+                    <R_Label>@(_localizer["_CreateBy"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                    <R_Label>@(_localizer["_Date"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6" Class="pe-4">
+                <R_DateTimePicker @bind-Value="@_viewModel.Data.DCREATE_DATE"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="7">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@(_localizer["_Purchase"] + _localizer["_Qyt"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox Value="@_viewModel.Data.NTRANS_QTY"
+                                  R_ConductorSource="@_conductorRef"
+                                  ValueChanged="@((decimal value) => PurchaseQtyTextBox_ValueChanged(value))"
+                                  Arrows="false"
+                                  R_EnableAdd R_EnableEdit></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_ComboBox Data="@_viewModel.PurchaseUnitOptions"
+                            Value="@_viewModel.Data.IBILL_UNIT"
+                            R_ConductorSource="@_conductorRef"
+                            ValueField="Key"
+                            TextField="Value"
+                            ValueChanged="@((int value) => PurchaseUnitComboBox_ValueChanged(value))"
+                            R_EnableAdd
+                            R_EnableEdit>
+                </R_ComboBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CBILL_UNIT"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.IBILL_UNIT == 4)"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>CF</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NSUPP_CONV_FACTOR"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.IBILL_UNIT == 4)"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CUNIT1"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_Label>@(_localizer["_Approve"] + _localizer["_Qyt"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@(_localizer["_Unit"] + _localizer["_Price"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_Label>@(_localizer["_Total"] + _localizer["_Price"])</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NAPPV_QTY"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>X</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox Value="@_viewModel.Data.NUNIT_PRICE"
+                                  R_ConductorSource="@_conductorRef"
+                                  ValueChanged="@((decimal value) => UnitPriceTextBox_ValueChanged(value))"
+                                  Arrows="false"
+                                  R_EnableAdd R_EnableEdit></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NAMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@(_localizer["_LineDisc"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_RadioGroup Data="@_viewModel.DiscountTypeOptions"
+                              R_ConductorSource="@_conductorRef"
+                              Value="@_viewModel.Data.CDISC_TYPE"
+                              ValueField="Key"
+                              TextField="Value"
+                              Layout="R_eRadioGroupLayout.Horizontal"
+                              R_EnableAdd R_EnableEdit
+                              ValueChanged="@((string value) => DiscountOptionRadioButton_ValueChanged(value))"></R_RadioGroup>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox Value="@_viewModel.Data.NDISC_PCT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  ValueChanged="@((decimal value) => DiscountPercentageTextBox_ValueChanged(value))"
+                                  Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.CDISC_TYPE == "P")"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>%</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox Value="@_viewModel.Data.NDISC_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  ValueChanged="@((decimal value) => DiscountAmountTextBox_ValueChanged(value))"
+                                  Enabled="@(_conductorRef.R_ConductorMode != R_eConductorMode.Normal && _viewModel.Data.CDISC_TYPE == "V")"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>-</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row>
+            <R_ItemLayout col="8" Class="text-end me-4">
+                <R_Label>@(_localizer["_NetAmount"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAXABLE_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+       
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@(_localizer["_Tax"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CTAX_ID"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.Data.CTAX_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAX_PCT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>%</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAX_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>+</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@(_localizer["_Other"] + _localizer["_Tax"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.COTHER_TAX_ID"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.Data.COTHER_TAX_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NOTHER_TAX_PCT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>%</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NOTHER_TAX_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Label>+</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+        
+        <R_StackLayout Row>
+            <R_ItemLayout col="8" Class="text-end me-4">
+                <R_Label>@(_localizer["_Purchase"] + _localizer["_Amount"])</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTOTAL_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row Class="justify-content-between">
+    <R_ItemLayout>
+        <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+        <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        <R_DeleteButton R_Conductor="@_conductorRef"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+    </R_ItemLayout> 
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_IsHeader 
+             R_ViewModel="@_viewModel"
+             R_ServiceGetRecord="InvoiceItem_ServiceGetRecord"
+             R_ServiceDelete="InvoiceItem_ServiceDelete"
+             R_Validation="InvoiceItem_Validation"
+             R_AfterAdd="InvoiceItem_AfterAdd"
+             R_Display="InvoiceItem_Display"
+             R_ServiceSave="InvoiceItem_ServiceSave"
+              />

@@ -14,7 +14,7 @@ public class GSM05010Controller : ControllerBase, IGSM05010
 {
     private LoggerGSM05010 _logger;
     
-    public GSM05010Controller(ILogger<GSM05010Controller> logger)
+    public GSM05010Controller(ILogger<LoggerGSM05010> logger)
     {
         //Initial and Get Logger
         LoggerGSM05010.R_InitializeLogger(logger);

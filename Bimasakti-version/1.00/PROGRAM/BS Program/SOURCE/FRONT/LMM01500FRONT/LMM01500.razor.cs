@@ -1,6 +1,7 @@
 ﻿using BlazorClientHelper;
 using GFF00900COMMON.DTOs;
 using LMM01500COMMON;
+using LMM01500FrontResources;
 using LMM01500MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
@@ -361,6 +362,7 @@ namespace LMM01500FRONT
                 var loData = (LMM01500DTO)eventArgs.Data;
                 await _Genereal_viewModel.ValidationInvoiceGrp(loData);
 
+
                 if (eventArgs.ConductorMode == R_eConductorMode.Add)
                 {
                     if (loData.LACTIVE)
@@ -380,7 +382,7 @@ namespace LMM01500FRONT
                             var loPopupParam = new GFF00900ParameterDTO()
                             {
                                 Data = loValidateViewModel.loRspActivityValidityList,
-                                IAPPROVAL_CODE = "LMM01501" //Uabh Approval Code sesuai Spec masing masing
+                                IAPPROVAL_CODE = "LMM01501" //Ubah Approval Code sesuai Spec masing masing
                             };
                             loResult = await PopupService.Show(typeof(GFF00900FRONT.GFF00900), loPopupParam);
 
@@ -401,7 +403,18 @@ namespace LMM01500FRONT
                             }
                         }
                     }
-
+                }
+                else if (eventArgs.ConductorMode == R_eConductorMode.Edit)
+                {
+                    if (_Genereal_viewModel.InvoiceGroup.LBY_DEPARTMENT)
+                    {
+                        if (!loData.LBY_DEPARTMENT)
+                        {
+                            var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifByDeptAlert"), R_eMessageBoxButtonType.YesNo);
+                            eventArgs.Cancel = loValidate == R_eMessageBoxResult.No;
+                            return;
+                        }
+                    }
                 }
             }
             catch (Exception ex)

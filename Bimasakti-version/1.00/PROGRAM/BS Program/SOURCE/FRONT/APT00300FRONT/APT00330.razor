@@ -1,0 +1,371 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Invoice Summary")]
+
+<R_StackLayout Style="width: 1200px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="7">
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Property</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="5" Class="me-1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CPROPERTY_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Ref. No.</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="pe-3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CREF_NO"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Department</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Ref. Date</R_Label>
+                </R_ItemLayout>
+
+                <R_ItemLayout col="3" Class="pe-3">
+                    <R_DatePicker @bind-Value="@_viewModel.RefDate"
+                                  R_ConductorSource="@_conductorRef"
+                                  Enabled="false">
+                    </R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="2">
+                    <R_Label>Supplier</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_ID"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="5">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" Class="pe-3 ps-1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_SEQ_NO"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+        <R_ItemLayout col="5">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Currency</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="7" Class="pe-3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_NAME"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Local Currency</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:95px">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NLBASE_RATE"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:95px">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NLCURRENCY_RATE"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@_viewModel.GSCompanyInfo.CLOCAL_CURRENCY_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>Tax Rate</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:95px">
+                     <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAX_BASE_RATE"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width: 10px">
+                    <R_Label>=</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:95px">
+                    <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAX_CURRENCY_RATE"
+                                      R_ConductorSource="@_conductorRef"
+                                      Arrows="false"
+                                      Enabled="false">
+                    </R_NumericTextBox>
+                </R_ItemLayout>
+                <R_ItemLayout Style="width:60px">
+                    <R_TextBox @bind-Value="@_viewModel.GSCompanyInfo.CLOCAL_CURRENCY_CODE"
+                               R_ConductorSource="@_conductorRef"
+                               Enabled="false">
+                    </R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+
+    <R_GroupBox Title="Summary" ShowBorder>
+        <R_StackLayout Row>
+            <R_ItemLayout col="5" Class="text-end">
+                <R_Label>Total Price</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NAMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="5" Class="text-end">
+                <R_Label>Total Discount</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NDISCOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>-</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+      
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <div class="border border-top-5 mt-1 mb-2"></div>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="5" Class="text-end">
+                <R_Label>Net Amount</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAXABLE_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="5" Class="text-end">
+                <R_Label>Tax</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTAX"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>+</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="5" Class="text-end">
+                <R_Label>Other Tax</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NOTHER_TAX"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>+</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Popup R_ConductorSource="@_conductorRef" R_EnableEdit R_Before_Open_Popup="Before_Open_Addition_Popup" R_After_Open_Popup="After_Open_Addition_Popup">Addition</R_Popup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="1" Class="text-end">
+                <R_Label>Addition</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NADDITION"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>+</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+                        <R_StackLayout Row>
+            <R_ItemLayout col="4">
+                <R_StackLayout Row Class="justify-content-end">
+                    <R_ItemLayout>
+                        <R_Popup R_ConductorSource="@_conductorRef" R_EnableEdit R_Before_Open_Popup="Before_Open_Deduction_Popup" R_After_Open_Popup="After_Open_Deduction_Popup">Deduction</R_Popup>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_ItemLayout>
+            <R_ItemLayout col="1" Class="text-end">
+                <R_Label>Deduction</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NDEDUCTION"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>-</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <div class="border border-top-5 mt-1 mb-2"></div>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="5">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.NTOTAL_AMOUNT"
+                                  R_ConductorSource="@_conductorRef"
+                                  Arrows="false"
+                                  Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCURRENCY_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_StackLayout Row Class="justify-content-between">
+        <R_ItemLayout>
+            <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+        </R_ItemLayout>
+        <R_ItemLayout>
+            <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+            <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_ServiceGetRecord="Summary_ServiceGetRecord"
+             R_ServiceSave="Summary_ServiceSave"
+             R_IsHeader="true" />

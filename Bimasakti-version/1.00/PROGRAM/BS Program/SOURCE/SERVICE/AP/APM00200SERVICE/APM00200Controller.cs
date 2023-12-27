@@ -299,6 +299,7 @@ namespace APM00200SERVICE
             return loRtn;
         }
 
+        [HttpPost]
         public IAsyncEnumerable<GetWithholdingTaxTypeDTO> GetWithholdingTaxTypeList()
         {
             _logger.LogInfo("Start || GetWithholdingTaxTypeList(Controller)");

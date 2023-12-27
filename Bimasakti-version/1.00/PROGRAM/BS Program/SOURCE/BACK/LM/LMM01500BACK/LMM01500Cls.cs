@@ -186,12 +186,12 @@ namespace LMM01500BACK
 
             try
             {
-                SaveDataSP(poNewEntity, poCRUDMode);
+                var loGetStorageType = GetStorageType();
 
                 var loValidate = ValidateAlreadyExists(poNewEntity);
+                loResult = SetStorageID(poNewEntity, loGetStorageType, loValidate);
 
-                loResult = SetStorageID(poNewEntity, poCRUDMode, loValidate);
-
+                SaveDataSP(loResult, poCRUDMode);
             }
             catch (Exception ex)
             {
@@ -201,106 +201,43 @@ namespace LMM01500BACK
             
             loEx.ThrowExceptionIfErrors();
         }
-
-        private void SaveDataSP(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode)
+        private LMM01500DTOStorageType GetStorageType()
         {
             var loEx = new R_Exception();
-            string lcQuery = "";
+            LMM01500DTOStorageType loResult = null;
             var loDb = new R_Db();
             DbConnection loConn = null;
             DbCommand loCmd = null;
-            LMM01500DTO loResult = null;
 
             try
             {
-                //Set Action 
-                if (poCRUDMode == eCRUDMode.AddMode)
-                {
-                    poNewEntity.CACTION = "ADD";
-                }
-                else if (poCRUDMode == eCRUDMode.EditMode)
-                {
-                    poNewEntity.CACTION = "EDIT";
-                }
-
-                loConn = loDb.GetConnection();
+                loConn = loDb.GetConnection("R_DefaultConnectionString");
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "RSP_LM_MAINTAIN_INVOICE_GRP";
+                var lcQuery = "RSP_GS_GET_STORAGE_TYPE";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poNewEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poNewEntity.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CINVGRP_CODE", DbType.String, 50, poNewEntity.CINVGRP_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CINVGRP_NAME", DbType.String, 50, poNewEntity.CINVGRP_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CSEQUENCE", DbType.String, 50, poNewEntity.CSEQUENCE);
-                loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 50, poNewEntity.LACTIVE);
-                loDb.R_AddCommandParameter(loCmd, "@CINVOICE_DUE_MODE", DbType.String, 50, poNewEntity.CINVOICE_DUE_MODE);
-                loDb.R_AddCommandParameter(loCmd, "@CINVOICE_GROUP_MODE", DbType.String, 50, poNewEntity.CINVOICE_GROUP_MODE);
-                loDb.R_AddCommandParameter(loCmd, "@IDUE_DAYS", DbType.Int32, 50, poNewEntity.IDUE_DAYS);
-                loDb.R_AddCommandParameter(loCmd, "@IFIXED_DUE_DATE", DbType.Int32, 50, poNewEntity.IFIXED_DUE_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@ILIMIT_INVOICE_DATE", DbType.Int32, 50, poNewEntity.ILIMIT_INVOICE_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@IBEFORE_LIMIT_INVOICE_DATE", DbType.Int32, 50, poNewEntity.IBEFORE_LIMIT_INVOICE_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@IAFTER_LIMIT_INVOICE_DATE", DbType.Int32, 50, poNewEntity.IAFTER_LIMIT_INVOICE_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@LDUE_DATE_TOLERANCE_HOLIDAY", DbType.Boolean, 50, poNewEntity.LDUE_DATE_TOLERANCE_HOLIDAY);
-                loDb.R_AddCommandParameter(loCmd, "@LDUE_DATE_TOLERANCE_SATURDAY", DbType.Boolean, 50, poNewEntity.LDUE_DATE_TOLERANCE_SATURDAY);
-                loDb.R_AddCommandParameter(loCmd, "@LDUE_DATE_TOLERANCE_SUNDAY", DbType.Boolean, 50, poNewEntity.LDUE_DATE_TOLERANCE_SUNDAY);
-                loDb.R_AddCommandParameter(loCmd, "@LUSE_STAMP", DbType.Boolean, 50, poNewEntity.LUSE_STAMP);
-                loDb.R_AddCommandParameter(loCmd, "@CSTAMP_ADD_ID", DbType.String, 50, poNewEntity.CSTAMP_ADD_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 50, poNewEntity.CDESCRIPTION);
-                loDb.R_AddCommandParameter(loCmd, "@LBY_DEPARTMENT", DbType.Boolean, 50, poNewEntity.LBY_DEPARTMENT);
-                loDb.R_AddCommandParameter(loCmd, "@CINVOICE_TEMPLATE", DbType.String, 50, poNewEntity.CINVOICE_TEMPLATE);
-                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poNewEntity.CDEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CBANK_CODE", DbType.String, 50, poNewEntity.CBANK_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CBANK_ACCOUNT", DbType.String, 50, poNewEntity.CBANK_ACCOUNT);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poNewEntity.CACTION);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
-                R_ExternalException.R_SP_Init_Exception(loConn);
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_STORAGE_TYPE {@poParameter}", loDbParam);
 
-                try
-                {
-                    //Debug Logs
-                    var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                     .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVOICE_GRP {@poParameter}", loDbParam);
-
-                    loDb.SqlExecNonQuery(loConn, loCmd, false);
-                }
-                catch (Exception ex)
-                {
-                    loEx.Add(ex);
-                }
-
-                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                loResult = R_Utility.R_ConvertTo<LMM01500DTOStorageType>(loDataTable).FirstOrDefault();
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
                 _Logger.LogError(loEx);
             }
-            finally
-            {
-                if (loConn != null)
-                {
-                    if (loConn.State != System.Data.ConnectionState.Closed)
-                        loConn.Close();
-
-                    loConn.Dispose();
-                    loConn = null;
-                }
-                if (loCmd != null)
-                {
-                    loCmd.Dispose();
-                    loCmd = null;
-                }
-                if (loDb != null)
-                {
-                    loDb = null;
-                }
-            }
+            
             loEx.ThrowExceptionIfErrors();
+
+            return loResult;
         }
         private bool ValidateAlreadyExists(LMM01500DTO poNewEntity)
         {
@@ -372,7 +309,7 @@ namespace LMM01500BACK
             loEx.ThrowExceptionIfErrors();
             return llRtn;
         }
-        private LMM01500DTO SetStorageID(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode, bool plExists)
+        private LMM01500DTO SetStorageID(LMM01500DTO poNewEntity, LMM01500DTOStorageType poStorageType, bool plExists)
         {
             var loEx = new R_Exception();
             string lcQuery = "";
@@ -390,77 +327,59 @@ namespace LMM01500BACK
                 loCmd = loDb.GetCommand();
                 if (poNewEntity.LBY_DEPARTMENT ==  false)
                 {
-                    if (plExists)
+                    if (String.IsNullOrEmpty(poNewEntity.CSTORAGE_ID) == false)
                     {
-                        //Add and create Storage ID
-                        R_AddParameter loAddParameter;
-
-                        loAddParameter = new R_AddParameter()
+                        if (plExists)
                         {
-                            StorageType = R_EStorageType.Cloud,
-                            ProviderCloudStorage = R_EProviderForCloudStorage.azure,
-                            FileName = poNewEntity.FileName,
-                            FileExtension = poNewEntity.FileExtension,
-                            UploadData = poNewEntity.Data,
-                            UserId = poNewEntity.CUSER_ID,
-                            BusinessKeyParameter = new R_BusinessKeyParameter()
+                            //Set Storage Type
+                            R_EStorageType loStorageType;
+                            loStorageType = poStorageType.CSTORAGE_TYPE != "1" ? R_EStorageType.OnPremise : R_EStorageType.Cloud;
+
+                            R_EProviderForCloudStorage loProvider;
+                            loProvider = poStorageType.CSTORAGE_PROVIDER_ID.ToLower() != "azure" ? R_EProviderForCloudStorage.google : R_EProviderForCloudStorage.azure;
+
+                            R_AddParameter loAddParameter;
+                            loAddParameter = new R_AddParameter()
                             {
-                                CCOMPANY_ID = poNewEntity.CCOMPANY_ID,
-                                CDATA_TYPE = "STORAGE_DATA_TABLE",
-                                CKEY01 = poNewEntity.CPROPERTY_ID,
-                                CKEY02 = poNewEntity.CINVGRP_CODE,
-                            }
-                        };
-                        loSaveResult = R_StorageUtility.AddFile(loAddParameter, loConn, loConnAttr.Provider);
+                                StorageType = loStorageType,
+                                ProviderCloudStorage = loProvider,
+                                FileName = poNewEntity.FileName,
+                                FileExtension = poNewEntity.FileExtension,
+                                UploadData = poNewEntity.Data,
+                                UserId = poNewEntity.CUSER_ID,
+                                BusinessKeyParameter = new R_BusinessKeyParameter()
+                                {
+                                    CCOMPANY_ID = poNewEntity.CCOMPANY_ID,
+                                    CDATA_TYPE = "STORAGE_DATA_TABLE",
+                                    CKEY01 = poNewEntity.CPROPERTY_ID,
+                                    CKEY02 = poNewEntity.CINVGRP_CODE,
+                                }
+                            };
+                            loSaveResult = R_StorageUtility.AddFile(loAddParameter, loConn, loConnAttr.Provider);
 
-                        //Set Storage ID CSTORAGE_ID
-                        poNewEntity.CSTORAGE_ID = loSaveResult.StorageId;
-
-                        lcQuery = "UPDATE LMM_INVGRP SET CSTORAGE_ID = @CSTORAGE_ID " +
-                            "WHERE CCOMPANY_ID = @CCOMPANY_ID " +
-                            "AND CPROPERTY_ID = @CPROPERTY_ID " +
-                            "AND CINVGRP_CODE = @CINVGRP_CODE ";
-                        loCmd.CommandText = lcQuery;
-                        loCmd.CommandType = CommandType.Text;
-
-                        loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 50, poNewEntity.CSTORAGE_ID);
-                        loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poNewEntity.CCOMPANY_ID);
-                        loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poNewEntity.CPROPERTY_ID);
-                        loDb.R_AddCommandParameter(loCmd, "@CINVGRP_CODE", DbType.String, 50, poNewEntity.CINVGRP_CODE);
-
-                        //Debug Logs
-                        string loStorageIdLog = null;
-                        string loCompanyIdLog = null;
-                        string loPropertyIdLog = null;
-                        string loInvGrpCodeLog = null;
-                        List<DbParameter> loDbParam = loCmd.Parameters.Cast<DbParameter>().ToList();
-                        loDbParam.ForEach(x =>
+                            //Set Storage ID CSTORAGE_ID
+                            poNewEntity.CSTORAGE_ID = loSaveResult.StorageId;
+                        }
+                        else
                         {
-                            switch (x.ParameterName)
+                            R_UpdateParameter loUpdateParameter;
+
+                            loUpdateParameter = new R_UpdateParameter()
                             {
-                                case "@CSTORAGE_ID":
-                                    loStorageIdLog = (string)x.Value;
-                                    break;
-                                case "@CCOMPANY_ID":
-                                    loCompanyIdLog = (string)x.Value;
-                                    break;
-                                case "@CPROPERTY_ID":
-                                    loPropertyIdLog = (string)x.Value;
-                                    break;
-                                case "@CINVGRP_CODE":
-                                    loInvGrpCodeLog = (string)x.Value;
-                                    break;
-                                
-                            }
-                        });
-                        lcQueryLog = string.Format("UPDATE LMM_INVGRP SET CSTORAGE_ID = {0} " +
-                            "WHERE CCOMPANY_ID = {1} " +
-                            "AND CPROPERTY_ID = {2} " +
-                            "AND CINVGRP_CODE = {3} ", loStorageIdLog, loCompanyIdLog, loPropertyIdLog, loInvGrpCodeLog);
-                        _Logger.LogDebug(lcQueryLog);
+                                StorageId = poNewEntity.CSTORAGE_ID,
+                                UploadData = poNewEntity.Data,
+                                UserId = poNewEntity.CUSER_ID,
+                                OptionalSaveAs = new R_UpdateParameter.OptionalSaveAsParameter()
+                                {
+                                    FileExtension = poNewEntity.FileExtension,
+                                    FileName = poNewEntity.FileName
+                                }
+                            };
+                            loSaveResult = R_StorageUtility.UpdateFile(loUpdateParameter, loConn, loConnAttr.Provider);
 
-
-                        loDb.SqlExecNonQuery(loConn, loCmd, true);
+                            //Set Storage ID CSTORAGE_ID
+                            poNewEntity.CSTORAGE_ID = loSaveResult.StorageId;
+                        }
                     }
                 }
             }
@@ -473,6 +392,107 @@ namespace LMM01500BACK
         EndBlock:
             loEx.ThrowExceptionIfErrors();
             return poNewEntity;
+        }
+        private void SaveDataSP(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode)
+        {
+            var loEx = new R_Exception();
+            string lcQuery = "";
+            var loDb = new R_Db();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
+            LMM01500DTO loResult = null;
+
+            try
+            {
+                //Set Action 
+                if (poCRUDMode == eCRUDMode.AddMode)
+                {
+                    poNewEntity.CACTION = "ADD";
+                }
+                else if (poCRUDMode == eCRUDMode.EditMode)
+                {
+                    poNewEntity.CACTION = "EDIT";
+                }
+
+                loConn = loDb.GetConnection();
+                loCmd = loDb.GetCommand();
+
+                lcQuery = "RSP_LM_MAINTAIN_INVOICE_GRP";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poNewEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poNewEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CINVGRP_CODE", DbType.String, 50, poNewEntity.CINVGRP_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CINVGRP_NAME", DbType.String, 50, poNewEntity.CINVGRP_NAME);
+                loDb.R_AddCommandParameter(loCmd, "@CSEQUENCE", DbType.String, 50, poNewEntity.CSEQUENCE);
+                loDb.R_AddCommandParameter(loCmd, "@LACTIVE", DbType.Boolean, 50, poNewEntity.LACTIVE);
+                loDb.R_AddCommandParameter(loCmd, "@CINVOICE_DUE_MODE", DbType.String, 50, poNewEntity.CINVOICE_DUE_MODE);
+                loDb.R_AddCommandParameter(loCmd, "@CINVOICE_GROUP_MODE", DbType.String, 50, poNewEntity.CINVOICE_GROUP_MODE);
+                loDb.R_AddCommandParameter(loCmd, "@IDUE_DAYS", DbType.Int32, 50, poNewEntity.IDUE_DAYS);
+                loDb.R_AddCommandParameter(loCmd, "@IFIXED_DUE_DATE", DbType.Int32, 50, poNewEntity.IFIXED_DUE_DATE);
+                loDb.R_AddCommandParameter(loCmd, "@ILIMIT_INVOICE_DATE", DbType.Int32, 50, poNewEntity.ILIMIT_INVOICE_DATE);
+                loDb.R_AddCommandParameter(loCmd, "@IBEFORE_LIMIT_INVOICE_DATE", DbType.Int32, 50, poNewEntity.IBEFORE_LIMIT_INVOICE_DATE);
+                loDb.R_AddCommandParameter(loCmd, "@IAFTER_LIMIT_INVOICE_DATE", DbType.Int32, 50, poNewEntity.IAFTER_LIMIT_INVOICE_DATE);
+                loDb.R_AddCommandParameter(loCmd, "@LDUE_DATE_TOLERANCE_HOLIDAY", DbType.Boolean, 50, poNewEntity.LDUE_DATE_TOLERANCE_HOLIDAY);
+                loDb.R_AddCommandParameter(loCmd, "@LDUE_DATE_TOLERANCE_SATURDAY", DbType.Boolean, 50, poNewEntity.LDUE_DATE_TOLERANCE_SATURDAY);
+                loDb.R_AddCommandParameter(loCmd, "@LDUE_DATE_TOLERANCE_SUNDAY", DbType.Boolean, 50, poNewEntity.LDUE_DATE_TOLERANCE_SUNDAY);
+                loDb.R_AddCommandParameter(loCmd, "@LUSE_STAMP", DbType.Boolean, 50, poNewEntity.LUSE_STAMP);
+                loDb.R_AddCommandParameter(loCmd, "@CSTAMP_ADD_ID", DbType.String, 50, poNewEntity.CSTAMP_ADD_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDESCRIPTION", DbType.String, 50, poNewEntity.CDESCRIPTION);
+                loDb.R_AddCommandParameter(loCmd, "@LBY_DEPARTMENT", DbType.Boolean, 50, poNewEntity.LBY_DEPARTMENT);
+                loDb.R_AddCommandParameter(loCmd, "@CINVOICE_TEMPLATE", DbType.String, 50, poNewEntity.CINVOICE_TEMPLATE);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poNewEntity.CDEPT_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CBANK_CODE", DbType.String, 50, poNewEntity.CBANK_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CBANK_ACCOUNT", DbType.String, 50, poNewEntity.CBANK_ACCOUNT);
+                loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 100, poNewEntity.CSTORAGE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, poNewEntity.CACTION);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                try
+                {
+                    //Debug Logs
+                    var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                     .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVOICE_GRP {@poParameter}", loDbParam);
+
+                    loDb.SqlExecNonQuery(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
+
+                    loConn.Dispose();
+                    loConn = null;
+                }
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
+            loEx.ThrowExceptionIfErrors();
         }
 
         protected override void R_Deleting(LMM01500DTO poEntity)

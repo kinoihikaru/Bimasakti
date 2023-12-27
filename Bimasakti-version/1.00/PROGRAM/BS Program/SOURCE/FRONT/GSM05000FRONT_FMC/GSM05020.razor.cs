@@ -39,7 +39,9 @@ namespace GSM05000FRONT_FMC
                 _GSM05020ViewModel.HeaderEntity = loParam;
 
                 //Refresh
-                await _gridRefDept.R_RefreshGrid(null);
+                if (loParam.LAPPROVAL_DEPT)
+                    await _gridRefDept.R_RefreshGrid(null);
+
                 await _gridRefApprover.R_RefreshGrid(null); 
             }
             catch (Exception ex)

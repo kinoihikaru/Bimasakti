@@ -1,0 +1,147 @@
+﻿@page "/APT00300"
+@attribute [R_Page(Title = "Debit Note List")]
+@inherits R_Page
+@using APT00300COMMON
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="@_viewModel.ParameterGridPurchase.CPROPERTY_ID"
+                    ValueField="@nameof(APT00300PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(APT00300PropertyDTO.CPROPERTY_NAME)"
+                    ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))"
+                    >
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Dept"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.ParameterGridPurchase.CDEPT_CODE" OnLostFocus="@DeptCodeTextBox_OnLostFocus"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
+                  R_After_Open_Lookup="@R_After_Open_LookupDepartment">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" Class="me-2">
+        <R_TextBox @bind-Value="@_viewModel.ParameterGridPurchase.CDEPT_NAME"
+                    Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Button  OnClick="OnClickRefresh">@_localizer["_Refresh"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Supp"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_RadioGroup Data="@_viewModel.SupplierOptions"
+                      Value="@_viewModel.SupplierMode"
+                      ValueField="Key"
+                      TextField="Value"
+                      Layout="R_eRadioGroupLayout.Horizontal"
+                      ValueChanged="@((string value) => SupplierOptionRadioButton_ValueChanged(value))"
+                      ></R_RadioGroup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Label>@(_localizer["_Period"] + _localizer["_From"])</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@_viewModel.PeriodYearFrom"
+                                  ThousandSeparator="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_DropDownList Data="@_viewModel.Period_Month"
+                                @bind-Value="@_viewModel.PeriodMonthFrom"
+                                ValueField="Key"
+                                TextField="Value"
+                                >
+                </R_DropDownList>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 30px">
+                <R_Label>@_localizer["_To"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@_viewModel.PeriodYearTo"
+                                  ThousandSeparator="false"
+                                  ></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_DropDownList Data="@_viewModel.Period_Month"
+                                @bind-Value="@_viewModel.PeriodMonthTo"
+                                ValueField="Key"
+                                TextField="Value"
+                                >
+                </R_DropDownList>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label></R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.ParameterGridPurchase.CSUPPLIER_ID"
+                   Enabled="@(_viewModel.SupplierMode == "S")"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup Enabled="@(_viewModel.SupplierMode == "S")" R_Before_Open_Lookup="@R_Before_Open_LookupSupplier" R_After_Open_Lookup="@R_After_Open_LookupSupplier">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_viewModel.ParameterGridPurchase.CSUPPLIER_NAME"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridInvoiceRef"
+                DataSource="@_viewModel.PurchaseDebitGrid"
+                Pageable="true"
+                R_ConductorGridSource="@_conductorInvoiceRef"
+                R_GridType="@R_eGridType.Original"
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                Height="300px"
+                R_ServiceGetListRecord="@Grid_Invoice_R_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName=@nameof(APT00300DTO.CREF_NO) HeaderText="@(_localizer["_ReferenceNo"])" Width="150px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName=@nameof(APT00300DTO.DREF_DATE) HeaderText="@(_localizer["_Date"])" Width="200px"></R_GridDatePickerColumn>
+                <R_GridDatePickerColumn FieldName="@nameof(APT00300DTO.DDUE_DATE)" HeaderText="@(_localizer["_DueDate"])" Width="150px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CSUPPLIER_NAME)" HeaderText="@(_localizer["_Supp"])" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CDOC_NO)" HeaderText="@(_localizer["_SuppRefNo"])" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CTRANS_STATUS_NAME)" HeaderText="@(_localizer["_Status"])" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CCURRENCY_CODE)" HeaderText="@(_localizer["_Curr"])" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.NTOTAL_AMOUNT)" HeaderText="@(_localizer["_Amount"])" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CTRANS_DESC)" HeaderText="@(_localizer["_Desc"])" Width="350px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CUPDATE_BY)" HeaderText="@(_localizer["Updated By"])" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(APT00300DTO.DUPDATE_DATE)" HeaderText="@(_localizer["Updated Date"])" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00300DTO.CCREATE_BY)" HeaderText="@(_localizer["_CreateBy"])" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(APT00300DTO.DCREATE_DATE)" HeaderText="@(_localizer["_CreateDate"])" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_PredefinedDock R_InstantiateDock="@PreDock_InstantiateDock"
+                  R_AfterOpenPredefinedDock="@R_AfterOpenPredefinedDock"
+                  Title="@(_localizer["_InvEntry"])"></R_PredefinedDock>
+
+
+<R_ConductorGrid @ref="@_conductorInvoiceRef"
+                 R_IsHeader
+                 R_Display="@Grid_Invoice_Display"
+                 R_ViewModel="_viewModel"
+    >
+</R_ConductorGrid>

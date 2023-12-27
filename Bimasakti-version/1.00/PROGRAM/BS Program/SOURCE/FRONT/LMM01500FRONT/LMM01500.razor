@@ -1,4 +1,4 @@
-﻿@page "/LMM01500"
+﻿    @page "/LMM01500"
 @inherits R_Page
 @using LMM01500COMMON
 @using LMM01500MODEL
@@ -198,10 +198,11 @@
                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CSTAMP_ADD_ID"
                                            R_ConductorSource="@_Genereal_conductorRef"
                                            OnLostFocus="@StampId_OnLostFocus"
-                                           Enabled="_Genereal_viewModel.Data.LUSE_STAMP"></R_TextBox>
+                                           Enabled="@(_Genereal_viewModel.Data.LUSE_STAMP && _Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)"></R_TextBox>
                             </R_ItemLayout>
                             <R_ItemLayout col="0">
-                                <R_Lookup R_ConductorSource="_Genereal_conductorRef" R_Before_Open_Lookup="@OtherCharges_Before_Open_Lookup" R_After_Open_Lookup="@OtherCharges_After_Open_Lookup" Enabled="_Genereal_viewModel.Data.LUSE_STAMP">...</R_Lookup>
+                                <R_Lookup R_ConductorSource="_Genereal_conductorRef" R_Before_Open_Lookup="@OtherCharges_Before_Open_Lookup" R_After_Open_Lookup="@OtherCharges_After_Open_Lookup" 
+                                    Enabled="@(_Genereal_viewModel.Data.LUSE_STAMP && _Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">...</R_Lookup>
                             </R_ItemLayout>
                             <R_ItemLayout col="4">
                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCHARGES_NAME"
@@ -313,7 +314,7 @@
 
                         <R_StackLayout Row="true">
                             <R_ItemLayout col="2">
-                                <R_Label>Updated By</R_Label>
+                                <R_Label>@(_localizer["_UpdateBy"])</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="4">
                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CUPDATE_BY"
@@ -332,7 +333,7 @@
 
                         <R_StackLayout Row="true">
                             <R_ItemLayout col="2">
-                                <R_Label>Created By</R_Label>
+                                    <R_Label>@(_localizer["_CreateBy"])</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="4">
                                 <R_TextBox @bind-Value="@_Genereal_viewModel.Data.CCREATE_BY"

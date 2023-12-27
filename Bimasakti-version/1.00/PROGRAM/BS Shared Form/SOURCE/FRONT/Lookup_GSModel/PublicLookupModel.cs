@@ -435,7 +435,7 @@ namespace Lookup_GSModel
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00710DTO>(
                     _RequestServiceEndPoint,
-                    nameof(IPublicLookup.GSL00700GetDepartmentList),
+                    nameof(IPublicLookup.GSL00710GetDepartmentPropertyList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

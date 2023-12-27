@@ -574,6 +574,15 @@ namespace LMM01500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Aler.
+        /// </summary>
+        internal static string _NotifByDeptAlert {
+            get {
+                return ResourceManager.GetString("_NotifByDeptAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string _OkBtn {
