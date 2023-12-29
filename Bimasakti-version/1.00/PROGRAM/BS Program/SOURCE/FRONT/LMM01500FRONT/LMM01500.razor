@@ -379,10 +379,8 @@
                              R_AfterAdd="@R_AfterAdd"
                              R_Display="@R_Display"
                              R_CheckAdd="@R_CheckAdd"
-                             R_SetHasData="@R_SetHasData"
                              R_AfterSave="@General_AfterSave"
                              R_BeforeCancel="@General_BeforeCancel"
-                             R_SetOther="@General_SetOther"
                              R_ConvertToGridEntity="@R_ConvertToGridEntity"
                              >
                 </R_Conductor>
@@ -397,11 +395,11 @@
         
     </R_TabStripTab>
 
-    <R_TabStripTab Title="@_localizer["_Pinalty"]" Id="Pinalty" Enabled="@R_EnableTabHasData">
+    <R_TabStripTab Title="@_localizer["_Pinalty"]" Id="Pinalty" Enabled="@(_Genereal_viewModel.InvoinceGroupGrid.Count > 0 && _Genereal_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
           <R_TabPage @ref="@_tabPagePinalty" R_Before_Open_TabPage="@_PinaltyTab_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback" ></R_TabPage>
     </R_TabStripTab>
 
-    <R_TabStripTab Title="@_localizer["_Charges"]" Id="OtherCharges" Enabled="@R_EnableTabHasData">
+    <R_TabStripTab Title="@_localizer["_Charges"]" Id="OtherCharges" Enabled="@(_Genereal_viewModel.InvoinceGroupGrid.Count > 0 && _Genereal_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
          <R_TabPage @ref="@_tabPageOtherCharges" R_Before_Open_TabPage="@_OtherCharges_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
     </R_TabStripTab>
     

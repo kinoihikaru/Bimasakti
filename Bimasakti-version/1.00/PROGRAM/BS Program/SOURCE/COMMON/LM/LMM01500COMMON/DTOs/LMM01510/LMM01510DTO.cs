@@ -12,12 +12,13 @@ namespace LMM01500COMMON
         public bool LTabEnalbleDept { get; set; }
         public string CUSER_ID { get; set; }
         public string CACTION { get; set; }
+        public string CSTORAGE_ID { get; set; }
 
         // + result
-        public string CDEPT_CODE { get; set; }
-        public string CDEPT_NAME { get; set; }
-        public string CBANK_NAME { get; set; }
-        public string CBANK_ACCOUNT { get; set; }
+        public string CDEPT_CODE { get; set; } = "";
+        public string CDEPT_NAME { get; set; } = "";
+        public string CBANK_NAME { get; set; } = "";
+        public string CBANK_ACCOUNT { get; set; } = "";
         public string CINVOICE_TEMPLATE { get; set; } = "";
         public string CUPDATE_BY { get; set; } = "";
         public DateTime DUPDATE_DATE { get; set; }

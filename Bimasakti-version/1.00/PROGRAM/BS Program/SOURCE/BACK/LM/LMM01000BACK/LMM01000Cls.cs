@@ -342,7 +342,6 @@ namespace LMM01000BACK
             {
                 var loDb = new R_Db();
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
-
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "RSP_LM_ACTIVE_INACTIVE_UTILITY_CHARGES";
@@ -506,6 +505,45 @@ namespace LMM01000BACK
             {
                 loEx.Add(ex);
                 _LMM01000Printlogger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        public LMM01000BeforeDeleteDTO ValidateBeforeDelete(LMM01000DTO poEntity)
+        {
+            var loEx = new R_Exception();
+            LMM01000BeforeDeleteDTO loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+
+                var lcQuery = "RSP_LM_VALIDATION_UTILITY_CHARGES";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCHARGES_TYPE", DbType.String, 50, poEntity.CCHARGES_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CCHARGES_ID", DbType.String, 50, poEntity.CCHARGES_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _LMM01000logger.LogDebug("EXEC RSP_LM_VALIDATION_UTILITY_CHARGES {@Data}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+                loResult = R_Utility.R_ConvertTo<LMM01000BeforeDeleteDTO>(loDataTable).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _LMM01000logger.LogError(loEx);
             }
 
             loEx.ThrowExceptionIfErrors();

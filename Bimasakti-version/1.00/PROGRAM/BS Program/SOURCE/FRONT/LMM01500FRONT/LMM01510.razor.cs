@@ -45,6 +45,7 @@ namespace LMM01500FRONT
                 _BankAccountGrid_viewModel.InvGrpCode = loParam.CINVGRP_CODE;
                 _BankAccountGrid_viewModel.InvGrpName = loParam.CINVGRP_NAME;
                 _BankAccountGrid_viewModel.PropertyValueContext = loParam.CPROPERTY_ID;
+                enableAdd = true;
 
                 await _BankAccount_gridRef.R_RefreshGrid(null);
             }

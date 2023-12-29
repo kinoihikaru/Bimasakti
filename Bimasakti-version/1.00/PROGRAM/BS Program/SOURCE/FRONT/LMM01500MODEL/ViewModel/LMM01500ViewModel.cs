@@ -14,6 +14,7 @@ namespace LMM01500MODEL
     public class LMM01500ViewModel : R_ViewModel<LMM01500DTO>
     {
         private LMM01500Model _LMM01500Model = new LMM01500Model();
+        private LMM01510Model _LMM01510Model = new LMM01510Model();
 
         public ObservableCollection<LMM01501DTO> InvoinceGroupGrid { get; set; } = new ObservableCollection<LMM01501DTO>();
         public List<LMM01500DTOPropety> PropertyList { get; set; } = new List<LMM01500DTOPropety>();
@@ -23,6 +24,7 @@ namespace LMM01500MODEL
         public string PropertyValueContext = "";
         public bool StatusChange;
         public bool TabDept = false;
+        public bool OldByDeptValue { get; set; }
 
         public async Task GetPropertyList()
         {
@@ -68,6 +70,7 @@ namespace LMM01500MODEL
 
                 loResult.CSEQUENCEInt = int.Parse(loResult.CSEQUENCE);
                 TabDept = loResult.LBY_DEPARTMENT;
+                OldByDeptValue = loResult.LBY_DEPARTMENT;
 
                 InvoiceGroup = loResult;
             }
@@ -248,7 +251,23 @@ namespace LMM01500MODEL
 
             return loRtn;
         }
+        public async Task<bool> CheckDataTab2(LMM01500DTO poParameter)
+        {
+            R_Exception loException = new R_Exception();
+            bool llRtn = false;
 
+            try
+            {
+                llRtn =  await _LMM01500Model.CheckDataTabTemplateBankAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+
+            return llRtn;
+        }
 
         public List<RadioButton> RadioInvDMList { get; set; } = new List<RadioButton>
         {

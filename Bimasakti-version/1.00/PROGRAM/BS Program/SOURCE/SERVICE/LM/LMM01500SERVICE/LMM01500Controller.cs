@@ -253,5 +253,32 @@ namespace LMM01500SERVICE
 
             return loRtn;
         }
+
+        public LMM01500SingleResult<bool> CheckDataTabTemplateBank(LMM01500DTO poParam)
+        {
+            R_Exception loException = new R_Exception();
+            LMM01500SingleResult<bool> loRtn = new LMM01500SingleResult<bool>();
+            LMM01500Cls loCls = new LMM01500Cls();
+            _Logger.LogInfo("Start CheckDataTabTemplateBank");
+
+            try
+            {
+                _Logger.LogInfo("Set Param CheckDataTabTemplateBank");
+                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                _Logger.LogInfo("Call Back Method CheckDataTabTemplateBank");
+                loRtn.Data = loCls.ValidateCheckDataTab2(poParam);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _Logger.LogError(loException);
+            }
+
+            loException.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End CheckDataTabTemplateBank");
+
+            return loRtn;
+        }
     }
 }

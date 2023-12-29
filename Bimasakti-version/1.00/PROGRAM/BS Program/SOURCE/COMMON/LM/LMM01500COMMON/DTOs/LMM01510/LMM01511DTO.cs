@@ -20,11 +20,11 @@ namespace LMM01500COMMON
         public string FileNameExtension { get; set; }
         public Byte[] Data { get; set; }
         public string CINVOICE_TEMPLATE { get; set; } = "";
-        public string CSTORAGE_ID { get; set; }
+        public string CSTORAGE_ID { get; set; } = "";
 
-        public string CBANK_CODE { get; set; }
-        public string CBANK_NAME { get; set; }
-        public string CBANK_ACCOUNT { get; set; }
+        public string CBANK_CODE { get; set; } = "";
+        public string CBANK_NAME { get; set; } = "";
+        public string CBANK_ACCOUNT { get; set; } = "";
 
         public string CUPDATE_BY { get; set; } = "";
         public DateTime DUPDATE_DATE { get; set; }

@@ -221,11 +221,11 @@
                     <R_ItemLayout col="2">
                         <R_ComboBox Data="@_General_viewModel.WithholdingTaxList"
                                     R_ConductorSource="@_UtilityCharges_conductorRef"
-                                    Value="_General_viewModel.Data.CWITHHOLDING_TAX_TYPE"
+                                    @bind-Value="_General_viewModel.Data.CWITHHOLDING_TAX_TYPE"
                                     PopupMaxHeight="140px"
                                     ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                                     TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@WithholdingEnable"
-                                    ValueChanged="@((string value) => WithholdingTaxType_OnChange(value))">
+                                    >
                         </R_ComboBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
@@ -235,11 +235,14 @@
                         <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_ID"
                                    R_ConductorSource="@_UtilityCharges_conductorRef"
                                    OnLostFocus="@WitholdTaxID_OnLostFocus"
-                                   Enabled="@WithholdingLookupEnable">
+                                   Enabled="@(_General_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
                         </R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
-                        <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup" Enabled="@WithholdingLookupEnable">...</R_Lookup>
+                        <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup"
+                                  Enabled="@(_General_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
+                            ...
+                        </R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_NAME"
@@ -291,9 +294,9 @@
 
                 <R_StackLayout Row>
                     <R_ItemLayout Style="width: 10px">
-                        <R_CheckBox Value="@_General_viewModel.Accrual"
+                        <R_CheckBox @bind-Value="@_General_viewModel.Data.LACCRUAL"
                                     R_ConductorSource="@_UtilityCharges_conductorRef"
-                                    R_EnableEdit R_EnableAdd ValueChanged="@((bool value) => AccuralJournal_OnChanged(value))">
+                                    Enabled="false">
                         </R_CheckBox>
                         </R_ItemLayout>
                         <R_ItemLayout col="3">
@@ -311,7 +314,8 @@
                                     PopupMaxHeight="140px"
                                     @bind-Value="_General_viewModel.Data.CACCRUAL_METHOD"
                                     ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
-                                    TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@_accrualEnable">
+                                    TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" 
+                                    Enabled="@(_General_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LACCRUAL)">
                         </R_ComboBox>
                         </R_ItemLayout>
                         </R_StackLayout>
@@ -362,6 +366,8 @@
              R_CheckAdd="@UtilityCharges_CheckAdd"
              R_ServiceSave="@UtilityCharges_ServiceSave"
              R_AfterSave="@UtilityCharges_AfterSave"
+             R_DisableDeleteConfirmation
+             R_BeforeDelete="@UtilityCharges_BeforeDelete"
              R_ServiceDelete="@UtilityCharges_ServiceDelete"
              R_Display="@UtilityCharges_Display"
              R_SetHasData="@UtilityCharges_SetHasData"
@@ -370,6 +376,7 @@
              R_BeforeCancel="@UtilityCharges_BeforeCancel"
              R_Validation="@UtilityCharges_Validation"
              R_SetOther="@Grid_R_SetOther"
-             R_AfterAdd="@UtilityCharges_AfterAdd">
+             R_AfterAdd="@UtilityCharges_AfterAdd"
+             >
 </R_Conductor>
   

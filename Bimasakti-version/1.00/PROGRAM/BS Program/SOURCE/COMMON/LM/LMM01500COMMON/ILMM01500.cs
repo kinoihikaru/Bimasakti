@@ -12,6 +12,8 @@ namespace LMM01500COMMON
         LMM01500SingleResult<LMM01500DTO> LMM01500ActiveInactive(LMM01500DTO poParam);
 
         IAsyncEnumerable<LMM01502DTO> LMM01500LookupBank();
+
+        LMM01500SingleResult<bool> CheckDataTabTemplateBank(LMM01500DTO poParam);
     }
 
 }

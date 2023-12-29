@@ -40,7 +40,7 @@ namespace LMM01500MODEL
             {
                 bool lCancel;
 
-                lCancel = string.IsNullOrEmpty(poParam.CINVOICE_TEMPLATE);
+                lCancel = string.IsNullOrEmpty(poParam.FileName);
 
                 if (lCancel)
                 {

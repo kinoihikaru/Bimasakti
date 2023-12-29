@@ -289,7 +289,7 @@
     <value>Next Month</value>
   </data>
   <data name="_NotifByDeptAlert" xml:space="preserve">
-    <value>Aler</value>
+    <value>By Department Flag value change will deleted all template on tab – Template and Bank Account, do you want to processed?</value>
   </data>
   <data name="_OkBtn" xml:space="preserve">
     <value>OK</value>

@@ -223,5 +223,31 @@ namespace LMM01000SERVICE
 
             return loRtn;
         }
+
+        [HttpPost]
+        public LMM01000Record<LMM01000BeforeDeleteDTO> ValidateBeforeDelete(LMM01000DTO poParam)
+        {
+            R_Exception loException = new R_Exception();
+            _LMM01000logger.LogInfo("Start ValidateBeforeDelete");
+            LMM01000Record<LMM01000BeforeDeleteDTO> loRtn = new LMM01000Record<LMM01000BeforeDeleteDTO>();
+
+            try
+            {
+                LMM01000Cls loCls = new LMM01000Cls();
+
+                _LMM01000logger.LogInfo("Set Param ValidateBeforeDelete");
+                loRtn.Data =  loCls.ValidateBeforeDelete(poParam);
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+                _LMM01000logger.LogError(loException);
+            }
+
+            loException.ThrowExceptionIfErrors();
+            _LMM01000logger.LogInfo("End ValidateBeforeDelete");
+
+            return loRtn;
+        }
     }
 }

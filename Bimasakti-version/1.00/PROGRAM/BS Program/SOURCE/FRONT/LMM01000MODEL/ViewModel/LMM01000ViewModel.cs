@@ -7,6 +7,7 @@ using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace LMM01000MODEL
@@ -17,7 +18,7 @@ namespace LMM01000MODEL
         private LMM01000UniversalModel _LMM01000UniversalModel = new LMM01000UniversalModel();
 
         public ObservableCollection<LMM01000UniversalDTO> ChargesTypeGrid { get; set; } = new ObservableCollection<LMM01000UniversalDTO>();
-        public ObservableCollection<LMM01002DTO> ChargesUtilityGrid { get; set; } = new ObservableCollection<LMM01002DTO>();
+        public ObservableCollection<LMM01000DTO> ChargesUtilityGrid { get; set; } = new ObservableCollection<LMM01000DTO>();
         public LMM01000DTO UtilityCharges { get; set; } = new LMM01000DTO();
 
         //List Data
@@ -77,8 +78,9 @@ namespace LMM01000MODEL
             {
                 poParam.CPROPERTY_ID = PropertyValueContext;
                 var loResult = await _LMM01000Model.GetChargesUtilityListAsync(poParam);
+                var loData = R_FrontUtility.ConvertCollectionToCollection<LMM01000DTO>(loResult);
 
-                ChargesUtilityGrid = new ObservableCollection<LMM01002DTO>(loResult);
+                ChargesUtilityGrid = new ObservableCollection<LMM01000DTO>(loData);
             }
             catch (Exception ex)
             {
@@ -311,6 +313,25 @@ namespace LMM01000MODEL
             return loRtn;
         }
 
+        public async Task<LMM01000BeforeDeleteDTO> ValidateBeforeDelete(LMM01000DTO poParam)
+        {
+            R_Exception loException = new R_Exception();
+            LMM01000BeforeDeleteDTO loRtn = null;
+
+            try
+            {
+                var loResult = await _LMM01000Model.ValidateBeforeDeleteAsync(poParam);
+
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+
+            return loRtn;
+        }
     }
 
     public class RadioButton

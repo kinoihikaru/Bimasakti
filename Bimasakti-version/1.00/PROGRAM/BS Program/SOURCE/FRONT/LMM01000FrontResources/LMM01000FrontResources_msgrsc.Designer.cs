@@ -538,6 +538,24 @@ namespace LMM01000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete this record will deleted all rate for this charge, do you want to processed?.
+        /// </summary>
+        internal static string _NotifBeforeDelete {
+            get {
+                return ResourceManager.GetString("_NotifBeforeDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this record?.
+        /// </summary>
+        internal static string _NotifBeforeDeleteDefault {
+            get {
+                return ResourceManager.GetString("_NotifBeforeDeleteDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure to disabled Accrual Journal?.
         /// </summary>
         internal static string _NotifDisableAccrualMethod {

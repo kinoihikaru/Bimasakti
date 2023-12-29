@@ -13,6 +13,7 @@ namespace LMM01500COMMON
         public string CUSER_ID { get; set; }
         public string CACTION { get; set; }
         public bool LTabEnalbleDept { get; set; }
+        public bool DeleteAllTabDept { get; set; } = false;
 
         // + result
         public string CINVGRP_NAME { get; set; }
@@ -26,7 +27,7 @@ namespace LMM01500COMMON
         public string FileNameExtension { get; set; }
         public Byte[] Data { get; set; }
         public string CINVOICE_TEMPLATE { get; set; } = "";
-        public string CSTORAGE_ID { get; set; }
+        public string CSTORAGE_ID { get; set; } = "";
 
 
         public string CINVOICE_GROUP_MODE { get; set; } = "";

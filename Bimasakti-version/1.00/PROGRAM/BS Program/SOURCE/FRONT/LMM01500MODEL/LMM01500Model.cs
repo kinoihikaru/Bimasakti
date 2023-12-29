@@ -24,6 +24,36 @@ namespace LMM01500MODEL
         {
         }
 
+        public LMM01500SingleResult<bool> CheckDataTabTemplateBank(LMM01500DTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<bool> CheckDataTabTemplateBankAsync(LMM01500DTO poParam)
+        {
+            var loEx = new R_Exception();
+            bool llRtn = false;
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempRtn = await R_HTTPClientWrapper.R_APIRequestObject<LMM01500SingleResult<bool>, LMM01500DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(ILMM01500.CheckDataTabTemplateBank),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+                llRtn = loTempRtn.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+            return llRtn;
+        }
         public IAsyncEnumerable<LMM01501DTO> GetInvoiceGrpList()
         {
             throw new NotImplementedException();
@@ -95,13 +125,12 @@ namespace LMM01500MODEL
         public async Task LMM01500ActiveInactiveAsync(LMM01500DTO poParam)
         {
             var loEx = new R_Exception();
-            LMM01500SingleResult<LMM01500DTO> loRtn = new LMM01500SingleResult<LMM01500DTO>();
 
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
 
-                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<LMM01500SingleResult<LMM01500DTO>, LMM01500DTO>(
+                var loRtn = await R_HTTPClientWrapper.R_APIRequestObject<LMM01500SingleResult<LMM01500DTO>, LMM01500DTO>(
                     _RequestServiceEndPoint,
                     nameof(ILMM01500.LMM01500ActiveInactive),
                     poParam,

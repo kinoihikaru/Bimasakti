@@ -122,5 +122,39 @@ namespace LMM01000MODEL
         EndBlock:
             loEx.ThrowExceptionIfErrors();
         }
+
+        public LMM01000Record<LMM01000BeforeDeleteDTO> ValidateBeforeDelete(LMM01000DTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<LMM01000BeforeDeleteDTO> ValidateBeforeDeleteAsync(LMM01000DTO poParam)
+        {
+            var loEx = new R_Exception();
+            LMM01000BeforeDeleteDTO loRtn = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTmpRtn = await R_HTTPClientWrapper.R_APIRequestObject<LMM01000Record<LMM01000BeforeDeleteDTO>, LMM01000DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(ILMM01000.ValidateBeforeDelete),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loRtn = loTmpRtn.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
     }
 }

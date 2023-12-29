@@ -279,6 +279,12 @@
   <data name="_NewCharges" xml:space="preserve">
     <value>New Charges Id</value>
   </data>
+  <data name="_NotifBeforeDelete" xml:space="preserve">
+    <value>Delete this record will deleted all rate for this charge, do you want to processed?</value>
+  </data>
+  <data name="_NotifBeforeDeleteDefault" xml:space="preserve">
+    <value>Are you sure you want to delete this record?</value>
+  </data>
   <data name="_NotifDisableAccrualMethod" xml:space="preserve">
     <value>Are you sure to disabled Accrual Journal?</value>
   </data>

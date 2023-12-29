@@ -23,7 +23,6 @@ namespace LMM01500MODEL
             base(pcHttpClientName, pcRequestServiceEndPoint, DEFAULT_MODULE, plSendWithContext, plSendWithToken)
         {
         }
-
         public IAsyncEnumerable<LMM01510DTO> LMM01510TemplateAndBankAccountList()
         {
             throw new NotImplementedException();
@@ -32,7 +31,7 @@ namespace LMM01500MODEL
         public async Task<List<LMM01510DTO>> LMM01510TemplateAndBankAccountListAsync(string poPropertyId, string poInvGrpId)
         {
             var loEx = new R_Exception();
-            List<LMM01510DTO> loResult = new List<LMM01510DTO>();
+            List<LMM01510DTO> loResult = null;
 
             try
             {

@@ -25,7 +25,7 @@ namespace LMM01000FRONT
         private LMM01000UniversalViewModel _Universal_viewModel = new LMM01000UniversalViewModel();
 
         private R_Grid<LMM01000UniversalDTO> _General_gridRef;
-        private R_Grid<LMM01002DTO> _UtilityCharges_gridRef;
+        private R_Grid<LMM01000DTO> _UtilityCharges_gridRef;
 
         private R_Conductor _General_conductorRef;
         private R_Conductor _UtilityCharges_conductorRef;
@@ -299,7 +299,6 @@ namespace LMM01000FRONT
             loData.CUTILITY_JRNGRP_CODE = loTempResult.CJRNGRP_CODE;
             loData.CUTILITY_JRNGRP_NAME = loTempResult.CJRNGRP_NAME;
             loData.LACCRUAL = loTempResult.LACCRUAL;
-            _accrualEnable = loTempResult.LACCRUAL;
             _General_viewModel.Accrual = loTempResult.LACCRUAL;
         }
 
@@ -351,40 +350,22 @@ namespace LMM01000FRONT
         }
 
         private bool WithholdingEnable = false;
-        private bool WithholdingLookupEnable = false;
         private void WithholdingTax_OnChange(bool poParam)
         {
             _General_viewModel.Data.LWITHHOLDING_TAX = poParam;
 
-            var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
             WithholdingEnable = (bool)poParam;
 
             if (!(bool)poParam)
             {
-                loData.CWITHHOLDING_TAX_TYPE = "";
-                loData.CWITHHOLDING_TAX_ID = "";
-                loData.CWITHHOLDING_TAX_NAME = "";
+                _General_viewModel.Data.CWITHHOLDING_TAX_TYPE = "";
+                _General_viewModel.Data.CWITHHOLDING_TAX_ID = "";
+                _General_viewModel.Data.CWITHHOLDING_TAX_NAME = "";
             }
         }
         private void WithholdingTaxType_OnChange(string poParam)
         {
             _General_viewModel.Data.CWITHHOLDING_TAX_TYPE = poParam;
-            WithholdingLookupEnable = !string.IsNullOrWhiteSpace(poParam);
-        }
-
-        private bool _accrualEnable = false;
-        private void AccuralJournal_OnChanged(bool poParam)
-        {
-            var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
-
-            _General_viewModel.Accrual = poParam;
-            _accrualEnable = poParam;
-
-            if (!poParam)
-            {
-                loData.CACCRUAL_METHOD = "";
-            }
-
         }
 
         private bool _EnableAddEdit = false;
@@ -517,6 +498,31 @@ namespace LMM01000FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
+        private async Task UtilityCharges_BeforeDelete(R_BeforeDeleteEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            R_eMessageBoxResult loValidate;
+            try
+            {
+                var loCheckData = await _General_viewModel.ValidateBeforeDelete((LMM01000DTO)eventArgs.Data);
+                if (loCheckData.LHAS_DETAIL)
+                {
+                    loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifBeforeDelete"), R_eMessageBoxButtonType.YesNo);
+                    eventArgs.Cancel = loValidate == R_eMessageBoxResult.No;
+                }
+                else
+                {
+                    loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifBeforeDeleteDefault"), R_eMessageBoxButtonType.YesNo);
+                    eventArgs.Cancel = loValidate == R_eMessageBoxResult.No;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
         private async Task UtilityCharges_ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -597,7 +603,7 @@ namespace LMM01000FRONT
                 if (result == true)
                 {
                     var loActiveData = await _General_viewModel.ActiveInactiveProcessAsync(loGetData);
-                    await _General_conductorRef.R_SetCurrentData(loActiveData);
+                    await _UtilityCharges_conductorRef.R_SetCurrentData(loActiveData);
                 }
             }
             catch (Exception ex)
@@ -741,8 +747,6 @@ namespace LMM01000FRONT
             TaxExemptionCodeEnable = false;
             OtherTaxLookupEnable = false;
             WithholdingEnable = false;
-            _accrualEnable = false;
-            WithholdingLookupEnable = false;
         }
 
         private void UtilityCharges_AfterSave(R_AfterSaveEventArgs eventArgs)
@@ -751,8 +755,6 @@ namespace LMM01000FRONT
             TaxExemptionCodeEnable = false;
             OtherTaxLookupEnable = false;
             WithholdingEnable = false;
-            WithholdingLookupEnable = false;
-            _accrualEnable = false; 
         }
 
     }

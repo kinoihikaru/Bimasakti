@@ -77,7 +77,7 @@ namespace LMM01500FRONT
                 if (_Genereal_conductorRef.R_ConductorMode == R_eConductorMode.Normal)
                 {
                     var loData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
-                    loData.LTabEnalbleDept = TabEnalbleDept;
+                    loData.LTabEnalbleDept = TabEnalbleDept && _Genereal_viewModel.InvoinceGroupGrid.Count > 0;
                     if (_TabGeneral.ActiveTab.Id == "Pinalty")
                     {
                         await _tabPagePinalty.InvokeRefreshTabPageAsync(loData);
@@ -289,8 +289,11 @@ namespace LMM01500FRONT
             {
                 var loParam = (LMM01500DTO)eventArgs.Data;
 
+                _pageSupplierOnCRUDmode = eventArgs.ConductorMode != R_eConductorMode.Normal;
+
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
+                    
 
                     if (loParam.LACTIVE != true)
                     {
@@ -362,7 +365,6 @@ namespace LMM01500FRONT
                 var loData = (LMM01500DTO)eventArgs.Data;
                 await _Genereal_viewModel.ValidationInvoiceGrp(loData);
 
-
                 if (eventArgs.ConductorMode == R_eConductorMode.Add)
                 {
                     if (loData.LACTIVE)
@@ -406,14 +408,13 @@ namespace LMM01500FRONT
                 }
                 else if (eventArgs.ConductorMode == R_eConductorMode.Edit)
                 {
-                    if (_Genereal_viewModel.InvoiceGroup.LBY_DEPARTMENT)
+                    var loChekcData = await _Genereal_viewModel.CheckDataTab2(loData);
+                    if ((_Genereal_viewModel.OldByDeptValue && !loData.LBY_DEPARTMENT) && loChekcData)
                     {
-                        if (!loData.LBY_DEPARTMENT)
-                        {
-                            var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifByDeptAlert"), R_eMessageBoxButtonType.YesNo);
-                            eventArgs.Cancel = loValidate == R_eMessageBoxResult.No;
-                            return;
-                        }
+                        var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifByDeptAlert"), R_eMessageBoxButtonType.YesNo);
+                        loData.DeleteAllTabDept = loValidate == R_eMessageBoxResult.Yes;
+                        eventArgs.Cancel = loValidate == R_eMessageBoxResult.No;
+                        return;
                     }
                 }
             }
@@ -427,12 +428,6 @@ namespace LMM01500FRONT
 
         private bool R_EnableTabHasData;
         private bool TabEnalbleDept;
-        private void R_SetHasData(R_SetEventArgs eventArgs)
-        {
-            
-            TabEnalbleDept = eventArgs.Enable && _Genereal_viewModel.TabDept;
-            R_EnableTabHasData = eventArgs.Enable;
-        }
 
         private bool InvGrpModeEnable = false;
         private void InvDue_OnChanged(string poParam)
@@ -464,19 +459,18 @@ namespace LMM01500FRONT
 
             ByDeptEnalble = !poParam;
 
-            var loData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
             if (poParam)
             {
-                loData.Data = null;
-                loData.FileName = null;
-                loData.FileExtension = null;
+                _Genereal_viewModel.Data.Data = null;
+                _Genereal_viewModel.Data.FileName = null;
+                _Genereal_viewModel.Data.FileExtension = null;
 
-                loData.CDEPT_NAME = "";
-                loData.CDEPT_CODE = "";
-                loData.CBANK_ACCOUNT = "";
-                loData.CBANK_CODE = "";
-                loData.CCB_NAME = "";
-                loData.FileNameExtension = "";
+                _Genereal_viewModel.Data.CDEPT_NAME = "";
+                _Genereal_viewModel.Data.CDEPT_CODE = "";
+                _Genereal_viewModel.Data.CBANK_ACCOUNT = "";
+                _Genereal_viewModel.Data.CBANK_CODE = "";
+                _Genereal_viewModel.Data.CCB_NAME = "";
+                _Genereal_viewModel.Data.FileNameExtension = "";
             }
         }
 
@@ -506,9 +500,6 @@ namespace LMM01500FRONT
             IAfterLimitEnable = false;
             ByDeptEnalble = false;
             GeneralButtonEnable = false;
-
-            _Genereal_gridRef.CurrentSelectedData.CINVGRP_CODE_NAME = string.Format("{0} - {1}", _Genereal_gridRef.CurrentSelectedData.CINVGRP_CODE, _Genereal_gridRef.CurrentSelectedData.CINVGRP_NAME);
-
         }
 
         private void General_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
@@ -521,11 +512,6 @@ namespace LMM01500FRONT
             IAfterLimitEnable = false;
             ByDeptEnalble = false;
             GeneralButtonEnable = false;
-        }
-
-        private void General_SetOther(R_SetEventArgs eventArgs)
-        {
-            _pageSupplierOnCRUDmode = !eventArgs.Enable;
         }
         private void R_ConvertToGridEntity(R_ConvertToGridEntityEventArgs eventArgs)
         {
@@ -543,15 +529,14 @@ namespace LMM01500FRONT
             try
             {
                 var loData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
-                string loFileName = _Genereal_viewModel.PropertyValueContext.Trim() + loData.CINVGRP_CODE;
-                string loExtensionFile = Path.GetExtension(eventArgs.File.Name);
+                
                 // Set Data
+                loData.FileNameExtension = eventArgs.File.Name;
                 var loMS = new MemoryStream();
                 await eventArgs.File.OpenReadStream().CopyToAsync(loMS);
                 loData.Data = loMS.ToArray();
-                loData.FileExtension = loExtensionFile;
-                loData.FileName = loFileName;
-                loData.FileNameExtension = eventArgs.File.Name;
+                loData.FileExtension = Path.GetExtension(eventArgs.File.Name);
+                loData.FileName = Path.GetFileNameWithoutExtension(eventArgs.File.Name);
             }
             catch (Exception ex)
             {
