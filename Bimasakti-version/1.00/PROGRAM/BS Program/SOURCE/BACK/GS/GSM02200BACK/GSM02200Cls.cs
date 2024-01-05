@@ -10,6 +10,9 @@ namespace GSM02200BACK
 {
     public class GSM02200Cls : R_BusinessObject<GSM02200DTO>, R_IBatchProcess
     {
+        RSP_GS_MAINTAIN_GEOGRAPHYResources.Resources_Dummy_Class _loRSP = new RSP_GS_MAINTAIN_GEOGRAPHYResources.Resources_Dummy_Class();
+        RSP_GS_UPLOAD_GEOGRAPHYResources.Resources_Dummy_Class _loRSP_Upload = new RSP_GS_UPLOAD_GEOGRAPHYResources.Resources_Dummy_Class();
+
         private LoggerGSM02200 _Logger;
         public GSM02200Cls()
         {

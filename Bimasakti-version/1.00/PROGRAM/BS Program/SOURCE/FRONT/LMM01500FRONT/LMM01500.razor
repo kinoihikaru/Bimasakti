@@ -100,7 +100,7 @@
                             </R_ItemLayout>
                         </R_StackLayout>
 
-                        <R_GroupBox Title="@(_localizer["_InvGrpMode"])" Enabled="@InvGrpModeEnable">
+                            <R_GroupBox Title="@(_localizer["_InvGrpMode"])" Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_DUE_MODE == "02")">
                             <R_StackLayout Row>
                                 <R_ItemLayout>
                                     <R_StackLayout Style="width: 14rem"></R_StackLayout>
@@ -110,7 +110,7 @@
                                                   TextField="@nameof(RadioButton.Text)"
                                                   R_ConductorSource="@_Genereal_conductorRef"
                                                   Layout="@R_eRadioGroupLayout.Vertical"
-                                                  Enabled="@InvGrpModeEnable" ValueChanged="@((string value) => InvGrp_OnChanged(value))">
+                                                  Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_DUE_MODE == "02")" ValueChanged="@((string value) => InvGrp_OnChanged(value))">
                                      </R_RadioGroup>
                                 </R_ItemLayout>   
                                 <R_ItemLayout col="10">
@@ -118,7 +118,7 @@
                                         <R_ItemLayout col="2">
                                             <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IDUE_DAYS"
                                                               R_ConductorSource="@_Genereal_conductorRef"
-                                                              Arrows="false" Enabled="@IDueDaysEnable">
+                                                              Arrows="false" Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_GROUP_MODE == "01")">
                                             </R_NumericTextBox>
                                         </R_ItemLayout>
                                     </R_StackLayout>
@@ -126,7 +126,7 @@
                                         <R_ItemLayout col="2">
                                             <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IFIXED_DUE_DATE"
                                                               R_ConductorSource="@_Genereal_conductorRef"
-                                                              Arrows="false" Enabled="@IFixDueDateEnable"></R_NumericTextBox>
+                                                              Arrows="false" Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_GROUP_MODE == "02")"></R_NumericTextBox>
                                         </R_ItemLayout>
                                         
                                     </R_StackLayout>
@@ -137,7 +137,7 @@
                                         <R_ItemLayout col="1">
                                             <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.ILIMIT_INVOICE_DATE"
                                                               R_ConductorSource="@_Genereal_conductorRef"
-                                                              Arrows="false" Enabled="@ILimitDueDateEnable"></R_NumericTextBox>
+                                                              Arrows="false" Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_GROUP_MODE == "03")"></R_NumericTextBox>
                                         </R_ItemLayout>
                                         <R_ItemLayout col="3">
                                             <R_Label >@(_localizer["_LessThanEqualLimit"])*</R_Label>
@@ -145,7 +145,7 @@
                                         <R_ItemLayout col="1">
                                             <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IBEFORE_LIMIT_INVOICE_DATE"
                                                               R_ConductorSource="@_Genereal_conductorRef"
-                                                              Arrows="false" Enabled="@IBeforeLimitEnable"></R_NumericTextBox>
+                                                              Arrows="false" Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_GROUP_MODE == "03")"></R_NumericTextBox>
                                         </R_ItemLayout>
                                         <R_ItemLayout col="2">
                                             <R_Label>@(_localizer["_AfterLimit"])*</R_Label>
@@ -153,7 +153,7 @@
                                         <R_ItemLayout col="1">
                                             <R_NumericTextBox @bind-Value="@_Genereal_viewModel.Data.IAFTER_LIMIT_INVOICE_DATE"
                                                               R_ConductorSource="@_Genereal_conductorRef"
-                                                              Arrows="false" Enabled="@IAfterLimitEnable"></R_NumericTextBox>
+                                                              Arrows="false" Enabled="@(_Genereal_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.CINVOICE_GROUP_MODE == "03")"></R_NumericTextBox>
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -186,8 +186,9 @@
 
                         <R_StackLayout Row="true">
                             <R_ItemLayout col="2">
-                                <R_CheckBox @bind-Value="@_Genereal_viewModel.Data.LUSE_STAMP"
+                                <R_CheckBox Value="@_Genereal_viewModel.Data.LUSE_STAMP"
                                             R_ConductorSource="@_Genereal_conductorRef"
+                                            ValueChanged="@((bool value) => UseStamp_OnChange(value))"
                                             R_EnableAdd="true" R_EnableEdit="true"></R_CheckBox>
                                 <R_Label>@(_localizer["_UseStamp"])</R_Label>
                             </R_ItemLayout>
@@ -369,25 +370,11 @@
                         <R_SaveButton R_Conductor="@_Genereal_conductorRef"></R_SaveButton>
                     </R_ItemLayout>
                 </R_StackLayout>
-                <R_Conductor @ref="@_Genereal_conductorRef"
-                             R_ViewModel="@_Genereal_viewModel"
-                             R_IsHeader="true"
-                             R_ServiceGetRecord="@R_ServiceGetRecord"
-                             R_ServiceSave="@R_ServiceSave"
-                             R_ServiceDelete="@R_ServiceDelete"
-                             R_Validation="@R_Validation"
-                             R_AfterAdd="@R_AfterAdd"
-                             R_Display="@R_Display"
-                             R_CheckAdd="@R_CheckAdd"
-                             R_AfterSave="@General_AfterSave"
-                             R_BeforeCancel="@General_BeforeCancel"
-                             R_ConvertToGridEntity="@R_ConvertToGridEntity"
-                             >
-                </R_Conductor>
+                
 
             </R_TabStripTab>
 
-            <R_TabStripTab Title="@_localizer["_TemplateAndBankAccount"]" Id="BankAccount" Enabled="@TabEnalbleDept">
+            <R_TabStripTab Title="@_localizer["_TemplateAndBankAccount"]" Id="BankAccount" Enabled="@(_Genereal_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _Genereal_viewModel.Data.LBY_DEPARTMENT)">
                 <R_TabPage @ref="@_tabPageBankAccount" R_Before_Open_TabPage="@_BankAccount_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
             </R_TabStripTab>
 
@@ -405,3 +392,17 @@
     
 </R_TabStrip>
 
+<R_Conductor @ref="@_Genereal_conductorRef"
+             R_ViewModel="@_Genereal_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@R_ServiceGetRecord"
+             R_ServiceSave="@R_ServiceSave"
+             R_ServiceDelete="@R_ServiceDelete"
+             R_Validation="@R_Validation"
+             R_AfterAdd="@R_AfterAdd"
+             R_Display="@R_Display"
+             R_CheckAdd="@R_CheckAdd"
+             R_AfterSave="@General_AfterSave"
+             R_BeforeCancel="@General_BeforeCancel"
+             R_ConvertToGridEntity="@R_ConvertToGridEntity">
+</R_Conductor>

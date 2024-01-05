@@ -14,8 +14,10 @@ namespace LMM06500BACK
 {
     public class LMM06500Cls : R_BusinessObject<LMM06500DTO>
     {
-        private LoggerLMM06500 _Logger;
+        RSP_LM_MAINTAIN_STAFFResources.Resources_Dummy_Class loRsp = new RSP_LM_MAINTAIN_STAFFResources.Resources_Dummy_Class();
+        RSP_LM_UPLOAD_STAFFResources.Resources_Dummy_Class loRspUpload = new RSP_LM_UPLOAD_STAFFResources.Resources_Dummy_Class();
 
+        private LoggerLMM06500 _Logger;
         public LMM06500Cls()
         {
             _Logger = LoggerLMM06500.R_GetInstanceLogger();

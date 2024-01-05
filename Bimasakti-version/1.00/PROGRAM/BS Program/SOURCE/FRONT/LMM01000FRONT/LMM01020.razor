@@ -123,7 +123,7 @@
             <R_ItemLayout col="4">
                 <R_NumericTextBox @bind-Value="@_viewModel.Data.NUSAGE_MIN_CHARGE_AMT"
                                   R_ConductorSource="@_RateWG_conductorRef"
-                                  Arrows="false" Enabled="@_viewModel.Data.LUSAGE_MIN_CHARGE">
+                                  Arrows="false" Enabled="@(_viewModel.Data.LUSAGE_MIN_CHARGE && _RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)">
                 </R_NumericTextBox>
             </R_ItemLayout>
         </R_StackLayout>
@@ -166,7 +166,7 @@
                                 <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
                                                   R_ConductorSource="@_RateWG_conductorRef"
                                                   Min="0" Max="100"
-                                                  Arrows="false" Enabled="@AdminFeePctEnable">
+                                                  Arrows="false" Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CADMIN_FEE == "01")">
                                 </R_NumericTextBox>
                             </R_ItemLayout>
                         </R_StackLayout>
@@ -175,7 +175,7 @@
                                 <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
                                                   R_ConductorSource="@_RateWG_conductorRef"
                                                   Min="0" Max="100"
-                                                  Arrows="false" Enabled="@AdminFeeAmtEnable">
+                                                  Arrows="false" Enabled="@(_RateWG_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CADMIN_FEE == "02")">
                                 </R_NumericTextBox>
                             </R_ItemLayout>
                             <R_ItemLayout col="1">

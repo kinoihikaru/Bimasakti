@@ -32,6 +32,7 @@
 		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_LMSERVICES\Lookup_LMSERVICES.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01000SERVICE\LMM01000SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\LMM01500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM02500SERVICE\LMM02500SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM03500SERVICE\LMM03500SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM04000SERVICE\LMM04000SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM06500SERVICE\LMM06500SERVICE.csproj" />

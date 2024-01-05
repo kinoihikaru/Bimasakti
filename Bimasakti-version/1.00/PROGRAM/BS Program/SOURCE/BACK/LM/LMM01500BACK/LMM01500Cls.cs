@@ -16,6 +16,7 @@ namespace LMM01500BACK
 {
     public class LMM01500Cls : R_BusinessObject<LMM01500DTO>
     {
+        RSP_LM_MAINTAIN_INVOICE_GRPResources.Resources_Dummy_Class _loRsp = new RSP_LM_MAINTAIN_INVOICE_GRPResources.Resources_Dummy_Class();
         private LoggerLMM01500 _Logger;
 
         public LMM01500Cls()

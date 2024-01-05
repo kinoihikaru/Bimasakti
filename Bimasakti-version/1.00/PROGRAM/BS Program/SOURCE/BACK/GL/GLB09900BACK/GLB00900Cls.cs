@@ -9,6 +9,8 @@ namespace GLB09900BACK
 {
     public class GLB09900Cls
     {
+        RSP_GL_CLOSE_PERIODResources.Resources_Dummy_Class _loRsp = new RSP_GL_CLOSE_PERIODResources.Resources_Dummy_Class();
+
         private LoggerGLB09900 _Logger;
         public GLB09900Cls()
         {

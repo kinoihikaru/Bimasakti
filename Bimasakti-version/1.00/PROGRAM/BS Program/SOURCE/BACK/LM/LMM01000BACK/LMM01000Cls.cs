@@ -14,6 +14,11 @@ namespace LMM01000BACK
 {
     public class LMM01000Cls : R_BusinessObject<LMM01000DTO>
     {
+        RSP_LM_MAINTAIN_RATE_ECResources.Resources_Dummy_Class _loRSP_EC = new RSP_LM_MAINTAIN_RATE_ECResources.Resources_Dummy_Class();
+        RSP_LM_MAINTAIN_RATE_OTResources.Resources_Dummy_Class _loRSP_OT = new RSP_LM_MAINTAIN_RATE_OTResources.Resources_Dummy_Class();
+        RSP_LM_MAINTAIN_RATE_WGResources.Resources_Dummy_Class _loRSP_WG = new RSP_LM_MAINTAIN_RATE_WGResources.Resources_Dummy_Class();
+        RSP_LM_MAINTAIN_UTILITY_CHARGESResources.Resources_Dummy_Class _loRSP = new RSP_LM_MAINTAIN_UTILITY_CHARGESResources.Resources_Dummy_Class();
+
         private LoggerLMM01000 _LMM01000logger;
         private LoggerLMM01000Print _LMM01000Printlogger;
 

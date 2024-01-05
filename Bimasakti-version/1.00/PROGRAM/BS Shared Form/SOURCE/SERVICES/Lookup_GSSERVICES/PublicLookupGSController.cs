@@ -17,11 +17,11 @@ namespace Lookup_GSSERVICES
 {
     [ApiController]
     [Route("api/[controller]/[action]"), AllowAnonymous]
-    public class PublicLookupController : ControllerBase, IPublicLookup
+    public class PublicLookupGSController : ControllerBase, IPublicLookup
     {
         private LoggerPublicLookup _Logger;
 
-        public PublicLookupController(ILogger<LoggerPublicLookup> logger)
+        public PublicLookupGSController(ILogger<LoggerPublicLookup> logger)
         {
             //Initial and Get Logger
             LoggerPublicLookup.R_InitializeLogger(logger);

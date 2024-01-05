@@ -435,10 +435,15 @@ namespace LMM01500FRONT
             _Genereal_viewModel.Data.CINVOICE_DUE_MODE = poParam;
 
             InvGrpModeEnable = poParam.ToString() == "02";
-            if (InvGrpModeEnable == false)
+            if (poParam != "02")
             {
                 _Genereal_viewModel.Data.CINVOICE_GROUP_MODE = "";
                 IDueDaysEnable = false;
+                _Genereal_viewModel.Data.IDUE_DAYS = 0;
+                _Genereal_viewModel.Data.IFIXED_DUE_DATE = 0;
+                _Genereal_viewModel.Data.ILIMIT_INVOICE_DATE = 0;
+                _Genereal_viewModel.Data.IBEFORE_LIMIT_INVOICE_DATE = 0;
+                _Genereal_viewModel.Data.IAFTER_LIMIT_INVOICE_DATE = 0;
             }
             else
             {
@@ -450,6 +455,15 @@ namespace LMM01500FRONT
             IBeforeLimitEnable = false;
             IAfterLimitEnable = false;
             IFixDueDateEnable = false;
+        }
+        private void UseStamp_OnChange(bool poParam)
+        {
+            _Genereal_viewModel.Data.LUSE_STAMP = poParam;
+            if (!poParam)
+            {
+                _Genereal_viewModel.Data.CSTAMP_ADD_ID = "";
+                _Genereal_viewModel.Data.CCHARGES_NAME = "";
+            }
         }
 
         private bool ByDeptEnalble = false;
@@ -488,6 +502,26 @@ namespace LMM01500FRONT
             ILimitDueDateEnable = poParam.ToString() == "03";
             IBeforeLimitEnable = poParam.ToString() == "03";
             IAfterLimitEnable = poParam.ToString() == "03";
+
+            switch (poParam)
+            {
+                case "01":
+                    _Genereal_viewModel.Data.IFIXED_DUE_DATE = 0;
+                    _Genereal_viewModel.Data.ILIMIT_INVOICE_DATE = 0;
+                    _Genereal_viewModel.Data.IBEFORE_LIMIT_INVOICE_DATE = 0;
+                    _Genereal_viewModel.Data.IAFTER_LIMIT_INVOICE_DATE = 0; 
+                    break;
+                case "02":
+                    _Genereal_viewModel.Data.IDUE_DAYS = 0;
+                    _Genereal_viewModel.Data.ILIMIT_INVOICE_DATE = 0;
+                    _Genereal_viewModel.Data.IBEFORE_LIMIT_INVOICE_DATE = 0;
+                    _Genereal_viewModel.Data.IAFTER_LIMIT_INVOICE_DATE = 0;
+                    break;
+                case "03":
+                    _Genereal_viewModel.Data.IDUE_DAYS = 0;
+                    _Genereal_viewModel.Data.IFIXED_DUE_DATE = 0;
+                    break;
+            }
         }
 
         private void General_AfterSave(R_AfterSaveEventArgs eventArgs)

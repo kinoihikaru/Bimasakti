@@ -18,6 +18,7 @@ namespace GSM03000Back
     {
         private LoggerGSM03000 _Gsm03000logger;
         private LoggerGSM03000Print _Gsm03000Printlogger;
+        RSP_GS_MAINTAIN_OTHER_CHARGESResources.Resources_Dummy_Class _loRsp = new RSP_GS_MAINTAIN_OTHER_CHARGESResources.Resources_Dummy_Class();
 
         public GSM03000Cls()
         {

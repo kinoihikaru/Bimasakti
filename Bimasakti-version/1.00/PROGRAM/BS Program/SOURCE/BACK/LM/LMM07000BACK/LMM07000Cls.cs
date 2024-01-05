@@ -9,6 +9,8 @@ namespace LMM07000BACK
 {
     public class LMM07000Cls : R_BusinessObject<LMM07000DTO>
     {
+        RSP_LM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class _loRsp = new RSP_LM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class();
+
         private LoggerLMM07000 _Logger;
         public LMM07000Cls()
         {

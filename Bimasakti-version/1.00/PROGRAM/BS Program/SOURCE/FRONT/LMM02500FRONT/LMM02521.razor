@@ -1,0 +1,80 @@
+﻿@inherits R_Page
+@using LMM02500COMMON;
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>From Tenant Group</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_viewModel.HeaderMove.CFROM_TENANT_GROUP"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_viewModel.HeaderMove.CFROM_TENANT_GROUP_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="2">
+            <R_Label>To Tenant Group</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_DropDownList Data="@_viewModel.TenantGrpComboBox"
+                            Value="@_viewModel.HeaderMove.CTO_TENANT_GROUP"
+                            ValueField="@nameof(LMM02500DTO.CTENANT_GROUP_ID)"
+                            TextField="@nameof(LMM02500DTO.CTENANT_GROUP_ID)"
+                            ValueChanged="@((string value) => ToTenantGrpId(value))"
+                            Enabled="true"
+                           />
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_viewModel.HeaderMove.CTO_TENANT_GROUP_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.TenantMoveGrid"
+                Pageable
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                R_ServiceGetListRecord="@TenantGrp_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridCheckBoxSelectColumn FieldName="@nameof(LMM02500TenantDTO.LSELECTED)"
+                                                                R_EnableAdd
+                                                                R_EnableEdit
+                                                                ShowSelectAllHeader />
+
+                <R_GridTextColumn FieldName="@nameof(LMM02500TenantDTO.CTENANT_ID)"
+                                  HeaderText="Tenant Id"
+                                            R_EnableAdd
+                                            R_EnableEdit />
+
+                <R_GridTextColumn FieldName="@nameof(LMM02500TenantDTO.CTENANT_NAME)"
+                                  HeaderText="Tenant Name"
+                                            R_EnableAdd
+                                            R_EnableEdit />
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+            <R_Button Enabled="_ProsesBtn" OnClick="OnClickProcessButton">
+                Process
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

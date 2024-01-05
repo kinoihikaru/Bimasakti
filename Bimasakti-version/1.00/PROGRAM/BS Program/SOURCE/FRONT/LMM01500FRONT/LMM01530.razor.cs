@@ -50,17 +50,17 @@ namespace LMM01500FRONT
         public async Task RefreshTabPageAsync(object poParam)
         {
             var loParam = R_FrontUtility.ConvertObjectToObject<LMM01530DTO>(poParam);
-            enableAdd = loParam.LTabEnalbleDept;
-            if (loParam.LTabEnalbleDept)
+            if (!string.IsNullOrWhiteSpace(loParam.CINVGRP_CODE))
             {
                 _OtherCharges_viewModel.PropertyValueContext = loParam.CPROPERTY_ID;
                 _OtherCharges_viewModel.InvGrpCode = loParam.CINVGRP_CODE;
                 _OtherCharges_viewModel.InvGrpName = loParam.CINVGRP_NAME;
-
+                enableAdd = true;
                 await _OtherCharges_gridRef.R_RefreshGrid(loParam);
             }
             else
             {
+                enableAdd = false;
                 _OtherCharges_gridRef.DataSource.Clear();
                 _OtherCharges_viewModel.InvGrpCode = "";
                 _OtherCharges_viewModel.InvGrpName = "";

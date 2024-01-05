@@ -14,7 +14,7 @@ namespace Lookup_GSModel
     public class PublicLookupModel : R_BusinessObjectServiceClientBase<GSL00500DTO>, IPublicLookup
     {
         private const string DEFAULT_HTTP = "R_DefaultServiceUrl";
-        private const string DEFAULT_ENDPOINT = "api/PublicLookup";
+        private const string DEFAULT_ENDPOINT = "api/PublicLookupGS";
         private const string DEFAULT_MODULE = "GS";
 
         public PublicLookupModel(

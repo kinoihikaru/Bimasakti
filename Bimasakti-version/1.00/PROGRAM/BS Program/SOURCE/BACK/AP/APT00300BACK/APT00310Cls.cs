@@ -85,7 +85,7 @@ namespace APT00300BACK
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
                 _Logger.LogDebug("EXEC RSP_AP_GET_TRANS_HD {@poParameter}", loDbParam);
 
-                var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
                 loResult = R_Utility.R_ConvertTo<APT00310DTO>(loDataTable).FirstOrDefault();
             }
             catch (Exception ex)

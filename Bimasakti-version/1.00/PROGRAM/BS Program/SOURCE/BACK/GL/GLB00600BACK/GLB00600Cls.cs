@@ -9,6 +9,8 @@ namespace GLB00600BACK
 {
     public class GLB00600Cls
     {
+        RSP_GL_CLOSING_ENTRIESResources.Resources_Dummy_Class _loRsp = new RSP_GL_CLOSING_ENTRIESResources.Resources_Dummy_Class();
+
         private LoggerGLB00600 _Logger;
         public GLB00600Cls()
         {

@@ -254,6 +254,7 @@ namespace LMM01500SERVICE
             return loRtn;
         }
 
+        [HttpPost]
         public LMM01500SingleResult<bool> CheckDataTabTemplateBank(LMM01500DTO poParam)
         {
             R_Exception loException = new R_Exception();

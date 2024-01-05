@@ -139,7 +139,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
                         <R_CheckBox Value="@_General_viewModel.Data.LTAX_EXEMPTION"
-                                    R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@TaxExemptionEnable" ValueChanged="@((bool value) => TaxExemption_OnChnaged(value))">
+                                    R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LTAXABLE)" ValueChanged="@((bool value) => TaxExemption_OnChnaged(value))">
                         </R_CheckBox>
                         <R_Label>@_localizer["_TaxExemp"]</R_Label>
                     </R_ItemLayout>
@@ -151,7 +151,8 @@
                                     @bind-Value="_General_viewModel.Data.CTAX_EXEMPTION_CODE"
                                     PopupMaxHeight="140px"
                                     ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
-                                    TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@TaxExemptionCodeEnable">
+                                    TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
+                                    Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LTAX_EXEMPTION)">
                         </R_ComboBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
@@ -159,7 +160,8 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
                         <R_NumericTextBox @bind-Value="@_General_viewModel.Data.NTAX_EXEMPTION_PCT"
-                                          R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@TaxExemptionCodeEnable" Arrows="false">
+                                          R_ConductorSource="@_UtilityCharges_conductorRef" Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LTAX_EXEMPTION)"
+                                          Arrows="false">
                         </R_NumericTextBox>
                     </R_ItemLayout>
                     <R_ItemLayout Style="width: 5px">
@@ -179,11 +181,12 @@
                         <R_TextBox @bind-Value="@_General_viewModel.Data.COTHER_TAX_ID"
                                    R_ConductorSource="@_UtilityCharges_conductorRef"
                                    OnLostFocus="@OtherTaxID_OnLostFocus"
-                                   Enabled="@OtherTaxLookupEnable">
+                                   Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LOTHER_TAX)">
                         </R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
-                        <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_OtherTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_OtherTax_After_Open_Lookup" Enabled="@OtherTaxLookupEnable">...</R_Lookup>
+                        <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_OtherTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_OtherTax_After_Open_Lookup"
+                                  Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LOTHER_TAX)">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">
                         <R_TextBox @bind-Value="@_General_viewModel.Data.CTAX_OTHER_NAME"
@@ -224,8 +227,7 @@
                                     @bind-Value="_General_viewModel.Data.CWITHHOLDING_TAX_TYPE"
                                     PopupMaxHeight="140px"
                                     ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
-                                    TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@WithholdingEnable"
-                                    >
+                                    TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LWITHHOLDING_TAX)">
                         </R_ComboBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="1">
@@ -235,12 +237,12 @@
                         <R_TextBox @bind-Value="@_General_viewModel.Data.CWITHHOLDING_TAX_ID"
                                    R_ConductorSource="@_UtilityCharges_conductorRef"
                                    OnLostFocus="@WitholdTaxID_OnLostFocus"
-                                   Enabled="@(_General_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
+                                   Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && !string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
                         </R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
                         <R_Lookup R_ConductorSource="@_UtilityCharges_conductorRef" R_Before_Open_Lookup="@UtilityCharges_WithholdingTax_Before_Open_Lookup" R_After_Open_Lookup="@UtilityCharges_WithholdingTax_After_Open_Lookup"
-                                  Enabled="@(_General_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
+                                  Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && !string.IsNullOrWhiteSpace(_General_viewModel.Data.CWITHHOLDING_TAX_TYPE))">
                             ...
                         </R_Lookup>
                     </R_ItemLayout>
@@ -315,7 +317,7 @@
                                     @bind-Value="_General_viewModel.Data.CACCRUAL_METHOD"
                                     ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                                     TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)" 
-                                    Enabled="@(_General_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LACCRUAL)">
+                                    Enabled="@(_UtilityCharges_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _General_viewModel.Data.LACCRUAL)">
                         </R_ComboBox>
                         </R_ItemLayout>
                         </R_StackLayout>

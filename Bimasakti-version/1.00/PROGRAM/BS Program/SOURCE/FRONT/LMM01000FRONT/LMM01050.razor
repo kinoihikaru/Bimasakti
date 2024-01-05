@@ -61,7 +61,7 @@
                 <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_PCT"
                                   R_ConductorSource="@_RateOT_conductorRef"
                                   Min="0" Max="100"
-                                  Arrows="false" Enabled="@AdminFeePctEnable">
+                                  Arrows="false" Enabled="@(_RateOT_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CADMIN_FEE == "01")">
                 </R_NumericTextBox>
             </R_ItemLayout>
         </R_StackLayout>
@@ -70,7 +70,7 @@
                 <R_NumericTextBox @bind-Value="@_viewModel.Data.NADMIN_FEE_AMT"
                                   R_ConductorSource="@_RateOT_conductorRef"
                                   Min="0" Max="100"
-                                  Arrows="false" Enabled="@AdminFeeAmtEnable">
+                                  Arrows="false" Enabled="@(_RateOT_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && _viewModel.Data.CADMIN_FEE == "02")">
                 </R_NumericTextBox>
             </R_ItemLayout>
             <R_ItemLayout col="1">
