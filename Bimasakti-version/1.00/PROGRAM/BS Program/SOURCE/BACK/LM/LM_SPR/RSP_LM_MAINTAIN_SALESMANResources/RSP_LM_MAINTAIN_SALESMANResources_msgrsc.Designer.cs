@@ -86,5 +86,59 @@ namespace RSP_LM_MAINTAIN_SALESMANResources {
                 return ResourceManager.GetString("2003", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salesman Id cannot be empty!.
+        /// </summary>
+        internal static string _2004 {
+            get {
+                return ResourceManager.GetString("2004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salesman Name cannot be empty!.
+        /// </summary>
+        internal static string _2005 {
+            get {
+                return ResourceManager.GetString("2005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address cannot be empty!.
+        /// </summary>
+        internal static string _2006 {
+            get {
+                return ResourceManager.GetString("2006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email cannot be empty!.
+        /// </summary>
+        internal static string _2007 {
+            get {
+                return ResourceManager.GetString("2007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Phone 1 cannot be empty!.
+        /// </summary>
+        internal static string _2008 {
+            get {
+                return ResourceManager.GetString("2008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exernal Company Name cannot be empty!.
+        /// </summary>
+        internal static string _2009 {
+            get {
+                return ResourceManager.GetString("2009", resourceCulture);
+            }
+        }
     }
 }

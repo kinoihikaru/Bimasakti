@@ -411,6 +411,9 @@
   <data name="_WBPCharges" xml:space="preserve">
     <value>WBP Charges</value>
   </data>
+  <data name="_WeDayOverRate" xml:space="preserve">
+    <value>Weekday Overtime Rate</value>
+  </data>
   <data name="_WeekOverRate" xml:space="preserve">
     <value>Weekend Overtime Rate</value>
   </data>

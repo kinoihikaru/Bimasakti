@@ -1,0 +1,95 @@
+﻿@using LMM03700COMMON;
+@inherits R_Page
+
+<R_StackLayout Style="width: 800px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="5">
+            <R_GroupBox Title="Available Tenant">
+                <R_Grid @ref="@_gridAssignTenantRef"
+                        DataSource="@_viewModelTenantClass.AssignTenantClassGrid"
+                        R_ConductorGridSource="@_conAssignTenant"
+                        R_GridType="@R_eGridType.Batch"
+                        R_ServiceGetListRecord="@AssignTenantClass_ServiceGetListRecord"
+                        DragClueField="@nameof(LMM03711DTO.CTENANT_ID)"
+                        DragDrop="true"
+                        AllowAddNewRow="false"
+                        AllowEditRow
+                        AllowDeleteRow
+                        TargetGridDrop="@_gridTenantRef"
+                        Pageable="true"
+                        R_GridRowBeforeDrop="@R_GridRowBeforeDrop"
+                        R_GridRowAfterDrop="@R_GridRowAfterDrop"
+                        Height="250px">
+                    <R_GridColumns>
+                        <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_ID)" HeaderText="Tenant Id" Width="150px"></R_GridTextColumn>
+                        <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_NAME)" HeaderText="Tenant Name" Width="300px"></R_GridTextColumn>
+                    </R_GridColumns>
+                </R_Grid>
+            </R_GroupBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+                @*Spasing*@
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+            <R_StackLayout Row><R_ItemLayout col="12"><R_Label>  </R_Label></R_ItemLayout></R_StackLayout>
+
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                <R_Button OnClick="@BtnAllMoveRight"> >> </R_Button>
+            </R_StackLayout>
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                <R_Button OnClick="@BtnMoveRight"> > </R_Button>
+            </R_StackLayout>
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                <R_Button OnClick="@BtnAllMoveLeft"> @label1 </R_Button>
+            </R_StackLayout>
+            <R_StackLayout Row Class="d-flex justify-content-center">
+                <R_Button OnClick="@BtnMoveLeft"> @label2 </R_Button>
+            </R_StackLayout>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="5">
+            <R_GroupBox Title="Selected Tenant">
+                    <R_Grid @ref="@_gridTenantRef"
+                            DataSource="@_viewModelTenantClass.TenantClassTenantGrid"
+                            R_GridType="@R_eGridType.Batch"
+                            R_ConductorGridSource="@_conTenant"
+                            R_ServiceGetListRecord="@TenantClass_ServiceGetListRecord"
+                            DragClueField="@nameof(LMM03711DTO.CTENANT_ID)"
+                            DragDrop="true"
+                            AllowAddNewRow="false"
+                            AllowEditRow
+                            AllowDeleteRow
+                        TargetGridDrop="@_gridAssignTenantRef"
+                            Pageable="true"
+                            R_GridRowBeforeDrop="@R_GridRowBeforeDrop"
+                            R_GridRowAfterDrop="@R_GridRowAfterDrop"
+                            Height="250px">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_ID)" HeaderText="Tenant Id" Width="150px"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_NAME)" HeaderText="Tenant Name" Width="300px"></R_GridTextColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+            </R_GroupBox>     
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="mt-2">
+        <R_ItemLayout col="4">
+            <R_Button Enabled="@HasMove" OnClick="@BtnProcess">Process</R_Button>
+            <R_Button OnClick="@BtnClose">Close</R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+<R_ConductorGrid @ref="@_conAssignTenant"
+                 R_ViewModel="@_viewModelTenantClass"
+                 R_IsHeader
+                 R_ServiceGetRecord="@R_ServiceGetRecord" />
+
+<R_ConductorGrid @ref="@_conTenant"
+                 R_ViewModel="@_viewModelTenantClass"
+                 R_IsHeader
+                 R_ServiceGetRecord="@R_ServiceGetRecord"
+                 R_ServiceSaveBatch="@R_ServiceSaveBatch" />

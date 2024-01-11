@@ -173,6 +173,7 @@ namespace LMM01000BACK
 
                 loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, loTempObject.CACTION);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 20, poBatchProcessPar.Key.USER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CKEY_GUID", DbType.String, 100, poBatchProcessPar.Key.KEY_GUID);
 
                 loDb.SqlExecNonQuery(loConn, loCmd, false);
             }
@@ -247,6 +248,8 @@ namespace LMM01000BACK
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01020DTO>(loDataTable).FirstOrDefault();
 
+                loResult.CUSAGE_RATE_MODE = string.IsNullOrWhiteSpace(loResult.CUSAGE_RATE_MODE) ? "HM" : loResult.CUSAGE_RATE_MODE;
+                loResult.CADMIN_FEE = string.IsNullOrWhiteSpace(loResult.CADMIN_FEE) ? "00" : loResult.CADMIN_FEE;
             }
             catch (Exception ex)
             {

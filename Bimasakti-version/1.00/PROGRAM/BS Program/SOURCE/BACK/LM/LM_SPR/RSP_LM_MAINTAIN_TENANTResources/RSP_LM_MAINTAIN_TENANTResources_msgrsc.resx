@@ -183,4 +183,16 @@
   <data name="3522" xml:space="preserve">
     <value>Invalid Line of Business!</value>
   </data>
+  <data name="3523" xml:space="preserve">
+    <value>Invalid City Code!</value>
+  </data>
+  <data name="3524" xml:space="preserve">
+    <value>Tax Id cannot be empty!</value>
+  </data>
+  <data name="3525" xml:space="preserve">
+    <value>Tax Name cannot be empty!</value>
+  </data>
+  <data name="3526" xml:space="preserve">
+    <value>Tax Code cannot be empty!</value>
+  </data>
 </root>

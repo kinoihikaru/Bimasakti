@@ -126,4 +126,22 @@
   <data name="2003" xml:space="preserve">
     <value>Cannot Delete, Salesman already in used!</value>
   </data>
+  <data name="2004" xml:space="preserve">
+    <value>Salesman Id cannot be empty!</value>
+  </data>
+  <data name="2005" xml:space="preserve">
+    <value>Salesman Name cannot be empty!</value>
+  </data>
+  <data name="2006" xml:space="preserve">
+    <value>Address cannot be empty!</value>
+  </data>
+  <data name="2007" xml:space="preserve">
+    <value>Email cannot be empty!</value>
+  </data>
+  <data name="2008" xml:space="preserve">
+    <value>Mobile Phone 1 cannot be empty!</value>
+  </data>
+  <data name="2009" xml:space="preserve">
+    <value>Exernal Company Name cannot be empty!</value>
+  </data>
 </root>

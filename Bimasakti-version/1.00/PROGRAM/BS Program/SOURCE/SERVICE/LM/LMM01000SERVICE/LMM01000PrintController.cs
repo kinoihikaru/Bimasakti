@@ -108,7 +108,7 @@ namespace LMM01000SERVICE
                 _AllUtilityParameter = loResultGUID.poParam;
 
                 _LoggerPrint.LogInfo("Read File Report AllStreamOtherChargesGet");
-                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(), R_ReportUtility.GetMimeType(R_FileType.PDF));
+                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF), R_ReportUtility.GetMimeType(R_FileType.PDF));
             }
             catch (Exception ex)
             {

@@ -1,8 +1,10 @@
 ﻿using BlazorClientHelper;
 using LMM01000COMMON;
 using LMM01000COMMON.Print;
+using LMM01000FrontResources;
 using LMM01000MODEL;
 using Microsoft.AspNetCore.Components;
+using R_APICommonDTO;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -30,13 +32,36 @@ namespace LMM01000FRONT
 
         [Inject] IClientHelper clientHelper { get; set; }
         [Inject] private R_IReport _reportService { get; set; }
-
+        #region Batch Proses
+        // Create Method Action StateHasChange
+        private void StateChangeInvoke()
+        {
+            StateHasChanged();
+        }
+        // Create Method Action For Error Unhandle
+        private void ShowErrorInvoke(R_APIException poEx)
+        {
+            var loEx = new R_Exception(poEx.ErrorList.Select(x => new R_BlazorFrontEnd.Exceptions.R_Error(x.ErrNo, x.ErrDescp)).ToList());
+            this.R_DisplayException(loEx);
+        }
+        // Create Method Action if proses is Complete Success
+        private async Task ActionFuncIsCompleteSuccess()
+        {
+            await this.Close(true, true);
+        }
+        #endregion
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
 
             try
             {
+                //Assign Action
+                _viewModelSave.StateChangeAction = StateChangeInvoke;
+                _viewModelSave.ShowErrorAction = ShowErrorInvoke;
+                _viewModelSave.ActionIsCompleteSuccess = ActionFuncIsCompleteSuccess;
+
+
                 LMM01050DTO loParam;
                 loParam = R_FrontUtility.ConvertObjectToObject<LMM01050DTO>(poParameter);
 
@@ -121,6 +146,28 @@ namespace LMM01000FRONT
         private void RateOT_SetHasData(R_SetEventArgs eventArgs)
         {
             PrintBtnEnable = eventArgs.Enable;
+        }
+        private async Task RateOT_Validation(R_ValidationEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                EnableEdit = false;
+                await _RateOTDetailWD_conductorRef.R_SaveBatch();
+                await _RateOTDetailWK_conductorRef.R_SaveBatch();
+                var loData = (LMM01050DTO)eventArgs.Data;
+                if (_viewModel.RateOTWDDetailListData.Count <= 0 && _viewModel.RateOTWKDetailListData.Count <= 0)
+                {
+                    loEx.Add("", "Must fill 1 detail data");
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
         private async Task RateOT_ServiceSave(R_ServiceSaveEventArgs eventArgs)
         {
@@ -289,14 +336,6 @@ namespace LMM01000FRONT
             loData.CCHARGES_ID = loParentData.CCHARGES_ID;
             loData.CDAY_TYPE = "WK";
         }
-        private void RateOTWDDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
-        {
-            _RateOTDetailWD_conductorRef.R_SaveBatch();
-        }
-        private void RateOTWKDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
-        {
-            _RateOTDetailWK_conductorRef.R_SaveBatch();
-        }
         private void RateOTWDDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -329,57 +368,6 @@ namespace LMM01000FRONT
             loEx.ThrowExceptionIfErrors();
 
         }
-
-        private async Task RateOTWDDetail_Validation(R_ValidationEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            bool lCancel = false;
-            var loData = (LMM01051DTO)eventArgs.Data;
-            try
-            {
-                foreach (var item in _viewModel.Data.CRATE_OT_LIST)
-                {
-                    lCancel = item.ILEVEL == loData.ILEVEL;
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Duplicate Level", R_eMessageBoxButtonType.OK);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
-        private async Task RateOTWKDetail_Validation(R_ValidationEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            bool lCancel = false;
-            var loData = (LMM01051DTO)eventArgs.Data;
-            try
-            {
-                foreach (var item in _viewModel.Data.CRATE_OT_LIST)
-                {
-                    lCancel = item.ILEVEL == loData.ILEVEL;
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Duplicate Level", R_eMessageBoxButtonType.OK);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
         public async Task RefreshTabPageAsync(object poParam)
         {
             var loEx = new R_Exception();

@@ -5,6 +5,7 @@ using LMM06500MODEL;
 using Lookup_LMCOMMON.DTOs;
 using Lookup_LMFRONT;
 using Microsoft.AspNetCore.Components;
+using R_APICommonDTO;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -54,7 +55,9 @@ namespace LMM06500FRONT
         {
             var param = new LML00300ParameterDTO()
             {
+                CCOMPANY_ID = clientHelper.CompanyId,
                 CPROPERTY_ID = _viewModel.PropertyValueContext,
+                CUSER_ID = clientHelper.UserId
             };
 
             eventArgs.Parameter = param;
@@ -118,35 +121,25 @@ namespace LMM06500FRONT
         {
             var loEx = new R_Exception();
             var loData = new LMM06502DTO();
-            var loDetailData = new List<LMM06502DetailDTO>();
+            string loDetailData = "";
 
             try
             {
-                var loDetailTempData = _StaffMoveDetail_gridRef.DataSource;
+                var loDetailTempData = _StaffMoveDetail_gridRef.DataSource.Where(x => x.LSELECTED).Select(x => x.CSTAFF_ID);
 
-                foreach (var item in loDetailTempData)
-                {
-                    if (item.LSELECTED)
-                    {
-                        loDetailData.Add(item);
-                    }
-                }
+                loDetailData = string.Join(",", loDetailTempData);
 
-                if (!string.IsNullOrWhiteSpace(_viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID) && !string.IsNullOrWhiteSpace(_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID) && loDetailData.Count > 0)
+                if (!string.IsNullOrWhiteSpace(_viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID) && !string.IsNullOrWhiteSpace(_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID) && loDetailTempData.Count() > 0)
                 {
                     if (_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID != _viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID)
                     {
                         var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifReplaceOldToNew"), R_eMessageBoxButtonType.YesNo);
                         if (loValidate == R_eMessageBoxResult.Yes)
                         {
-                            loData.Header = _viewModel.StaffMoveHeader;
-                            loData.Detail = loDetailData;
-
-                            loData.Header.CCOMPANY_ID = clientHelper.CompanyId;
-                            loData.Header.CUSER_ID = clientHelper.UserId;
+                            loData = R_FrontUtility.ConvertObjectToObject<LMM06502DTO>(_viewModel.StaffMoveHeader);
+                            loData.CSTAFF_LIST = loDetailData;
 
                             await _viewModel.SaveStaffMove(loData);
-
                             await this.Close(true, true);
                         }
                     }

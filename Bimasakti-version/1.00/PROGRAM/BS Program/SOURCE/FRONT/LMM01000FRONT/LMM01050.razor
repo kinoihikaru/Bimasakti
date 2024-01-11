@@ -103,7 +103,7 @@
 
 <R_StackLayout Row>
     <R_ItemLayout col="6">
-        <R_Label FontColor="@R_eFontColor.Danger">@_localizer["_WeekOverRate"]</R_Label>
+        <R_Label FontColor="@R_eFontColor.Danger">@_localizer["_WeDayOverRate"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="6">
         <R_StackLayout Row>
@@ -152,7 +152,7 @@
                 AllowAddNewRow="@EnableEdit"
                 AllowEditRow="@EnableEdit"
                 AllowDeleteRow="@EnableEdit"
-                R_ServiceGetListRecord="@RateOTDetailWD_ServiceGetListRecord" Height="150px">
+                R_ServiceGetListRecord="@RateOTDetailWD_ServiceGetListRecord" Height="300px">
             <R_GridColumns>
                 <R_GridNumericColumn FieldName="ILEVEL" Arrows="false" HeaderText="@_localizer["_Level"]" R_EnableAdd R_EnableEdit Width="120px"></R_GridNumericColumn>
                 <R_GridTextColumn FieldName="CLEVEL_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit Width="300px"></R_GridTextColumn>
@@ -171,7 +171,7 @@
                 AllowAddNewRow="@EnableEdit"
                 AllowEditRow="@EnableEdit"
                 AllowDeleteRow="@EnableEdit"
-                R_ServiceGetListRecord="@RateOTDetailWK_ServiceGetListRecord" Height="150px">
+                R_ServiceGetListRecord="@RateOTDetailWK_ServiceGetListRecord" Height="300px">
             <R_GridColumns>
                 <R_GridNumericColumn FieldName="ILEVEL" Arrows="false" HeaderText="@_localizer["_Level"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
                 <R_GridTextColumn FieldName="CLEVEL_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit Width="300px"></R_GridTextColumn>
@@ -220,6 +220,7 @@
              R_BeforeCancel="@RateOT_BeforeCancel"
              R_SetOther="@Grid_R_SetOther"
              R_Display="@RateOT_Display"
+             R_Validation="@RateOT_Validation"
              >
 </R_Conductor>
 
@@ -228,9 +229,7 @@
              R_ConductorParent="@_RateOT_conductorRef"
              R_ServiceGetRecord="@RateOTDetailWD_ServiceGetRecord"
              R_Saving="@RateOTWDDetail_Saving"
-             R_AfterSave="@RateOTWDDetail_AfterSave"
              R_ServiceSaveBatch="@RateOTWDDetail_ServiceSaveBatch"
-             
              >
 </R_ConductorGrid>
 
@@ -239,8 +238,6 @@
              R_ConductorParent="@_RateOT_conductorRef"
              R_ServiceGetRecord="@RateWGDetailWK_ServiceGetRecord"
              R_Saving="@RateOTWKDetail_Saving"
-             R_AfterSave="@RateOTWKDetail_AfterSave"
              R_ServiceSaveBatch="@RateOTWKDetail_ServiceSaveBatch"
-
              >
 </R_ConductorGrid>

@@ -60,6 +60,7 @@ namespace LMM01000BACK
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01030DTO>(loDataTable).FirstOrDefault();
 
+                loResult.CADMIN_FEE = string.IsNullOrWhiteSpace(loResult.CADMIN_FEE) ? "00" : loResult.CADMIN_FEE;
             }
             catch (Exception ex)
             {

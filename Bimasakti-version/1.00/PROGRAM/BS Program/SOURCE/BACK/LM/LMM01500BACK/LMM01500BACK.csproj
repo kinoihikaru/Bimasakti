@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\LM\LMM01500COMMON\LMM01500COMMON.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_LM_MAINTAIN_INVGRP_CHARGESResources\RSP_LM_MAINTAIN_INVGRP_CHARGESResources.csproj" />
     <ProjectReference Include="..\LM_SPR\RSP_LM_MAINTAIN_INVOICE_GRPResources\RSP_LM_MAINTAIN_INVOICE_GRPResources.csproj" />
   </ItemGroup>
 

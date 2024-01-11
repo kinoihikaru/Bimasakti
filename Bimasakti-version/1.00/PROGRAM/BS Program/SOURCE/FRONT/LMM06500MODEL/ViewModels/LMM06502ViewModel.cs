@@ -1,16 +1,21 @@
 ﻿using LMM06500COMMON;
+using R_APICommonDTO;
 using R_BlazorFrontEnd;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 using R_ProcessAndUploadFront;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
+using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace LMM06500MODEL
 {
-    public class LMM06502ViewModel
+    public class LMM06502ViewModel 
     {
         private LMM06502Model _LMM06502Model = new LMM06502Model();
 
@@ -46,29 +51,10 @@ namespace LMM06500MODEL
         public async Task SaveStaffMove(LMM06502DTO poNewEntity)
         {
             var loEx = new R_Exception();
-            R_BatchParameter loUploadPar;
-            R_ProcessAndUploadClient loCls;
-            List<R_KeyValue> loUserParameneters;
-            R_IProcessProgressStatus loProgressStatus;
 
             try
             {
-                //preapare Batch Parameter
-                loUploadPar = new R_BatchParameter();
-                loUploadPar.COMPANY_ID = poNewEntity.Header.CCOMPANY_ID;
-                loUploadPar.USER_ID = poNewEntity.Header.CUSER_ID;
-                loUploadPar.UserParameters = new List<R_KeyValue>();
-                loUploadPar.ClassName = "LMM06500BACK.LMM06502Cls";
-                loUploadPar.BigObject = poNewEntity;
-
-                //Instantiate ProcessClient
-                loCls = new R_ProcessAndUploadClient(
-                    pcModuleName: "LM",
-                    plSendWithContext: true,
-                    plSendWithToken: true,
-                    pcHttpClientName: "R_DefaultServiceUrlLM");
-
-                var loKeyGuid = await loCls.R_BatchProcess<LMM06502DTO>(loUploadPar, 1);
+                await _LMM06502Model.SaveNewMoveStaffAsync(poNewEntity);
             }
             catch (Exception ex)
             {
@@ -77,7 +63,6 @@ namespace LMM06500MODEL
 
             loEx.ThrowExceptionIfErrors();
         }
-
     }
 
 }

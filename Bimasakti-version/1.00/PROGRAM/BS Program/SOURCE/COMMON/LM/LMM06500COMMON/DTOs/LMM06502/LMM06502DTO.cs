@@ -5,8 +5,18 @@ namespace LMM06500COMMON
 {
     public class LMM06502DTO : R_APIResultBaseDTO
     {
-        public LMM06502HeaderDTO Header { get; set; }
-        public List<LMM06502DetailDTO> Detail { get; set; }
+        // param
+        public string CPROPERTY_ID { get; set; }
+
+        public string COLD_SUPERVISOR_ID { get; set; } = "";
+        public string COLD_SUPERVISOR_NAME { get; set; } = "";
+        public string COLD_DEPT_CODE { get; set; } = "";
+        public string COLD_DEPT_NAME { get; set; } = "";
+        public string CNEW_SUPERVISOR_ID { get; set; } = "";
+        public string CNEW_SUPERVISOR_NAME { get; set; } = "";
+        public string CNEW_DEPT_CODE { get; set; } = "";
+        public string CNEW_DEPT_NAME { get; set; } = "";
+        public string CSTAFF_LIST { get; set; } = "";
     }
 
 

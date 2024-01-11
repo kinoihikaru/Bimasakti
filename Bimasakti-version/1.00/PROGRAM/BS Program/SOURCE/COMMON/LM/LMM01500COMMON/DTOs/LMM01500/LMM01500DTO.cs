@@ -42,7 +42,7 @@ namespace LMM01500COMMON
         public bool LDUE_DATE_TOLERANCE_SUNDAY { get; set; } = false;
         public bool LUSE_STAMP { get; set; } = false;
         public string CSTAMP_ADD_ID { get; set; } = "";
-        public string CCHARGES_NAME { get; set; }
+        public string CSTAMP_ADD_NAME { get; set; }
         public string CDESCRIPTION { get; set; } = "";
         public bool LBY_DEPARTMENT { get; set; } = false;
         public string CDEPT_CODE { get; set; } = "";

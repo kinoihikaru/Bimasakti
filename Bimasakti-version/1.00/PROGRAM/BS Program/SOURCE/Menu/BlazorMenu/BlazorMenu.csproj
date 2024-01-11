@@ -37,6 +37,7 @@
 		<ProjectReference Include="..\..\FRONT\GSM09000FRONT\GSM09000FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\LMM02500FRONT\LMM02500FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\LMM03500FRONT\LMM03500FRONT.csproj" />
+		<ProjectReference Include="..\..\FRONT\LMM03700FRONT\LMM03700FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\LMM04000FRONT\LMM04000FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\GSM09200FRONT\GSM09200FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\GSM09300FRONT\GSM09300FRONT.csproj" />

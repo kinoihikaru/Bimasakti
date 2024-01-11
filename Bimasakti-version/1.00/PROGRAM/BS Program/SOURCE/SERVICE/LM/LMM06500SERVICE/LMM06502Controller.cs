@@ -70,9 +70,6 @@ namespace LMM06500SERVICE
 
             try
             {
-                poEntity.Header.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poEntity.Header.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 loCls.SaveNewStaffMove(poEntity);
             }
             catch (Exception ex)

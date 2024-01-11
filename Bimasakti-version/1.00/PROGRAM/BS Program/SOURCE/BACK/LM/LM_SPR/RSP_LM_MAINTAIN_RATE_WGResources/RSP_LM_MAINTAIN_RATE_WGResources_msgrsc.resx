@@ -123,4 +123,7 @@
   <data name="1022" xml:space="preserve">
     <value>Duplicate Usage!</value>
   </data>
+  <data name="1023" xml:space="preserve">
+    <value>Detail Rate cannot be empty!</value>
+  </data>
 </root>

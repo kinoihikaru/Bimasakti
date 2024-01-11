@@ -123,4 +123,7 @@
   <data name="1032" xml:space="preserve">
     <value>Duplicate Level</value>
   </data>
+  <data name="1033" xml:space="preserve">
+    <value>Detail Rate cannot be empty!</value>
+  </data>
 </root>

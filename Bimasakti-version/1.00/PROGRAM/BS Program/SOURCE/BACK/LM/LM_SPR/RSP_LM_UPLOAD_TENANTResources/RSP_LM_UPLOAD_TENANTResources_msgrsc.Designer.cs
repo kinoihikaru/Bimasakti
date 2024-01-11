@@ -124,6 +124,24 @@ namespace RSP_LM_UPLOAD_TENANTResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid City Code.
+        /// </summary>
+        internal static string INVALID_CITY {
+            get {
+                return ResourceManager.GetString("INVALID_CITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Country.
+        /// </summary>
+        internal static string INVALID_COUNTRY {
+            get {
+                return ResourceManager.GetString("INVALID_COUNTRY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Currency.
         /// </summary>
         internal static string INVALID_CURRENCY {
@@ -156,6 +174,15 @@ namespace RSP_LM_UPLOAD_TENANTResources {
         internal static string INVALID_PAYMENT_TERM {
             get {
                 return ResourceManager.GetString("INVALID_PAYMENT_TERM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Province.
+        /// </summary>
+        internal static string INVALID_PROVINCE {
+            get {
+                return ResourceManager.GetString("INVALID_PROVINCE", resourceCulture);
             }
         }
         

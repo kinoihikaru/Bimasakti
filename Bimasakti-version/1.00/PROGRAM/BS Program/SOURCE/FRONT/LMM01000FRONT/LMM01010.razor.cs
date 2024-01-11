@@ -3,6 +3,7 @@ using LMM01000COMMON;
 using LMM01000COMMON.Print;
 using LMM01000MODEL;
 using Microsoft.AspNetCore.Components;
+using R_APICommonDTO;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -29,6 +30,26 @@ namespace LMM01000FRONT
         [Inject] private R_IReport _reportService { get; set; }
         [Inject] IClientHelper clientHelper { get; set; }
 
+        private List<LMM01011DTO> ListDetailData = new List<LMM01011DTO>();
+
+        #region Batch Proses
+        // Create Method Action StateHasChange
+        private void StateChangeInvoke()
+        {
+            StateHasChanged();
+        }
+        // Create Method Action For Error Unhandle
+        private void ShowErrorInvoke(R_APIException poEx)
+        {
+            var loEx = new R_Exception(poEx.ErrorList.Select(x => new R_BlazorFrontEnd.Exceptions.R_Error(x.ErrNo, x.ErrDescp)).ToList());
+            this.R_DisplayException(loEx);
+        }
+        // Create Method Action if proses is Complete Success
+        private async Task ActionFuncIsCompleteSuccess()
+        {
+            await this.Close(true, true);
+        }
+        #endregion
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
@@ -36,6 +57,11 @@ namespace LMM01000FRONT
 
             try
             {
+                //Assign Action
+                _viewModelSave.StateChangeAction = StateChangeInvoke;
+                _viewModelSave.ShowErrorAction = ShowErrorInvoke;
+                _viewModelSave.ActionIsCompleteSuccess = ActionFuncIsCompleteSuccess;
+
                 //Load Radio Button
                 await _Universal_viewModel.GetUsageRateModelList();
                 await _Universal_viewModel.GetRateTypeList();
@@ -115,6 +141,11 @@ namespace LMM01000FRONT
             {
                 EnableEditGrid = false;
                 await _RateUCDetail_conductorRef.R_SaveBatch();
+                var loData = (LMM01010DTO)eventArgs.Data;
+                if (loData.CUSAGE_RATE_MODE == "HM" && ListDetailData.Count <= 0)
+                {
+                    loEx.Add("", "Detail Rate cannot be empty");
+                }
             }
             catch (Exception ex)
             {
@@ -123,16 +154,17 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         private async Task RateUC_ServiceSave(R_ServiceSaveEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                await _viewModelSave.SaveRateEC((LMM01010DTO)eventArgs.Data, (eCRUDMode)eventArgs.ConductorMode ,clientHelper.CompanyId, clientHelper.UserId);
+                var loData = (LMM01010DTO)eventArgs.Data;
+                loData.CRATE_EC_LIST = ListDetailData;
+                await _viewModelSave.SaveRateEC(loData, (eCRUDMode)eventArgs.ConductorMode, clientHelper.CompanyId, clientHelper.UserId);
 
-                eventArgs.Result = _viewModel.RateEC;
+                eventArgs.Result = eventArgs.Data;
             }
             catch (Exception ex)
             {
@@ -189,35 +221,26 @@ namespace LMM01000FRONT
             await InvokeTabEventCallbackAsync(eventArgs.Enable);
         }
 
-        private void RateUC_BeforeEdit(R_BeforeEditEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_viewModel.RateUCDetailList.ToList().Count > 0)
-                    _viewModel.Data.CRATE_EC_LIST = _viewModel.RateUCDetailList.ToList();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
         private async Task RateUC_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loEventParam = (LMM01010DTO)eventArgs.Parameter;
-                var loParam = R_FrontUtility.ConvertObjectToObject<LMM01011DTO>(loEventParam);
+                if (eventArgs.Parameter is null)
+                {
+                    _viewModel.RateUCDetailList = new();
+                    eventArgs.ListEntityResult = _viewModel.RateUCDetailList;
+                }
+                else
+                {
+                    var loEventParam = (LMM01010DTO)eventArgs.Parameter;
+                    var loParam = R_FrontUtility.ConvertObjectToObject<LMM01011DTO>(loEventParam);
 
-                await _viewModel.GetRateUCDetailList(loParam);
+                    await _viewModel.GetRateUCDetailList(loParam);
 
-                eventArgs.ListEntityResult = _viewModel.RateUCDetailList;
+                    eventArgs.ListEntityResult = _viewModel.RateUCDetailList;
+                }
             }
             catch (Exception ex)
             {
@@ -260,46 +283,10 @@ namespace LMM01000FRONT
             loData.CCHARGES_TYPE = loParentData.CCHARGES_TYPE;
             loData.CCHARGES_ID = loParentData.CCHARGES_ID;
         }
-
-        private async Task RateUCDetail_Validation(R_ValidationEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            bool lCancel = false;
-            var loData = (LMM01011DTO)eventArgs.Data;
-            try
-            {
-                foreach (var item in _viewModel.Data.CRATE_EC_LIST)
-                {
-                    lCancel = item.IUP_TO_USAGE == loData.IUP_TO_USAGE;
-                    if (lCancel)
-                    {
-                        eventArgs.Cancel = lCancel;
-                        await R_MessageBox.Show("", "Duplicate Usage (Kwh)", R_eMessageBoxButtonType.OK);
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
         private void RateUCDetail_ServiceSaveBatch(R_ServiceSaveBatchEventArgs eventArgs)
         {
-            _viewModel.Data.CRATE_EC_LIST = new List<LMM01011DTO>();
-
-            var loData = (List<LMM01011DTO>)eventArgs.Data;
-
-            if (loData.Count > 0 && loData is not null)
-                _viewModel.Data.CRATE_EC_LIST.AddRange(loData);
-        }
-
-        private async Task RateUCDetail_AfterSave(R_AfterSaveEventArgs eventArgs)
-        {
-            await _RateUCDetail_conductorRef.R_SaveBatch();
+            var loListData = (List<LMM01011DTO>)eventArgs.Data;
+            ListDetailData = R_FrontUtility.ConvertCollectionToCollection<LMM01011DTO>(loListData).ToList();
         }
 
         public async Task RefreshTabPageAsync(object poParam)
@@ -366,6 +353,15 @@ namespace LMM01000FRONT
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public void UsageRateMode_OnChange(string poParam)
+        {
+            _viewModel.Data.CUSAGE_RATE_MODE = poParam;
+            if (_viewModel.Data.CUSAGE_RATE_MODE == "SM")
+            {
+                _RateUCDetail_gridRef.DataSource.Clear();
+            }
         }
     }
 }

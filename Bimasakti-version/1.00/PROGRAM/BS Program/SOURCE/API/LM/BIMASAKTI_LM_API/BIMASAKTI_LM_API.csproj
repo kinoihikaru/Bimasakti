@@ -34,6 +34,7 @@
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM01500SERVICE\LMM01500SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM02500SERVICE\LMM02500SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM03500SERVICE\LMM03500SERVICE.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\LM\LMM03700SERVICE\LMM03700SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM04000SERVICE\LMM04000SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM06500SERVICE\LMM06500SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\LM\LMM07000SERVICE\LMM07000SERVICE.csproj" />

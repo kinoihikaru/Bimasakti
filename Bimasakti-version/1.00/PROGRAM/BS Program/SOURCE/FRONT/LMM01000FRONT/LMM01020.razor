@@ -84,12 +84,14 @@
                 <R_Label>@_localizer["_UsageRateMode"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="8">
-                <R_RadioGroup Data="@_Universal_viewModel.UsageRateModeList"
-                              @bind-Value="@_viewModel.Data.CUSAGE_RATE_MODE"
-                              Layout="R_eRadioGroupLayout.Horizontal"
+                <R_RadioGroup Layout="R_eRadioGroupLayout.Horizontal"
+                              Data="@_Universal_viewModel.UsageRateModeList"
+                              Value="@_viewModel.Data.CUSAGE_RATE_MODE"
+                              ValueChanged="@((string value) => UsageRateMode_OnChange(value))" 
                               ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                               TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
-                              R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit>
+                              R_ConductorSource="@_RateWG_conductorRef" R_EnableEdit
+                              >
                 </R_RadioGroup>
             </R_ItemLayout>
         </R_StackLayout>
@@ -231,10 +233,10 @@
             Pageable
             R_ConductorGridSource="@_RateWGDetail_conductorRef"
             R_GridType="@R_eGridType.Batch"
-            AllowAddNewRow="@EnableEdit"
-            AllowEditRow="@EnableEdit"
-            AllowDeleteRow="@EnableEdit"
-            R_ServiceGetListRecord="@RateWGDetail_ServiceGetListRecord" Height="150px">
+            AllowAddNewRow="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
+            AllowEditRow="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
+            AllowDeleteRow="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
+            R_ServiceGetListRecord="@RateWGDetail_ServiceGetListRecord" Height="250px">
         <R_GridColumns>
             <R_GridNumericColumn FieldName="IUP_TO_USAGE" HeaderText="@_localizer["_UsageKwh"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
             <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit></R_GridTextColumn>
@@ -263,13 +265,13 @@
              R_IsHeader="true"
              R_ServiceGetRecord="@RateWG_ServiceGetRecord"
              R_SetHasData="@RateWG_SetHasData"
-             R_ServiceSave="@RateWG_ServiceSave"
              R_SetEdit="@RateWG_SetEdit"
              R_AfterSave="@RateWG_AfterSave"
-             R_BeforeEdit="@RateWG_BeforeEdit"
              R_BeforeCancel="@RateWG_BeforeCancel"
              R_SetOther="@Grid_R_SetOther"
              R_Display="@RateWG_Display"
+             R_Validation="@RateWG_Validation"
+             R_ServiceSave="@RateWG_ServiceSave"
              >
 </R_Conductor>
 
@@ -278,8 +280,6 @@
              R_ConductorParent="@_RateWG_conductorRef"
              R_ServiceGetRecord="@RateWGDetail_ServiceGetRecord"
              R_Saving="@RateWGDetail_Saving"
-             R_AfterSave="@RateWGDetail_AfterSave"
              R_ServiceSaveBatch="@RateWGDetail_ServiceSaveBatch"
-
-             >
+>
 </R_ConductorGrid>

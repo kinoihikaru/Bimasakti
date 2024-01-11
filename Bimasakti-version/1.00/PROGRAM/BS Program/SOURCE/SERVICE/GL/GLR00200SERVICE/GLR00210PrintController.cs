@@ -107,7 +107,7 @@ namespace GLR00200SERVICE
                 _AllGLR00200Parameter = loResultGUID.poParam;
 
                 _LoggerPrint.LogInfo("Read File Report AllStreamGLAccountLedgersGet");
-                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(), R_ReportUtility.GetMimeType(R_FileType.PDF));
+                loRtn = new FileStreamResult(_ReportCls.R_GetStreamReport(peExport: R_FileType.PDF), R_ReportUtility.GetMimeType(R_FileType.PDF));
             }
             catch (Exception ex)
             {

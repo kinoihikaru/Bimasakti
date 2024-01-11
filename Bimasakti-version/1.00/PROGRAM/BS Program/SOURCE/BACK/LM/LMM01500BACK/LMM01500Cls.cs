@@ -179,35 +179,6 @@ namespace LMM01500BACK
 
             return loResult;
         }
-
-        protected override void R_Saving(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode)
-        {
-            var loEx = new R_Exception();
-            LMM01500DTO loResult = null;
-
-            try
-            {
-                if (poNewEntity.DeleteAllTabDept)
-                {
-                    var loParam = R_Utility.R_ConvertObjectToObject<LMM01500DTO, LMM01510DTO>(poNewEntity);
-                    DeleteAllDataByInvoiceGroupCode(loParam);
-                }
-
-                var loGetStorageType = GetStorageType();
-
-                var loValidate = ValidateAlreadyExists(poNewEntity);
-                loResult = SetStorageID(poNewEntity, loGetStorageType, loValidate);
-
-                SaveDataSP(loResult, poCRUDMode);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _Logger.LogError(loEx);
-            }
-            
-            loEx.ThrowExceptionIfErrors();
-        }
         public bool ValidateCheckDataTab2(LMM01500DTO poNewEntity)
         {
             var loEx = new R_Exception();
@@ -283,7 +254,36 @@ namespace LMM01500BACK
             loEx.ThrowExceptionIfErrors();
             return llRtn;
         }
+
         #region Saving
+        protected override void R_Saving(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode)
+        {
+            var loEx = new R_Exception();
+            LMM01500DTO loResult = null;
+
+            try
+            {
+                if (poNewEntity.DeleteAllTabDept)
+                {
+                    var loParam = R_Utility.R_ConvertObjectToObject<LMM01500DTO, LMM01510DTO>(poNewEntity);
+                    DeleteAllDataByInvoiceGroupCode(loParam);
+                }
+
+                var loGetStorageType = GetStorageType();
+
+                var loValidate = ValidateAlreadyExists(poNewEntity);
+                loResult = SetStorageID(poNewEntity, loGetStorageType, loValidate);
+
+                SaveDataSP(loResult, poCRUDMode);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+            
+            loEx.ThrowExceptionIfErrors();
+        }
         #region Delete All Data Tab Template 
         private List<LMM01510DTO> GetAllTemplateAndBankAccount(LMM01510DTO poEntity)
         {

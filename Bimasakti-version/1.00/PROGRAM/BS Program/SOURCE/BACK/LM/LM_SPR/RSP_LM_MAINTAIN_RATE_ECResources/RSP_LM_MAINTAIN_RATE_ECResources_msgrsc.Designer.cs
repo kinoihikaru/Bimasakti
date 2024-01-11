@@ -77,5 +77,14 @@ namespace RSP_LM_MAINTAIN_RATE_ECResources {
                 return ResourceManager.GetString("1012", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Rate cannot be empty!.
+        /// </summary>
+        internal static string _1013 {
+            get {
+                return ResourceManager.GetString("1013", resourceCulture);
+            }
+        }
     }
 }

@@ -421,6 +421,15 @@ namespace LMM06500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Staff move successfully!.
+        /// </summary>
+        internal static string _NotifSuccessMove {
+            get {
+                return ResourceManager.GetString("_NotifSuccessMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Staff uploaded successfully!.
         /// </summary>
         internal static string _NotifSuccessUpload {

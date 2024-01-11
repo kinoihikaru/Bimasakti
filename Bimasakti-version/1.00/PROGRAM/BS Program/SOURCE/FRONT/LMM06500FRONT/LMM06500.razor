@@ -304,7 +304,7 @@
     <R_ItemLayout>
         <R_Button R_ConductorSource="@_Staff_conductorRef" OnClick="@_Staff_TemplateBtn_OnClick" R_EnableOther>@(_localizer["_TemplateBtn"])</R_Button>
             <R_Popup R_ConductorSource="@_Staff_conductorRef" R_EnableOther R_Before_Open_Popup="@_Staff_Before_Open_Popup" R_After_Open_Popup="@_Staff_After_Open_Popup">@(_localizer["_UploadBtn"])</R_Popup>
-            <R_Lookup R_ConductorSource="@_Staff_conductorRef" R_EnableOther R_Before_Open_Lookup="@_Staff_Before_Open_Lookup">@(_localizer["_MoveBtn"])</R_Lookup>
+            <R_Lookup R_ConductorSource="@_Staff_conductorRef" R_EnableOther R_Before_Open_Lookup="@_Staff_Before_Open_Lookup" R_After_Open_Lookup="@_Staff_Move_After_Open_Lookup">@(_localizer["_MoveBtn"])</R_Lookup>
             <R_Popup R_ConductorSource="@_Staff_conductorRef" Enabled="@BtnEnable" R_Before_Open_Popup="@_Staff_InActive_Before_Open_Popup" R_After_Open_Popup="@_Staff_InActive_After_Open_Popup">@_Staff_lcLabel</R_Popup>
     </R_ItemLayout>
     <R_ItemLayout>

@@ -573,6 +573,21 @@ namespace LMM06500FRONT
 
             R_DisplayException(loEx);
         }
+        private async Task _Staff_Move_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await _Staff_gridRef.R_RefreshGrid(null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
 
         public bool _pageSupplierOnCRUDmode = false;
         private void Staff_SetOther(R_SetEventArgs eventArgs)

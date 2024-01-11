@@ -462,7 +462,7 @@ namespace LMM01500FRONT
             if (!poParam)
             {
                 _Genereal_viewModel.Data.CSTAMP_ADD_ID = "";
-                _Genereal_viewModel.Data.CCHARGES_NAME = "";
+                _Genereal_viewModel.Data.CSTAMP_ADD_NAME = "";
             }
         }
 
@@ -605,7 +605,7 @@ namespace LMM01500FRONT
             }
 
             _Genereal_viewModel.Data.CSTAMP_ADD_ID = loTempResult.CCHARGES_ID;
-            _Genereal_viewModel.Data.CCHARGES_NAME = loTempResult.CCHARGES_NAME;
+            _Genereal_viewModel.Data.CSTAMP_ADD_NAME = loTempResult.CCHARGES_NAME;
         }
         private void GeneralDeptCode_OnLostFocus(object poParam) 
         {

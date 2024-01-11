@@ -237,6 +237,9 @@
   <data name="_NotifReplaceOldToNew" xml:space="preserve">
     <value>Staff department will be replacing with department from New Supervisor, are you want to process?</value>
   </data>
+  <data name="_NotifSuccessMove" xml:space="preserve">
+    <value>Staff move successfully!</value>
+  </data>
   <data name="_NotifSuccessUpload" xml:space="preserve">
     <value>Staff uploaded successfully!</value>
   </data>

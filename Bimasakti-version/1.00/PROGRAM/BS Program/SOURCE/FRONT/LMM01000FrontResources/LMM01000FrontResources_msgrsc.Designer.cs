@@ -934,6 +934,15 @@ namespace LMM01000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Weekday Overtime Rate.
+        /// </summary>
+        internal static string _WeDayOverRate {
+            get {
+                return ResourceManager.GetString("_WeDayOverRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weekend Overtime Rate.
         /// </summary>
         internal static string _WeekOverRate {

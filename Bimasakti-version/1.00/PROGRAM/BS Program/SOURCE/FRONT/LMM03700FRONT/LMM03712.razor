@@ -1,0 +1,83 @@
+﻿@inherits R_Page
+@using LMM03700COMMON;
+
+<R_StackLayout Style="width: 1000px">
+    <R_StackLayout Row>
+        <R_ItemLayout col="3">
+            <R_Label>From Tenant Classification</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_MoveTenantParam.CFROM_TENANT_CLASSIFICATION_ID"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_MoveTenantParam.CFROM_TENANT_CLASSIFICATION_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_ItemLayout col="3">
+            <R_Label>To Tenant Classification</R_Label>
+        </R_ItemLayout>
+
+        <R_ItemLayout col="3">
+            <R_DropDownList Data="@_viewModel.TenantClassList"
+                            Value="@_MoveTenantParam.CTO_TENANT_CLASSIFICATION_ID"
+                            ValueField="@nameof(LMM03710DTO.CTENANT_CLASSIFICATION_ID)"
+                            TextField="@nameof(LMM03710DTO.CTENANT_CLASSIFICATION_ID)"
+                            ValueChanged="@((string value) => ToTenantGrpId(value))"
+                            Enabled="true"
+                           />
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_TextBox @bind-Value="@_MoveTenantParam.CTO_TENANT_CLASSIFICATION_NAME"
+                       Enabled="false">
+            </R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.TenantClassTenantGrid"
+                Pageable
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
+                R_ServiceGetListRecord="@TenantClass_ServiceGetListRecord">
+                <R_GridColumns>
+                <R_GridCheckBoxSelectColumn FieldName="@nameof(LMM03711DTO.LSELECTED)"
+                                                                ShowSelectAllHeader />
+
+                <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_ID)"
+                                  HeaderText="Tenant Id"
+                                             />
+
+                <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_NAME)"
+                                  HeaderText="Tenant Name" />
+                <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_CATEGORY_NAME)"
+                                  HeaderText="Tenant Category" />
+                <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CTENANT_TYPE_NAME)"
+                                  HeaderText="Tenant Type" />
+                <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CPHONE1)"
+                                  HeaderText="Phone1" />
+                <R_GridTextColumn FieldName="@nameof(LMM03711DTO.CEMAIL)"
+                                  HeaderText="Email" />
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="justify-content-end">
+        <R_ItemLayout>
+            <R_Button OnClick="Button_OnClickCloseAsync">
+                Cancel
+            </R_Button>
+            <R_Button Enabled="_ProsesBtn" OnClick="OnClickProcessButton">
+                Process
+            </R_Button>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>

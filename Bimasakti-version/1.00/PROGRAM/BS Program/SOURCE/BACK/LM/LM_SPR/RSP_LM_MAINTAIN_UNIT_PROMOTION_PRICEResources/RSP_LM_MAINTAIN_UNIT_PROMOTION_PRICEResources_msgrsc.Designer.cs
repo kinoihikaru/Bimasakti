@@ -87,5 +87,59 @@ namespace RSP_LM_MAINTAIN_UNIT_PROMOTION_PRICEResources {
                 return ResourceManager.GetString("5503", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom Price/Sqm cannot be bigger than Normal Price/Sqm!.
+        /// </summary>
+        internal static string _5504 {
+            get {
+                return ResourceManager.GetString("5504", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom Selling Price cannot be bigger than Normal Seliing Price!.
+        /// </summary>
+        internal static string _5505 {
+            get {
+                return ResourceManager.GetString("5505", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Price must be bigger than 0!.
+        /// </summary>
+        internal static string _5506 {
+            get {
+                return ResourceManager.GetString("5506", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Selling Price must be bigger than 0!.
+        /// </summary>
+        internal static string _5507 {
+            get {
+                return ResourceManager.GetString("5507", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom Price must be bigger than 0!.
+        /// </summary>
+        internal static string _5508 {
+            get {
+                return ResourceManager.GetString("5508", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottom Selling Price must be bigger than 0!.
+        /// </summary>
+        internal static string _5509 {
+            get {
+                return ResourceManager.GetString("5509", resourceCulture);
+            }
+        }
     }
 }

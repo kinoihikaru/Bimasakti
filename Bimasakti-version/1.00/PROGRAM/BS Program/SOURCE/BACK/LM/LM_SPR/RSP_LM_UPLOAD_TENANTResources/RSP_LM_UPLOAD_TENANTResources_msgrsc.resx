@@ -141,6 +141,12 @@
   <data name="INVALID TENANT TYPE" xml:space="preserve">
     <value>Invalid Tenant Type</value>
   </data>
+  <data name="INVALID_CITY" xml:space="preserve">
+    <value>Invalid City Code</value>
+  </data>
+  <data name="INVALID_COUNTRY" xml:space="preserve">
+    <value>Invalid Country</value>
+  </data>
   <data name="INVALID_CURRENCY" xml:space="preserve">
     <value>Invalid Currency</value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="INVALID_PAYMENT_TERM" xml:space="preserve">
     <value>Invalid Payment Term</value>
+  </data>
+  <data name="INVALID_PROVINCE" xml:space="preserve">
+    <value>Invalid Province</value>
   </data>
   <data name="INVALID_SALESMAN" xml:space="preserve">
     <value>Invalid Salesman</value>

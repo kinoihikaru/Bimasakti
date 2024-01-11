@@ -7,16 +7,16 @@
 
   <ItemGroup>
     <Compile Update="RSP_LM_MAINTAIN_INVOICE_GRPResources_msgrsc.Designer.cs">
-      <DependentUpon>RSP_LM_MAINTAIN_INVOICE_GRPResources_msgrsc.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>RSP_LM_MAINTAIN_INVOICE_GRPResources_msgrsc.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="RSP_LM_MAINTAIN_INVOICE_GRPResources_msgrsc.resx">
-      <LastGenOutput>RSP_LM_MAINTAIN_INVOICE_GRPResources_msgrsc.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RSP_LM_MAINTAIN_INVOICE_GRPResources_msgrsc.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

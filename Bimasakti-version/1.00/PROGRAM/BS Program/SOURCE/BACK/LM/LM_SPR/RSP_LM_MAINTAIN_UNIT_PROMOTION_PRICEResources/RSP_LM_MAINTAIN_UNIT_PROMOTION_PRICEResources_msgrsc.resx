@@ -126,4 +126,22 @@
   <data name="5503" xml:space="preserve">
     <value>There's already active price for this valid date!</value>
   </data>
+  <data name="5504" xml:space="preserve">
+    <value>Bottom Price/Sqm cannot be bigger than Normal Price/Sqm!</value>
+  </data>
+  <data name="5505" xml:space="preserve">
+    <value>Bottom Selling Price cannot be bigger than Normal Seliing Price!</value>
+  </data>
+  <data name="5506" xml:space="preserve">
+    <value>Normal Price must be bigger than 0!</value>
+  </data>
+  <data name="5507" xml:space="preserve">
+    <value>Normal Selling Price must be bigger than 0!</value>
+  </data>
+  <data name="5508" xml:space="preserve">
+    <value>Bottom Price must be bigger than 0!</value>
+  </data>
+  <data name="5509" xml:space="preserve">
+    <value>Bottom Selling Price must be bigger than 0!</value>
+  </data>
 </root>
