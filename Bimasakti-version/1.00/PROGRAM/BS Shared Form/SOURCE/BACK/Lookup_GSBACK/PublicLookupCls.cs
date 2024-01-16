@@ -443,14 +443,13 @@ namespace Lookup_GSLBACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "EXEC RSP_GS_GET_DEPT_LOOKUP_LIST  " +
-                    "@CCOMPANY_ID, " +
-                    "@CUSER_ID  ";
+                var lcQuery = "RSP_GS_GET_DEPT_LOOKUP_LIST";
                 loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, poEntity.CPROGRAM_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROGRAM_ID", DbType.String, 50, string.IsNullOrWhiteSpace(poEntity.CPROGRAM_ID) ? "" : poEntity.CPROGRAM_ID);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()

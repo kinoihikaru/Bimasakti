@@ -4,6 +4,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using R_OpenTelemetry;
 
 namespace LMM07000BACK
 {

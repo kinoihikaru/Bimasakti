@@ -33,6 +33,7 @@
     <ProjectReference Include="..\..\..\SERVICE\GL\GLB09900SERVICE\GLB09900SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00400SERVICE\GLM00400SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLR00200SERVICE\GLR00200SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLT00100SERVICE\GLT00100SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00200SERVICE\GLT00200SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00500SERVICE\GLT00500SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLTR00100SERVICE\GLTR00100SERVICE.csproj" />

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSModel\Lookup_GSModel.csproj" />
     <ProjectReference Include="..\..\COMMON\GL\GLT00100COMMON\GLT00100COMMON.csproj" />
   </ItemGroup>
 
