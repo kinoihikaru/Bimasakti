@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM07000SERVICE
 {
@@ -12,6 +13,7 @@ namespace LMM07000SERVICE
     [Route("api/[controller]/[action]")]
     public class LMM07000Controller : ControllerBase, ILMM07000
     {
+        private readonly ActivitySource _activitySource;
         private LoggerLMM07000 _Logger;
 
         public LMM07000Controller(ILogger<LoggerLMM07000> logger)
@@ -19,6 +21,7 @@ namespace LMM07000SERVICE
             //Initial and Get Logger
             LoggerLMM07000.R_InitializeLogger(logger);
             _Logger = LoggerLMM07000.R_GetInstanceLogger();
+            _activitySource = LMM07000ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM07000Controller));
         }
 
         // Method Stream
@@ -33,6 +36,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM07000DTO> GetChargesDiscountList()
         {
+            using Activity activity = _activitySource.StartActivity("GetChargesDiscountList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM07000DTO> loRtn = null;
             var loParameter = new LMM07000DTO();
@@ -69,6 +73,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM07000DTOInitial> GetProperty()
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM07000DTOInitial> loRtn = null;
             var loParameter = new LMM07000DTOInitial();
@@ -103,6 +108,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<LMM07000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
             _Logger.LogInfo("Start ServiceDelete LMM07000");
@@ -132,6 +138,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM07000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM07000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM07000DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM07000DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM07000");
@@ -162,6 +169,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM07000DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM07000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM07000DTO> loRtn = new R_ServiceSaveResultDTO<LMM07000DTO>();
             _Logger.LogInfo("Start ServiceSave LMM07000");
@@ -192,6 +200,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public LMM07000Record<LMM07000DTO> LMM07000ActiveInactive(LMM07000DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("LMM07000ActiveInactive");
             R_Exception loException = new R_Exception();
             LMM07000Record<LMM07000DTO> loRtn = new LMM07000Record<LMM07000DTO>();
             _Logger.LogInfo("Start LMM07000ActiveInactive");
@@ -222,6 +231,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public LMM07000Record<LMM07000PeriodDTO> GetMaxInvoicePeriodValue(LMM07000PeriodDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetMaxInvoicePeriodValue");
             R_Exception loException = new R_Exception();
             LMM07000Record<LMM07000PeriodDTO> loRtn = null;
             _Logger.LogInfo("Start GetMaxInvoicePeriodValue");

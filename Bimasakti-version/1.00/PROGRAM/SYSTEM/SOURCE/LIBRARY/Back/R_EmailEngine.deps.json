@@ -1087,7 +1087,6 @@
         "dependencies": {
           "Mindbox.Data.Linq": "5.0.0",
           "R_APICommon": "1.0.0",
-          "R_AuthorizationBack.Abstract": "1.0.0",
           "R_CommonFrontBackAPI": "1.0.0",
           "R_ContextBackEnd": "1.0.0",
           "System.Configuration.ConfigurationManager": "6.0.1"
@@ -1121,11 +1120,6 @@
       "R_APICommonDTO/1.0.0": {
         "runtime": {
           "R_APICommonDTO.dll": {}
-        }
-      },
-      "R_AuthorizationBack.Abstract/1.0.0": {
-        "runtime": {
-          "R_AuthorizationBack.Abstract.dll": {}
         }
       },
       "R_CommonFrontBackAPI/1.0.0": {
@@ -1954,11 +1948,6 @@
       "sha512": ""
     },
     "R_APICommonDTO/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "R_AuthorizationBack.Abstract/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -5,6 +5,7 @@ using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
 using R_OpenTelemetry;
+using System.Diagnostics;
 
 namespace LMM07000BACK
 {
@@ -13,13 +14,16 @@ namespace LMM07000BACK
         RSP_LM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class _loRsp = new RSP_LM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class();
 
         private LoggerLMM07000 _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM07000Cls()
         {
             _Logger = LoggerLMM07000.R_GetInstanceLogger();
+            _activitySource = LMM07000ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM07000DTOInitial> GetProperty(LMM07000DTOInitial poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<LMM07000DTOInitial> loResult = null;
 
@@ -58,6 +62,7 @@ namespace LMM07000BACK
 
         public List<LMM07000DTO> GetAllChargesDiscount(LMM07000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllChargesDiscount");
             var loEx = new R_Exception();
             List<LMM07000DTO> loResult = null;
 
@@ -98,6 +103,7 @@ namespace LMM07000BACK
 
         protected override void R_Deleting(LMM07000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -179,6 +185,7 @@ namespace LMM07000BACK
 
         protected override LMM07000DTO R_Display(LMM07000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM07000DTO loResult = null;
 
@@ -220,6 +227,7 @@ namespace LMM07000BACK
 
         protected override void R_Saving(LMM07000DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -300,6 +308,7 @@ namespace LMM07000BACK
 
         public void LMM00700ActiveInactiveSP(LMM07000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("LMM00700ActiveInactiveSP");
             R_Exception loException = new R_Exception();
 
             try
@@ -337,6 +346,7 @@ namespace LMM07000BACK
 
         public LMM07000PeriodDTO GetMaxInvoicePeriod(LMM07000PeriodDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetMaxInvoicePeriod");
             var loEx = new R_Exception();
             LMM07000PeriodDTO loResult = null;
 

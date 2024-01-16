@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM07000SERVICE
 {
@@ -13,12 +14,14 @@ namespace LMM07000SERVICE
     public class LMM07000UniversalController : ControllerBase, ILMM07000Universal
     {
         private LoggerLMM07000Universal _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM07000UniversalController(ILogger<LoggerLMM07000Universal> logger)
         {
             //Initial and Get Logger
             LoggerLMM07000Universal.R_InitializeLogger(logger);
             _Logger = LoggerLMM07000Universal.R_GetInstanceLogger();
+            _activitySource = LMM07000UniversalActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM07000UniversalController));
         }
 
         // Method Stream
@@ -33,6 +36,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM07000DTOUniversal> GetChargesTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetChargesTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM07000DTOUniversal> loRtn = null;
             var loParameter = new LMM07000DTOUniversal();
@@ -67,6 +71,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM07000DTOUniversal> GetDiscountTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetDiscountTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM07000DTOUniversal> loRtn = null;
             var loParameter = new LMM07000DTOUniversal();
@@ -101,6 +106,7 @@ namespace LMM07000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM07000PeriodDTO> GetInvPeriodList()
         {
+            using Activity activity = _activitySource.StartActivity("GetInvPeriodList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM07000PeriodDTO> loRtn = null;
             var loParameter = new LMM07000PeriodDTO();

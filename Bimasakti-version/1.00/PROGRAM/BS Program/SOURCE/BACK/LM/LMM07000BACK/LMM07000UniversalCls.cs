@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace LMM07000BACK
 {
     public class LMM07000UniversalCls 
     {
         private LoggerLMM07000Universal _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM07000UniversalCls()
         {
             _Logger = LoggerLMM07000Universal.R_GetInstanceLogger();
+            _activitySource = LMM07000UniversalActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM07000DTOUniversal> GetAllChargesType(LMM07000DTOUniversal poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllChargesType");
             var loEx = new R_Exception();
             List<LMM07000DTOUniversal> loResult = null;
 
@@ -73,6 +77,7 @@ namespace LMM07000BACK
 
         public List<LMM07000DTOUniversal> GetAllDiscountType(LMM07000DTOUniversal poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllDiscountType");
             var loEx = new R_Exception();
             List<LMM07000DTOUniversal> loResult = null;
 
@@ -129,6 +134,7 @@ namespace LMM07000BACK
 
         public List<LMM07000PeriodDTO> GetAllInvoicePeriod(LMM07000PeriodDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllInvoicePeriod");
             var loEx = new R_Exception();
             List<LMM07000PeriodDTO> loResult = null;
 
