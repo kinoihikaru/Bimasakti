@@ -16,14 +16,17 @@ namespace LMM01000BACK
     public class LMM01000UniversalCls
     {
         private LoggerLMM01000Universal _LMM01000logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01000UniversalCls()
         {
             _LMM01000logger = LoggerLMM01000Universal.R_GetInstanceLogger();
+            _activitySource = LMM01000UniversalActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM01000DTOPropety> GetProperty(LMM01000PropertyParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<LMM01000DTOPropety> loResult = null;
 
@@ -62,6 +65,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllUsageRateMode(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllUsageRateMode");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -118,6 +122,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllRateType(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllRateType");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -174,6 +179,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAdminFeeType(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAdminFeeType");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -230,6 +236,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllChargesType(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllChargesType");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -286,6 +293,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllStatus(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllStatus");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -341,6 +349,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllTaxExemptionCode(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllTaxExemptionCode");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -397,6 +406,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllWithholdingTaxType(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllWithholdingTaxType");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 
@@ -453,6 +463,7 @@ namespace LMM01000BACK
 
         public List<LMM01000UniversalDTO> GetAllAccrualMethod(LMM01000UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAccrualMethod");
             var loEx = new R_Exception();
             List<LMM01000UniversalDTO> loResult = null;
 

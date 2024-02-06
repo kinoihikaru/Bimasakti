@@ -245,7 +245,7 @@ namespace GLT00100BACK
 
                 var lcQuery = "SELECT dbo.RFN_GET_DB_TODAY(@CCOMPANY_ID) AS DTODAY";
                 loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandType = CommandType.Text;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
 

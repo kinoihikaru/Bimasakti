@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace APM00300SERVICE
 {
@@ -13,16 +14,19 @@ namespace APM00300SERVICE
     public class APM00320Controller : ControllerBase, IAPM00320
     {
         private LoggerAPM00320 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00320Controller(ILogger<LoggerAPM00320> logger)
         {
             //Initial and Get Logger
             LoggerAPM00320.R_InitializeLogger(logger);
             _Logger = LoggerAPM00320.R_GetInstanceLogger();
+            _activitySource = APM00320ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(APM00320Controller));
         }
 
         [HttpPost]
         public GLM00400SingleResult<APM00320DTO> GetSupplierInfo(APM00320DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetSupplierInfo");
             R_Exception loException = new R_Exception();
             GLM00400SingleResult<APM00320DTO> loRtn = new GLM00400SingleResult<APM00320DTO>();
             APM00320Cls loCls = new APM00320Cls();
@@ -52,6 +56,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public IAsyncEnumerable<APM00321DTO> GetSupplierSeqList()
         {
+            using Activity activity = _activitySource.StartActivity("GetSupplierSeqList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00321DTO> loRtn = null;
             APM00321PARAMDTO loParameter = null;
@@ -88,6 +93,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public GLM00400SingleResult<APM00320DTO> SaveSupplierInfo(APM00320DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("SaveSupplierInfo");
             R_Exception loException = new R_Exception();
             GLM00400SingleResult<APM00320DTO> loRtn = new GLM00400SingleResult<APM00320DTO>();
             APM00320Cls loCls = new APM00320Cls();

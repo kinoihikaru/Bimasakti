@@ -10,6 +10,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using R_ReportFastReportBack;
 using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace GLR00200SERVICE
@@ -19,11 +20,13 @@ namespace GLR00200SERVICE
     public class GLR00200Controller : ControllerBase, IGLR00200
     {
         private LoggerGLR00200 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLR00200Controller(ILogger<LoggerGLR00200> logger)
         {
             //Initial and Get Logger
             LoggerGLR00200.R_InitializeLogger(logger);
             _Logger = LoggerGLR00200.R_GetInstanceLogger();
+            _activitySource = GLR00200ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLR00200Controller));
         }
 
         private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
@@ -37,6 +40,7 @@ namespace GLR00200SERVICE
         [HttpPost]
         public GLR00200InitialDTO GetInitialVar()
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialVar");
             var loEx = new R_Exception();
             GLR00200InitialDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialVar");
@@ -70,6 +74,7 @@ namespace GLR00200SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLR00200UniversalDTO> GetPrintMethodList()
         {
+            using Activity activity = _activitySource.StartActivity("GetPrintMethodList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLR00200UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetPrintMethodList");
@@ -104,6 +109,7 @@ namespace GLR00200SERVICE
         [HttpPost]
         public GLR00200GLSystemParamDTO GetSystemParam()
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLR00200GLSystemParamDTO loRtn = null;
             _Logger.LogInfo("Start GetSystemParam");
@@ -136,6 +142,7 @@ namespace GLR00200SERVICE
         [HttpPost]
         public GLR00200Result<GLR00200GetMinMaxAccount> GetMinMaxAccount()
         {
+            using Activity activity = _activitySource.StartActivity("GetMinMaxAccount");
             var loEx = new R_Exception();
             GLR00200Result<GLR00200GetMinMaxAccount> loRtn = new GLR00200Result<GLR00200GetMinMaxAccount>();
             _Logger.LogInfo("Start GetMinMaxAccount");
@@ -162,6 +169,7 @@ namespace GLR00200SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLR00200PeriodDTO> GetPriodList()
         {
+            using Activity activity = _activitySource.StartActivity("GetPriodList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLR00200PeriodDTO> loRtn = null;
             _Logger.LogInfo("Start GetPriodList");

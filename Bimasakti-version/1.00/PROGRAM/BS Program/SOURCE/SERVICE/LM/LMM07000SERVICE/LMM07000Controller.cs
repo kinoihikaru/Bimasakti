@@ -14,14 +14,26 @@ namespace LMM07000SERVICE
     public class LMM07000Controller : ControllerBase, ILMM07000
     {
         private readonly ActivitySource _activitySource;
+
         private LoggerLMM07000 _Logger;
 
         public LMM07000Controller(ILogger<LoggerLMM07000> logger)
         {
-            //Initial and Get Logger
-            LoggerLMM07000.R_InitializeLogger(logger);
-            _Logger = LoggerLMM07000.R_GetInstanceLogger();
-            _activitySource = LMM07000ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM07000Controller));
+            var loEx = new R_Exception();
+            try
+            {
+                //Initial and Get Logger
+                LoggerLMM07000.R_InitializeLogger(logger);
+                _Logger = LoggerLMM07000.R_GetInstanceLogger();
+                _activitySource = LMM07000ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM07000Controller));
+
+                _Logger.LogInfo("Success Contructor");
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
         }
 
         // Method Stream

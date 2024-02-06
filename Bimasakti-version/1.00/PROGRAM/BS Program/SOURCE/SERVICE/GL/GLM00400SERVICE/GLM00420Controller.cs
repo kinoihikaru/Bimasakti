@@ -7,6 +7,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,20 @@ namespace GLM00400SERVICE
     public class GLM00420Controller : ControllerBase, IGLM00420
     {
         private LoggerGLM00420 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public GLM00420Controller(ILogger<LoggerGLM00420> logger)
         {
             //Initial and Get Logger
             LoggerGLM00420.R_InitializeLogger(logger);
             _Logger = LoggerGLM00420.R_GetInstanceLogger();
+            _activitySource = GLM00420ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLM00420Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<GLM00420DTO> GetSourceAllocationCenterList()
         {
+            using Activity activity = _activitySource.StartActivity("GetSourceAllocationCenterList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00420DTO> loRtn = null;
             _Logger.LogInfo("Start GetSourceAllocationCenterList");
@@ -64,6 +68,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLM00421DTO> GetAllocationCenterList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationCenterList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00421DTO> loRtn = null;
             _Logger.LogInfo("Start GetAllocationCenterList");
@@ -108,6 +113,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public GLM00421DTO SaveAllocationCenterList(GLM00421DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("SaveAllocationCenterList");
             R_Exception loException = new R_Exception();
             GLM00421DTO loRtn = new GLM00421DTO();
             GLM00420Cls loCls = new GLM00420Cls();

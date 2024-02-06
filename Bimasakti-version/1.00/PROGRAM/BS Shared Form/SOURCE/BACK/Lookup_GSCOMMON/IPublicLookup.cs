@@ -35,5 +35,6 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL02000CountryDTO> GSL02000GetCountryGeographyList();
         IAsyncEnumerable<GSL02000CityDTO> GSL02000GetCityGeographyList();
         IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList();
+        IAsyncEnumerable<GSL02200DTO> GSL02200GetBuildingList();
     }
 }

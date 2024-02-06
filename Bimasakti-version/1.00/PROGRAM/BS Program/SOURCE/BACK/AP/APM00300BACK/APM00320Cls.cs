@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace APM00300BACK
 {
     public class APM00320Cls
     {
         private LoggerAPM00320 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00320Cls()
         {
             _Logger = LoggerAPM00320.R_GetInstanceLogger();
+            _activitySource = APM00320ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public APM00320DTO GetSupplierInfo(APM00320DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSupplierInfo");
             var loEx = new R_Exception();
             APM00320DTO loResult = null;
 
@@ -54,6 +58,7 @@ namespace APM00300BACK
         }
         public List<APM00321DTO> GetSupplierSeq(APM00321PARAMDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSupplierSeq");
             var loEx = new R_Exception();
             List<APM00321DTO> loResult = null;
 
@@ -92,6 +97,7 @@ namespace APM00300BACK
         }
         public APM00320DTO SaveSupplierInfo(APM00320DTO poNewEntity)
         {
+            using Activity activity = _activitySource.StartActivity("SaveSupplierInfo");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

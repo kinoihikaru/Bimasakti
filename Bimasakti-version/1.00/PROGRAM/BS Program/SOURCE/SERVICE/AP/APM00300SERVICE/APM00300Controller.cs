@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
+using System.Diagnostics;
 
 namespace APM00300SERVICE
 {
@@ -12,11 +13,13 @@ namespace APM00300SERVICE
     public class APM00300Controller : ControllerBase, IAPM00300
     {
         private LoggerAPM00300 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00300Controller(ILogger<LoggerAPM00300> logger)
         {
             //Initial and Get Logger
             LoggerAPM00300.R_InitializeLogger(logger);
             _Logger = LoggerAPM00300.R_GetInstanceLogger();
+            _activitySource = APM00300ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(APM00300Controller));
         }
 
         private async IAsyncEnumerable<T> GetStreamData<T>(List<T> poParameter)
@@ -30,6 +33,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public IAsyncEnumerable<APM00300DTO> GetAPSearchSupplierList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAPSearchSupplierList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00300DTO> loRtn = null;
             _Logger.LogInfo("Start GetAPSearchSupplierList");
@@ -66,6 +70,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public GLM00400SingleResult<APM00300InitialDTO> GetInitial()
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             GLM00400SingleResult<APM00300InitialDTO> loRtn = new GLM00400SingleResult<APM00300InitialDTO>();
             _Logger.LogInfo("Start GetInitial");
@@ -98,6 +103,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public IAsyncEnumerable<APM00300PropertyDTO> GetGSPropertyList()
         {
+            using Activity activity = _activitySource.StartActivity("GetGSPropertyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00300PropertyDTO> loRtn = null;
             var loParameter = new APM00300PropertyDTO();
@@ -131,6 +137,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public IAsyncEnumerable<APM00300LOBDTO> GetLOBList()
         {
+            using Activity activity = _activitySource.StartActivity("GetLOBList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00300LOBDTO> loRtn = null;
             _Logger.LogInfo("Start GetLOBList");

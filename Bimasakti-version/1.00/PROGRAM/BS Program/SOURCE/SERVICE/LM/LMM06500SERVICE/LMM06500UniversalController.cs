@@ -7,6 +7,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,20 @@ namespace LMM06500SERVICE
     public class LMM06500UniversalController : ControllerBase, ILMM06500Universal
     {
         private LoggerLMM06500Universal _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM06500UniversalController(ILogger<LoggerLMM06500Universal> logger)
         {
             //Initial and Get Logger
             LoggerLMM06500Universal.R_InitializeLogger(logger);
             _Logger = LoggerLMM06500Universal.R_GetInstanceLogger();
+            _activitySource = LMM06500UniversalActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM06500UniversalController));
         }
 
         [HttpPost]
         public IAsyncEnumerable<LMM06500DTOInitial> GetProperty()
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM06500DTOInitial> loRtn = null;
             var loParameter = new LMM06500DTOInitial();
@@ -63,6 +67,7 @@ namespace LMM06500SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM06500UniversalDTO> GetPositionList()
         {
+            using Activity activity = _activitySource.StartActivity("GetPositionList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM06500UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetPositionList");
@@ -97,6 +102,7 @@ namespace LMM06500SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM06500UniversalDTO> GetGenderList()
         {
+            using Activity activity = _activitySource.StartActivity("GetGenderList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM06500UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetGenderList");
@@ -132,6 +138,7 @@ namespace LMM06500SERVICE
         [HttpPost]
         public LMM06500AllListUniversalDTO GetAllUniversalList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllUniversalList");
             var loEx = new R_Exception();
             LMM06500AllListUniversalDTO loRtn = new LMM06500AllListUniversalDTO();
             var loPropertyParameter = new LMM06500DTOInitial();

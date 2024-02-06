@@ -11,6 +11,7 @@ using R_CommonFrontBackAPI;
 using R_CommonFrontBackAPI.Log;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,17 +23,20 @@ namespace GSM03000SERVICE
     public class GSM03000Controller : ControllerBase, IGSM03000
     {
         private LoggerGSM03000 _Gsm03000logger;
+        private readonly ActivitySource _activitySource;
 
         public GSM03000Controller(ILogger<LoggerGSM03000> logger)
         {
             //Initial and Get Logger
             LoggerGSM03000.R_InitializeLogger(logger);
             _Gsm03000logger = LoggerGSM03000.R_GetInstanceLogger();
+            _activitySource = GSM03000ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GSM03000Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSM03000DTO> GetOtherChargesList()
         {
+            using Activity activity = _activitySource.StartActivity("GetOtherChargesList");
             var loEx = new R_Exception();
             _Gsm03000logger.LogInfo("Start GetOtherChargesList");
 
@@ -81,6 +85,7 @@ namespace GSM03000SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM03000PropertyDTO> GetProperty()
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             _Gsm03000logger.LogInfo("Start GetProperty");
 
@@ -116,6 +121,7 @@ namespace GSM03000SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM03000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             _Gsm03000logger.LogInfo("Start R_ServiceDelete_OtherCharges");
 
@@ -147,6 +153,7 @@ namespace GSM03000SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<GSM03000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM03000DTO> poParameter) 
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             _Gsm03000logger.LogInfo("Start R_ServiceGetRecord_OtherCharges");
 
@@ -178,6 +185,7 @@ namespace GSM03000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<GSM03000DTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM03000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             _Gsm03000logger.LogInfo("Start R_ServiceSave_OtherCharges");
 
@@ -209,6 +217,7 @@ namespace GSM03000SERVICE
         [HttpPost]
         public GSM03000ActiveDTO GSM03000OtherChargesChangeStatus(GSM03000ActiveParameterDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GSM03000OtherChargesChangeStatus");
             R_Exception loException = new R_Exception();
             _Gsm03000logger.LogInfo("Start GSM03000OtherChargesChangeStatus");
 

@@ -6,6 +6,7 @@ using R_BackEnd;
 using R_Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,16 +18,19 @@ namespace GLM00400SERVICE
     public class GLM00400Controller : ControllerBase, IGLM00400
     {
         private LoggerGLM00400 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLM00400Controller(ILogger<LoggerGLM00400> logger)
         {
             //Initial and Get Logger
             LoggerGLM00400.R_InitializeLogger(logger);
             _Logger = LoggerGLM00400.R_GetInstanceLogger();
+            _activitySource = GLM00400ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLM00400Controller));
         }
 
         [HttpPost]
         public GLM00400InitialDTO GetInitialVar(GLM00400InitialDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialVar");
             var loEx = new R_Exception();
             GLM00400InitialDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialVar");
@@ -58,6 +62,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public GLM00400GLSystemParamDTO GetSystemParam(GLM00400GLSystemParamDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLM00400GLSystemParamDTO loRtn = null;
             _Logger.LogInfo("Start GetSystemParam");
@@ -91,6 +96,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLM00400DTO> GetAllocationJournalHDList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationJournalHDList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00400DTO> loRtn = null;
             _Logger.LogInfo("Start GetAllocationJournalHDList");

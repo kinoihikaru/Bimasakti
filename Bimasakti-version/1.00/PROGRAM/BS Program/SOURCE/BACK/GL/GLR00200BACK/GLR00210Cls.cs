@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLR00200BACK
 {
     public class GLR00210Cls
     {
         private LoggerGLR00210Print _LoggerPrint;
+        private readonly ActivitySource _activitySource;
         public GLR00210Cls()
         {
             _LoggerPrint = LoggerGLR00210Print.R_GetInstanceLogger();
+            _activitySource = GLR00210PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLR00210DTO GetBaseHeaderLogoCompany(GLR00200PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             GLR00210DTO loResult = null;
 
@@ -52,6 +56,7 @@ namespace GLR00200BACK
         }
         public List<GLR00210DTO> GetSummaryGLLedger(GLR00200PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSummaryGLLedger");
             var loEx = new R_Exception();
             List<GLR00210DTO> loResult = null;
 
@@ -107,6 +112,7 @@ namespace GLR00200BACK
 
         public List<GLR00211DTO> GetDetailGLLEdger(GLR00200PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetDetailGLLEdger");
             var loEx = new R_Exception();
             List<GLR00211DTO> loResult = null;
 

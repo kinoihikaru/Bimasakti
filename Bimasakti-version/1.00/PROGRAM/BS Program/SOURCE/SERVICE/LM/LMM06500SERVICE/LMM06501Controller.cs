@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace LMM06500SERVICE
@@ -13,17 +14,20 @@ namespace LMM06500SERVICE
     public class LMM06501Controller : ControllerBase, ILMM06501
     {
         private LoggerLMM06501 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM06501Controller(ILogger<LoggerLMM06501> logger)
         {
             //Initial and Get Logger
             LoggerLMM06501.R_InitializeLogger(logger);
             _Logger = LoggerLMM06501.R_GetInstanceLogger();
+            _activitySource = LMM06501ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM06501Controller));
         }
 
         [HttpPost]
         public LMM06500UploadFileDTO DownloadTemplateFile()
         {
+            using Activity activity = _activitySource.StartActivity("DownloadTemplateFile");
             var loEx = new R_Exception();
             var loRtn = new LMM06500UploadFileDTO();
             _Logger.LogInfo("Start DownloadTemplateFile");
@@ -58,6 +62,7 @@ namespace LMM06500SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM06501ErrorValidateDTO> GetErrorProcess()
         {
+            using Activity activity = _activitySource.StartActivity("GetErrorProcess");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM06501ErrorValidateDTO> loRtn = null;
 

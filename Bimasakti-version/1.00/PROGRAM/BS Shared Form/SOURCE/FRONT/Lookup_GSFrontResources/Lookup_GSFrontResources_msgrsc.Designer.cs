@@ -133,6 +133,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Building ID.
+        /// </summary>
+        internal static string _BuildingId {
+            get {
+                return ResourceManager.GetString("_BuildingId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building Name.
+        /// </summary>
+        internal static string _BuildingName {
+            get {
+                return ResourceManager.GetString("_BuildingName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string _CancelBtn {

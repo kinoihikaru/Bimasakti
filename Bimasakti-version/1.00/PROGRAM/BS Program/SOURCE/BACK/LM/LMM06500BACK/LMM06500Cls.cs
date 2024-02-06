@@ -9,22 +9,27 @@ using System.Threading.Tasks;
 using System.Data.Common;
 using System.Windows.Input;
 using LMM06500COMMON;
+using System.Diagnostics;
 
 namespace LMM06500BACK
 {
     public class LMM06500Cls : R_BusinessObject<LMM06500DTO>
     {
+
         RSP_LM_MAINTAIN_STAFFResources.Resources_Dummy_Class loRsp = new RSP_LM_MAINTAIN_STAFFResources.Resources_Dummy_Class();
         RSP_LM_UPLOAD_STAFFResources.Resources_Dummy_Class loRspUpload = new RSP_LM_UPLOAD_STAFFResources.Resources_Dummy_Class();
 
+        private readonly ActivitySource _activitySource;
         private LoggerLMM06500 _Logger;
         public LMM06500Cls()
         {
             _Logger = LoggerLMM06500.R_GetInstanceLogger();
+            _activitySource = LMM06500ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM06500DTO> GetAllStaff(LMM06500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllStaff");
             var loEx = new R_Exception();
             List<LMM06500DTO> loResult = null;
 
@@ -67,6 +72,7 @@ namespace LMM06500BACK
 
         protected override LMM06500DTO R_Display(LMM06500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM06500DTO loResult = null;
 
@@ -110,6 +116,7 @@ namespace LMM06500BACK
 
         protected override void R_Saving(LMM06500DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -228,6 +235,7 @@ namespace LMM06500BACK
 
         protected override void R_Deleting(LMM06500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -339,6 +347,7 @@ namespace LMM06500BACK
 
         public void LMM06500ActiveInactiveSP(LMM06500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("LMM06500ActiveInactiveSP");
             R_Exception loException = new R_Exception();
 
             try

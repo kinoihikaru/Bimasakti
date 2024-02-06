@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLM00400BACK
 {
     public class GLM00430Cls
     {
         private LoggerGLM00430 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLM00430Cls()
         {
             _Logger = LoggerGLM00430.R_GetInstanceLogger();
+            _activitySource = GLM00430ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<GLM00430DTO> GetAllSourceAllocationAccount(GLM00430DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllSourceAllocationAccount");
             var loEx = new R_Exception();
             List<GLM00430DTO> loResult = null;
 
@@ -57,6 +61,7 @@ namespace GLM00400BACK
 
         public List<GLM00431DTO> GetAllAllocationAccount(GLM00431DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationAccount");
             var loEx = new R_Exception();
             List<GLM00431DTO> loResult = null;
 
@@ -100,6 +105,7 @@ namespace GLM00400BACK
 
         public void SaveAllocationAccount(GLM00431DTO poNewEntity)
         {
+            using Activity activity = _activitySource.StartActivity("SaveAllocationAccount");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

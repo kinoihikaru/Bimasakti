@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM01000SERVICE
 {
@@ -13,17 +14,20 @@ namespace LMM01000SERVICE
     public class LMM01040Controller : ControllerBase, ILMM01040
     {
         private LoggerLMM01040 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01040Controller(ILogger<LoggerLMM01040> logger)
         {
             //Initial and Get Logger
             LoggerLMM01040.R_InitializeLogger(logger);
             _Logger = LoggerLMM01040.R_GetInstanceLogger();
+            _activitySource = LMM01040ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01040Controller));
         }
 
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01040DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01040DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM01040DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM01040DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM01040");
@@ -54,6 +58,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01040DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01040DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM01040DTO> loRtn = new R_ServiceSaveResultDTO<LMM01040DTO>();
             _Logger.LogInfo("Start ServiceSave LMM01040");

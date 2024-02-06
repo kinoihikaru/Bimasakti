@@ -9,20 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace LMM01500BACK
 {
     public class LMM01520Cls : R_BusinessObject<LMM01520DTO>
     {
         private LoggerLMM01520 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01520Cls()
         {
             _Logger = LoggerLMM01520.R_GetInstanceLogger();
+            _activitySource = LMM01520ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM01522DTO> GetAllAdditionalId(LMM01522DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAdditionalId");
             var loEx = new R_Exception();
             List<LMM01522DTO> loResult = null;
 
@@ -65,6 +69,7 @@ namespace LMM01500BACK
 
         protected override LMM01520DTO R_Display(LMM01520DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01520DTO loResult = null;
             var loDb = new R_Db();
@@ -125,6 +130,7 @@ namespace LMM01500BACK
 
         protected override void R_Saving(LMM01520DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

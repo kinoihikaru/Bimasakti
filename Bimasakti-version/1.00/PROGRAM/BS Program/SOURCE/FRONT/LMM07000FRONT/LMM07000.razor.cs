@@ -65,6 +65,7 @@ namespace LMM07000FRONT
             R_DisplayException(loEx);
         }
 
+        private bool IsTes = false;
         private async Task PropertyDropdown_OnChange(string poParam)
         {
             var loEx = new R_Exception();
@@ -73,6 +74,7 @@ namespace LMM07000FRONT
             {
                 PropertyId = poParam;
                 await _ChargesType_gridRef.R_RefreshGrid(null);
+                //IsTes = poParam is "JBMPC" or "LMPNG" or "TAR";
             }
             catch (Exception ex)
             {

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM01000SERVICE
 {
@@ -13,17 +14,20 @@ namespace LMM01000SERVICE
     public class LMM01010Controller : ControllerBase, ILMM01010
     {
         private LoggerLMM01010 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01010Controller(ILogger<LoggerLMM01010> logger)
         {
             //Initial and Get Logger
             LoggerLMM01010.R_InitializeLogger(logger);
             _Logger = LoggerLMM01010.R_GetInstanceLogger();
+            _activitySource = LMM01010ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01010Controller));
         }
 
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01010DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01010DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM01010DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM01010DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM01010");
@@ -54,6 +58,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01010DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01010DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM01010DTO> loRtn = new R_ServiceSaveResultDTO<LMM01010DTO>();
             _Logger.LogInfo("Start ServiceSave LMM01010");
@@ -93,6 +98,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01011DTO> GetRateECList()
         {
+            using Activity activity = _activitySource.StartActivity("GetRateECList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01011DTO> loRtn = null;
             List<LMM01011DTO> loTempRtn = null;

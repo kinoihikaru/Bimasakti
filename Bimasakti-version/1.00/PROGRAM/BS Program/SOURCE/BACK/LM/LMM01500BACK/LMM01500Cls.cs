@@ -11,6 +11,7 @@ using System.Data.Common;
 using System.Windows.Input;
 using R_StorageCommon;
 using R_Storage;
+using System.Diagnostics;
 
 namespace LMM01500BACK
 {
@@ -18,14 +19,17 @@ namespace LMM01500BACK
     {
         RSP_LM_MAINTAIN_INVOICE_GRPResources.Resources_Dummy_Class _loRsp = new RSP_LM_MAINTAIN_INVOICE_GRPResources.Resources_Dummy_Class();
         private LoggerLMM01500 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01500Cls()
         {
             _Logger = LoggerLMM01500.R_GetInstanceLogger();
+            _activitySource = LMM01500ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM01500DTOPropety> GetProperty(LMM01500PropertyParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<LMM01500DTOPropety> loResult = null;
 
@@ -64,6 +68,7 @@ namespace LMM01500BACK
 
         public List<LMM01501DTO> GetAllInvoiceGrp(LMM01501ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllInvoiceGrp");
             var loEx = new R_Exception();
             List<LMM01501DTO> loResult = null;
 
@@ -105,6 +110,7 @@ namespace LMM01500BACK
 
         protected override LMM01500DTO R_Display(LMM01500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01500DTO loResult = null;
             R_ReadResult loReadResult = null;
@@ -181,6 +187,7 @@ namespace LMM01500BACK
         }
         public bool ValidateCheckDataTab2(LMM01500DTO poNewEntity)
         {
+            using Activity activity = _activitySource.StartActivity("ValidateCheckDataTab2");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -258,6 +265,7 @@ namespace LMM01500BACK
         #region Saving
         protected override void R_Saving(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             LMM01500DTO loResult = null;
 
@@ -287,6 +295,7 @@ namespace LMM01500BACK
         #region Delete All Data Tab Template 
         private List<LMM01510DTO> GetAllTemplateAndBankAccount(LMM01510DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllTemplateAndBankAccount");
             var loEx = new R_Exception();
             List<LMM01510DTO> loResult = null;
 
@@ -327,6 +336,7 @@ namespace LMM01500BACK
         }
         private void DeleteStorageData(LMM01511DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("DeleteStorageData");
             var loEx = new R_Exception();
             var loDb = new R_Db();
             DbConnection loConn = null;
@@ -370,6 +380,7 @@ namespace LMM01500BACK
         }
         private void DeleteDataSP(LMM01511DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("DeleteDataSP");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -443,6 +454,7 @@ namespace LMM01500BACK
         }
         public void DeleteAllDataByInvoiceGroupCode(LMM01510DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("DeleteAllDataByInvoiceGroupCode");
             var loEx = new R_Exception();
             LMM01511DTO loParam = null;
 
@@ -476,6 +488,7 @@ namespace LMM01500BACK
         #region Set Storage ID
         private LMM01500DTOStorageType GetStorageType()
         {
+            using Activity activity = _activitySource.StartActivity("GetStorageType");
             var loEx = new R_Exception();
             LMM01500DTOStorageType loResult = null;
             var loDb = new R_Db();
@@ -514,6 +527,7 @@ namespace LMM01500BACK
         }
         private bool ValidateAlreadyExists(LMM01500DTO poNewEntity)
         {
+            using Activity activity = _activitySource.StartActivity("ValidateAlreadyExists");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -589,6 +603,7 @@ namespace LMM01500BACK
         }
         private LMM01500DTO SetStorageID(LMM01500DTO poNewEntity, LMM01500DTOStorageType poStorageType, bool plExists)
         {
+            using Activity activity = _activitySource.StartActivity("SetStorageID");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -735,6 +750,7 @@ namespace LMM01500BACK
         #region Save Data
         private void SaveDataSP(LMM01500DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("SaveDataSP");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -838,6 +854,7 @@ namespace LMM01500BACK
         #endregion
         protected override void R_Deleting(LMM01500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -939,6 +956,7 @@ namespace LMM01500BACK
         }
         public void LMM01500ActiveInactiveSP(LMM01500DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01500ActiveInactiveSP");
             R_Exception loException = new R_Exception();
 
             try
@@ -979,6 +997,7 @@ namespace LMM01500BACK
         }
         public List<LMM01502DTO> LMM01530LookupBank(LMM01502DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01530LookupBank");
             var loEx = new R_Exception();
             List<LMM01502DTO> loResult = null;
 

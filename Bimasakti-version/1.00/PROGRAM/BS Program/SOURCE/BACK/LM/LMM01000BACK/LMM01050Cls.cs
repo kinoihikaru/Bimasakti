@@ -19,17 +19,29 @@ namespace LMM01000BACK
     {
         private LoggerLMM01050 _Logger;
         private LoggerLMM01050Print _Printlogger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01050Cls()
         {
             _Logger = LoggerLMM01050.R_GetInstanceLogger();
+            var loActivity = LMM01050ActivitySourceBase.R_GetInstanceActivitySource();
+            if (loActivity is null)
+            {
+                _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
+            }
+            else
+            {
+                _activitySource = loActivity;
+            }
         }
         public LMM01050Cls(LoggerLMM01050Print poParam)
         {
             _Printlogger = LoggerLMM01050Print.R_GetInstanceLogger();
+            _activitySource = LMM01050PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
         public List<LMM01051DTO> GetAllRateOTList(LMM01051DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllRateOTList");
             var loEx = new R_Exception();
             List<LMM01051DTO> loResult = null;
 
@@ -215,6 +227,7 @@ namespace LMM01000BACK
 
         protected override LMM01050DTO R_Display(LMM01050DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01050DTO loResult = null;
 
@@ -357,6 +370,7 @@ namespace LMM01000BACK
         }
         public LMM01050DTO GetBaseHeaderLogoCompany(LMM01050PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             LMM01050DTO loResult = null;
 
@@ -392,6 +406,7 @@ namespace LMM01000BACK
         }
         public LMM01050DTO GetHDReportRateOT(LMM01050DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetHDReportRateOT");
             var loEx = new R_Exception();
             LMM01050DTO loResult = null;
 
@@ -432,6 +447,7 @@ namespace LMM01000BACK
 
         public List<LMM01051DTO> GetDetailReportRateOT(LMM01051DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetDetailReportRateOT");
             var loEx = new R_Exception();
             List<LMM01051DTO> loResult = null;
 

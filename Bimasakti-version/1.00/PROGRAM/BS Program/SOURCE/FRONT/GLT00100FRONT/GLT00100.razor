@@ -3,11 +3,11 @@
 @using GLT00100COMMON;
 
 <R_StackLayout Row>
-    <R_ItemLayout col="1">
+    <R_ItemLayout>
         <R_Label>Department</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox @bind-Value="_JournalListViewModel.JornalParam.CDEPT_CODE"
+        <R_TextBox @bind-Value="_JournalEntryViewModel.JornalParam.CDEPT_CODE"
                    R_ConductorSource="_conductorRef"
                    Enabled="true" />
     </R_ItemLayout>
@@ -17,21 +17,21 @@
         </R_Lookup>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @bind-Value="_JournalListViewModel.JornalParam.CDEPT_NAME"
+        <R_TextBox @bind-Value="_JournalEntryViewModel.JornalParam.CDEPT_NAME"
                    Enabled="false" />
     </R_ItemLayout>
 
-    <R_ItemLayout col="1">
+    <R_ItemLayout Style="width:auto">
         <R_Label>Journal Period</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_NumericTextBox @bind-Value="_JournalListViewModel.JournalPeriodYear"
+        <R_NumericTextBox @bind-Value="_JournalEntryViewModel.JournalPeriodYear"
                           ThousandSeparator="false"
                           />
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_ComboBox Data="@_JournalListViewModel.PeriodMonthList"
-                    @bind-Value="_JournalListViewModel.JournalPeriodMonth"
+        <R_ComboBox Data="@_JournalEntryViewModel.PeriodMonthList"
+                    @bind-Value="_JournalEntryViewModel.JournalPeriodMonth"
                     ValueField="Key"
                     TextField="Value"
                     />
@@ -41,15 +41,15 @@
         <R_Label>Status</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_ComboBox Data="@_JournalListViewModel.VAR_GSB_CODE_LIST"
-                    @bind-Value="_JournalListViewModel.JornalParam.CSTATUS"
+        <R_ComboBox Data="@_JournalEntryViewModel.VAR_GSB_CODE_LIST"
+                    @bind-Value="_JournalEntryViewModel.JornalParam.CSTATUS"
                     ValueField="@nameof(GLT00100GSGSBCodeDTO.CCODE)"
                     TextField="@nameof(GLT00100GSGSBCodeDTO.CNAME)"
                     >
         </R_ComboBox>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox @bind-Value="_JournalListViewModel.JornalParam.CSEARCH_TEXT"
+        <R_TextBox @bind-Value="_JournalEntryViewModel.JornalParam.CSEARCH_TEXT"
                     />
     </R_ItemLayout>
     <R_ItemLayout>
@@ -62,7 +62,7 @@
 
 <R_StackLayout Row>
     <R_Grid @ref="_gridRef"
-            DataSource="@_JournalListViewModel.JournalGrid"
+            DataSource="@_JournalEntryViewModel.JournalGrid"
             R_ConductorSource="_conductorRef"
             R_ServiceGetListRecord="JournalGrid_ServiceGetListRecord"
             R_GridType="R_eGridType.Navigator"
@@ -78,7 +78,7 @@
             <R_GridTextColumn Width="132px" FieldName="@nameof(GLT00100DTO.CDOC_NO)" HeaderText="Document No."></R_GridTextColumn>
             <R_GridTextColumn Width="500px" FieldName="@nameof(GLT00100DTO.CTRANS_DESC)" HeaderText="Description"></R_GridTextColumn>
             <R_GridTextColumn Width="100px" FieldName="@nameof(GLT00100DTO.CCURRENCY_CODE)" HeaderText="Currency"></R_GridTextColumn>
-            <R_GridNumericColumn Width="97px" FieldName="@nameof(GLT00100DTO.NTRANS_AMOUNT)" HeaderText="Amo_conductorRefunt"></R_GridNumericColumn>
+            <R_GridNumericColumn Width="97px" FieldName="@nameof(GLT00100DTO.NTRANS_AMOUNT)" HeaderText="Amount"></R_GridNumericColumn>
             <R_GridTextColumn Width="86px" FieldName="@nameof(GLT00100DTO.CSTATUS_NAME)" HeaderText="Status"></R_GridTextColumn>
             <R_GridTextColumn Width="150px" FieldName="@nameof(GLT00100DTO.CUPDATE_BY)" HeaderText="Updated By"></R_GridTextColumn>
             <R_GridTextColumn Width="150px" FieldName="@nameof(GLT00100DTO.DUPDATE_DATE)" HeaderText="Updated Date"></R_GridTextColumn>
@@ -91,7 +91,7 @@
 
 <R_StackLayout Row>
     <R_Grid @ref="_gridDetailRef"
-            DataSource="@_JournalListViewModel.JournalDetailGrid"
+            DataSource="@_JournalEntryViewModel.JournalDetailGrid"
             Pageable
             R_ServiceGetListRecord="JournalGridDetail_ServiceGetListRecord"
             Height="240px">
@@ -116,34 +116,34 @@
 
     <R_StackLayout Row>
     <R_ItemLayout>
-        <R_Button Enabled="@(_JournalListViewModel.Data.CSTATUS == "10" && _JournalListViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG)" 
+        <R_Button Enabled="@(_JournalEntryViewModel.JournalGrid.Count > 0 && (_JournalEntryViewModel.Data.CSTATUS == "10" && _JournalEntryViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG))" 
             OnClick="ApproveJournalProcess">
             Approve
             </R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_Button Enabled="@( 
-                            (_JournalListViewModel.Data.CSTATUS == "20" || (_JournalListViewModel.Data.CSTATUS == "10" && _JournalListViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG)) || 
-                            (_JournalListViewModel.Data.CSTATUS == "80" && !_JournalListViewModel.VAR_IUNDO_COMMIT_JRN.LWARNING) && 
-                            (int.Parse(_JournalListViewModel.JournalPeriodYear + _JournalListViewModel.JournalPeriodMonth) >= int.Parse(_JournalListViewModel.VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD)) )"
+                            (_JournalEntryViewModel.Data.CSTATUS == "20" || (_JournalEntryViewModel.Data.CSTATUS == "10" && _JournalEntryViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG)) || 
+                            (_JournalEntryViewModel.Data.CSTATUS == "80" && !_JournalEntryViewModel.VAR_IUNDO_COMMIT_JRN.LWARNING) && 
+                            (int.Parse(_JournalEntryViewModel.JournalPeriodYear + _JournalEntryViewModel.JournalPeriodMonth) >= int.Parse(_JournalEntryViewModel.VAR_GL_SYSTEM_PARAM.CSOFT_PERIOD)) )"
                   OnClick="CommitJournalProcess">
             Commit
         </R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Popup Enabled="@(_JournalListViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG)" R_Before_Open_Popup="R_Before_Open_PopupRapidApprove"
-                 R_After_Open_Popup="R_After_Open_PopupRapidApprove">Rapid Approval</R_Popup>
+        <R_Popup Enabled="@(_JournalEntryViewModel.JournalGrid.Count > 0 && _JournalEntryViewModel.VAR_GSM_TRANSACTION_CODE.LAPPROVAL_FLAG)" R_Before_Open_Popup="R_Before_Open_PopupRapidApprove"
+                 >Rapid Approval</R_Popup>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Popup Enabled="true" R_Before_Open_Popup="R_Before_Open_PopupRapidCommit"
-                 R_After_Open_Popup="R_After_Open_PopupRapidCommit">Rapid Commit</R_Popup>
+        <R_Popup Enabled="@(_JournalEntryViewModel.JournalGrid.Count > 0)" R_Before_Open_Popup="R_Before_Open_PopupRapidCommit"
+                 >Rapid Commit</R_Popup>
     </R_ItemLayout>
 </R_StackLayout>
 
-    <R_PredefinedDock Title="Journal Entry" R_InstantiateDock="@Predef_JournalEntry" R_AfterOpenPredefinedDock="@AfterPredef_JournalEntry"></R_PredefinedDock>
+<R_PredefinedDock Title="Journal Entry" R_InstantiateDock="@Predef_JournalEntry" R_AfterOpenPredefinedDock="@AfterPredef_JournalEntry"></R_PredefinedDock>
 
 <R_Conductor @ref="_conductorRef"
-    R_ViewModel="_JournalListViewModel"
+    R_ViewModel="_JournalEntryViewModel"
     R_IsHeader
     R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
     R_Display="JournalGrid_Display" />

@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace APM00300BACK
 {
     public class APM00330Cls : R_BusinessObject<APM00330DTO>
     {
         private LoggerAPM00330 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00330Cls()
         {
             _Logger = LoggerAPM00330.R_GetInstanceLogger();
+            _activitySource = APM00330ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<APM00330DTO> GetAllSupplierBank(APM00330DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllSupplierBank");
             var loEx = new R_Exception();
             List<APM00330DTO> loResult = null;
 
@@ -56,6 +60,7 @@ namespace APM00300BACK
 
         protected override void R_Deleting(APM00330DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -119,6 +124,7 @@ namespace APM00300BACK
 
         protected override APM00330DTO R_Display(APM00330DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             APM00330DTO loResult = null;
 
@@ -157,6 +163,7 @@ namespace APM00300BACK
 
         protected override void R_Saving(APM00330DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

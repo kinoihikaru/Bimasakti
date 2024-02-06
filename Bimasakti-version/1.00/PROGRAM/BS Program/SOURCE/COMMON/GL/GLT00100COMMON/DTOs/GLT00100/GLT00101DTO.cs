@@ -13,14 +13,16 @@ namespace GLT00100COMMON
         public string CGLACCOUNT_NAME { get; set; }
         public string CCENTER_CODE { get; set; }
         public string CCENTER_NAME { get; set; }
-        public string CDBCR { get; set; }
+        public char CDBCR { get; set; }
         public string CCURRENCY_CODE { get; set; }
         public decimal NTRANS_AMOUNT { get; set; }
         public decimal NLTRANS_AMOUNT { get; set; }
         public decimal NBTRANS_AMOUNT { get; set; }
+        public decimal NAMOUNT { get; set; }
         public string CDETAIL_DESC { get; set; }
         public string CDOCUMENT_NO { get; set; }
         public string CDOCUMENT_DATE { get; set; }
+        public DateTime DDOCUMENT_DATE { get; set; }
         public decimal NDEBIT { get; set; }
         public decimal NCREDIT { get; set; }
         public decimal NLDEBIT { get; set; }

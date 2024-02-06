@@ -4,20 +4,24 @@ using System.Data.Common;
 using System.Data;
 using GSM09100COMMON;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace GSM09100BACK
 {
     public class GSM09100Cls : R_BusinessObject<GSM09100DTO>
     {
         private LoggerGSM09100 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public GSM09100Cls()
         {
             _Logger = LoggerGSM09100.R_GetInstanceLogger();
+            _activitySource = GSM09100ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<GSM09100PropertyDTO> GetProperty(GSM09100PropertyDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<GSM09100PropertyDTO> loResult = null;
 
@@ -55,6 +59,7 @@ namespace GSM09100BACK
 
         public GSM09100InitialDTO GetInitial(GSM09100InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             GSM09100InitialDTO loResult = poEntity;
             string lcQuery;
@@ -146,6 +151,7 @@ namespace GSM09100BACK
 
         public List<GSM09100DTO> GetProductCategoryList(GSM09100DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProductCategoryList");
             var loEx = new R_Exception();
             List<GSM09100DTO> loResult = null;
 
@@ -191,6 +197,7 @@ namespace GSM09100BACK
         }
         protected override GSM09100DTO R_Display(GSM09100DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             GSM09100DTO loResult = null;
 
@@ -232,6 +239,7 @@ namespace GSM09100BACK
 
         protected override void R_Saving(GSM09100DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             DbConnection loConn = null;
             DbCommand loCmd = null;
@@ -265,7 +273,7 @@ namespace GSM09100BACK
                 loDb.R_AddCommandParameter(loCmd, "@ILEVEL", DbType.Int32, 50, poNewEntity.ILEVEL);
                 loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_ID", DbType.String, 50, poNewEntity.CCATEGORY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_NAME", DbType.String, 50, poNewEntity.CCATEGORY_NAME);
-                loDb.R_AddCommandParameter(loCmd, "@CNOTE", DbType.String, int.MaxValue, poNewEntity.CNOTE);
+                loDb.R_AddCommandParameter(loCmd, "@CNOTE", DbType.String, int.MaxValue, string.IsNullOrWhiteSpace(poNewEntity.CNOTE) ? "" : poNewEntity.CNOTE);
 
                 R_ExternalException.R_SP_Init_Exception(loConn);
 
@@ -317,6 +325,7 @@ namespace GSM09100BACK
 
         protected override void R_Deleting(GSM09100DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             DbConnection loConn = null;
             DbCommand loCmd = null;

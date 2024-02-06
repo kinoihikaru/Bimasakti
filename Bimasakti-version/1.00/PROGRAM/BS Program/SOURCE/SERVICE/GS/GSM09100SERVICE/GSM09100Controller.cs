@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace GSM09100SERVICE
 {
@@ -13,12 +14,14 @@ namespace GSM09100SERVICE
     public class GSM09100Controller : ControllerBase, IGSM09100
     {
         private LoggerGSM09100 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public GSM09100Controller(ILogger<LoggerGSM09100> logger)
         {
             //Initial and Get Logger
             LoggerGSM09100.R_InitializeLogger(logger);
             _Logger = LoggerGSM09100.R_GetInstanceLogger();
+            _activitySource = GSM09100ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GSM09100Controller));
         }
 
         private async IAsyncEnumerable<T> GetStreamData<T>(List<T> poParam)
@@ -32,6 +35,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public GSM09100SingleResult<GSM09100InitialDTO> GetInitialProductCategory(GSM09100InitialDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialProductCategory");
             var loEx = new R_Exception();
             GSM09100SingleResult<GSM09100InitialDTO> loRtn = new GSM09100SingleResult<GSM09100InitialDTO>();
             _Logger.LogInfo("Start GetInitialProductCategory");
@@ -63,6 +67,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM09100DTO> GetProductCategoryList()
         {
+            using Activity activity = _activitySource.StartActivity("GetProductCategoryList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSM09100DTO> loRtn = null;
             GSM09100DTO loParameter = null;
@@ -99,6 +104,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM09100PropertyDTO> GetProperty()
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSM09100PropertyDTO> loRtn = null;
             GSM09100PropertyDTO loParameter = null;
@@ -134,6 +140,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GSM09100DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
             _Logger.LogInfo("Start R_ServiceDelete GSM09100");
@@ -164,6 +171,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<GSM09100DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GSM09100DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<GSM09100DTO> loRtn = new R_ServiceGetRecordResultDTO<GSM09100DTO>();
             _Logger.LogInfo("Start ServiceGetRecord GSM09100");
@@ -194,6 +202,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<GSM09100DTO> R_ServiceSave(R_ServiceSaveParameterDTO<GSM09100DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<GSM09100DTO> loRtn = new R_ServiceSaveResultDTO<GSM09100DTO>();
             _Logger.LogInfo("Start ServiceSave GSM09100");

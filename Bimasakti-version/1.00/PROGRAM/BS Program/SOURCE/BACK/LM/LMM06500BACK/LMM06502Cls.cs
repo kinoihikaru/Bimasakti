@@ -11,20 +11,32 @@ using System.Windows.Input;
 using LMM06500COMMON;
 using System.Transactions;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace LMM06500BACK
 {
     public class LMM06502Cls
     {
         private LoggerLMM06502 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM06502Cls()
         {
             _Logger = LoggerLMM06502.R_GetInstanceLogger();
+            var loActivity = LMM06502ActivitySourceBase.R_GetInstanceActivitySource();
+            if (loActivity is null)
+            {
+                _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
+            }
+            else
+            {
+                _activitySource = loActivity;
+            }
         }
 
         public List<LMM06502DetailDTO> GetAllStaffMove(LMM06502DetailDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllStaffMove");
             var loEx = new R_Exception();
             List<LMM06502DetailDTO> loResult = null;
 
@@ -67,6 +79,7 @@ namespace LMM06500BACK
         }
         public void SaveNewStaffMove(LMM06502DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("SaveNewStaffMove");
             var loEx = new R_Exception();
             R_Db loDb = new R_Db();
             DbCommand loCmd = null;

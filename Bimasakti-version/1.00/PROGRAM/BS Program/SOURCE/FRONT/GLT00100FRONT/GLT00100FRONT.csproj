@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
     <ProjectReference Include="..\GLT00100MODEL\GLT00100MODEL.csproj" />
+    <ProjectReference Include="..\GLTR00100FRONT\GLTR00100FRONT.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -39,5 +40,11 @@
 		<Reference Include="R_ProcessAndUploadFront">
 			<HintPath>..\..\..\..\SYSTEM\SOURCE\LIBRARY\Front\R_ProcessAndUploadFront.dll</HintPath>
 		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="GLT00110.razor">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	  </Content>
 	</ItemGroup>
 </Project>

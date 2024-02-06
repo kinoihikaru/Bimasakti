@@ -4,6 +4,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLTR00100BACK
 {
@@ -11,19 +12,23 @@ namespace GLTR00100BACK
     {
         private LoggerGLTR00100 _Logger;
         private LoggerGLTR00100Print _LoggerPrint;
+        private readonly ActivitySource _activitySource;
 
         public GLTR00100Cls(LoggerGLTR00100Print loggerPrint)
         {
             _LoggerPrint = LoggerGLTR00100Print.R_GetInstanceLogger();
+            _activitySource = GLTR00100PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLTR00100Cls()
         {
             _Logger = LoggerGLTR00100.R_GetInstanceLogger();
+            _activitySource = GLTR00100ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLTR00100InitialDTO GetInitial(GLTR00100InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             GLTR00100InitialDTO loResult = poEntity;
 
@@ -70,6 +75,7 @@ namespace GLTR00100BACK
         }
         public GLTR00100DTO GetGLJournalTransaction(GLTR00100DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetGLJournalTransaction");
             var loEx = new R_Exception();
             GLTR00100DTO loResult = null;
 
@@ -115,6 +121,7 @@ namespace GLTR00100BACK
 
         public GLTR00100PrintDTO GetBaseHeaderLogoCompany(GLTR00100PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             GLTR00100PrintDTO loResult = null;
 
@@ -150,6 +157,7 @@ namespace GLTR00100BACK
         }
         public List<GLTR00100PrintDTO> GetReportJournalTransaction(GLTR00100PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetReportJournalTransaction");
             var loEx = new R_Exception();
             List<GLTR00100PrintDTO> loResult = null;
 

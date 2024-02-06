@@ -4,6 +4,7 @@ using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
 using GLB09900COMMON;
+using System.Diagnostics;
 
 namespace GLB09900BACK
 {
@@ -12,13 +13,16 @@ namespace GLB09900BACK
         RSP_GL_CLOSE_PERIODResources.Resources_Dummy_Class _loRsp = new RSP_GL_CLOSE_PERIODResources.Resources_Dummy_Class();
 
         private LoggerGLB09900 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLB09900Cls()
         {
             _Logger = LoggerGLB09900.R_GetInstanceLogger();
+            _activitySource = GLB09900ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLB09900InitialDTO GetInitial(GLB09900InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLSalesTax");
             var loEx = new R_Exception();
             GLB09900InitialDTO loResult = poEntity;
 
@@ -66,6 +70,7 @@ namespace GLB09900BACK
 
         public GLB09900GLSystemParamDTO GetSystemParam(GLB09900GLSystemParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLB09900GLSystemParamDTO loResult = null;
 
@@ -108,6 +113,7 @@ namespace GLB09900BACK
         }
         public GLB09900ValidateDTO GetValidateResultClosePeriod(GLB09900ValidateDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetValidateResultClosePeriod");
             var loEx = new R_Exception();
             GLB09900ValidateDTO loResult = null;
 
@@ -149,6 +155,7 @@ namespace GLB09900BACK
 
         public GLB09900DTO GetResultClosePeriod(GLB09900DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetResultClosePeriod");
             var loEx = new R_Exception();
             GLB09900DTO loResult = null;
 

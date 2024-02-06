@@ -7,6 +7,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,19 @@ namespace GLM00400SERVICE
     public class GLM00410Controller : ControllerBase, IGLM00410
     {
         private LoggerGLM00410 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLM00410Controller(ILogger<LoggerGLM00410> logger)
         {
             //Initial and Get Logger
             LoggerGLM00410.R_InitializeLogger(logger);
             _Logger = LoggerGLM00410.R_GetInstanceLogger();
+            _activitySource = GLM00410ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLM00410Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<GLM00411DTO> GetAllocationAccountList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationAccountList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00411DTO> loRtn = null;
             List<GLM00411DTO> loTempRtn = null;
@@ -72,6 +76,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLM00415DTO> GetAllocationPeriodByTargetCenterList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationPeriodByTargetCenterList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00415DTO> loRtn = null;
             List<GLM00415DTO> loTempRtn = null;
@@ -117,6 +122,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLM00414DTO> GetAllocationPeriodList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationPeriodList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00414DTO> loRtn = null;
             List<GLM00414DTO> loTempRtn = null;
@@ -160,6 +166,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLM00413DTO> GetAllocationTargetCenterByPeriodList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationTargetCenterByPeriodList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00413DTO> loRtn = null;
             List<GLM00413DTO> loTempRtn = null;
@@ -205,6 +212,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLM00412DTO> GetAllocationTargetCenterList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationTargetCenterList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLM00412DTO> loRtn = null;
             List<GLM00412DTO> loTempRtn = null;
@@ -248,6 +256,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<GLM00410DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
             _Logger.LogInfo("Start R_ServiceDelete GLM00410");
@@ -274,6 +283,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<GLM00410DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<GLM00410DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<GLM00410DTO> loRtn = new R_ServiceGetRecordResultDTO<GLM00410DTO>();
             _Logger.LogInfo("Start ServiceGetRecord GLM04100");
@@ -303,6 +313,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<GLM00410DTO> R_ServiceSave(R_ServiceSaveParameterDTO<GLM00410DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<GLM00410DTO> loRtn = new R_ServiceSaveResultDTO<GLM00410DTO>();
             _Logger.LogInfo("Start ServiceSave GLM04100");
@@ -336,6 +347,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public GLM00400Result<GLM00413DTO> GetAllocationTargetCenterByPeriod(GLM00413DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationTargetCenterByPeriod");
             var loEx = new R_Exception();
             GLM00400Result<GLM00413DTO> loRtn = new GLM00400Result<GLM00413DTO>();
             _Logger.LogInfo("Start GetAllocationTargetCenterByPeriod");
@@ -362,6 +374,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public GLM00400Result<GLM00413DTO> SaveAllocationTargetCenterByPeriod(GLM00413DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("SaveAllocationTargetCenterByPeriod");
             var loEx = new R_Exception();
             GLM00400Result<GLM00413DTO> loRtn = new GLM00400Result<GLM00413DTO>();
             _Logger.LogInfo("Start SaveAllocationTargetCenterByPeriod");

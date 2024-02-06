@@ -6,6 +6,7 @@ using R_BackEnd;
 using R_Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,17 +17,20 @@ namespace GLB09900SERVICE
     [Route("api/[controller]/[action]")]
     public class GLB09900Controller : ControllerBase, IGLB09900
     {
+        private readonly ActivitySource _activitySource;
         private LoggerGLB09900 _Logger;
         public GLB09900Controller(ILogger<LoggerGLB09900> logger)
         {
             //Initial and Get Logger
             LoggerGLB09900.R_InitializeLogger(logger);
             _Logger = LoggerGLB09900.R_GetInstanceLogger();
+            _activitySource = GLB09900ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLB09900Controller));
         }
 
         [HttpPost]
         public GLB09900InitialDTO GetInitialVar()
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialVar");
             var loEx = new R_Exception();
             GLB09900InitialDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialVar");
@@ -60,6 +64,7 @@ namespace GLB09900SERVICE
         [HttpPost]
         public GLB09900GLSystemParamDTO GetSystemParam()
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLB09900GLSystemParamDTO loRtn = null;
             _Logger.LogInfo("Start GetSystemParam");
@@ -93,6 +98,7 @@ namespace GLB09900SERVICE
         [HttpPost]
         public GLB09900DTO GetResultCloseGlPeriod(GLB09900DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetResultCloseGlPeriod");
             var loEx = new R_Exception();
             GLB09900DTO loRtn = null;
             _Logger.LogInfo("Start GetResultCloseGlPeriod");
@@ -124,6 +130,7 @@ namespace GLB09900SERVICE
         [HttpPost]
         public GLB09900ValidateDTO GetValidateResultCloseGlPeriod(GLB09900ValidateDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetValidateResultCloseGlPeriod");
             var loEx = new R_Exception();
             GLB09900ValidateDTO loRtn = null;
             _Logger.LogInfo("Start GetValidateResultCloseGlPeriod");

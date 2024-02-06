@@ -7,6 +7,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,19 @@ namespace LMM06500SERVICE
     public class LMM06502Controller : ControllerBase, ILMM06502
     {
         private LoggerLMM06502 _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM06502Controller(ILogger<LoggerLMM06502> logger)
         {
             //Initial and Get Logger
             LoggerLMM06502.R_InitializeLogger(logger);
             _Logger = LoggerLMM06502.R_GetInstanceLogger();
+            _activitySource = LMM06502ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM06502Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<LMM06502DetailDTO> GetStaffMoveList()
         {
+            using Activity activity = _activitySource.StartActivity("SaveNewMoveStaff");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM06502DetailDTO> loRtn = null;
             _Logger.LogInfo("Start GetStaffMoveList");
@@ -64,6 +68,7 @@ namespace LMM06500SERVICE
         [HttpPost]
         public LMM06502DTO SaveNewMoveStaff(LMM06502DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("SaveNewMoveStaff");
             R_Exception loException = new R_Exception();
             LMM06502DTO loRtn = new LMM06502DTO();
             LMM06502Cls loCls = new LMM06502Cls();

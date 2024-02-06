@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM01000SERVICE
 {
@@ -13,11 +14,13 @@ namespace LMM01000SERVICE
     public class LMM01000UniversalController : ControllerBase, ILMM01000Universal
     {
         private LoggerLMM01000Universal _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM01000UniversalController(ILogger<LoggerLMM01000Universal> logger)
         {
             //Initial and Get Logger
             LoggerLMM01000Universal.R_InitializeLogger(logger);
             _Logger = LoggerLMM01000Universal.R_GetInstanceLogger();
+            _activitySource = LMM01000UniversalActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01000UniversalController));
         }
 
         private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
@@ -31,6 +34,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetChargesTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetChargesTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetChargesTypeList");
@@ -66,6 +70,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetStatusList()
         {
+            using Activity activity = _activitySource.StartActivity("GetStatusList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetStatusList");
@@ -101,6 +106,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetTaxExemptionCodeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetTaxExemptionCodeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetTaxExemptionCodeList");
@@ -136,6 +142,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetWithholdingTaxTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetWithholdingTaxTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetWithholdingTaxTypeList");
@@ -171,6 +178,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetUsageRateModeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetUsageRateModeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetUsageRateModeList");
@@ -206,6 +214,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetRateTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetRateTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetRateTypeList");
@@ -241,6 +250,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetAdminFeeTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAdminFeeTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetAdminFeeTypeList");
@@ -276,6 +286,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000UniversalDTO> GetAccrualMethodList()
         {
+            using Activity activity = _activitySource.StartActivity("GetAccrualMethodList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01000UniversalDTO> loRtn = null;
             _Logger.LogInfo("Start GetAccrualMethodList");
@@ -311,6 +322,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01000DTOPropety> GetProperty()
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             _Logger.LogInfo("Start GetProperty");
 
@@ -346,6 +358,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public LMM01000AllResultInit GetAllInitLMM01000List()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllInitLMM01000List");
             var loEx = new R_Exception();
             _Logger.LogInfo("Start GetAllInitLMM01000List");
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
+using System.Diagnostics;
 
 namespace GLF00100SERVICES
 {
@@ -12,16 +13,19 @@ namespace GLF00100SERVICES
     public class GLF00100Controller : ControllerBase, IGLF00100
     {
         private LoggerGLF00100 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLF00100Controller(ILogger<LoggerGLF00100> logger)
         {
             //Initial and Get Logger
             LoggerGLF00100.R_InitializeLogger(logger);
             _Logger = LoggerGLF00100.R_GetInstanceLogger();
+            _activitySource = GLF00100ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLF00100Controller));
         }
 
         [HttpPost]
         public GLF00100SingleResult<GLF00100InitialDTO> GetInfoCompany()
         {
+            using Activity activity = _activitySource.StartActivity("GetInfoCompany");
             var loEx = new R_Exception();
             GLF00100SingleResult<GLF00100InitialDTO> loRtn = new GLF00100SingleResult<GLF00100InitialDTO>();
             _Logger.LogInfo("Start GetInfoCompany");
@@ -48,6 +52,7 @@ namespace GLF00100SERVICES
         [HttpPost]
         public GLF00100SingleResult<GLF00100DTO> GetJournalDetail(GLF00100ParameterDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetJournalDetail");
             var loEx = new R_Exception();
             GLF00100SingleResult<GLF00100DTO> loRtn = new GLF00100SingleResult<GLF00100DTO>();
             _Logger.LogInfo("Start GetJournalDetail");
@@ -78,6 +83,7 @@ namespace GLF00100SERVICES
         [HttpPost]
         public IAsyncEnumerable<GLF00101DTO> GetJournalDetailList()
         {
+            using Activity activity = _activitySource.StartActivity("GetJournalDetailList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLF00101DTO> loRtn = null;
             List<GLF00101DTO> loTempRtn = null;

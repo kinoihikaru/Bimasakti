@@ -19,16 +19,29 @@ namespace LMM01000BACK
     {
         private LoggerLMM01020 _Logger;
         private LoggerLMM01020Print _Printlogger;
+        private readonly ActivitySource _activitySource;
         public LMM01020Cls()
         {
             _Logger = LoggerLMM01020.R_GetInstanceLogger();
+            var loActivity = LMM01020ActivitySourceBase.R_GetInstanceActivitySource();
+
+            if (loActivity is null)
+            {
+                _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
+            }
+            else
+            {
+                _activitySource = loActivity;
+            }
         }
         public LMM01020Cls(LoggerLMM01020Print poParam)
         {
             _Printlogger = LoggerLMM01020Print.R_GetInstanceLogger();
+            _activitySource = LMM01000PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
         public List<LMM01021DTO> GetAllRateWGList(LMM01021DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllRateWGList");
             var loEx = new R_Exception();
             List<LMM01021DTO> loResult = null;
 
@@ -71,6 +84,7 @@ namespace LMM01000BACK
 
         public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("R_BatchProcess");
             R_Exception loException = new R_Exception();
             var loDb = new R_Db();
 
@@ -113,6 +127,7 @@ namespace LMM01000BACK
 
         private async Task _BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("_BatchProcess");
             R_Exception loException = new R_Exception();
             R_Db loDb = new R_Db();
             DbCommand loCmd = null;
@@ -221,6 +236,7 @@ namespace LMM01000BACK
 
         protected override LMM01020DTO R_Display(LMM01020DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01020DTO loResult = null;
 
@@ -373,6 +389,7 @@ namespace LMM01000BACK
 
         public LMM01020DTO GetBaseHeaderLogoCompany(LMM01020PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             LMM01020DTO loResult = null;
 
@@ -408,6 +425,7 @@ namespace LMM01000BACK
         }
         public LMM01020DTO GetHDReportRateWG(LMM01020DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetHDReportRateWG");
             var loEx = new R_Exception();
             LMM01020DTO loResult = null;
 
@@ -449,6 +467,7 @@ namespace LMM01000BACK
 
         public List<LMM01021DTO> GetDetailReportRateWG(LMM01021DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetDetailReportRateWG");
             var loEx = new R_Exception();
             List<LMM01021DTO> loResult = null;
 

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM01000SERVICE
 {
@@ -13,12 +14,14 @@ namespace LMM01000SERVICE
     public class LMM01000Controller : ControllerBase, ILMM01000
     {
         private LoggerLMM01000 _LMM01000logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01000Controller(ILogger<LoggerLMM01000> logger)
         {
             //Initial and Get Logger
             LoggerLMM01000.R_InitializeLogger(logger);
             _LMM01000logger = LoggerLMM01000.R_GetInstanceLogger();
+            _activitySource = LMM01000ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01000Controller));
         }
 
         private async IAsyncEnumerable<T> GetChargesUtilityListStream<T>(List<T> poParameter)
@@ -32,6 +35,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01002DTO> GetChargesUtilityList()
         {
+            using Activity activity = _activitySource.StartActivity("GetChargesUtilityList");
             var loEx = new R_Exception();
             _LMM01000logger.LogInfo("Start GetChargesUtilityList");
 
@@ -72,6 +76,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01000DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             _LMM01000logger.LogInfo("Start ServiceGetRecord LMM01000");
 
@@ -103,6 +108,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01000DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             _LMM01000logger.LogInfo("Start ServiceSave LMM01000");
 
@@ -134,6 +140,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<LMM01000DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             _LMM01000logger.LogInfo("Start ServiceDelete LMM01000");
 
@@ -165,6 +172,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public LMM01000DTO LMM01000ActiveInactive(LMM01000DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01000ActiveInactive");
             R_Exception loException = new R_Exception();
             _LMM01000logger.LogInfo("Start LMM01000ActiveInactive");
 
@@ -196,6 +204,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public LMM01003DTO LMM01000CopyNewCharges(LMM01003DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01000CopyNewCharges");
             R_Exception loException = new R_Exception();
             _LMM01000logger.LogInfo("Start LMM01000CopyNewCharges");
 
@@ -227,6 +236,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public LMM01000Record<LMM01000BeforeDeleteDTO> ValidateBeforeDelete(LMM01000DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("ValidateBeforeDelete");
             R_Exception loException = new R_Exception();
             _LMM01000logger.LogInfo("Start ValidateBeforeDelete");
             LMM01000Record<LMM01000BeforeDeleteDTO> loRtn = new LMM01000Record<LMM01000BeforeDeleteDTO>();

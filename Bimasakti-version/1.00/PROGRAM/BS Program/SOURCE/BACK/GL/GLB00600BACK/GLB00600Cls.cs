@@ -4,6 +4,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLB00600BACK
 {
@@ -12,13 +13,16 @@ namespace GLB00600BACK
         RSP_GL_CLOSING_ENTRIESResources.Resources_Dummy_Class _loRsp = new RSP_GL_CLOSING_ENTRIESResources.Resources_Dummy_Class();
 
         private LoggerGLB00600 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLB00600Cls()
         {
             _Logger = LoggerGLB00600.R_GetInstanceLogger();
+            _activitySource = GLB00600ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLB00600GLSystemParamDTO GetSystemParam(GLB00600GLSystemParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLB00600GLSystemParamDTO loResult = null;
 
@@ -63,6 +67,7 @@ namespace GLB00600BACK
 
         public GLB00600InitialDTO GetInitial(GLB00600InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             GLB00600InitialDTO loResult = poEntity;
             string lcQuery;
@@ -153,6 +158,7 @@ namespace GLB00600BACK
 
         public GLB00600SuspenseAmountDTO GetSuspenseAmount(GLB00600SuspenseAmountDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSuspenseAmount");
             var loEx = new R_Exception();
             GLB00600SuspenseAmountDTO loResult = poEntity;
 
@@ -197,6 +203,7 @@ namespace GLB00600BACK
 
         public GLB00600GSMTransactionCodeDTO GetGSMTransactionCode(GLB00600GSMTransactionCodeDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetGSMTransactionCode");
             var loEx = new R_Exception();
             GLB00600GSMTransactionCodeDTO loResult = poEntity;
 
@@ -237,6 +244,7 @@ namespace GLB00600BACK
 
         public List<GLB00600DTO> GetResult(GLB00600DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetResult");
             var loEx = new R_Exception();
             List<GLB00600DTO> loResult = null;
 
@@ -275,6 +283,7 @@ namespace GLB00600BACK
 
         public void GetClosingEntries(GLB00600DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetClosingEntries");
             var loEx = new R_Exception();
 
             try

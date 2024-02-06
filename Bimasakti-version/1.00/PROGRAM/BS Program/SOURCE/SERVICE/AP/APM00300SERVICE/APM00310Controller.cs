@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace APM00300SERVICE
 {
@@ -13,16 +14,19 @@ namespace APM00300SERVICE
     public class APM00310Controller : ControllerBase, IAPM00310
     {
         private LoggerAPM00310 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00310Controller(ILogger<LoggerAPM00310> logger)
         {
             //Initial and Get Logger
             LoggerAPM00310.R_InitializeLogger(logger);
             _Logger = LoggerAPM00310.R_GetInstanceLogger();
+            _activitySource = APM00310ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(APM00310Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<APM00300CurrencyDTO> GetCurrencyList()
         {
+            using Activity activity = _activitySource.StartActivity("GetCurrencyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00300CurrencyDTO> loRtn = null;
             _Logger.LogInfo("Start GetCurrencyList");
@@ -56,6 +60,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public IAsyncEnumerable<APM00300PayTermDTO> GetPayTermList()
         {
+            using Activity activity = _activitySource.StartActivity("GetPayTermList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00300PayTermDTO> loRtn = null;
             _Logger.LogInfo("Start GetPayTermList");
@@ -90,6 +95,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public IAsyncEnumerable<APM00300TaxTypeDTO> GetTaxTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GetTaxTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00300TaxTypeDTO> loRtn = null;
             _Logger.LogInfo("Start GetTaxTypeList");
@@ -123,6 +129,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<APM00310DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
             _Logger.LogInfo("Start R_ServiceDelete APM00300");
@@ -149,6 +156,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<APM00310DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<APM00310DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<APM00310DTO> loRtn = new R_ServiceGetRecordResultDTO<APM00310DTO>();
             _Logger.LogInfo("Start ServiceGetRecord APM00300");
@@ -180,6 +188,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<APM00310DTO> R_ServiceSave(R_ServiceSaveParameterDTO<APM00310DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<APM00310DTO> loRtn = new R_ServiceSaveResultDTO<APM00310DTO>();
             _Logger.LogInfo("Start ServiceSave APM00300");

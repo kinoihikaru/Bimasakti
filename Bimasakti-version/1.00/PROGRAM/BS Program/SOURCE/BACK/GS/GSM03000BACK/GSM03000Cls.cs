@@ -11,6 +11,7 @@ using GSM03000Common;
 using System.Data.Common;
 using GSM03000Common.Loggers;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace GSM03000Back
 {
@@ -19,17 +20,21 @@ namespace GSM03000Back
         private LoggerGSM03000 _Gsm03000logger;
         private LoggerGSM03000Print _Gsm03000Printlogger;
         RSP_GS_MAINTAIN_OTHER_CHARGESResources.Resources_Dummy_Class _loRsp = new RSP_GS_MAINTAIN_OTHER_CHARGESResources.Resources_Dummy_Class();
+        private readonly ActivitySource _activitySource;
 
         public GSM03000Cls()
         {
             _Gsm03000logger = LoggerGSM03000.R_GetInstanceLogger();
+            _activitySource = GSM03000ActivitySourceBase.R_GetInstanceActivitySource();
         }
         public GSM03000Cls(LoggerGSM03000Print poLogger)
         {
             _Gsm03000Printlogger = LoggerGSM03000Print.R_GetInstanceLogger();
+            _activitySource = GSM03000PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
         protected override void R_Deleting(GSM03000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -111,6 +116,7 @@ namespace GSM03000Back
 
         protected override GSM03000DTO R_Display(GSM03000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             GSM03000DTO loResult = null;
 
@@ -152,6 +158,7 @@ namespace GSM03000Back
 
         protected override void R_Saving(GSM03000DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -237,6 +244,7 @@ namespace GSM03000Back
 
         public List<GSM03000DTO> GetAllOtherCharges(GSM03000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllOtherCharges");
             var loEx = new R_Exception();
             List<GSM03000DTO> loResult = null;
 
@@ -277,6 +285,7 @@ namespace GSM03000Back
 
         public List<GSM03000PropertyDTO> GetProperty(GSM03000PropertyDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<GSM03000PropertyDTO> loResult = null;
 
@@ -315,6 +324,7 @@ namespace GSM03000Back
 
         public void GSM03000ChangeStatusSP(GSM03000ActiveParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GSM03000ChangeStatusSP");
             R_Exception loException = new R_Exception();
 
             try
@@ -354,6 +364,7 @@ namespace GSM03000Back
 
         public GSM03000ResultDTO GetBaseHeaderLogoCompany(GSM03000PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             GSM03000ResultDTO loResult = null;
 
@@ -390,6 +401,7 @@ namespace GSM03000Back
 
         public List<GSM03000ResultDTO> GetPrintDataResult(GSM03000PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetPrintDataResult");
             var loEx = new R_Exception();
             List<GSM03000ResultDTO> loResult = null;
 

@@ -12,6 +12,7 @@ using R_CommonFrontBackAPI;
 using R_CommonFrontBackAPI.Log;
 using R_ReportFastReportBack;
 using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace GLM00400SERVICE
@@ -21,6 +22,7 @@ namespace GLM00400SERVICE
         private R_ReportFastReportBackClass _ReportCls;
         private GLM00400PrintParamDTO _AllGLM00400Parameter;
         private LoggerGLM00400Print _LoggerPrint;
+        private readonly ActivitySource _activitySource;
 
         #region instantiate
         public GLM00400PrintController(ILogger<LoggerGLM00400Print> logger)
@@ -28,6 +30,7 @@ namespace GLM00400SERVICE
             //Initial and Get Logger
             LoggerGLM00400Print.R_InitializeLogger(logger);
             _LoggerPrint = LoggerGLM00400Print.R_GetInstanceLogger();
+            _activitySource = GLM00400PrintActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLM00400PrintController));
 
             _ReportCls = new R_ReportFastReportBackClass();
             _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
@@ -61,6 +64,7 @@ namespace GLM00400SERVICE
         [HttpPost]
         public R_DownloadFileResultDTO AllAllocationJournalPost(GLM00400PrintParamDTO poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("AllAllocationJournalPost");
             R_Exception loException = new R_Exception();
             _LoggerPrint.LogInfo("Start AllAllocationJournalPost");
             GLM00400PrintLogKeyDTO<GLM00400PrintParamDTO> loCache = null;
@@ -91,6 +95,7 @@ namespace GLM00400SERVICE
         [HttpGet, AllowAnonymous]
         public FileStreamResult AllStreamAllocationJournalGet(string pcGuid)
         {
+            using Activity activity = _activitySource.StartActivity("AllStreamAllocationJournalGet");
             R_Exception loException = new R_Exception();
             GLM00400PrintLogKeyDTO<GLM00400PrintParamDTO> loResultGUID = null;
             FileStreamResult loRtn = null;
@@ -122,6 +127,7 @@ namespace GLM00400SERVICE
         #region Helper
         private GLM00400ResultWithBaseHeaderPrintDTO GenerateDataPrint(GLM00400PrintParamDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GenerateDataPrint");
             var loEx = new R_Exception();
             GLM00400ResultWithBaseHeaderPrintDTO loRtn = new GLM00400ResultWithBaseHeaderPrintDTO();
 

@@ -141,6 +141,12 @@
   <data name="_BSISDesc" xml:space="preserve">
     <value>BS/IS</value>
   </data>
+  <data name="_BuildingId" xml:space="preserve">
+    <value>Building ID</value>
+  </data>
+  <data name="_BuildingName" xml:space="preserve">
+    <value>Building Name</value>
+  </data>
   <data name="_CancelBtn" xml:space="preserve">
     <value>Cancel</value>
   </data>

@@ -9,20 +9,24 @@ using System.Threading.Tasks;
 using System.Data.Common;
 using System.Windows.Input;
 using LMM06500COMMON;
+using System.Diagnostics;
 
 namespace LMM06500BACK
 {
     public class LMM06500UniversalCls 
     {
         private LoggerLMM06500Universal _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM06500UniversalCls()
         {
             _Logger = LoggerLMM06500Universal.R_GetInstanceLogger();
+            _activitySource = LMM06500UniversalActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM06500DTOInitial> GetProperty(LMM06500DTOInitial poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<LMM06500DTOInitial> loResult = null;
 
@@ -62,6 +66,7 @@ namespace LMM06500BACK
 
         public List<LMM06500UniversalDTO> GetAllPosition(LMM06500UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPosition");
             var loEx = new R_Exception();
             List<LMM06500UniversalDTO> loResult = null;
 
@@ -118,6 +123,7 @@ namespace LMM06500BACK
 
         public List<LMM06500UniversalDTO> GetAllGender(LMM06500UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllGender");
             var loEx = new R_Exception();
             List<LMM06500UniversalDTO> loResult = null;
 

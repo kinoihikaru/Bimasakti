@@ -6,6 +6,7 @@ using R_BackEnd;
 using R_Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,16 +18,19 @@ namespace GLB00600SERVICE
     public class GLB00600Controller : ControllerBase, IGLB00600
     {
         private LoggerGLB00600 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLB00600Controller(ILogger<LoggerGLB00600> logger)
         {
             //Initial and Get Logger
             LoggerGLB00600.R_InitializeLogger(logger);
             _Logger = LoggerGLB00600.R_GetInstanceLogger();
+            _activitySource = GLB00600ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLB00600Controller));
         }
 
         [HttpPost]
         public GLB00600GSMTransactionCodeDTO GetInitialGSMTransactionCode(GLB00600GSMTransactionCodeDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialGSMTransactionCode");
             var loEx = new R_Exception();
             GLB00600GSMTransactionCodeDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialGSMTransactionCode");
@@ -57,6 +61,7 @@ namespace GLB00600SERVICE
         [HttpPost]
         public GLB00600SuspenseAmountDTO GetInitialSupenseAmount(GLB00600SuspenseAmountDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialSupenseAmount");
             var loEx = new R_Exception();
             GLB00600SuspenseAmountDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialSupenseAmount");
@@ -87,6 +92,7 @@ namespace GLB00600SERVICE
         [HttpPost]
         public GLB00600InitialDTO GetInitialVar(GLB00600InitialDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialVar");
             var loEx = new R_Exception();
             GLB00600InitialDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialVar");
@@ -120,6 +126,7 @@ namespace GLB00600SERVICE
         [HttpPost]
         public GLB00600DTO GetResultClosingEntries(GLB00600DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetResultClosingEntries");
             var loEx = new R_Exception();
             GLB00600DTO loRtn = new GLB00600DTO();
             _Logger.LogInfo("Start GetResultClosingEntries");
@@ -149,6 +156,7 @@ namespace GLB00600SERVICE
         [HttpPost]
         public GLB00600GLSystemParamDTO GetSystemParam()
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLB00600GLSystemParamDTO loRtn = null;
             _Logger.LogInfo("Start GetSystemParam");
@@ -182,6 +190,7 @@ namespace GLB00600SERVICE
         [HttpPost]
         public IAsyncEnumerable<GLB00600DTO> GetValidationClosingResult(GLB00600DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetValidationClosingResult");
             var loEx = new R_Exception();
             IAsyncEnumerable<GLB00600DTO> loRtn = null;
             _Logger.LogInfo("Start GetValidationClosingResult");

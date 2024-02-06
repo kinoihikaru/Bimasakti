@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
+using System.Diagnostics;
 
 namespace GLTR00100SERVICE
 {
@@ -12,16 +13,19 @@ namespace GLTR00100SERVICE
     public class GLTR00100Controller : ControllerBase, IGLTR00100
     {
         private LoggerGLTR00100 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLTR00100Controller(ILogger<LoggerGLTR00100> logger)
         {
             //Initial and Get Logger
             LoggerGLTR00100.R_InitializeLogger(logger);
             _Logger = LoggerGLTR00100.R_GetInstanceLogger();
+            _activitySource = GLTR00100ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLTR00100Controller));
         }
 
         [HttpPost]
         public GLTR00100Record<GLTR00100DTO> GetGLJournal(GLTR00100DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetGLJournal");
             var loEx = new R_Exception();
             GLTR00100Record<GLTR00100DTO> loRtn = null;
             _Logger.LogInfo("Start GetGLJournal");
@@ -54,6 +58,7 @@ namespace GLTR00100SERVICE
         [HttpPost]
         public GLTR00100InitialDTO GetInitialVar()
         {
+            using Activity activity = _activitySource.StartActivity("GetInitialVar");
             var loEx = new R_Exception();
             GLTR00100InitialDTO loRtn = null;
             _Logger.LogInfo("Start GetInitialVar");

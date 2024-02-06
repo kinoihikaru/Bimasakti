@@ -7,6 +7,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,16 +19,19 @@ namespace LMM01500SERVICE
     public class LMM01500Controller : ControllerBase, ILMM01500
     {
         private LoggerLMM01500 _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM01500Controller(ILogger<LoggerLMM01500> logger)
         {
             //Initial and Get Logger
             LoggerLMM01500.R_InitializeLogger(logger);
             _Logger = LoggerLMM01500.R_GetInstanceLogger();
+            _activitySource = LMM01500ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01500Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<LMM01501DTO> GetInvoiceGrpList()
         {
+            using Activity activity = _activitySource.StartActivity("GetInvoiceGrpList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01501DTO> loRtn = null;
             List<LMM01501DTO> loTempRtn = null;
@@ -72,6 +76,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01500DTOPropety> GetProperty()
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01500DTOPropety> loRtn = null;
             var loParameter = new LMM01500PropertyParameterDTO();
@@ -106,6 +111,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public LMM01500SingleResult<LMM01500DTO> LMM01500ActiveInactive(LMM01500DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01500ActiveInactive");
             R_Exception loException = new R_Exception();
             LMM01500SingleResult<LMM01500DTO> loRtn = new LMM01500SingleResult<LMM01500DTO>();
             LMM01500Cls loCls = new LMM01500Cls();
@@ -135,6 +141,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public IAsyncEnumerable<LMM01502DTO> LMM01500LookupBank()
         {
+            using Activity activity = _activitySource.StartActivity("LMM01500LookupBank");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01502DTO> loRtn = null;
             var loParameter = new LMM01502DTO();
@@ -168,6 +175,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<LMM01500DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
             _Logger.LogInfo("Start ServiceDelete LMM01500");
@@ -197,6 +205,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01500DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01500DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM01500DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM01500DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM01500");
@@ -227,6 +236,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01500DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01500DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM01500DTO> loRtn = new R_ServiceSaveResultDTO<LMM01500DTO>();
             _Logger.LogInfo("Start ServiceSave LMM01500");
@@ -257,6 +267,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public LMM01500SingleResult<bool> CheckDataTabTemplateBank(LMM01500DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("CheckDataTabTemplateBank");
             R_Exception loException = new R_Exception();
             LMM01500SingleResult<bool> loRtn = new LMM01500SingleResult<bool>();
             LMM01500Cls loCls = new LMM01500Cls();

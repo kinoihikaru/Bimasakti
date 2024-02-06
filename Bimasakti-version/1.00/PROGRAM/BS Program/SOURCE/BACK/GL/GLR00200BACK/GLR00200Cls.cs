@@ -4,6 +4,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLR00200BACK
 {
@@ -11,18 +12,22 @@ namespace GLR00200BACK
     {
         private LoggerGLR00200Print _LoggerPrint;
         private LoggerGLR00200 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLR00200Cls()
         {
             _Logger = LoggerGLR00200.R_GetInstanceLogger();
+            _activitySource = GLR00200ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLR00200Cls(LoggerGLR00200Print loggerPrint)
         {
             _LoggerPrint = LoggerGLR00200Print.R_GetInstanceLogger();
+            _activitySource = GLR00200PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLR00200InitialDTO GetInitial(GLR00200InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             GLR00200InitialDTO loResult = poEntity;
 
@@ -66,6 +71,7 @@ namespace GLR00200BACK
 
         public GLR00200GLSystemParamDTO GetSystemParam(GLR00200GLSystemParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLR00200GLSystemParamDTO loResult = null;
 
@@ -104,6 +110,7 @@ namespace GLR00200BACK
         }
         public GLR00200GetMinMaxAccount GetMinMaxAccount()
         {
+            using Activity activity = _activitySource.StartActivity("GetMinMaxAccount");
             var loEx = new R_Exception();
             GLR00200GetMinMaxAccount loResult = null;
 
@@ -142,6 +149,7 @@ namespace GLR00200BACK
         }
         public List<GLR00200UniversalDTO> GetAllPrintMethod(GLR00200UniversalDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPrintMethod");
             var loEx = new R_Exception();
             List<GLR00200UniversalDTO> loResult = null;
 
@@ -187,6 +195,7 @@ namespace GLR00200BACK
 
         public List<GLR00200PeriodDTO> GetAllPriod(GLR00200PeriodDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPriod");
             var loEx = new R_Exception();
             List<GLR00200PeriodDTO> loResult = null;
 
@@ -227,6 +236,7 @@ namespace GLR00200BACK
         }
         public GLR00200DTO GetBaseHeaderLogoCompany(GLR00200PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             GLR00200DTO loResult = null;
 
@@ -262,6 +272,7 @@ namespace GLR00200BACK
         }
         public GLR00200DTO GetSummaryGLLedger(GLR00200PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSummaryGLLedger");
             var loEx = new R_Exception();
             GLR00200DTO loResult = null;
 
@@ -320,6 +331,7 @@ namespace GLR00200BACK
 
         public List<GLR00201DTO> GetDetailGLLEdger(GLR00200PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetDetailGLLEdger");
             var loEx = new R_Exception();
             List<GLR00201DTO> loResult = null;
 

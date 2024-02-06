@@ -12,6 +12,7 @@ using R_CommonFrontBackAPI;
 using R_CommonFrontBackAPI.Log;
 using R_ReportFastReportBack;
 using System.Collections;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Xml.Linq;
@@ -23,6 +24,7 @@ namespace GLR00200SERVICE
         private R_ReportFastReportBackClass _ReportCls;
         private GLR00200PrintParamDTO _AllGLR00200Parameter;
         private LoggerGLR00210Print _LoggerPrint;
+        private readonly ActivitySource _activitySource;
 
         #region instantiate
         public GLR00210PrintController(ILogger<LoggerGLR00210Print> logger)
@@ -30,6 +32,7 @@ namespace GLR00200SERVICE
             //Initial and Get Logger
             LoggerGLR00200Print.R_InitializeLogger(logger);
             _LoggerPrint = LoggerGLR00210Print.R_GetInstanceLogger();
+            _activitySource = GLR00210PrintActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLR00210PrintController));
 
             _ReportCls = new R_ReportFastReportBackClass();
             _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
@@ -63,6 +66,7 @@ namespace GLR00200SERVICE
         [HttpPost]
         public R_DownloadFileResultDTO AllGLAccountLedgerPost(GLR00200PrintParamDTO poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("AllGLAccountLedgerPost");
             _LoggerPrint.LogInfo("Start AllGLAccountLedgerPost");
             R_Exception loException = new R_Exception();
             GLR00200PrintLogKeyDTO<GLR00200PrintParamDTO> loCache = null;
@@ -93,6 +97,7 @@ namespace GLR00200SERVICE
         [HttpGet, AllowAnonymous]
         public FileStreamResult AllStreamGLAccountLedgersGet(string pcGuid)
         {
+            using Activity activity = _activitySource.StartActivity("AllStreamGLAccountLedgersGet");
             R_Exception loException = new R_Exception();
             GLR00200PrintLogKeyDTO<GLR00200PrintParamDTO> loResultGUID = null;
             _LoggerPrint.LogInfo("Start AllStreamGLAccountLedgersGet");
@@ -123,6 +128,7 @@ namespace GLR00200SERVICE
         #region Helper
         private GLR00210ResultWithBaseHeaderPrintDTO GenerateDataPrint(GLR00200PrintParamDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GenerateDataPrint");
             var loEx = new R_Exception();
             GLR00210ResultWithBaseHeaderPrintDTO loRtn = new GLR00210ResultWithBaseHeaderPrintDTO();
 

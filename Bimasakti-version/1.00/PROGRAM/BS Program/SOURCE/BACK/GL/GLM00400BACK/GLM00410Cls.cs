@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLM00400BACK
 {
     public class GLM00410Cls : R_BusinessObject<GLM00410DTO>
     {
         private LoggerGLM00410 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLM00410Cls()
         {
             _Logger = LoggerGLM00410.R_GetInstanceLogger();
+            _activitySource = GLM00410ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<GLM00411DTO> GetAllAllocationAccount(GLM00411DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationAccount");
             var loEx = new R_Exception();
             List<GLM00411DTO> loResult = null;
 
@@ -58,6 +62,7 @@ namespace GLM00400BACK
 
         public List<GLM00412DTO> GetAllAllocationTargetCenter(GLM00412DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationTargetCenter");
             var loEx = new R_Exception();
             List<GLM00412DTO> loResult = null;
 
@@ -98,6 +103,7 @@ namespace GLM00400BACK
 
         public List<GLM00413DTO> GetAllAllocationTargetCenterByPeriod(GLM00413DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationTargetCenterByPeriod");
             var loEx = new R_Exception();
             List<GLM00413DTO> loResult = null;
 
@@ -140,6 +146,7 @@ namespace GLM00400BACK
 
         public List<GLM00414DTO> GetAllAllocationPeriod(GLM00414DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationPeriod");
             var loEx = new R_Exception();
             List<GLM00414DTO> loResult = null;
 
@@ -181,6 +188,7 @@ namespace GLM00400BACK
 
         public List<GLM00415DTO> GetAllAllocationPeriodByTargetCenter(GLM00415DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationPeriodByTargetCenter");
             var loEx = new R_Exception();
             List<GLM00415DTO> loResult = null;
 
@@ -223,6 +231,7 @@ namespace GLM00400BACK
 
         protected override void R_Deleting(GLM00410DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -286,6 +295,7 @@ namespace GLM00400BACK
 
         protected override GLM00410DTO R_Display(GLM00410DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             GLM00410DTO loResult = null;
 
@@ -324,6 +334,7 @@ namespace GLM00400BACK
 
         protected override void R_Saving(GLM00410DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -415,6 +426,7 @@ namespace GLM00400BACK
 
         public GLM00413DTO GetAllocationTargetCenterByPeriod(GLM00413DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllocationTargetCenterByPeriod");
             var loEx = new R_Exception();
             GLM00413DTO loResult = null;
 
@@ -454,6 +466,7 @@ namespace GLM00400BACK
 
         public GLM00413DTO SavingAllocationTargetCenterByPeriod(GLM00413DTO poNewEntity)
         {
+            using Activity activity = _activitySource.StartActivity("SavingAllocationTargetCenterByPeriod");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

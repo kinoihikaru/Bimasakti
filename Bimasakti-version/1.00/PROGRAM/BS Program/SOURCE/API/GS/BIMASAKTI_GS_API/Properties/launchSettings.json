@@ -6,7 +6,7 @@
     "iisExpress": {
       "applicationUrl": "http://localhost:33040",
       "sslPort": 44389
-    }
+    } 
   },
   "profiles": {
     "BIMASAKTI_GS_API": {

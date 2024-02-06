@@ -7,6 +7,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,17 +19,20 @@ namespace LMM01500SERVICE
     public class LMM01520Controller : ControllerBase, ILMM01520
     {
         private LoggerLMM01520 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01520Controller(ILogger<LoggerLMM01520> logger)
         {
             //Initial and Get Logger
             LoggerLMM01520.R_InitializeLogger(logger);
             _Logger = LoggerLMM01520.R_GetInstanceLogger();
+            _activitySource = LMM01520ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01520Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<LMM01522DTO> GetAdditionalIdLookup()
         {
+            using Activity activity = _activitySource.StartActivity("GetAdditionalIdLookup");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01522DTO> loRtn = null;
             var loParameter = new LMM01522DTO();
@@ -78,6 +82,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01520DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01520DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM01520DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM01520DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM01520");
@@ -109,6 +114,7 @@ namespace LMM01500SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01520DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01520DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM01520DTO> loRtn = new R_ServiceSaveResultDTO<LMM01520DTO>();
             _Logger.LogInfo("Start ServiceSave LMM01520");

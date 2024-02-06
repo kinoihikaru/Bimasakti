@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM01000SERVICE
 {
@@ -13,12 +14,14 @@ namespace LMM01000SERVICE
     public class LMM01030Controller : ControllerBase, ILMM01030
     {
         private LoggerLMM01030 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01030Controller(ILogger<LoggerLMM01030> logger)
         {
             //Initial and Get Logger
             LoggerLMM01030.R_InitializeLogger(logger);
             _Logger = LoggerLMM01030.R_GetInstanceLogger();
+            _activitySource = LMM01030ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01030Controller));
         }
 
         [HttpPost]
@@ -30,6 +33,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01030DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01030DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM01030DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM01030DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM01030");
@@ -60,6 +64,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01030DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01030DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM01030DTO> loRtn = new R_ServiceSaveResultDTO<LMM01030DTO>();
             _Logger.LogInfo("Start ServiceSave LMM01030");

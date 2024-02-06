@@ -351,6 +351,8 @@ namespace GLT00100SERVICE
                     VAR_GL_SYSTEM_PARAM = loCls.GetGLSystemParamRecord(),
                     VAR_CENTER_LIST = loCls.GetCenterList(),
                     VAR_CURRENCY_LIST = loCls.GetCurrencyList(),
+                    VAR_GSB_CODE_LIST = loCls.GetGSBCodeList(),
+                    VAR_IUNDO_COMMIT_JRN = loCls.GetGLSystemEnableOptionRecord(),
                 };
             }
             catch (Exception ex)

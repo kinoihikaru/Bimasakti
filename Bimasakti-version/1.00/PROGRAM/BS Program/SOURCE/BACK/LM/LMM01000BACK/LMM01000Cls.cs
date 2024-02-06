@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Common;
 using LMM01000COMMON.Print;
+using System.Diagnostics;
 
 namespace LMM01000BACK
 {
@@ -21,19 +22,23 @@ namespace LMM01000BACK
 
         private LoggerLMM01000 _LMM01000logger;
         private LoggerLMM01000Print _LMM01000Printlogger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01000Cls()
         {
             _LMM01000logger = LoggerLMM01000.R_GetInstanceLogger();
+            _activitySource = LMM01000ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public LMM01000Cls(LoggerLMM01000Print poParam)
         {
             _LMM01000Printlogger = LoggerLMM01000Print.R_GetInstanceLogger();
+            _activitySource = LMM01000PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM01002DTO> GetAllChargesUtility(LMM01002DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllChargesUtility");
             var loEx = new R_Exception();
             List<LMM01002DTO> loResult = null;
 
@@ -77,6 +82,7 @@ namespace LMM01000BACK
 
         protected override void R_Deleting(LMM01000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -182,6 +188,7 @@ namespace LMM01000BACK
 
         protected override LMM01000DTO R_Display(LMM01000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01000DTO loResult = null;
 
@@ -227,6 +234,7 @@ namespace LMM01000BACK
 
         protected override void R_Saving(LMM01000DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -341,6 +349,7 @@ namespace LMM01000BACK
 
         public void LMM01000ChangeStatusSP(LMM01000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01000ChangeStatusSP");
             R_Exception loException = new R_Exception();
 
             try
@@ -385,6 +394,7 @@ namespace LMM01000BACK
 
         public void LMM01000CopySource(LMM01003DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("LMM01000CopySource");
             R_Exception loException = new R_Exception();
 
             try
@@ -432,6 +442,7 @@ namespace LMM01000BACK
 
         public LMM01000PrintDTO GetBaseHeaderLogoCompany(LMM01000PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             LMM01000PrintDTO loResult = null;
 
@@ -467,6 +478,7 @@ namespace LMM01000BACK
         }
         public List<LMM01000PrintDTO> GetListDataPrint(LMM01000PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetListDataPrint");
             var loEx = new R_Exception();
             List<LMM01000PrintDTO> loResult = null;
 
@@ -518,6 +530,7 @@ namespace LMM01000BACK
         }
         public LMM01000BeforeDeleteDTO ValidateBeforeDelete(LMM01000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("ValidateBeforeDelete");
             var loEx = new R_Exception();
             LMM01000BeforeDeleteDTO loResult = null;
 

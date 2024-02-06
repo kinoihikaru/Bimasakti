@@ -18,13 +18,16 @@ namespace LMM01000BACK
     {
         private LoggerLMM01030 _Logger;
         private LoggerLMM01030Print _Printlogger;
+        private readonly ActivitySource _activitySource;
         public LMM01030Cls()
         {
             _Logger = LoggerLMM01030.R_GetInstanceLogger();
+            _activitySource = LMM01030ActivitySourceBase.R_GetInstanceActivitySource();
         }
         public LMM01030Cls(LoggerLMM01030Print poParam)
         {
             _Printlogger = LoggerLMM01030Print.R_GetInstanceLogger();
+            _activitySource = LMM01030PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
         protected override void R_Deleting(LMM01030DTO poEntity)
         {
@@ -33,6 +36,7 @@ namespace LMM01000BACK
 
         protected override LMM01030DTO R_Display(LMM01030DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01030DTO loResult = null;
 
@@ -75,6 +79,7 @@ namespace LMM01000BACK
 
         protected override void R_Saving(LMM01030DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             LMM01020DTO loResult = null;
             DbConnection loConn = null;
@@ -169,6 +174,7 @@ namespace LMM01000BACK
         }
         public LMM01030DTO GetBaseHeaderLogoCompany(LMM01030PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             LMM01030DTO loResult = null;
 
@@ -204,6 +210,7 @@ namespace LMM01000BACK
         }
         public LMM01030DTO GetReportRatePG(LMM01030DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetReportRatePG");
             var loEx = new R_Exception();
             LMM01030DTO loResult = null;
 

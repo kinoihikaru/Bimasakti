@@ -4,6 +4,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace GLM00400BACK
 {
@@ -11,19 +12,23 @@ namespace GLM00400BACK
     {
         private LoggerGLM00400Print _LoggerPrint;
         private LoggerGLM00400 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public GLM00400Cls(LoggerGLM00400Print loggerPrint)
         {
             _LoggerPrint = LoggerGLM00400Print.R_GetInstanceLogger();
+            _activitySource = GLM00400PrintActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLM00400Cls()
         {
             _Logger = LoggerGLM00400.R_GetInstanceLogger();
+            _activitySource = GLM00400ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLM00400InitialDTO GetInitial(GLM00400InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             GLM00400InitialDTO loResult = poEntity;
             string lcQuery;
@@ -114,6 +119,7 @@ namespace GLM00400BACK
 
         public GLM00400GLSystemParamDTO GetSystemParam(GLM00400GLSystemParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
             GLM00400GLSystemParamDTO loResult = null;
 
@@ -153,6 +159,7 @@ namespace GLM00400BACK
 
         public List<GLM00400DTO> GetAllAllocationJournalHD(GLM00400DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllAllocationJournalHD");
             var loEx = new R_Exception();
             List<GLM00400DTO> loResult = null;
 
@@ -194,6 +201,7 @@ namespace GLM00400BACK
 
         public List<GLM00400PrintHDDTO> GetAllPrintAllocationHeader(GLM00400PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPrintAllocationHeader");
             var loEx = new R_Exception();
             List<GLM00400PrintHDDTO> loResult = null;
 
@@ -236,6 +244,7 @@ namespace GLM00400BACK
         }
         public GLM00400PrintHDDTO GetBaseHeaderLogoCompany(GLM00400PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             GLM00400PrintHDDTO loResult = null;
 
@@ -271,6 +280,7 @@ namespace GLM00400BACK
         }
         public List<GLM00400PrintAccountDTO> GetAllPrintAllocationAccount(GLM00400PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPrintAllocationAccount");
             var loEx = new R_Exception();
             List<GLM00400PrintAccountDTO> loResult = null;
 
@@ -311,6 +321,7 @@ namespace GLM00400BACK
         }
         public List<GLM00400PrintCenterDTO> GetAllPrintAllocationAccountCenter(GLM00400PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPrintAllocationAccountCenter");
             var loEx = new R_Exception();
             List<GLM00400PrintCenterDTO> loResult = null;
 

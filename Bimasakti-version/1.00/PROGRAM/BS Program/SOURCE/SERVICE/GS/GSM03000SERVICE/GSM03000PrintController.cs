@@ -14,6 +14,7 @@ using R_CommonFrontBackAPI.Log;
 using R_ReportFastReportBack;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 
@@ -24,6 +25,7 @@ namespace GSM03000SERVICE
         private LoggerGSM03000Print _Gsm03000loggerPrint;
         private R_ReportFastReportBackClass _ReportCls;
         private GSM03000PrintParamDTO _AllOtherChargesParameter;
+        private readonly ActivitySource _activitySource;
 
         #region instantiate
         public GSM03000PrintController(ILogger<LoggerGSM03000Print> logger)
@@ -31,6 +33,7 @@ namespace GSM03000SERVICE
             //Initial and Get Logger
             LoggerGSM03000Print.R_InitializeLogger(logger);
             _Gsm03000loggerPrint = LoggerGSM03000Print.R_GetInstanceLogger();
+            _activitySource = GSM03000PrintActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GSM03000PrintController));
 
             _ReportCls = new R_ReportFastReportBackClass();
             _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
@@ -64,6 +67,7 @@ namespace GSM03000SERVICE
         [HttpPost]
         public R_DownloadFileResultDTO AllOtherChargesPost(GSM03000PrintParamDTO poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("AllOtherChargesPost");
             R_Exception loException = new R_Exception();
             _Gsm03000loggerPrint.LogInfo("Start AllOtherChargesPost");
             GSM03000PrintLogKeyDTO loCache =null;
@@ -97,6 +101,7 @@ namespace GSM03000SERVICE
         [HttpGet, AllowAnonymous]
         public FileStreamResult AllStreamOtherChargesGet(string pcGuid)
         {
+            using Activity activity = _activitySource.StartActivity("AllStreamOtherChargesGet");
             R_Exception loException = new R_Exception();
             GSM03000PrintLogKeyDTO loResultGUID = null;
             FileStreamResult loRtn = null;
@@ -128,6 +133,7 @@ namespace GSM03000SERVICE
         #region Helper
         private GSM03000ResultWithBaseHeaderPrintDTO GenerateDataPrint(GSM03000PrintParamDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GenerateDataPrint");
             var loEx = new R_Exception();
             GSM03000ResultWithBaseHeaderPrintDTO loRtn = new GSM03000ResultWithBaseHeaderPrintDTO();
 

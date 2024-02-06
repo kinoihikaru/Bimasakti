@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace GSM09100SERVICE
 {
@@ -13,11 +14,13 @@ namespace GSM09100SERVICE
     public class GSM09110Controller : ControllerBase, IGSM09110
     {
         private LoggerGSM09110 _Logger;
+        private readonly ActivitySource _activitySource;
         public GSM09110Controller(ILogger<LoggerGSM09110> logger)
         {
             //Initial and Get Logger
             LoggerGSM09110.R_InitializeLogger(logger);
             _Logger = LoggerGSM09110.R_GetInstanceLogger();
+            _activitySource = GSM09110ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GSM09110Controller));
         }
 
         private async IAsyncEnumerable<T> GetStreamData<T>(List<T> poParam)
@@ -31,6 +34,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public IAsyncEnumerable<GSM09110DTO> GetProductList()
         {
+            using Activity activity = _activitySource.StartActivity("GetProductList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSM09110DTO> loRtn = null;
             GSM09110DTO loParameter = null;
@@ -68,6 +72,7 @@ namespace GSM09100SERVICE
         [HttpPost]
         public GSM09100SingleResult<GSM09120DTO> MoveProduct(GSM09120DTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("MoveProduct");
             R_Exception loException = new R_Exception();
             GSM09100SingleResult<GSM09120DTO> loRtn = new GSM09100SingleResult<GSM09120DTO>();
             _Logger.LogInfo("Start MoveProduct");

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace LMM01000SERVICE
 {
@@ -13,16 +14,19 @@ namespace LMM01000SERVICE
     public class LMM01020Controller : ControllerBase, ILMM01020
     {
         private LoggerLMM01020 _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM01020Controller(ILogger<LoggerLMM01020> logger)
         {
             //Initial and Get Logger
             LoggerLMM01020.R_InitializeLogger(logger);
             _Logger = LoggerLMM01020.R_GetInstanceLogger();
+            _activitySource = LMM01020ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01020Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<LMM01021DTO> GetRateWGList()
         {
+            using Activity activity = _activitySource.StartActivity("GetRateWGList");
             var loEx = new R_Exception();
             IAsyncEnumerable<LMM01021DTO> loRtn = null;
             List<LMM01021DTO> loTempRtn = null;
@@ -70,6 +74,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<LMM01020DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<LMM01020DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<LMM01020DTO> loRtn = new R_ServiceGetRecordResultDTO<LMM01020DTO>();
             _Logger.LogInfo("Start ServiceGetRecord LMM01020");
@@ -101,6 +106,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<LMM01020DTO> R_ServiceSave(R_ServiceSaveParameterDTO<LMM01020DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<LMM01020DTO> loRtn = new R_ServiceSaveResultDTO<LMM01020DTO>();
             _Logger.LogInfo("Start ServiceSave LMM01020");

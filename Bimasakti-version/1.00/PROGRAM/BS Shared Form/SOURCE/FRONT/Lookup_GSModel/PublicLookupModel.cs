@@ -1066,6 +1066,42 @@ namespace Lookup_GSModel
             return loResult;
 
         }
+
+        #endregion
+
+        #region GSL02200
+        public IAsyncEnumerable<GSL02200DTO> GSL02200GetBuildingList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02200DTO>> GSL02200GetBuildingListAsync(GSL02200ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02200DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02200DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02200GetBuildingList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
         #endregion
     }
 }

@@ -4,20 +4,24 @@ using System.Data.Common;
 using System.Data;
 using GSM09100COMMON;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace GSM09100BACK
 {
     public class GSM09110Cls 
     {
         private LoggerGSM09110 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public GSM09110Cls()
         {
             _Logger = LoggerGSM09110.R_GetInstanceLogger();
+            _activitySource = GSM09110ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<GSM09110DTO> GetProductList(GSM09110DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProductList");
             var loEx = new R_Exception();
             List<GSM09110DTO> loResult = null;
 
@@ -58,6 +62,7 @@ namespace GSM09100BACK
 
         public void MoveProduct(GSM09120DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("MoveProduct");
             var loEx = new R_Exception();
             DbConnection loConn = null;
             DbCommand loCmd = null;

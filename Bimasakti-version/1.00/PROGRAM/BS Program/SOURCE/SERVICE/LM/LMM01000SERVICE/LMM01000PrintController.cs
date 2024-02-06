@@ -12,6 +12,7 @@ using R_CommonFrontBackAPI;
 using R_CommonFrontBackAPI.Log;
 using R_ReportFastReportBack;
 using System.Collections;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace LMM01000SERVICE
@@ -21,6 +22,7 @@ namespace LMM01000SERVICE
         private R_ReportFastReportBackClass _ReportCls;
         private LMM01000PrintParamDTO _AllUtilityParameter;
         private LoggerLMM01000Print _LoggerPrint;
+        private readonly ActivitySource _activitySource;
 
         #region instantiate
         public LMM01000PrintController(ILogger<LoggerLMM01000Print> logger)
@@ -28,6 +30,7 @@ namespace LMM01000SERVICE
             //Initial and Get Logger
             LoggerLMM01000Print.R_InitializeLogger(logger);
             _LoggerPrint = LoggerLMM01000Print.R_GetInstanceLogger();
+            _activitySource = LMM01000PrintActivitySourceBase.R_InitializeAndGetActivitySource(nameof(LMM01000PrintController));
 
             _ReportCls = new R_ReportFastReportBackClass();
             _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
@@ -61,6 +64,7 @@ namespace LMM01000SERVICE
         [HttpPost]
         public R_DownloadFileResultDTO AllUtilityChargesPost(LMM01000PrintParamDTO poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("AllUtilityChargesPost");
             R_Exception loException = new R_Exception();
             _LoggerPrint.LogInfo("Start AllUtilityChargesPost");
             LMM01000PrintLogKeyDTO<LMM01000PrintParamDTO> loCache = null;
@@ -93,6 +97,7 @@ namespace LMM01000SERVICE
         [HttpGet, AllowAnonymous]
         public FileStreamResult AllStreamUtilityChargesGet(string pcGuid)
         {
+            using Activity activity = _activitySource.StartActivity("AllStreamUtilityChargesGet");
             R_Exception loException = new R_Exception();
             FileStreamResult loRtn = null;
             LMM01000PrintLogKeyDTO<LMM01000PrintParamDTO> loResultGUID = null;
@@ -124,6 +129,7 @@ namespace LMM01000SERVICE
         #region Helper
         private LMM01000ResultWithBaseHeaderPrintDTO GenerateDataPrint(LMM01000PrintParamDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GenerateDataPrint");
             var loEx = new R_Exception();
             LMM01000ResultWithBaseHeaderPrintDTO loRtn = new LMM01000ResultWithBaseHeaderPrintDTO();
 

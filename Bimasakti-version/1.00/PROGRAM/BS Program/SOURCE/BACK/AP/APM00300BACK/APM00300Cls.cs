@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace APM00300BACK
 {
     public class APM00300Cls
     {
         private LoggerAPM00300 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00300Cls()
         {
             _Logger = LoggerAPM00300.R_GetInstanceLogger();
+            _activitySource = APM00300ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public APM00300InitialDTO GetInitial(APM00300InitialDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetInitial");
             var loEx = new R_Exception();
             APM00300InitialDTO loResult = poEntity;
 
@@ -63,6 +67,7 @@ namespace APM00300BACK
         }
         public List<APM00300PropertyDTO> GetProperty(APM00300PropertyDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetProperty");
             var loEx = new R_Exception();
             List<APM00300PropertyDTO> loResult = null;
 
@@ -100,6 +105,7 @@ namespace APM00300BACK
         }
         public List<APM00300LOBDTO> GetAllLOB()
         {
+            using Activity activity = _activitySource.StartActivity("GetAllLOB");
             var loEx = new R_Exception();
             List<APM00300LOBDTO> loResult = null;
 
@@ -139,6 +145,7 @@ namespace APM00300BACK
 
         public List<APM00300DTO> GetAllSearchSupplier(APM00300DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllSearchSupplier");
             var loEx = new R_Exception();
             List<APM00300DTO> loResult = null;
 

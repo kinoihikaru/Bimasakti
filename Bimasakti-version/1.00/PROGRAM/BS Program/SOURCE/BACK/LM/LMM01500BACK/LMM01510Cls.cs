@@ -19,13 +19,16 @@ namespace LMM01500BACK
     public class LMM01510Cls : R_BusinessObject<LMM01511DTO>
     {
         private LoggerLMM01510 _Logger;
+        private readonly ActivitySource _activitySource;
         public LMM01510Cls()
         {
             _Logger = LoggerLMM01510.R_GetInstanceLogger();
+            _activitySource = LMM01510ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM01510DTO> GetAllTemplateAndBankAccount(LMM01510DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllTemplateAndBankAccount");
             var loEx = new R_Exception();
             List<LMM01510DTO> loResult = null;
 
@@ -68,6 +71,7 @@ namespace LMM01500BACK
         #region Delete Data 
         protected override void R_Deleting(LMM01511DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
 
 
@@ -86,6 +90,7 @@ namespace LMM01500BACK
         }
         private void DeleteStorageData(LMM01511DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("DeleteStorageData");
             var loEx = new R_Exception();
             var loDb = new R_Db();
             DbConnection loConn = null;
@@ -115,6 +120,7 @@ namespace LMM01500BACK
         }
         private void DeleteDataSP(LMM01511DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("DeleteDataSP");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -190,6 +196,7 @@ namespace LMM01500BACK
 
         protected override LMM01511DTO R_Display(LMM01511DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01511DTO loResult = null;
             DbConnection loConn = null;
@@ -266,6 +273,7 @@ namespace LMM01500BACK
         #region Saving Data
         protected override void R_Saving(LMM01511DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
 
             try
@@ -287,6 +295,7 @@ namespace LMM01500BACK
         }
         private LMM01500DTOStorageType GetStorageType()
         {
+            using Activity activity = _activitySource.StartActivity("GetStorageType");
             var loEx = new R_Exception();
             LMM01500DTOStorageType loResult = null;
             var loDb = new R_Db();
@@ -325,6 +334,7 @@ namespace LMM01500BACK
         }
         private bool ValidateAlreadyExists(LMM01511DTO poNewEntity)
         {
+            using Activity activity = _activitySource.StartActivity("ValidateAlreadyExists");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -407,6 +417,7 @@ namespace LMM01500BACK
         }
         private LMM01511DTO SetStorageID(LMM01511DTO poNewEntity, LMM01500DTOStorageType poStorageType, bool plExists)
         {
+            using Activity activity = _activitySource.StartActivity("SetStorageID");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -538,6 +549,7 @@ namespace LMM01500BACK
         }
         private void SaveDataSP(LMM01511DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("SaveDataSP");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

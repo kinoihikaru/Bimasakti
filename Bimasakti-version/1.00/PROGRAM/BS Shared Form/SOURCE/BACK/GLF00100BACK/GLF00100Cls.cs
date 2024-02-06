@@ -3,19 +3,23 @@ using R_BackEnd;
 using R_Common;
 using System.Data.Common;
 using System.Data;
+using System.Diagnostics;
 
 namespace GLF00100BACK
 {
     public class GLF00100Cls
     {
         private LoggerGLF00100 _Logger;
+        private readonly ActivitySource _activitySource;
         public GLF00100Cls()
         {
             _Logger = LoggerGLF00100.R_GetInstanceLogger();
+            _activitySource = GLF00100ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public GLF00100InitialDTO GetInfoCompany(string poCompanyID)
         {
+            using Activity activity = _activitySource.StartActivity("GetInfoCompany");
             var loEx = new R_Exception();
             GLF00100InitialDTO loResult = null;
 
@@ -53,6 +57,7 @@ namespace GLF00100BACK
 
         public GLF00100DTO GetJournalDetail(GLF00100ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetJournalDetail");
             var loEx = new R_Exception();
             GLF00100DTO loResult = null;
 
@@ -94,6 +99,7 @@ namespace GLF00100BACK
 
         public List<GLF00101DTO> GetAllJournalDetailList(GLF00101DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllJournalDetailList");
             var loEx = new R_Exception();
             List<GLF00101DTO> loResult = null;
 

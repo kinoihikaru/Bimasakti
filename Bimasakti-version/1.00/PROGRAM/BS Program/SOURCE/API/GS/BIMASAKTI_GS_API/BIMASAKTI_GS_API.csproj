@@ -13,7 +13,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.0" />
+    <None Remove="Template\Center.xlsx" />
+    <None Remove="Template\Floor.xlsx" />
+    <None Remove="Template\Geography.xlsx" />
+    <None Remove="Template\Journal Group.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Template\Center.xlsx" />
+    <EmbeddedResource Include="Template\Floor.xlsx" />
+    <EmbeddedResource Include="Template\Geography.xlsx" />
+    <EmbeddedResource Include="Template\Journal Group.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -23,6 +37,7 @@
 		<ProjectReference Include="..\..\..\SERVICE\GS\GSM03000SERVICE\GSM03000SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\GFF00900SERVICES\GFF00900SERVICES.csproj" />
 		<ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GSSERVICES\Lookup_GSSERVICES.csproj" />
+		<ProjectReference Include="..\..\..\SERVICE\GS\GSM04500SERVICE\GSM04500SERVICE.csproj" />
 		<ProjectReference Include="..\..\..\SERVICE\GS\GSM05000SERVICE_FMC\GSM05000SERVICE_FMC.csproj" />
 		<!--<ProjectReference Include="..\..\..\SERVICE\GS\GSM05000SERVICE\GSM05000Service.csproj" />-->
 		<ProjectReference Include="..\..\..\SERVICE\GS\GSM07000SERVICE\GSM07000SERVICE.csproj" />

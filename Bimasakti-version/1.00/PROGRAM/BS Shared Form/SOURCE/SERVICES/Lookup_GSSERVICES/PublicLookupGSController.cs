@@ -9,6 +9,7 @@ using R_BackEnd;
 using R_Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,17 +21,20 @@ namespace Lookup_GSSERVICES
     public class PublicLookupGSController : ControllerBase, IPublicLookup
     {
         private LoggerPublicLookup _Logger;
+        private readonly ActivitySource _activitySource;
 
         public PublicLookupGSController(ILogger<LoggerPublicLookup> logger)
         {
             //Initial and Get Logger
             LoggerPublicLookup.R_InitializeLogger(logger);
             _Logger = LoggerPublicLookup.R_GetInstanceLogger();
+            _activitySource = PublicLookupGSActivitySourceBase.R_InitializeAndGetActivitySource(nameof(PublicLookupGSController));
         }
 
         [HttpPost]
         public IAsyncEnumerable<GSL00100DTO> GSL00100GetSalesTaxList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00100GetSalesTaxList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00100GetSalesTaxList");
@@ -65,6 +69,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00110DTO> GSL00110GetTaxByDateList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00110GetTaxByDateList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00110DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00110GetTaxByDateList");
@@ -100,6 +105,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00200DTO> GSL00200GetWithholdingTaxList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00200GetWithholdingTaxList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00200DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00200GetWithholdingTaxList");
@@ -135,6 +141,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00300DTO> GSL00300GetCurrencyList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00300GetCurrencyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00300DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00300GetCurrencyList");
@@ -169,6 +176,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00400DTO> GSL00400GetJournalGroupList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00400GetJournalGroupList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00400DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00400GetJournalGroupList");
@@ -205,6 +213,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00500DTO> GSL00500GetGLAccountList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00500GetGLAccountList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00500DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00500GetGLAccountList");
@@ -247,6 +256,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00510DTO> GSL00510GetCOAList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00510GetCOAList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00510DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00510GetCOAList");
@@ -283,6 +293,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00520DTO> GSL00520GetGOACOAList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00520GetGOACOAList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00520DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00520GetGOACOAList");
@@ -317,6 +328,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00550DTO> GSL00550GetGOAList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00550GetGOAList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00550DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00550GetGOAList");
@@ -350,6 +362,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00600DTO> GSL00600GetUnitTypeCategoryList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00600GetUnitTypeCategoryList");
             var loEx = new R_Exception();
             _Logger.LogInfo("Start GSL00600GetUnitTypeCategoryList");
             IAsyncEnumerable<GSL00600DTO> loRtn = null;
@@ -385,6 +398,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00700DTO> GSL00700GetDepartmentList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00700GetDepartmentList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00700DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00700GetDepartmentList");
@@ -421,6 +435,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00710DTO> GSL00710GetDepartmentPropertyList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00710GetDepartmentPropertyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00710DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00710GetDepartmentPropertyList");
@@ -456,6 +471,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00800DTO> GSL00800GetCurrencyTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00800GetCurrencyTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00800DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00800GetCurrencyTypeList");
@@ -489,6 +505,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL00900DTO> GSL00900GetCenterList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL00900GetCenterList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL00900DTO> loRtn = null;
             _Logger.LogInfo("Start GSL00900GetCenterList");
@@ -523,6 +540,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01000DTO> GSL01000GetUserList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01000GetUserList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01000DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01000GetUserList");
@@ -556,6 +574,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01100DTO> GSL01100GetUserApprovalList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01100GetUserApprovalList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01100GetUserApprovalList");
@@ -590,6 +609,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01200DTO> GSL01200GetBankList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01200GetBankList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01200DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01200GetBankList");
@@ -625,6 +645,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01300DTO> GSL01300GetBankAccountList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01300GetBankAccountList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01300DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01300GetBankAccountList");
@@ -662,6 +683,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01400DTO> GSL01400GetOtherChargesList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01400GetOtherChargesList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01400DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01400GetOtherChargesList");
@@ -698,6 +720,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01500ResultDetailDTO> GSL01500GetCashDetailList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01500GetCashDetailList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01500ResultDetailDTO> loRtn = null;
             _Logger.LogInfo("Start GSL01500GetCashDetailList");
@@ -733,6 +756,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01500ResultGroupDTO> GSL01500GetCashFlowGroupList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01500GetCashFlowGroupList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01500ResultGroupDTO> loRtn = null;
             _Logger.LogInfo("Start GSL01500GetCashFlowGroupList");
@@ -767,6 +791,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01600DTO> GSL01600GetCashFlowGroupTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01600GetCashFlowGroupTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01600DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01600GetCashFlowGroupTypeList");
@@ -802,6 +827,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01700DTO> GSL01700GetCurrencyRateList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01700GetCurrencyRateList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01700DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01700GetCurrencyRateList");
@@ -838,6 +864,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01701DTO> GSL01700GetRateTypeList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01700GetRateTypeList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01701DTO> loRtn = null;
             var loParam = new GSL01700DTOParameter();
@@ -870,6 +897,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01702DTO> GSL01700GetLocalAndBaseCurrencyList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01700GetLocalAndBaseCurrencyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01702DTO> loRtn = null;
             var loParam = new GSL01700DTOParameter();
@@ -902,6 +930,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01800DTO> GSL01800GetCategoryList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01800GetCategoryList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01800DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01800GetCategoryList");
@@ -938,6 +967,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL01900DTO> GSL01900GetLOBList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL01900GetLOBList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL01900DTO> loRtn = null;
             _Logger.LogInfo("Start GSL01900GetLOBList");
@@ -968,6 +998,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL02000CountryDTO> GSL02000GetCountryGeographyList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL02000GetCountryGeographyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL02000CountryDTO> loRtn = null;
             _Logger.LogInfo("Start GSL02000GetCountryGeographyList");
@@ -998,6 +1029,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL02000CityDTO> GSL02000GetCityGeographyList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL02000GetCityGeographyList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL02000CityDTO> loRtn = null;
             _Logger.LogInfo("Start GSL02000GetCityGeographyList");
@@ -1032,6 +1064,7 @@ namespace Lookup_GSSERVICES
         [HttpPost]
         public IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList()
         {
+            using Activity activity = _activitySource.StartActivity("GSL02100GetPaymentTermList");
             var loEx = new R_Exception();
             IAsyncEnumerable<GSL02100DTO> loRtn = null;
             _Logger.LogInfo("Start GSL02100GetPaymentTermList");
@@ -1064,6 +1097,39 @@ namespace Lookup_GSSERVICES
             return loRtn;
         }
 
+        [HttpPost]
+        public IAsyncEnumerable<GSL02200DTO> GSL02200GetBuildingList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02200GetBuildingList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02200DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02200GetBuildingList");
+
+            try
+            {
+                var poParameter = new GSL02200ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02100GetPaymentTermList");
+                var loCls = new PublicLookupCls();
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLBuilding");
+                var loResult = loCls.GetALLBuilding(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02100GetPaymentTermList");
+                loRtn = GetStream<GSL02200DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02200GetBuildingList");
+
+            return loRtn;
+        }
         private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
         {
             foreach (var item in poParam)
@@ -1072,5 +1138,6 @@ namespace Lookup_GSSERVICES
             }
         }
 
+        
     }
 }

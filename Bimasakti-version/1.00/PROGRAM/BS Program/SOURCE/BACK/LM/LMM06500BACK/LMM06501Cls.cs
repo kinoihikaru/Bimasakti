@@ -12,17 +12,22 @@ using System.Reflection;
 using System;
 using System.Globalization;
 using System.Text.Json;
+using System.Diagnostics;
 
 namespace LMM06500BACK
 {
     public class LMM06501Cls : R_IBatchProcess
     {
+        private readonly ActivitySource _activitySource;
+
         public LMM06501Cls()
         {
+                _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
         }
 
         public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("R_BatchProcess");
             R_Exception loException = new R_Exception();
             var loDb = new R_Db();
 
@@ -64,6 +69,7 @@ namespace LMM06500BACK
         }
         private async Task _BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("_BatchProcess");
             R_Exception loException = new R_Exception();
             R_Db loDb = new R_Db();
             DbCommand loCmd = null;

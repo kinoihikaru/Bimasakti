@@ -5,6 +5,7 @@ using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace GSM02200BACK
 {
@@ -13,14 +14,25 @@ namespace GSM02200BACK
         RSP_GS_MAINTAIN_GEOGRAPHYResources.Resources_Dummy_Class _loRSP = new RSP_GS_MAINTAIN_GEOGRAPHYResources.Resources_Dummy_Class();
         RSP_GS_UPLOAD_GEOGRAPHYResources.Resources_Dummy_Class _loRSP_Upload = new RSP_GS_UPLOAD_GEOGRAPHYResources.Resources_Dummy_Class();
 
+        private readonly ActivitySource _activitySource;
         private LoggerGSM02200 _Logger;
         public GSM02200Cls()
         {
             _Logger = LoggerGSM02200.R_GetInstanceLogger();
+            var loActivity = GSM02200ActivitySourceBase.R_GetInstanceActivitySource();
+            if (loActivity is null)
+            {
+                _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
+            }
+            else
+            {
+                _activitySource = loActivity;
+            }
         }
 
         public List<GSM02200DTO> GetAllGeography(GSM02200DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllGeography");
             var loEx = new R_Exception();
             List<GSM02200DTO> loResult = null;
 
@@ -70,6 +82,7 @@ namespace GSM02200BACK
 
         protected override GSM02200DTO R_Display(GSM02200DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             GSM02200DTO loResult = null;
 
@@ -108,6 +121,7 @@ namespace GSM02200BACK
 
         protected override void R_Saving(GSM02200DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -193,6 +207,7 @@ namespace GSM02200BACK
 
         public void GSM02200ChangeStatusSP(GSM02200DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GSM02200ChangeStatusSP");
             R_Exception loException = new R_Exception();
 
             try
@@ -230,6 +245,7 @@ namespace GSM02200BACK
 
         public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("R_BatchProcess");
             R_Exception loException = new R_Exception();
             var loDb = new R_Db();
 
@@ -272,6 +288,7 @@ namespace GSM02200BACK
 
         private async Task _BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("_BatchProcess");
             R_Exception loException = new R_Exception();
             R_Db loDb = new R_Db();
             DbCommand loCmd = null;

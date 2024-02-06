@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +16,16 @@ namespace Lookup_GSLBACK
     public class PublicLookupCls
     {
         private LoggerPublicLookup _Logger;
-
+        private readonly ActivitySource _activitySource;
         public PublicLookupCls()
         {
             _Logger = LoggerPublicLookup.R_GetInstanceLogger();
+            _activitySource = PublicLookupGSActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<GSL00100DTO> GetALLSalesTax(GSL00100ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLSalesTax");
             var loEx = new R_Exception();
             List<GSL00100DTO> loResult = null;
 
@@ -61,6 +64,7 @@ namespace Lookup_GSLBACK
         }
         public List<GSL00110DTO> GetALLTaxByDate(GSL00110ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLTaxByDate");
             var loEx = new R_Exception();
             List<GSL00110DTO> loResult = null;
 
@@ -102,6 +106,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00200DTO> GetALLWithholdingTax(GSL00200ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLWithholdingTax");
             var loEx = new R_Exception();
             List<GSL00200DTO> loResult = null;
 
@@ -141,6 +146,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00300DTO> GetALLCurrency(GSL00300ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCurrency");
             var loEx = new R_Exception();
             List<GSL00300DTO> loResult = null;
 
@@ -179,6 +185,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00400DTO> GetALLJournalGroup(GSL00400ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLJournalGroup");
             var loEx = new R_Exception();
             List<GSL00400DTO> loResult = null;
 
@@ -219,6 +226,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00500DTO> GetALLGLAccount(GSL00500ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLGLAccount");
             var loEx = new R_Exception();
             List<GSL00500DTO> loResult = null;
 
@@ -274,6 +282,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00510DTO> GetALLCOA(GSL00510ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCOA");
             var loEx = new R_Exception();
             List<GSL00510DTO> loResult = null;
 
@@ -317,6 +326,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00520DTO> GetALLGOACOA(GSL00520ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLGOACOA");
             var loEx = new R_Exception();
             List<GSL00520DTO> loResult = null;
 
@@ -356,6 +366,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00550DTO> GetALLGOA(GSL00550ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLGOA");
             var loEx = new R_Exception();
             List<GSL00550DTO> loResult = null;
 
@@ -393,6 +404,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00600DTO> GetALLUnitTypeCategory(GSL00600ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLUnitTypeCategory");
             var loEx = new R_Exception();
             List<GSL00600DTO> loResult = null;
 
@@ -434,6 +446,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00700DTO> GetALLDepartment(GSL00700ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLDepartment");
             var loEx = new R_Exception();
             List<GSL00700DTO> loResult = null;
 
@@ -473,6 +486,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00710DTO> GetALLDepartmentProperty(GSL00710ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLDepartmentProperty");
             var loEx = new R_Exception();
             List<GSL00710DTO> loResult = null;
 
@@ -512,6 +526,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00800DTO> GetALLCurrencyRateType(GSL00800ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCurrencyRateType");
             var loEx = new R_Exception();
             List<GSL00800DTO> loResult = null;
 
@@ -551,6 +566,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL00900DTO> GetALLCenter(GSL00900ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCenter");
             var loEx = new R_Exception();
             List<GSL00900DTO> loResult = null;
 
@@ -590,6 +606,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01000DTO> GetALLUser(GSL01000DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLUser");
             var loEx = new R_Exception();
             List<GSL01000DTO> loResult = null;
 
@@ -627,6 +644,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01100DTO> GetALLUserApproval(GSL01100ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLUserApproval");
             var loEx = new R_Exception();
             List<GSL01100DTO> loResult = null;
 
@@ -684,6 +702,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01200DTO> GetALLBank(GSL01200ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLBank");
             var loEx = new R_Exception();
             List<GSL01200DTO> loResult = null;
 
@@ -724,6 +743,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01300DTO> GetALLBankAccount(GSL01300ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLBankAccount");
             var loEx = new R_Exception();
             List<GSL01300DTO> loResult = null;
 
@@ -765,6 +785,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01400DTO> GetALLOtherCharges(GSL01400ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLOtherCharges");
             var loEx = new R_Exception();
             List<GSL01400DTO> loResult = null;
 
@@ -808,6 +829,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01500ResultGroupDTO> GetALLCashFlowGroup(GSL01500ParameterGroupDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCashFlowGroup");
             var loEx = new R_Exception();
             List<GSL01500ResultGroupDTO> loResult = null;
 
@@ -847,6 +869,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01500ResultDetailDTO> GetALLCashFlowDetail(GSL01500ParameterDetailDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCashFlowDetail");
             var loEx = new R_Exception();
             List<GSL01500ResultDetailDTO> loResult = null;
 
@@ -888,6 +911,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01600DTO> GetALLCashFlowGruopType(GSL01600ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCashFlowGruopType");
             var loEx = new R_Exception();
             List<GSL01600DTO> loResult = null;
 
@@ -927,6 +951,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01700DTO> GetALLCurrencyRate(GSL01700DTOParameter poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCurrencyRate");
             var loEx = new R_Exception();
             List<GSL01700DTO> loResult = null;
 
@@ -970,6 +995,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01701DTO> GetALLRateType(GSL01700DTOParameter poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLRateType");
             var loEx = new R_Exception();
             List<GSL01701DTO> loResult = null;
 
@@ -1007,6 +1033,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01702DTO> GetALLLocalAndBaseCurrency(GSL01700DTOParameter poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLLocalAndBaseCurrency");
             var loEx = new R_Exception();
             List<GSL01702DTO> loResult = null;
 
@@ -1044,6 +1071,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL01800DTO> GetALLCategory(GSL01800DTOParameter poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCategory");
             var loEx = new R_Exception();
             List<GSL01800DTO> loResult = null;
 
@@ -1089,6 +1117,7 @@ namespace Lookup_GSLBACK
         }
         public List<GSL01900DTO> GetALLLOB()
         {
+            using Activity activity = _activitySource.StartActivity("GetALLLOB");
             var loEx = new R_Exception();
             List<GSL01900DTO> loResult = null;
 
@@ -1120,6 +1149,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL02000CountryDTO> GetALLCountryGeography()
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCountryGeography");
             var loEx = new R_Exception();
             List<GSL02000CountryDTO> loResult = null;
 
@@ -1157,6 +1187,7 @@ namespace Lookup_GSLBACK
 
         public List<GSL02000CityDTO> GetALLCityGeography(GSL02000CityDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLCityGeography");
             var loEx = new R_Exception();
             List<GSL02000CityDTO> loResult = null;
 
@@ -1199,6 +1230,7 @@ namespace Lookup_GSLBACK
         }
         public List<GSL02100DTO> GetALLPaymentTerm(GSL02100ParameterDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetALLPaymentTerm");
             var loEx = new R_Exception();
             List<GSL02100DTO> loResult = null;
 
@@ -1224,6 +1256,46 @@ namespace Lookup_GSLBACK
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSL02100DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL02200DTO> GetALLBuilding(GSL02200ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLPaymentTerm");
+            var loEx = new R_Exception();
+            List<GSL02200DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_BUILDING_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_BUILDING_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02200DTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {

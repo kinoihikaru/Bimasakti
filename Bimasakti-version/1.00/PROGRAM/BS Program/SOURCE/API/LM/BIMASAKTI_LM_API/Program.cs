@@ -14,6 +14,7 @@ builder.R_RegisterServices(startup =>
     //startup.R_DisableDatabase();
     //startup.R_DisableCache();
     //startup.R_DisableFastReport();
+    startup.R_DisableAuthorization();
 });
 
 builder.Services.AddSingleton<R_ISymmetricProvider, R_SymmetricAESProvider>();

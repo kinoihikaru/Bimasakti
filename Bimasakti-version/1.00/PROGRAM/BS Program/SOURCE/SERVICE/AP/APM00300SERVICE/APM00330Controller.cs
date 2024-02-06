@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using R_BackEnd;
 using R_Common;
 using R_CommonFrontBackAPI;
+using System.Diagnostics;
 
 namespace APM00300SERVICE
 {
@@ -13,16 +14,19 @@ namespace APM00300SERVICE
     public class APM00330Controller : ControllerBase, IAPM00330
     {
         private LoggerAPM00330 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00330Controller(ILogger<LoggerAPM00330> logger)
         {
             //Initial and Get Logger
             LoggerAPM00330.R_InitializeLogger(logger);
             _Logger = LoggerAPM00330.R_GetInstanceLogger();
+            _activitySource = APM00330ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(APM00330Controller));
         }
 
         [HttpPost]
         public IAsyncEnumerable<APM00330DTO> GetSupplierBankList()
         {
+            using Activity activity = _activitySource.StartActivity("GetSupplierBankList");
             var loEx = new R_Exception();
             IAsyncEnumerable<APM00330DTO> loRtn = null;
             _Logger.LogInfo("Start GetSupplierBankList");
@@ -57,6 +61,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<APM00330DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceDelete");
             var loEx = new R_Exception();
             R_ServiceDeleteResultDTO loRtn = new R_ServiceDeleteResultDTO();
             _Logger.LogInfo("Start R_ServiceDelete APM03300");
@@ -83,6 +88,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public R_ServiceGetRecordResultDTO<APM00330DTO> R_ServiceGetRecord(R_ServiceGetRecordParameterDTO<APM00330DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceGetRecord");
             var loEx = new R_Exception();
             R_ServiceGetRecordResultDTO<APM00330DTO> loRtn = new R_ServiceGetRecordResultDTO<APM00330DTO>();
             _Logger.LogInfo("Start ServiceGetRecord APM03300");
@@ -114,6 +120,7 @@ namespace APM00300SERVICE
         [HttpPost]
         public R_ServiceSaveResultDTO<APM00330DTO> R_ServiceSave(R_ServiceSaveParameterDTO<APM00330DTO> poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("R_ServiceSave");
             var loEx = new R_Exception();
             R_ServiceSaveResultDTO<APM00330DTO> loRtn = new R_ServiceSaveResultDTO<APM00330DTO>();
             _Logger.LogInfo("Start ServiceSave APM03300");

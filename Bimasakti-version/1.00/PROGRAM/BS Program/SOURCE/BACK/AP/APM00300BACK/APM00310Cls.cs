@@ -4,19 +4,23 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace APM00300BACK
 {
     public class APM00310Cls : R_BusinessObject<APM00310DTO>
     {
         private LoggerAPM00310 _Logger;
+        private readonly ActivitySource _activitySource;
         public APM00310Cls()
         {
             _Logger = LoggerAPM00310.R_GetInstanceLogger();
+            _activitySource = APM00310ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         protected override void R_Deleting(APM00310DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -80,6 +84,7 @@ namespace APM00300BACK
 
         protected override APM00310DTO R_Display(APM00310DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             APM00310DTO loResult = null;
 
@@ -118,6 +123,7 @@ namespace APM00300BACK
 
         protected override void R_Saving(APM00310DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -236,6 +242,7 @@ namespace APM00300BACK
 
         public List<APM00300PayTermDTO> GetAllPayTerm(APM00300PayTermDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllPayTerm");
             var loEx = new R_Exception();
             List<APM00300PayTermDTO> loResult = null;
 
@@ -275,6 +282,7 @@ namespace APM00300BACK
 
         public List<APM00300CurrencyDTO> GetAllCurrency(APM00300CurrencyDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllCurrency");
             var loEx = new R_Exception();
             List<APM00300CurrencyDTO> loResult = null;
 
@@ -312,6 +320,7 @@ namespace APM00300BACK
         }
         public List<APM00300TaxTypeDTO> GetAllTaxType(APM00300TaxTypeDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllTaxType");
             var loEx = new R_Exception();
             List<APM00300TaxTypeDTO> loResult = null;
 

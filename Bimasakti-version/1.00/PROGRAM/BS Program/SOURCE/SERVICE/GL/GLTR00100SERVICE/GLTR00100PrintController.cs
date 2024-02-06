@@ -12,6 +12,7 @@ using R_CommonFrontBackAPI;
 using R_CommonFrontBackAPI.Log;
 using R_ReportFastReportBack;
 using System.Collections;
+using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 using System.Xml.Linq;
@@ -23,6 +24,7 @@ namespace GLTR00100SERVICE
         private R_ReportFastReportBackClass _ReportCls;
         private GLTR00100PrintParamDTO _AllGLTR00100Parameter;
         private LoggerGLTR00100Print _LoggerPrint;
+        private readonly ActivitySource _activitySource;
 
         #region instantiate
         public GLTR00100PrintController(ILogger<LoggerGLTR00100Print> logger)
@@ -30,6 +32,7 @@ namespace GLTR00100SERVICE
             //Initial and Get Logger
             LoggerGLTR00100Print.R_InitializeLogger(logger);
             _LoggerPrint = LoggerGLTR00100Print.R_GetInstanceLogger();
+            _activitySource = GLTR00100PrintActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLTR00100PrintController));
 
             _ReportCls = new R_ReportFastReportBackClass();
             _ReportCls.R_InstantiateMainReportWithFileName += _ReportCls_R_InstantiateMainReportWithFileName;
@@ -63,6 +66,7 @@ namespace GLTR00100SERVICE
         [HttpPost]
         public R_DownloadFileResultDTO AllJournalTransactionPost(GLTR00100PrintParamDTO poParameter)
         {
+            using Activity activity = _activitySource.StartActivity("AllJournalTransactionPost");
             R_Exception loException = new R_Exception();
             _LoggerPrint.LogInfo("Start AllJournalTransactionPost");
             GLTR00100PrintLogKeyDTO<GLTR00100PrintParamDTO> loCache = null;
@@ -93,6 +97,7 @@ namespace GLTR00100SERVICE
         [HttpGet, AllowAnonymous]
         public FileStreamResult AllStreamJournalTransactionsGet(string pcGuid)
         {
+            using Activity activity = _activitySource.StartActivity("AllStreamJournalTransactionsGet");
             R_Exception loException = new R_Exception();
             GLTR00100PrintLogKeyDTO<GLTR00100PrintParamDTO> loResultGUID = null;
             FileStreamResult loRtn = null;
@@ -123,6 +128,7 @@ namespace GLTR00100SERVICE
         #region Helper
         private GLTR00100ResultWithBaseHeaderPrintDTO GenerateDataPrint(GLTR00100PrintParamDTO poParam)
         {
+            using Activity activity = _activitySource.StartActivity("GenerateDataPrint");
             var loEx = new R_Exception();
             GLTR00100ResultWithBaseHeaderPrintDTO loRtn = new GLTR00100ResultWithBaseHeaderPrintDTO();
 

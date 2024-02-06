@@ -9,20 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Common;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace LMM01500BACK
 {
     public class LMM01530Cls : R_BusinessObject<LMM01530DTO>
     {
         private LoggerLMM01530 _Logger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01530Cls()
         {
             _Logger = LoggerLMM01530.R_GetInstanceLogger();
+            _activitySource = LMM01530ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
         public List<LMM01530DTO> GetAllOtherCharges(LMM01530DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllOtherCharges");
             var loEx = new R_Exception();
             List<LMM01530DTO> loResult = null;
 
@@ -64,6 +68,7 @@ namespace LMM01500BACK
 
         public List<LMM01531DTO> GetAllOtherChargesLookup(LMM01531DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllOtherChargesLookup");
             var loEx = new R_Exception();
             List<LMM01531DTO> loResult = null;
 
@@ -104,6 +109,7 @@ namespace LMM01500BACK
 
         protected override void R_Deleting(LMM01530DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Deleting");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
@@ -178,6 +184,7 @@ namespace LMM01500BACK
 
         protected override LMM01530DTO R_Display(LMM01530DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01530DTO loResult = null;
 
@@ -219,6 +226,7 @@ namespace LMM01500BACK
 
         protected override void R_Saving(LMM01530DTO poNewEntity, eCRUDMode poCRUDMode)
         {
+            using Activity activity = _activitySource.StartActivity("R_Saving");
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();

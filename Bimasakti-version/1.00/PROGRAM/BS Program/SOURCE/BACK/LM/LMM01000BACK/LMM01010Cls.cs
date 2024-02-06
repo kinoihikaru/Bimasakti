@@ -12,6 +12,7 @@ using System.Transactions;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using LMM01000COMMON.Print;
+using R_OpenTelemetry;
 
 namespace LMM01000BACK
 {
@@ -19,17 +20,30 @@ namespace LMM01000BACK
     {
         private LoggerLMM01010 _LMM01010logger;
         private LoggerLMM01010Print _LMM01010Printlogger;
+        private readonly ActivitySource _activitySource;
 
         public LMM01010Cls()
         {
             _LMM01010logger = LoggerLMM01010.R_GetInstanceLogger();
+            var loActivity =  LMM01010ActivitySourceBase.R_GetInstanceActivitySource();
+            if (loActivity is null)
+            {
+                _activitySource = R_OpenTelemetry.R_LibraryActivity.R_GetInstanceActivitySource();
+            }
+            else
+            {
+                _activitySource = loActivity;
+            }
         }
         public LMM01010Cls(LoggerLMM01010Print poParam)
         {
             _LMM01010Printlogger = LoggerLMM01010Print.R_GetInstanceLogger();
+            _activitySource = LMM01010PrintActivitySourceBase.R_GetInstanceActivitySource();
+            
         }
         public List<LMM01011DTO> GetAllRateECList(LMM01011DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetAllRateECList");
             var loEx = new R_Exception();
             List<LMM01011DTO> loResult = null;
 
@@ -72,6 +86,7 @@ namespace LMM01000BACK
 
         public void R_BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("R_BatchProcess");
             R_Exception loException = new R_Exception();
             var loDb = new R_Db();
 
@@ -114,6 +129,7 @@ namespace LMM01000BACK
 
         private async Task _BatchProcess(R_BatchProcessPar poBatchProcessPar)
         {
+            using Activity activity = _activitySource.StartActivity("_BatchProcess");
             R_Exception loException = new R_Exception();
             R_Db loDb = new R_Db();
             DbCommand loCmd = null;
@@ -270,6 +286,7 @@ namespace LMM01000BACK
 
         protected override LMM01010DTO R_Display(LMM01010DTO poEntity)  
         {
+            using Activity activity = _activitySource.StartActivity("R_Display");
             var loEx = new R_Exception();
             LMM01010DTO loResult = null;
 
@@ -430,6 +447,7 @@ namespace LMM01000BACK
 
         public LMM01010DTO GetBaseHeaderLogoCompany(LMM01010PrintParamDTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetBaseHeaderLogoCompany");
             var loEx = new R_Exception();
             LMM01010DTO loResult = null;
 
@@ -465,6 +483,7 @@ namespace LMM01000BACK
         }
         public LMM01010DTO GetHDReportRateEC(LMM01010DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetHDReportRateEC");
             var loEx = new R_Exception();
             LMM01010DTO loResult = null;
 
@@ -506,6 +525,7 @@ namespace LMM01000BACK
 
         public List<LMM01011DTO> GetDetailReportRateEC(LMM01011DTO poEntity)
         {
+            using Activity activity = _activitySource.StartActivity("GetDetailReportRateEC");
             var loEx = new R_Exception();
             List<LMM01011DTO> loResult = null;
 
