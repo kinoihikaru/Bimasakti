@@ -389,24 +389,29 @@ namespace GLT00100FRONT
             {
                 var data = (GLT00101DTO)eventArgs.Data;
                 var loHeaderData = (GLT00110DTO)_conductorRef.R_GetCurrentData();
-
-                if (data.NDEBIT > 0 && data.NCREDIT == 0)
+                if (data != null)
                 {
-                    data.CDBCR = 'D';
-                }
-                else if (data.NDEBIT == 0 && data.NCREDIT > 0)
-                {
-                    data.CDBCR = 'C';
-                }
-                else
-                {
-                    data.CDBCR = '\0';
+                    if (data.NDEBIT > 0 && data.NCREDIT == 0)
+                    {
+                        data.CDBCR = 'D';
+                    }
+                    else if (data.NDEBIT == 0 && data.NCREDIT > 0)
+                    {
+                        data.CDBCR = 'C';
+                    }
+                    else
+                    {
+                        data.CDBCR = '\0';
+                    }
                 }
 
                 if (eventArgs.ConductorMode == R_eConductorMode.Normal)
                 {
-                    loHeaderData.NDEBIT_AMOUNT = _gridDetailRef.DataSource.Sum(x => x.NDEBIT);
-                    loHeaderData.NCREDIT_AMOUNT = _gridDetailRef.DataSource.Sum(x => x.NCREDIT);
+                    if (_gridDetailRef.DataSource.Count > 0)
+                    {
+                        loHeaderData.NDEBIT_AMOUNT = _gridDetailRef.DataSource.Sum(x => x.NDEBIT);
+                        loHeaderData.NCREDIT_AMOUNT = _gridDetailRef.DataSource.Sum(x => x.NCREDIT);
+                    }
                 }
             }
             catch (Exception ex)
@@ -446,10 +451,14 @@ namespace GLT00100FRONT
                 {
                     loEx.Add("", "Journal amount can only be either Debit or Credit!");
                 }
-                if (_JournalEntryViewModel.JournalDetailGrid.Any(item => item.CGLACCOUNT_NO == data.CGLACCOUNT_NO))
+                if (_JournalEntryViewModel.JournalDetailGrid.Count > 0)
                 {
-                    loEx.Add("", $"Account No. {data.CGLACCOUNT_NO} already exists!");
+                    if (_JournalEntryViewModel.JournalDetailGrid.Any(item => item.CGLACCOUNT_NO == data.CGLACCOUNT_NO))
+                    {
+                        loEx.Add("", $"Account No. {data.CGLACCOUNT_NO} already exists!");
+                    }
                 }
+                
             }
             catch (Exception ex)
             {
