@@ -6,6 +6,7 @@ using System.Data;
 using R_CommonFrontBackAPI;
 using System.Diagnostics;
 using System.Data.SqlClient;
+using System.Transactions;
 
 namespace GLT00100BACK
 {
@@ -224,12 +225,13 @@ namespace GLT00100BACK
 
             try
             {
-                loConn = loDb.GetConnection("R_DefaultConnectionString");
-                loCmd = loDb.GetCommand();
-                
+                using (TransactionScope transactionScope = new TransactionScope(TransactionScopeOption.Required))
+                {
+                    loConn = loDb.GetConnection("R_DefaultConnectionString");
+                    loCmd = loDb.GetCommand();
 
-                //Bulk Insert Data
-                lcQuery = @"CREATE TABLE #GLT0100_JOURNAL_DETAIL 
+                    //Bulk Insert Data
+                    lcQuery = @"CREATE TABLE #GLT0100_JOURNAL_DETAIL 
                             (
                                 CGLACCOUNT_NO   VARCHAR(20),
                                 CCENTER_CODE    VARCHAR(10),
@@ -239,50 +241,52 @@ namespace GLT00100BACK
                                 CDOCUMENT_NO    VARCHAR(20),
                                 CDOCUMENT_DATE  VARCHAR(8)
                             )";
-                loDb.SqlExecNonQuery(lcQuery, loConn, false);
-                loDb.R_BulkInsert<GLT00111DTO>((SqlConnection)loConn, "#GLT0100_JOURNAL_DETAIL", poEntity.DetailData);
+                    loDb.SqlExecNonQuery(lcQuery, loConn, false);
+                    loDb.R_BulkInsert<GLT00111DTO>((SqlConnection)loConn, "#GLT0100_JOURNAL_DETAIL", poEntity.DetailData);
 
-                lcQuery = "RSP_GL_SAVE_JOURNAL";
-                loCmd.CommandText = lcQuery;
-                loCmd.CommandType = CommandType.StoredProcedure;
+                    lcQuery = "RSP_GL_SAVE_JOURNAL";
+                    loCmd.CommandText = lcQuery;
+                    loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, R_BackGlobalVar.USER_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CJRN_ID", DbType.String, 100, poEntity.HeaderData.CREC_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poEntity.HeaderData.CACTION);
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, R_BackGlobalVar.COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poEntity.HeaderData.CDEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 20, ContextConstant.VAR_TRANS_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.HeaderData.CREF_NO);
-                loDb.R_AddCommandParameter(loCmd, "@CDOC_NO", DbType.String, 50, poEntity.HeaderData.CDOC_NO);
-                loDb.R_AddCommandParameter(loCmd, "@CDOC_DATE", DbType.String, 10, poEntity.HeaderData.CDOC_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 10, poEntity.HeaderData.CREF_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@CREVERSE_DATE", DbType.String, 10,"");
-                loDb.R_AddCommandParameter(loCmd, "@LREVERSE", DbType.Boolean, 10, poEntity.HeaderData.LREVERSE);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, int.MaxValue, poEntity.HeaderData.CTRANS_DESC);
-                loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_CODE", DbType.String, 50, poEntity.HeaderData.CCURRENCY_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@NLBASE_RATE", DbType.Decimal, 100, poEntity.HeaderData.NLBASE_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NLCURRENCY_RATE", DbType.Decimal, 100, poEntity.HeaderData.NLCURRENCY_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE", DbType.Decimal, 100, poEntity.HeaderData.NBBASE_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 100, poEntity.HeaderData.NBCURRENCY_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NPRELIST_AMOUNT", DbType.Decimal, 100, poEntity.HeaderData.NPRELIST_AMOUNT);
+                    loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, R_BackGlobalVar.USER_ID);
+                    loDb.R_AddCommandParameter(loCmd, "@CJRN_ID", DbType.String, 100, poEntity.HeaderData.CREC_ID);
+                    loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, poEntity.HeaderData.CACTION);
+                    loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, R_BackGlobalVar.COMPANY_ID);
+                    loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poEntity.HeaderData.CDEPT_CODE);
+                    loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 20, ContextConstant.VAR_TRANS_CODE);
+                    loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poEntity.HeaderData.CREF_NO);
+                    loDb.R_AddCommandParameter(loCmd, "@CDOC_NO", DbType.String, 50, poEntity.HeaderData.CDOC_NO);
+                    loDb.R_AddCommandParameter(loCmd, "@CDOC_DATE", DbType.String, 10, poEntity.HeaderData.CDOC_DATE);
+                    loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 10, poEntity.HeaderData.CREF_DATE);
+                    loDb.R_AddCommandParameter(loCmd, "@CREVERSE_DATE", DbType.String, 10, "");
+                    loDb.R_AddCommandParameter(loCmd, "@LREVERSE", DbType.Boolean, 10, poEntity.HeaderData.LREVERSE);
+                    loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, int.MaxValue, poEntity.HeaderData.CTRANS_DESC);
+                    loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_CODE", DbType.String, 50, poEntity.HeaderData.CCURRENCY_CODE);
+                    loDb.R_AddCommandParameter(loCmd, "@NLBASE_RATE", DbType.Decimal, 100, poEntity.HeaderData.NLBASE_RATE);
+                    loDb.R_AddCommandParameter(loCmd, "@NLCURRENCY_RATE", DbType.Decimal, 100, poEntity.HeaderData.NLCURRENCY_RATE);
+                    loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE", DbType.Decimal, 100, poEntity.HeaderData.NBBASE_RATE);
+                    loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 100, poEntity.HeaderData.NBCURRENCY_RATE);
+                    loDb.R_AddCommandParameter(loCmd, "@NPRELIST_AMOUNT", DbType.Decimal, 100, poEntity.HeaderData.NPRELIST_AMOUNT);
 
-                R_ExternalException.R_SP_Init_Exception(loConn);
+                    R_ExternalException.R_SP_Init_Exception(loConn);
 
-                try
-                {
-                    var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+                    try
+                    {
+                        var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
 
-                    var loTempResult = R_Utility.R_ConvertTo<ConvertRecID>(loDataTable).FirstOrDefault();
+                        var loTempResult = R_Utility.R_ConvertTo<ConvertRecID>(loDataTable).FirstOrDefault();
 
-                    loRtn.CREC_ID = loTempResult.CJRN_ID;
+                        loRtn.CREC_ID = loTempResult.CJRN_ID;
+                    }
+                    catch (Exception ex)
+                    {
+                        loEx.Add(ex);
+                    }
+
+                    loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+
+                    transactionScope.Complete();
                 }
-                catch (Exception ex)
-                {
-                    loEx.Add(ex);
-                }
-
-                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
-
             }
             catch (Exception ex)
             {

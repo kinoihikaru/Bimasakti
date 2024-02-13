@@ -108,11 +108,14 @@ namespace GLM00400BACK
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
-            var loConn = loDb.GetConnection("R_DefaultConnectionString");
-            var loCmd = loDb.GetCommand();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
 
             try
             {
+                loConn = loDb.GetConnection("R_DefaultConnectionString"); 
+                loCmd = loDb.GetCommand();
+
                 lcQuery = "EXECUTE RSP_GL_ADD_ALLOCATION_CENTER_LIST @CUSER_ID, @CCOMPANY_ID, @CALLOC_ID, @CCENTER_LIST";
                 loCmd.CommandText = lcQuery;
 

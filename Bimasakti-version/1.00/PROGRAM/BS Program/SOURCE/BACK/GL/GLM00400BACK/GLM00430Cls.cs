@@ -109,11 +109,14 @@ namespace GLM00400BACK
             var loEx = new R_Exception();
             string lcQuery = "";
             var loDb = new R_Db();
-            var loConn = loDb.GetConnection("R_DefaultConnectionString");
-            var loCmd = loDb.GetCommand();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
 
             try
             {
+                loConn = loDb.GetConnection("R_DefaultConnectionString");
+                loCmd = loDb.GetCommand();
+
                 lcQuery = "RSP_GL_ADD_ALLOCATION_ACCOUNT_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/30/2023 09:40:24" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="02/07/2024 10:35:57" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="GLTR" DataType="GLTR00100COMMON.GLTR00100ResultPrintDTO, GLTR00100COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -67,13 +67,11 @@
       </inherited>
       <inherited Name="Text36"/>
       <inherited Name="Text38"/>
-      <inherited Name="Text41"/>
       <inherited Name="Text34"/>
       <inherited Name="Text37"/>
       <inherited Name="Text39"/>
-      <inherited Name="Text42"/>
     </inherited>
-    <DataBand Name="Data1" ZOrder="0" Top="79.05" Width="1047.06" Height="132.3" CanGrow="true" DataSource="ResponseDataModel">
+    <DataBand Name="Data1" ZOrder="0" Top="79.6" Width="1047.06" Height="132.3" CanGrow="true" DataSource="ResponseDataModel">
       <TextObject Name="Text43" Width="122.85" Height="18.9" Text="Transaction Type" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text44" Left="132.3" Width="198.45" Height="18.9" Text="[ResponseDataModel.GLTR.HeaderData.CTRANSACTION_NAME]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text45" Left="1.45" Top="19.05" Width="122.85" Height="18.9" Text="Department" Font="MS Gothic, 10pt"/>
@@ -97,7 +95,7 @@
       <TextObject Name="Text63" Left="132.3" Top="113.4" Width="198.45" Height="18.9" CanGrow="true" Text="[ResponseDataModel.GLTR.HeaderData.CTRANS_DESC]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text64" Left="330.75" Width="103.95" Height="18.9" Text="Currency" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text65" Left="332.2" Top="19.05" Width="103.95" Height="18.9" Text="Total Debit" Font="MS Gothic, 10pt"/>
-      <TextObject Name="Text66" Left="330.75" Top="37.8" Width="103.95" Height="18.9" Text="Total Creadit" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text66" Left="330.75" Top="37.8" Width="103.95" Height="18.9" Text="Total Credit" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text70" Left="330.75" Top="94.5" Width="113.4" Height="18.9" Text="Reversing Date" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text74" Left="434.7" Top="37.8" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text75" Left="434.7" Top="18.9" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
@@ -162,7 +160,7 @@
         </Formats>
       </TextObject>
     </DataBand>
-    <DataBand Name="Data2" ZOrder="1" Top="237.14" Width="1047.06" Height="18.9" CanGrow="true" DataSource="ListDetail">
+    <DataBand Name="Data2" ZOrder="1" Top="238.8" Width="1047.06" Height="18.9" CanGrow="true" DataSource="ListDetail">
       <TextObject Name="Text98" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CGLACCOUNT_NO]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text99" Left="122.85" Width="217.35" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CGLACCOUNT_NAME]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text101" Left="340.2" Width="85.05" Height="18.9" Text="[ResponseDataModel.GLTR.ListDetail.CCENTER_CODE]" Font="MS Gothic, 10pt"/>
@@ -195,7 +193,7 @@
           <Condition Expression="[ResponseDataModel.GLTR.HeaderData.CREVERSE_DATE] == &quot;&quot;" Visible="false" Font="Arial, 10pt" ApplyTextFill="false"/>
         </Highlight>
       </TextObject>
-      <DataHeaderBand Name="DataHeader1" Top="214.8" Width="1047.06" Height="18.9" Border.Lines="Top, Bottom" Fill.Color="LightGray" RepeatOnEveryPage="true">
+      <DataHeaderBand Name="DataHeader1" Top="215.9" Width="1047.06" Height="18.9" Border.Lines="Top, Bottom" Fill.Color="LightGray" RepeatOnEveryPage="true">
         <TextObject Name="Text96" Width="122.85" Height="18.9" Text="Account No." Font="MS Gothic, 10pt"/>
         <TextObject Name="Text97" Left="122.85" Width="217.35" Height="18.9" Text="Account Name" Font="MS Gothic, 10pt"/>
         <TextObject Name="Text100" Left="340.2" Width="85.05" Height="18.9" Text="Center" Font="MS Gothic, 10pt"/>
