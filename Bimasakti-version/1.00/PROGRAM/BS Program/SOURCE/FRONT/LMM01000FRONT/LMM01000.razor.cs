@@ -68,7 +68,7 @@ namespace LMM01000FRONT
             
             try
             {
-                _General_viewModel.PropertyValueContext = poParam;
+                _General_viewModel.PropertyValueContext = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
 
                 if (_General_viewModel.ChargesTypeGrid.Count > 0)
                 {

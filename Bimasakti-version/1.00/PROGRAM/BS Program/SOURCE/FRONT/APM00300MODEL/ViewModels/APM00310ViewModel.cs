@@ -7,6 +7,7 @@ using R_CommonFrontBackAPI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -20,7 +21,7 @@ namespace APM00300MODEL
 
         public List<APM00300PropertyDTO> PropertyList { get; set; } = new List<APM00300PropertyDTO>();
         public List<APM00300LOBDTO> LOBList { get; set; } = new List<APM00300LOBDTO>();
-        public List<APM00300PayTermDTO> PayTermList { get; set; } = new List<APM00300PayTermDTO>();
+        public BindingList<APM00300PayTermDTO> PayTermList { get; set; } = new BindingList<APM00300PayTermDTO>();
         public List<APM00300CurrencyDTO> CurrencyList { get; set; } = new List<APM00300CurrencyDTO>();
         public List<APM00300TaxTypeDTO> TaxTypeList { get; set; } = new List<APM00300TaxTypeDTO>();
         public APM00310DTO Supplier { get; set; } = new APM00310DTO();
@@ -71,7 +72,7 @@ namespace APM00300MODEL
             {
                 var loResult = await _APM00310Model.GetPayTermListAsync(PropertyValueContext);
 
-                PayTermList = loResult;
+                PayTermList = new BindingList<APM00300PayTermDTO>(loResult);
             }
             catch (Exception ex)
             {

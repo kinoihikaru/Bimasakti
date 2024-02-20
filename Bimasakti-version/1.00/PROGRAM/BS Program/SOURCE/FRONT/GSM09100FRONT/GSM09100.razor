@@ -31,14 +31,13 @@
                     <R_TreeView @ref="@_treeRef"
                                 R_ConductorSource="@_conductorRef"
                                 DataSource="@_viewModel.ProductCategoryGrid"
-                                TextField="@nameof(GSM09100DTO.CCATEGORY_ID_NAME_DISPLAY)"
-                                IdField="@nameof(GSM09100DTO.CCATEGORY_ID)"
-                                ParentIdField="@nameof(GSM09100DTO.CPARENT)"
-                                HasChildrenField="@nameof(GSM09100DTO.LHAS_CHILD)"
+                                TextField="DisplayTree"
+                                IdField="Id"
+                                ParentIdField="ParentId"
+                                HasChildrenField="HasChildren"
                                 Height="400px"
-                                Enabled="@_pageSupplierOnCRUDmode"
+                                Enabled="@(!_pageSupplierOnCRUDmode)"
                                 R_ServiceGetListRecord="@ProductCategory_ServiceGetListRecord"
-                                R_RefreshTreeViewState="@ProductCategory_RefreshTreeViewState"
                                 >
                     </R_TreeView>
                 </R_StackLayout>

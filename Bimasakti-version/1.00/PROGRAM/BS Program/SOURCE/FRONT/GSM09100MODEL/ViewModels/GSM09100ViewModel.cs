@@ -11,6 +11,7 @@ using R_CommonFrontBackAPI;
 using System.ComponentModel;
 using R_BlazorFrontEnd.Helpers;
 using GSM09100FrontResources;
+using System.Linq;
 
 namespace GSM09100MODEL
 {
@@ -18,7 +19,7 @@ namespace GSM09100MODEL
     {
         private GSM09100Model _GSM09100Model = new GSM09100Model();
         public List<GSM09100PropertyDTO> PropertyList { get; set; } = new List<GSM09100PropertyDTO>();
-        public List<GSM09100DTO> ProductCategoryGrid { get; set; } = new List<GSM09100DTO>();
+        public List<GSM09100TreeDTO> ProductCategoryGrid { get; set; } = new List<GSM09100TreeDTO>();
         public BindingList<GSM09100DTO> ProductCategoryList { get; set; } = new BindingList<GSM09100DTO>();
         public GSM09100InitialDTO InitialDTO { get; set; } = new GSM09100InitialDTO();
         public GSM09100DTO ProductCategory { get; set; } = new GSM09100DTO();
@@ -70,7 +71,23 @@ namespace GSM09100MODEL
             try
             {
                 var loResult = await _GSM09100Model.GetProductCategoryListAsync(PropertyValueContext);
-                ProductCategoryGrid = loResult;
+
+                var loGridData = loResult.Select(x =>
+               new GSM09100TreeDTO
+               {
+                   ParentId = x.CPARENT,
+                   ParentName = x.CPARENT_NAME,
+                   Id = x.CCATEGORY_ID,
+                   CCATEGORY_ID = x.CCATEGORY_ID,
+                   Name = x.CCATEGORY_NAME,
+                   Type = x.CCATEGORY_TYPE,
+                   TypeDesc = x.CCATEGORY_TYPE_DESCR,
+                   DisplayTree = string.Format("[{0}] {1} - {2}", x.ILEVEL, x.CCATEGORY_ID, x.CCATEGORY_NAME),
+                   Description = x.CNOTE,
+                   Level = x.ILEVEL
+               }).ToList();
+
+                ProductCategoryGrid = loGridData;
             }
             catch (Exception ex)
             {
@@ -102,6 +119,7 @@ namespace GSM09100MODEL
 
             try
             {
+                poParam.CPROPERTY_ID = PropertyValueContext;
                 var loResult = await _GSM09100Model.R_ServiceGetRecordAsync(poParam);
 
                 ProductCategory = loResult;

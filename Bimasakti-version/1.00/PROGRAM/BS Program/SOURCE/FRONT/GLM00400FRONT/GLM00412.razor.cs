@@ -31,9 +31,8 @@ namespace GLM00400FRONT
                 var loTempParam = (GLM00410DTO)poParameter;
 
                 _AllocationPeriod_viewModel.AllocationId = loTempParam.CREC_ID_ALLOCATION_ID;
-                var loParam = new GLM00414DTO();
 
-                await _AllocationPeriod_gridRef.R_RefreshGrid(loParam);
+                await _AllocationPeriod_gridRef.R_RefreshGrid(null);
 
                 _SetHasDataDT = !string.IsNullOrWhiteSpace(loTempParam.CREC_ID_ALLOCATION_ID);
             }
@@ -51,10 +50,7 @@ namespace GLM00400FRONT
 
             try
             {
-
-                var loParam = (GLM00414DTO)eventArgs.Parameter;
-
-                await _AllocationPeriod_viewModel.GetAllocationPeriodList(loParam);
+                await _AllocationPeriod_viewModel.GetAllocationPeriodList();
 
                 eventArgs.ListEntityResult = _AllocationPeriod_viewModel.AllocationPeriodGrid;
             }
@@ -109,8 +105,7 @@ namespace GLM00400FRONT
             try
             {
                 var loParam = (GLM00415DTO)eventArgs.Parameter;
-                loParam.CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName;
-                loParam.CYEAR = _AllocationPeriod_viewModel.Year.ToString();
+
                 loParam.CREC_ID_ALLOCATION_ID = _AllocationPeriod_viewModel.AllocationId;
 
                 await _AllocationPeriod_viewModel.GetAllocationPeriodCenterList(loParam);
@@ -131,9 +126,11 @@ namespace GLM00400FRONT
 
             try
             {
-                var loParam = new GLM00414DTO();
-
-                await _AllocationPeriod_gridRef.R_RefreshGrid(loParam);
+                await _AllocationPeriod_gridRef.R_RefreshGrid(null);
+                if (_AllocationPeriod_gridRef.DataSource.Count <= 0)
+                {
+                    _AllocationPeriodCenter_gridRef.DataSource.Clear();
+                }
             }
             catch (Exception ex)
             {
@@ -152,9 +149,8 @@ namespace GLM00400FRONT
                 var loTempParam = (GLM00410DTO)poParam;
 
                 _AllocationPeriod_viewModel.AllocationId = loTempParam.CREC_ID_ALLOCATION_ID;
-                var loParam = new GLM00414DTO();
 
-                await _AllocationPeriod_gridRef.R_RefreshGrid(loParam);
+                await _AllocationPeriod_gridRef.R_RefreshGrid(null);
 
                 _SetHasDataDT = !string.IsNullOrWhiteSpace(loTempParam.CREC_ID_ALLOCATION_ID);
             }

@@ -15,14 +15,13 @@
             <R_TreeView @ref="@_treeRef"
                         R_ConductorSource="@_conductorRef"
                         DataSource="@_viewModel.GeographyList"
-                        TextField="@nameof(GSM02200DTO.CCODE_CNAME_DISPLAY)"
-                        IdField="@nameof(GSM02200DTO.CCODE)"
-                        ParentIdField="@nameof(GSM02200DTO.CPARENT_CODE)"
-                        HasChildrenField="@nameof(GSM02200DTO.LHAS_CHILD)"
+                        TextField="Description"
+                        IdField="Id"
+                        ParentIdField="ParentId"
+                        HasChildrenField="HasChildren"
                         Height="400px"
                         Enabled="@_PageOnCRUDMode"
                         R_ServiceGetListRecord="@Geography_ServiceGetListRecord"
-                        R_RefreshTreeViewState="@Geography_R_RefreshTreeViewState"
                         >
             </R_TreeView>
         </R_StackLayout>

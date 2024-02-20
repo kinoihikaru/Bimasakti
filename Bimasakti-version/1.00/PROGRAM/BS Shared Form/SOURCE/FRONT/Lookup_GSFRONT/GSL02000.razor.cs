@@ -1,5 +1,6 @@
 ﻿using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFrontResources;
+using Lookup_GSModel;
 using Lookup_GSModel.ViewModel;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -14,7 +15,7 @@ namespace Lookup_GSFRONT
     public partial class GSL02000 : R_Page
     {
         private LookupGSL02000ViewModel _viewModel = new LookupGSL02000ViewModel();
-        private R_TreeView<GSL02000CityDTO> _treeRef;
+        private R_TreeView<GSL02000TreeDTO> _treeRef;
         private R_Conductor _conductorRef;
 
         private R_ComboBox<GSL02000CountryDTO, string> Country_ComboBox;
@@ -125,18 +126,20 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loCurrentData = (GSL02000CityDTO)_treeRef.CurrentSelectedData;
-                if (loCurrentData.LHAS_CHILD || loCurrentData.CPARENT_CODE == _viewModel.Country.CCODE)
+                var loCurrentData = (GSL02000TreeDTO)_treeRef.CurrentSelectedData;
+                if (loCurrentData.HasChildren || loCurrentData.ParentId == _viewModel.Country.CCODE)
                 {
                     await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifGSL02000MustCity"), R_eMessageBoxButtonType.OK);
                     return;
                 }
 
-                loData = R_FrontUtility.ConvertObjectToObject<GSL02000DTO>(loCurrentData);
+                loData = new GSL02000DTO();
                 loData.CCODE_COUNTRY = _viewModel.Country.CCODE;
                 loData.CNAME_COUNTRY = _viewModel.Country.CNAME;
-                loData.CCODE_PROVINCE = loCurrentData.CPARENT_CODE;
-                loData.CNAME_PROVINCE = loCurrentData.CPARENT_NAME;
+                loData.CCODE_PROVINCE = loCurrentData.ParentId;
+                loData.CNAME_PROVINCE = loCurrentData.ParentName;
+                loData.CCODE = loCurrentData.Id;
+                loData.CNAME = loCurrentData.Name;
 
                 await this.Close(true, loData);
             }

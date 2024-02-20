@@ -161,28 +161,6 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
-
-        private void Supplier_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
-        {
-            var loParam = (APM00300DTO)_Supplier_conductorRef.R_GetCurrentData();
-            eventArgs.Parameter = loParam;
-            eventArgs.TargetPageType = typeof(APM00340);
-        }
-
-        private async Task SupplierDetail_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                await tesPredif.R_InstantiateDock.InvokeAsync();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
+       
     }
 }

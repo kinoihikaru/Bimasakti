@@ -8,13 +8,11 @@
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_ID"
-                   R_ConductorSource="@_RateUC_conductorRef"
                    Enabled="false">
         </R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout col="3" Class="me-3">
         <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME"
-                   R_ConductorSource="@_RateUC_conductorRef"
                    Enabled="false">
         </R_TextBox>
     </R_ItemLayout>
@@ -23,7 +21,6 @@
     </R_ItemLayout>
     <R_ItemLayout col="2">
         <R_TextBox @bind-Value="@_viewModel.Data.CCURENCY_CODE"
-                   R_ConductorSource="@_RateUC_conductorRef"
                    Enabled="false">
         </R_TextBox>
     </R_ItemLayout>
@@ -38,12 +35,13 @@
 
             <R_ItemLayout col="8">
                 <R_RadioGroup @ref="@UsageRateMode_RadioGrp"
+                              R_ConductorSource="@_RateUC_conductorRef"
                               Data="@_Universal_viewModel.UsageRateModeList"
                               Value="@_viewModel.Data.CUSAGE_RATE_MODE"
                               Layout="R_eRadioGroupLayout.Horizontal"
                               ValueField="@nameof(LMM01000UniversalDTO.CCODE)"
                               TextField="@nameof(LMM01000UniversalDTO.CDESCRIPTION)"
-                              Enabled="@EnableEditGrid"
+                              R_EnableEdit
                               ValueChanged="@((string value) => UsageRateMode_OnChange(value))">
                 </R_RadioGroup>
             </R_ItemLayout>
@@ -372,27 +370,29 @@
 </R_StackLayout>
 
 <R_StackLayout Row>
-</R_StackLayout>
-
-<R_StackLayout Row>
     <R_Grid @ref="@_RateUCDetail_gridRef"
             DataSource="@_viewModel.RateUCDetailList"
             Pageable
-            R_GridType="@R_eGridType.Batch"
-            AllowAddNewRow="@(EnableEditGrid && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
-            AllowEditRow="@(EnableEditGrid && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
-            AllowDeleteRow="@(EnableEditGrid && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
-            R_ConductorGridSource="@_RateUCDetail_conductorRef"
-            R_ServiceGetListRecord="@RateUC_ServiceGetListRecord" Height="195px">
+            R_ConductorGridSource="_RateUCDetail_conductorRef"
+            R_GridType="R_eGridType.Batch"
+            R_ServiceGetListRecord="RateUC_ServiceGetListRecord"
+            AllowAddNewRow="@(true)"
+            AllowDeleteRow="@(true)"
+            AllowEditRow="@(true)"
+            Enabled="@(_IsHMMode && _RateUC_conductorRef.R_ConductorMode == R_eConductorMode.Edit)"
+            Height="190px"
+            R_ServiceGetRecord="@RateUCDetail_ServiceGetRecord"
+            R_Saving="@RateUCDetail_Saving"
+            R_ServiceSaveBatch="@RateUCDetail_ServiceSaveBatch">
         <R_GridColumns>
-            <R_GridNumericColumn FieldName="IUP_TO_USAGE" HeaderText="@_localizer["_UsageKwh"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
-            <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit></R_GridTextColumn>
-            <R_GridNumericColumn FieldName="NBUY_LWBP_CHARGE" Arrows="false" Decimals="2" HeaderText="@_localizer["_LWBPCharges"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
-            <R_GridNumericColumn FieldName="NBUY_WBP_CHARGE" Arrows="false" HeaderText="@_localizer["_WBPCharges"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
-            <R_GridNumericColumn FieldName="NLWBP_CHARGE" Arrows="false" HeaderText="@_localizer["_LWBPCharges"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
-            <R_GridNumericColumn FieldName="NWBP_CHARGE" Arrows="false" HeaderText="@_localizer["_WBPCharges"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="IUP_TO_USAGE" HeaderText="@_localizer["_UsageKwh"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
+            <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit Width="200px"></R_GridTextColumn>
+            <R_GridNumericColumn FieldName="NBUY_LWBP_CHARGE" Arrows="false" Decimals="2" HeaderText="@_localizer["_LWBPCharges"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="NBUY_WBP_CHARGE" Arrows="false" HeaderText="@_localizer["_WBPCharges"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="NLWBP_CHARGE" Arrows="false" HeaderText="@_localizer["_LWBPCharges"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
+            <R_GridNumericColumn FieldName="NWBP_CHARGE" Arrows="false" HeaderText="@_localizer["_WBPCharges"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
         </R_GridColumns>
-    </R_Grid>
+   </R_Grid>
 </R_StackLayout>
 
 <R_StackLayout Row Class="justify-content-between mt-2">
@@ -400,7 +400,7 @@
         <R_EditButton R_Conductor="@_RateUC_conductorRef"></R_EditButton>
     </R_ItemLayout>
     <R_ItemLayout>
-        <R_Button OnClick="@Button_OnClickPrintAsync" Enabled="@PrintBtnEnable" R_ConductorSource="@_RateUC_conductorRef">@_localizer["_PrintBtn"]</R_Button>
+        <R_Button OnClick="@Button_OnClickPrintAsync" R_ConductorSource="@_RateUC_conductorRef" R_EnableHasData>@_localizer["_PrintBtn"]</R_Button>
     </R_ItemLayout>
     <R_ItemLayout>
         <R_CancelButton R_Conductor="@_RateUC_conductorRef"></R_CancelButton>
@@ -412,9 +412,7 @@
              R_ViewModel="@_viewModel"
              R_IsHeader="true"
              R_ServiceGetRecord="@RateUC_ServiceGetRecord"
-             R_SetHasData="@RateUC_SetHasData"
              R_ServiceSave="@RateUC_ServiceSave"
-             R_SetEdit="@RateUC_SetEdit"
              R_AfterSave="@RateUC_AfterSave"
              R_BeforeCancel="@RateUC_BeforeCancel"
              R_SetOther="@Grid_R_SetOther"
@@ -423,10 +421,6 @@
 </R_Conductor>
 
 <R_ConductorGrid @ref="@_RateUCDetail_conductorRef"
-             R_ViewModel="@_viewModel"
              R_ConductorParent="@_RateUC_conductorRef"
-             R_ServiceGetRecord="@RateUCDetail_ServiceGetRecord"
-             R_Saving="@RateUCDetail_Saving"
-             R_ServiceSaveBatch="@RateUCDetail_ServiceSaveBatch"
              >
 </R_ConductorGrid>

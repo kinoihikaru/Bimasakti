@@ -11,7 +11,7 @@
         public string CYEAR { get; set; }
         public string CCENTER_CODE { get; set; }
         public string CCENTER_NAME { get; set; }
-        public int NVALUE { get; set; }
+        public decimal NVALUE { get; set; }
     }
 
 

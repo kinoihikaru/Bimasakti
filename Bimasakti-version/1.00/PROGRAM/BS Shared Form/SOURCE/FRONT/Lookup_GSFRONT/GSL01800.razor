@@ -7,13 +7,13 @@
     <R_StackLayout Row>
         <R_TreeView @ref="@_treeRef"
                     DataSource="@_viewModel.CategoryGrid"
-                    TextField="@nameof(GSL01800DTO.ILEVEL_CCATEGORY_ID_CCATEGORY_NAME_DISPLAY)"
-                    IdField="@nameof(GSL01800DTO.CCATEGORY_ID)"
-                    ParentIdField="@nameof(GSL01800DTO.CPARENT)"
-                    HasChildrenField="@nameof(GSL01800DTO.LHAS_CHILD)"
+                    TextField="DisplayTree"
+                    IdField="Id"
+                    ParentIdField="ParentId"
+                    HasChildrenField="HasChildren"
                     Height="400px"
                     R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
-                    R_RefreshTreeViewState="@Tree_R_RefreshTreeViewState">
+                    >
         </R_TreeView>
     </R_StackLayout>
 

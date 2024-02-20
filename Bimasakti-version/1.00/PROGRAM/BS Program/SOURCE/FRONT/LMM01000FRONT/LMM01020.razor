@@ -233,10 +233,15 @@
             Pageable
             R_ConductorGridSource="@_RateWGDetail_conductorRef"
             R_GridType="@R_eGridType.Batch"
-            AllowAddNewRow="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
-            AllowEditRow="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
-            AllowDeleteRow="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
-            R_ServiceGetListRecord="@RateWGDetail_ServiceGetListRecord" Height="250px">
+            AllowAddNewRow="@true"
+            AllowEditRow="@true"
+            AllowDeleteRow="@true"
+            Enabled="@(EnableEdit && _viewModel.Data.CUSAGE_RATE_MODE == "HM")"
+            R_ServiceGetListRecord="@RateWGDetail_ServiceGetListRecord" 
+            R_ServiceGetRecord="@RateWGDetail_ServiceGetRecord"
+            R_Saving="@RateWGDetail_Saving"
+            R_ServiceSaveBatch="@RateWGDetail_ServiceSaveBatch"
+            Height="250px">
         <R_GridColumns>
             <R_GridNumericColumn FieldName="IUP_TO_USAGE" HeaderText="@_localizer["_UsageKwh"]" R_EnableAdd R_EnableEdit></R_GridNumericColumn>
             <R_GridTextColumn FieldName="CUSAGE_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit></R_GridTextColumn>
@@ -278,8 +283,5 @@
 <R_ConductorGrid @ref="@_RateWGDetail_conductorRef"
              R_ViewModel="@_viewModel"
              R_ConductorParent="@_RateWG_conductorRef"
-             R_ServiceGetRecord="@RateWGDetail_ServiceGetRecord"
-             R_Saving="@RateWGDetail_Saving"
-             R_ServiceSaveBatch="@RateWGDetail_ServiceSaveBatch"
 >
 </R_ConductorGrid>

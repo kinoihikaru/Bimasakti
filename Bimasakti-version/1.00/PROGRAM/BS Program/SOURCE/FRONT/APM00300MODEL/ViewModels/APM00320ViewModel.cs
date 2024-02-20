@@ -36,7 +36,10 @@ namespace APM00300MODEL
 
                 SupplierSeqList = loResult;
 
-                RecId = loResult.FirstOrDefault().CREC_ID;
+                if (loResult.Count > 0)
+                {
+                    RecId = loResult.FirstOrDefault().CREC_ID;
+                }
             }
             catch (Exception ex)
             {

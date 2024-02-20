@@ -103,14 +103,14 @@ namespace GLM00400MODEL
             throw new NotImplementedException();
         }
 
-        public async Task<List<GLM00414DTO>> GetAllocationPeriodListAsync(GLM00414DTO poParam)
+        public async Task<List<GLM00414DTO>> GetAllocationPeriodListAsync(string pcYear)
         {
             var loEx = new R_Exception();
             List<GLM00414DTO> loResult = null;
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstant.CYEAR, poParam.CCYEAR);
+                R_FrontContext.R_SetStreamingContext(ContextConstant.CYEAR, pcYear);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 var loTempResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GLM00414DTO>(

@@ -192,6 +192,7 @@ namespace GLM00400FRONT
 
             try
             {
+                
                 await _AllocationTargetCenter_viewModel.SaveAllocationCenterPeriod((GLM00413DTO)eventArgs.Data);
 
                 eventArgs.Result = _AllocationTargetCenter_viewModel.AllocationCenterPeriod;

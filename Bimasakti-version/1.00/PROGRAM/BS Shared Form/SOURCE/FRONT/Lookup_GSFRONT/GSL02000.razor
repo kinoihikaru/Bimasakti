@@ -24,13 +24,13 @@
     <R_StackLayout Row>
         <R_TreeView @ref="@_treeRef"
                     DataSource="@_viewModel.CityGeographyTree"
-                    TextField="@nameof(GSL02000CityDTO.CCODE_CNAME_DISPLAY)"
-                    IdField="@nameof(GSL02000CityDTO.CCODE)"
-                    ParentIdField="@nameof(GSL02000CityDTO.CPARENT_CODE)"
-                    HasChildrenField="@nameof(GSL02000CityDTO.LHAS_CHILD)"
+                    TextField="DisplayTree"
+                    IdField="Id"
+                    ParentIdField="ParentId"
+                    HasChildrenField="HasChildren"
                     Height="400px"
                     R_ServiceGetListRecord="@R_ServiceGetListRecordAsync"
-                    R_RefreshTreeViewState="@Tree_R_RefreshTreeViewState">
+                    >
         </R_TreeView>
     </R_StackLayout>
 

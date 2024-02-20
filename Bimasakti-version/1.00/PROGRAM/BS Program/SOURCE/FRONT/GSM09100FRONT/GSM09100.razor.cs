@@ -12,6 +12,7 @@ using R_BlazorFrontEnd.Enums;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using System.Reflection.Emit;
 using System.Xml.Linq;
 
 namespace GSM09100FRONT
@@ -19,7 +20,7 @@ namespace GSM09100FRONT
     public partial class GSM09100 : R_Page
     {
         private GSM09100ViewModel _viewModel = new GSM09100ViewModel();
-        private R_TreeView<GSM09100DTO> _treeRef = new();
+        private R_TreeView<GSM09100TreeDTO> _treeRef = new();
         private R_Conductor _conductorRef;
 
 
@@ -72,7 +73,7 @@ namespace GSM09100FRONT
 
             try
             {
-                _viewModel.PropertyValueContext = poParam; 
+                _viewModel.PropertyValueContext = string.IsNullOrWhiteSpace(poParam) ? "" : poParam; 
 
                 await _treeRef.R_RefreshTree(null);
                 await _viewModel.GetProductCategoryComboBoxList();
@@ -114,33 +115,34 @@ namespace GSM09100FRONT
             R_DisplayException(loEx);
         }
 
-        private void ProductCategory_RefreshTreeViewState(R_RefreshTreeViewStateEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
+        //private void ProductCategory_RefreshTreeViewState(R_RefreshTreeViewStateEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
 
-            try
-            {
-                var loTreeList = (List<GSM09100DTO>)eventArgs.TreeViewList;
+        //    try
+        //    {
+        //        var loTreeList = (List<GSM09100DTO>)eventArgs.TreeViewList;
 
-                loTreeList.ForEach(x => x.LHAS_CHILD = loTreeList.Where(y => y.CPARENT == x.CCATEGORY_ID).Count() > 0 ? true :
-                loTreeList.Where(y => y.CPARENT == x.CCATEGORY_ID).Count() > 0);
+        //        loTreeList.ForEach(x => x.LHAS_CHILD = loTreeList.Where(y => y.CPARENT == x.CCATEGORY_ID).Count() > 0 ? true :
+        //        loTreeList.Where(y => y.CPARENT == x.CCATEGORY_ID).Count() > 0);
 
-                eventArgs.ExpandedList = loTreeList.Where(x => x.ILEVEL < 3).ToList();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
+        //        eventArgs.ExpandedList = loTreeList.Where(x => x.ILEVEL < 3).ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-            loEx.ThrowExceptionIfErrors();
-        }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
         private async Task ProductCategory_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                await _viewModel.GetProductCategory((GSM09100DTO)eventArgs.Data);
+                var loData = R_FrontUtility.ConvertObjectToObject<GSM09100DTO>(eventArgs.Data);
+                await _viewModel.GetProductCategory(loData);
 
                 eventArgs.Result = _viewModel.ProductCategory;
             }
@@ -192,13 +194,13 @@ namespace GSM09100FRONT
 
             try
             {
-                var loCurrentSelectDataList = (GSM09100DTO)_treeRef.CurrentSelectedData;
+                var loCurrentSelectDataList = (GSM09100TreeDTO)_treeRef.CurrentSelectedData;
                 var loData = (GSM09100DTO)eventArgs.Data;
 
-                loData.CPARENT = loCurrentSelectDataList.CCATEGORY_ID;
-                loData.CPARENT_NAME = loCurrentSelectDataList.CCATEGORY_NAME;
+                loData.CPARENT = loCurrentSelectDataList.Id;
+                loData.CPARENT_NAME = loCurrentSelectDataList.Name;
 
-                loData.ILEVEL = loCurrentSelectDataList.ILEVEL + 1;
+                loData.ILEVEL = loCurrentSelectDataList.Level + 1;
 
                 loData.DCREATE_DATE = DateTime.Now;
                 loData.DUPDATE_DATE = DateTime.Now;
@@ -324,7 +326,14 @@ namespace GSM09100FRONT
         {
             var loConductorData = (GSM09100DTO)eventArgs.Data;
             loConductorData.CCATEGORY_ID_NAME_DISPLAY = string.Format("[{0}] {1} - {2}", loConductorData.ILEVEL, loConductorData.CCATEGORY_ID, loConductorData.CCATEGORY_NAME);
-            eventArgs.GridData = loConductorData;
+            var loData = R_FrontUtility.ConvertObjectToObject<GSM09100TreeDTO>(loConductorData);
+            loData.Id = loConductorData.CCATEGORY_ID;
+            loData.ParentId = loConductorData.CPARENT;
+            loData.Description = loConductorData.CNOTE;
+            loData.DisplayTree = loConductorData.CCATEGORY_ID_NAME_DISPLAY;
+            loData.Level = loConductorData.ILEVEL;
+
+            eventArgs.GridData = loData;
         }
         #endregion
 

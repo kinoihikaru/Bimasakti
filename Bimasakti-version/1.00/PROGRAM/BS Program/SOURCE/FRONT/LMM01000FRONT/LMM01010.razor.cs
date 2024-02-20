@@ -19,18 +19,30 @@ namespace LMM01000FRONT
 {
     public partial class LMM01010 : R_Page, R_ITabPage
     {
+        #region ViewModel
         private LMM01010ViewModel _viewModel = new LMM01010ViewModel();
         private LMM01010SaveBatchViewModel _viewModelSave = new LMM01010SaveBatchViewModel();
         private LMM01000UniversalViewModel _Universal_viewModel = new LMM01000UniversalViewModel();
+        #endregion
 
+        #region Condutor & Grid
         private R_Conductor _RateUC_conductorRef;
         private R_ConductorGrid _RateUCDetail_conductorRef;
-
         private R_Grid<LMM01011DTO> _RateUCDetail_gridRef;
+        #endregion
+
+        #region Private Property
+        private R_RadioGroup<LMM01000UniversalDTO, string> UsageRateMode_RadioGrp;
+        private List<LMM01011DTO> ListDetailData = new List<LMM01011DTO>();
+        private bool AdminFeePctEnable = false;
+        private bool AdminFeeAmtEnable = false;
+        private bool _IsHMMode;
+        #endregion
+
+        #region Inject
         [Inject] private R_IReport _reportService { get; set; }
         [Inject] IClientHelper clientHelper { get; set; }
-
-        private List<LMM01011DTO> ListDetailData = new List<LMM01011DTO>();
+        #endregion
 
         #region Batch Proses
         // Create Method Action StateHasChange
@@ -50,6 +62,7 @@ namespace LMM01000FRONT
             await this.Close(true, true);
         }
         #endregion
+
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
@@ -70,17 +83,17 @@ namespace LMM01000FRONT
                 loParam = R_FrontUtility.ConvertObjectToObject<LMM01010DTO>(poParameter);
                 await _viewModel.GetProperty(loParam);
 
-                await RateUC_CheckData(loParam);
-                await _RateUCDetail_gridRef.R_RefreshGrid(loParam);
+                await _RateUC_conductorRef.R_GetEntity(loParam); 
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
 
-            loEx.ThrowExceptionIfErrors();
+            R_DisplayException(loEx);
         }
 
+        #region Form
         private async Task RateUC_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -98,29 +111,19 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
-        private R_RadioGroup<LMM01000UniversalDTO, string> UsageRateMode_RadioGrp;
         private async Task RateUC_Display(R_DisplayEventArgs eventArgs)
         {
+            var loData = eventArgs.Data;
             if (eventArgs.ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit)
             {
                 await UsageRateMode_RadioGrp.FocusAsync();
             }
-        }
-        private bool PrintBtnEnable = false;
-        private void RateUC_SetHasData(R_SetEventArgs eventArgs)
-        {
-            PrintBtnEnable = eventArgs.Enable;
-        }
 
-        private bool EnableEditGrid = false;
-        private void RateUC_SetEdit(R_SetEventArgs eventArgs)
-        {
-            EnableEditGrid = eventArgs.Enable;
+            if (eventArgs.ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)
+            {
+                await _RateUCDetail_gridRef.R_RefreshGrid(loData);
+            }
         }
-
-        private bool AdminFeePctEnable = false;
-        private bool AdminFeeAmtEnable = false;
         private void RateUc_Admin_OnChange(string poParam)
         {
             _viewModel.Data.CADMIN_FEE = poParam;
@@ -132,15 +135,13 @@ namespace LMM01000FRONT
             if ((string)poParam == "02")
                 _viewModel.Data.NADMIN_FEE_PCT = 0;
         }
-
         private async Task RateUC_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                EnableEditGrid = false;
-                await _RateUCDetail_conductorRef.R_SaveBatch();
+                await _RateUCDetail_gridRef.R_SaveBatch();
                 var loData = (LMM01010DTO)eventArgs.Data;
                 if (loData.CUSAGE_RATE_MODE == "HM" && ListDetailData.Count <= 0)
                 {
@@ -173,7 +174,6 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         private async Task RateUC_AfterSave(R_AfterSaveEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -181,7 +181,6 @@ namespace LMM01000FRONT
             try
             {
                 AdminFeePctEnable = false;
-                EnableEditGrid = false;
                 AdminFeeAmtEnable = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01010DTO>(eventArgs.Data);
 
@@ -194,7 +193,6 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         private async Task RateUC_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
         {
 
@@ -204,7 +202,6 @@ namespace LMM01000FRONT
             {
                 AdminFeePctEnable = false;
                 AdminFeeAmtEnable = false;
-                EnableEditGrid = false;
                 var loParam = R_FrontUtility.ConvertObjectToObject<LMM01010DTO>(eventArgs.Data);
 
                 await _RateUCDetail_gridRef.R_RefreshGrid(loParam);
@@ -220,27 +217,19 @@ namespace LMM01000FRONT
         {
             await InvokeTabEventCallbackAsync(eventArgs.Enable);
         }
+        #endregion
 
+        #region Detail Grid
         private async Task RateUC_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                if (eventArgs.Parameter is null)
-                {
-                    _viewModel.RateUCDetailList = new();
-                    eventArgs.ListEntityResult = _viewModel.RateUCDetailList;
-                }
-                else
-                {
-                    var loEventParam = (LMM01010DTO)eventArgs.Parameter;
-                    var loParam = R_FrontUtility.ConvertObjectToObject<LMM01011DTO>(loEventParam);
+                var loParam = R_FrontUtility.ConvertObjectToObject<LMM01011DTO>(eventArgs.Parameter);
+                await _viewModel.GetRateUCDetailList(loParam);
 
-                    await _viewModel.GetRateUCDetailList(loParam);
-
-                    eventArgs.ListEntityResult = _viewModel.RateUCDetailList;
-                }
+                eventArgs.ListEntityResult = _viewModel.RateUCDetailList;
             }
             catch (Exception ex)
             {
@@ -249,27 +238,6 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-        private async Task RateUC_CheckData(object poParam)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loCheck = await _viewModel.GetRateECCheckData((LMM01010DTO)poParam);
-
-                if (loCheck != null)
-                {
-                    await _RateUC_conductorRef.R_GetEntity(poParam);
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-
         private void RateUCDetail_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             eventArgs.Result = eventArgs.Data;
@@ -288,7 +256,9 @@ namespace LMM01000FRONT
             var loListData = (List<LMM01011DTO>)eventArgs.Data;
             ListDetailData = R_FrontUtility.ConvertCollectionToCollection<LMM01011DTO>(loListData).ToList();
         }
+        #endregion
 
+        #region Refresh Tab Property
         public async Task RefreshTabPageAsync(object poParam)
         {
             var loEx = new R_Exception();
@@ -303,11 +273,8 @@ namespace LMM01000FRONT
                 }
                 else
                 {
-
                     await _viewModel.GetProperty(loParam);
-
-                    await RateUC_CheckData(loParam);
-                    await _RateUCDetail_gridRef.R_RefreshGrid(loParam);
+                    await _RateUC_conductorRef.R_GetEntity(loParam);
                 }
             }
             catch (Exception ex)
@@ -317,7 +284,9 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
+        #endregion
 
+        #region Method View
         public async Task Button_OnClickPrintAsync()
         {
             var loEx = new R_Exception();
@@ -354,14 +323,15 @@ namespace LMM01000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         public void UsageRateMode_OnChange(string poParam)
         {
             _viewModel.Data.CUSAGE_RATE_MODE = poParam;
-            if (_viewModel.Data.CUSAGE_RATE_MODE == "SM")
+            _IsHMMode = poParam == "HM";
+            if (poParam == "SM")
             {
                 _RateUCDetail_gridRef.DataSource.Clear();
             }
         }
+        #endregion
     }
 }

@@ -25,11 +25,14 @@
         <R_Grid @ref="@_ChargesType_gridRef"
                 DataSource="@_LMM07000ViewModel.ChargesTypeGrid"
                 R_ConductorGridSource="@_ChargesType_conductorRef"
+                R_GridType="@R_eGridType.Original"
                 R_ServiceGetListRecord="@ChargesTypeGrid_ServiceGetListRecord"
                 AllowAddNewRow="false"
                 AllowDeleteRow="false"
                 AllowEditRow="false"
                 Enabled="@(_pageSupplierOnCRUDmode)"
+                R_ServiceGetRecord="@ChargesTypeGrid_ServiceGetRecord"
+                R_Display="@ChargesTypeGrid_Display"
                 >
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(LMM07000DTOUniversal.CDESCRIPTION)" HeaderText="@_localizer["_ChargesType"]"></R_GridTextColumn>
@@ -188,8 +191,6 @@
 <R_ConductorGrid @ref="@_ChargesType_conductorRef"
              R_ViewModel="@_LMM07000ViewModel"
              R_IsHeader="true"
-             R_ServiceGetRecord="@ChargesTypeGrid_ServiceGetRecord"
-             R_Display="@ChargesTypeGrid_Display"
              >
 </R_ConductorGrid>
 

@@ -36,7 +36,6 @@ namespace APM00300FRONT
                 // Combo box
                 await _Supplier_viewModel.GetLOBList();
                 await _Supplier_viewModel.GetPropertyList();
-                await _Supplier_viewModel.GetPayTermList();
                 await _Supplier_viewModel.GetCurrencyList();
 
                 if (!string.IsNullOrWhiteSpace(loData.CPROPERTY_ID))
@@ -347,6 +346,46 @@ namespace APM00300FRONT
         }
         #endregion
 
+        private void Supplier_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            eventArgs.TargetPageType = typeof(APM00340);
+        }
+        private async Task SupplierDetail_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loTempResult = R_FrontUtility.ConvertObjectToObject<APM00310DTO>(eventArgs.Result);
+                if (loTempResult == null)
+                {
+                    return;
+                }
+
+                await _Supplier_conductorRef.Add();
+                if (_Supplier_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add)
+                {
+                    var loData = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
+
+                    loData.CPROPERTY_ID = loTempResult.CPROPERTY_ID;
+                    loData.CSUPPLIER_NAME = loTempResult.CSUPPLIER_NAME;
+                    loData.LONETIME = loTempResult.LONETIME;
+                    loData.CPAY_TERM_CODE = loTempResult.CPAY_TERM_CODE;
+                    loData.CPAY_TERM_NAME = loTempResult.CPAY_TERM_NAME;
+                    loData.CCURRENCY_CODE = loTempResult.CCURRENCY_CODE;
+                    loData.CLOB_CODE = loTempResult.CLOB_CODE;
+                    loData.CLOB_NAME = loTempResult.CLOB_NAME;
+                    loData.CSTATUS = loTempResult.CSTATUS;
+                    loData.CDELIVERY_OPTION = loTempResult.CDELIVERY_OPTION;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
         private void Supplier_OneTime_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
         {
             var loParam = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
@@ -392,10 +431,11 @@ namespace APM00300FRONT
             R_DisplayException(loEx);
         }
 
+        #region Refresh Tab
+
         private R_TabStrip _tabSupplierDetailChill;
         private R_TabPage _AddressTabPage;
         private R_TabPage _TaxBalanceTabPage;
-
         private void Supplier_Address_Before_Open_TabPage(R_BeforeOpenTabPageEventArgs eventArgs)
         {
             var loParam = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
@@ -411,5 +451,6 @@ namespace APM00300FRONT
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(APM00312);
         }
+        #endregion
     }
 }

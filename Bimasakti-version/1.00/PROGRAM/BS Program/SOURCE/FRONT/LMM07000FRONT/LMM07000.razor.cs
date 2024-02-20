@@ -72,7 +72,7 @@ namespace LMM07000FRONT
 
             try
             {
-                PropertyId = poParam;
+                PropertyId = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
                 await _ChargesType_gridRef.R_RefreshGrid(null);
                 //IsTes = poParam is "JBMPC" or "LMPNG" or "TAR";
             }

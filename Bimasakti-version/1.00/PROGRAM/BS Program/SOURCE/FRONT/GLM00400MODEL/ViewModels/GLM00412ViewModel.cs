@@ -16,15 +16,13 @@ namespace GLM00400MODEL
         public int Year { get; set; } = DateTime.Now.Year;
         public string AllocationId { get; set; } = "";
 
-        public async Task GetAllocationPeriodList(GLM00414DTO poParam)
+        public async Task GetAllocationPeriodList()
         {
             var loEx = new R_Exception();
 
             try
             {
-                poParam.CCYEAR = Year.ToString();
-
-                var loResult = await _GLM00410Model.GetAllocationPeriodListAsync(poParam);
+                var loResult = await _GLM00410Model.GetAllocationPeriodListAsync(Year.ToString());
 
                 AllocationPeriodGrid = new ObservableCollection<GLM00414DTO>(loResult);
             }
@@ -41,6 +39,8 @@ namespace GLM00400MODEL
 
             try
             {
+                poParam.CYEAR = Year.ToString();
+
                 var loResult = await _GLM00410Model.GetAllocationPeriodByTargetCenterListAsync(poParam);
 
                 AllocationPeriodCenterGrid = new ObservableCollection<GLM00415DTO>(loResult);

@@ -71,7 +71,7 @@ namespace LMM01500FRONT
 
             try
             {
-                _Genereal_viewModel.PropertyValueContext = poParam;
+                _Genereal_viewModel.PropertyValueContext = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
                 await _Genereal_gridRef.R_RefreshGrid(null);
 
                 if (_Genereal_conductorRef.R_ConductorMode == R_eConductorMode.Normal)

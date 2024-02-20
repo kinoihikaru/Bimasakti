@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\COMMON\AP\APM00300COMMON\APM00300COMMON.csproj" />
     <ProjectReference Include="..\APM00300FrontResources\APM00300FrontResources.csproj" />
   </ItemGroup>

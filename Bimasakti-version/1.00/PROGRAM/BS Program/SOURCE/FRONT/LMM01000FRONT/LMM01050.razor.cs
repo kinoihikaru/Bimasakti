@@ -154,8 +154,8 @@ namespace LMM01000FRONT
             try
             {
                 EnableEdit = false;
-                await _RateOTDetailWD_conductorRef.R_SaveBatch();
-                await _RateOTDetailWK_conductorRef.R_SaveBatch();
+                await _RateOTDetailWD_gridRef.R_SaveBatch();
+                await _RateOTDetailWK_gridRef.R_SaveBatch();
                 var loData = (LMM01050DTO)eventArgs.Data;
                 if (_viewModel.RateOTWDDetailListData.Count <= 0 && _viewModel.RateOTWKDetailListData.Count <= 0)
                 {

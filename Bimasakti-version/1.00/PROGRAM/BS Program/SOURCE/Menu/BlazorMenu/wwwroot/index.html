@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US" dir="ltr">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blazor Web Test</title>
     <base href="/" />
     <!--<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />-->
@@ -53,7 +54,18 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+    <!--<script src="_framework/blazor.webassembly.js"></script>-->
+
+    <script src="_framework/blazor.webassembly.js" autostart="false"></script>
+    <script>
+        if (window.location.hostname.includes("localhost")) {
+            Blazor.start({
+                environment: "Development"
+            });
+        } else {
+            Blazor.start();
+        }
+    </script>
 
     <script type="text/javascript">
         function encryptText(inputSrt, keyStr, ivStr) {

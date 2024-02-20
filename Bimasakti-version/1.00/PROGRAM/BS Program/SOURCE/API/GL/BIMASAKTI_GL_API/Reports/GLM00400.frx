@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="11/30/2023 09:39:19" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="02/15/2024 13:34:06" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,11 +71,14 @@ namespace FastReport
         Table2.PrintRow(1);
         Table2.PrintColumns();
         rowData1.Init();
-        for (int i = 0; i &lt; rowData1.RowCount; i++)
+        if (rowData1.RowCount &gt; 0)
         {
-              Table2.PrintRow(2);
-              Table2.PrintColumns();
-              rowData1.Next();
+          for (int i = 0; i &lt; rowData1.RowCount; i++)
+          {
+            Table2.PrintRow(2);
+            Table2.PrintColumns();
+            rowData1.Next();
+          }
         }
         rowData.Next();
       }
@@ -163,32 +166,28 @@ namespace FastReport
       </inherited>
       <inherited Name="Text36"/>
       <inherited Name="Text38"/>
-      <inherited Name="Text41"/>
       <inherited Name="Text34"/>
       <inherited Name="Text37"/>
       <inherited Name="Text39"/>
-      <inherited Name="Text42"/>
     </inherited>
-    <DataBand Name="Data3" ZOrder="0" Top="79.05" Width="1047.06" Height="18.9" StartNewPage="true" KeepTogether="true">
-      <TextObject Name="Text43" Width="113.4" Height="18.9" Text="Departement" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text44" Left="113.4" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
-      <TextObject Name="Text45" Left="122.85" Width="245.7" Height="18.9" Text="[ResponseDataModel.Allocation.Header.CDEPARTMENT]" Font="MS Gothic, 10pt"/>
-      <TextObject Name="Text46" Left="387.45" Width="113.4" Height="18.9" Text="Source Center" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text47" Left="500.85" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
-      <TextObject Name="Text48" Left="510.3" Width="160.65" Height="18.9" Text="[ResponseDataModel.Allocation.Header.CSOURCE_CENTER]" Font="MS Gothic, 10pt"/>
-      <DataBand Name="Data2" Top="101.4" Width="1047.06" Height="18.9" StartNewPage="true" KeepTogether="true">
-        <TextObject Name="Text55" Left="699.3" Width="292.95" Height="18.9" Text="[ResponseDataModel.Allocation.Header.CYEAR]" Font="MS Gothic, 10pt"/>
-        <TextObject Name="Text52" Width="85.05" Height="18.9" Text="Allocation" Font="MS Gothic, 10pt, style=Bold"/>
-        <TextObject Name="Text53" Left="85.05" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
-        <TextObject Name="Text54" Left="94.5" Width="274.05" Height="18.9" Text="[ResponseDataModel.Allocation.HeaderData.CALLOC_NO] - [ResponseDataModel.Allocation.HeaderData.CALLOC_NAME]" Font="MS Gothic, 10pt">
+    <DataBand Name="Data3" ZOrder="0" Top="83.6" Width="1047.06" Height="28.35">
+      <TextObject Name="Text43" Top="9.45" Width="113.4" Height="18.9" Text="Departement" Font="MS Gothic, 10pt, style=Bold"/>
+      <TextObject Name="Text45" Left="122.85" Top="9.45" Width="245.7" Height="18.9" Text=": [ResponseDataModel.Allocation.Header.CDEPARTMENT]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text46" Left="425.25" Top="9.45" Width="113.4" Height="18.9" Text="Source Center" Font="MS Gothic, 10pt, style=Bold"/>
+      <TextObject Name="Text47" Left="538.65" Top="9.45" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text48" Left="548.1" Top="9.45" Width="160.65" Height="18.9" Text="[ResponseDataModel.Allocation.Header.CSOURCE_CENTER]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text56" Left="765.45" Top="9.45" Width="141.75" Height="18.9" Text="Allocation Period" Font="MS Gothic, 10pt, style=Bold"/>
+      <TextObject Name="Text55" Left="916.65" Top="9.45" Width="132.3" Height="18.9" Text="[ResponseDataModel.Allocation.Header.CYEAR]" Font="MS Gothic, 10pt"/>
+      <TextObject Name="Text57" Left="907.2" Top="9.45" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
+      <DataBand Name="Data2" Top="119.95" Width="1047.06" Height="37.8" DataSource="HeaderData" KeepTogether="true" KeepDetail="true">
+        <TextObject Name="Text52" Top="18.9" Width="85.05" Height="18.9" Text="Allocation" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text54" Left="122.85" Top="18.9" Width="274.05" Height="18.9" Text=": [ResponseDataModel.Allocation.HeaderData.CALLOC_NO] - [ResponseDataModel.Allocation.HeaderData.CALLOC_NAME]" Font="MS Gothic, 10pt">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <TextObject Name="Text56" Left="548.1" Width="141.75" Height="18.9" Text="Allocation Period" Font="MS Gothic, 10pt, style=Bold"/>
-        <TextObject Name="Text57" Left="689.85" Width="9.45" Height="18.9" Text=":" Font="MS Gothic, 10pt"/>
-        <ChildBand Name="Child2" Top="123.74" Width="1047.06" Height="56.7">
+        <ChildBand Name="Child2" Top="165.75" Width="1047.06" Height="56.7" CanBreak="true">
           <TableObject Name="Table1" Width="523.41" Height="37.8" Border.Lines="All" ManualBuildEvent="Table1_ManualBuild">
             <TableColumn Name="Column1" Width="366.62"/>
             <TableColumn Name="Column2" Width="73.67"/>

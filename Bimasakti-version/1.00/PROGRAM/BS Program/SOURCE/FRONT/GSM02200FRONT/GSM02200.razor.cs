@@ -19,7 +19,7 @@ namespace GSM02200FRONT
     public partial class GSM02200 : R_Page
     {
         private GSM02200ViewModel _viewModel = new GSM02200ViewModel();
-        private R_TreeView<GSM02200DTO> _treeRef;
+        private R_TreeView<GSM02200TreeDTO> _treeRef;
         private R_Conductor _conductorRef;
 
         [Inject] IJSRuntime JS { get; set; }
@@ -80,23 +80,6 @@ namespace GSM02200FRONT
 
             R_DisplayException(loEx);
         }
-        private void Geography_R_RefreshTreeViewState(R_RefreshTreeViewStateEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loTreeList = (List<GSM02200DTO>)eventArgs.TreeViewList;
-                loTreeList.ForEach(x => x.LHAS_CHILD = loTreeList.Where(y => y.CPARENT_CODE == x.CCODE).Count() > 0 ? true :
-                loTreeList.Where(y => y.CPARENT_CODE == x.CCODE).Count() > 0);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
         private R_TextBox GeoName_TextBox;
         private async Task Geography_Display(R_DisplayEventArgs eventArgs)
         {
@@ -120,7 +103,6 @@ namespace GSM02200FRONT
                 await GeoName_TextBox.FocusAsync();
             }
         }
-
         private void Geography_CheckEdit(R_CheckEditEventArgs eventArgs)
         {
             var loData = (GSM02200DTO)eventArgs.Data;
@@ -135,19 +117,19 @@ namespace GSM02200FRONT
 
             try
             {
-                var loTreeViewList = (List<GSM02200DTO>)_treeRef.DataSource;
-                var loCurrentData = (GSM02200DTO)_treeRef.CurrentSelectedData;
+                var loTreeViewList = (List<GSM02200TreeDTO>)_treeRef.DataSource;
+                var loCurrentData = (GSM02200TreeDTO)_treeRef.CurrentSelectedData;
 
                 if (loCurrentData is not null)
                 {
-                    loId = loCurrentData.CPARENT_CODE;
+                    loId = loCurrentData.ParentId;
 
                     loTreeViewList.ForEach(x =>
                     {
                         if (loId == x.CCODE)
                         {
                             loNum++;
-                            loId = x.CPARENT_CODE;
+                            loId = x.ParentId;
                         }
                     });
 
@@ -171,13 +153,18 @@ namespace GSM02200FRONT
         {
 
             var loConductorData = (GSM02200DTO)eventArgs.Data;
-            loConductorData.CCODE_CNAME_DISPLAY = string.Format("{0} - {1}", loConductorData.CCODE, loConductorData.CNAME);
-            eventArgs.GridData = loConductorData;
+
+            var loData = R_FrontUtility.ConvertObjectToObject<GSM02200TreeDTO>(eventArgs.Data);
+            loData.Description = string.Format("{0} - {1}", loConductorData.CCODE, loConductorData.CNAME);
+            loData.Id = loConductorData.CCODE;
+            loData.ParentId = loConductorData.CPARENT_CODE;
+            
+            eventArgs.GridData = loData;
         }
         private R_TextBox GeoCode_TextBox;
         private async Task Geography_AfterAdd(R_AfterAddEventArgs eventArgs)
         {
-           var loParentData = (GSM02200DTO)_treeRef.CurrentSelectedData;
+           var loParentData = (GSM02200TreeDTO)_treeRef.CurrentSelectedData;
 
            var loData = (GSM02200DTO)eventArgs.Data;
 
@@ -194,7 +181,8 @@ namespace GSM02200FRONT
 
             try
             {
-                await _viewModel.GetGeography((GSM02200DTO)eventArgs.Data);
+                var loData = R_FrontUtility.ConvertObjectToObject<GSM02200DTO>(eventArgs.Data);
+                await _viewModel.GetGeography(loData);
 
                 eventArgs.Result = _viewModel.Geography;
             }
@@ -205,7 +193,6 @@ namespace GSM02200FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         private async Task Geography_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -221,7 +208,6 @@ namespace GSM02200FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         private async Task Geography_ServiceSave(R_ServiceSaveEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -239,7 +225,6 @@ namespace GSM02200FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
         #endregion
 
         private async Task Geography_TemplateBtn_OnClick()

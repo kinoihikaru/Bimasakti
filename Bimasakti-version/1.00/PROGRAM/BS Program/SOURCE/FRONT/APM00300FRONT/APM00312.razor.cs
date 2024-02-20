@@ -166,5 +166,70 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
+
+        #region Btn
+        private void Supplier_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            eventArgs.TargetPageType = typeof(APM00340);
+        }
+        private async Task SupplierDetail_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+        private void Supplier_OneTime_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            var loParam = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
+            eventArgs.Parameter = loParam;
+            eventArgs.TargetPageType = typeof(APM00320);
+        }
+
+        private void Supplier_OneTime_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+        private void Supplier_Bank_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            var loParam = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
+            eventArgs.Parameter = loParam;
+            eventArgs.TargetPageType = typeof(APM00330);
+        }
+
+        private void Supplier_Bank_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+        #endregion
     }
 }

@@ -35,6 +35,7 @@
                         AllowDeleteRow
                         TargetGridDrop="@_AllocationCenterAccount_gridRef"
                         Pageable="true"
+                        R_ServiceGetRecord="@R_ServiceGetRecord"
                         R_GridRowBeforeDrop="@R_Source_GridRowBeforeDrop"
                         R_GridRowAfterDrop="@R_Source_GridRowAfterDrop"
                         Height="250px">
@@ -82,6 +83,8 @@
                         AllowDeleteRow
                         TargetGridDrop="@_SourceAllocationAccount_gridRef"
                         Pageable="true"
+                        R_ServiceGetRecord="@R_ServiceGetRecord"
+                        R_ServiceSaveBatch="@R_ServiceSaveBatch"
                         R_GridRowBeforeDrop="@R_Selected_GridRowBeforeDrop"
                         R_GridRowAfterDrop="@R_Selected_GridRowAfterDrop"
                         Height="250px">
@@ -107,10 +110,9 @@
 <R_ConductorGrid @ref="@_SourceAllocationAccount_conGrid"
                  R_ViewModel="@_SourceAllocationAccount_viewModel"
                  R_IsHeader
-                 R_ServiceGetRecord="@R_ServiceGetRecord" />
+                  />
 
 <R_ConductorGrid @ref="@_AllocationCenterAccount_conGrid"
                  R_ViewModel="@_SourceAllocationAccount_viewModel"
                  R_IsHeader
-                 R_ServiceGetRecord="@R_ServiceGetRecord"
-                 R_ServiceSaveBatch="@R_ServiceSaveBatch"/>
+                 />

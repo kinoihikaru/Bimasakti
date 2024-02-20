@@ -33,6 +33,9 @@
                 R_Before_Open_Grid_Lookup="@OtherCharges_Before_Open_Grid_Lookup"
                 R_After_Open_Grid_Lookup="@OtherCharges_After_Open_Grid_Lookup"
                 R_ServiceGetListRecord="@OtherCharges_Grid_R_ServiceGetListRecord"
+                R_ServiceGetRecord="@OtherCharges_ServiceGetRecord"
+                R_ServiceSave="@OtherCharges_ServiceSave"
+                R_ServiceDelete="@OtherCharges_ServiceDelete"
                 Height="350px">
             <R_GridColumns>
                 <R_GridLookupColumn FieldName="CCHARGES_ID" HeaderText="@_localizer["_ChargesId"]" R_EnableAdd Width="200px"></R_GridLookupColumn>
@@ -49,7 +52,4 @@
 <R_ConductorGrid @ref="@_OtherCharges_conductorRef"
                  R_ViewModel="@_OtherCharges_viewModel"
                  R_IsHeader="true"
-                 R_ServiceGetRecord="@OtherCharges_ServiceGetRecord"
-                 R_ServiceSave="@OtherCharges_ServiceSave"
-                 R_ServiceDelete="@OtherCharges_ServiceDelete"
                  R_SetOther="@Grid_R_SetOther"></R_ConductorGrid>

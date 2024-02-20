@@ -18,7 +18,7 @@ namespace GSM02200MODEL
     {
         private GSM02200Model _GSM02200Model = new GSM02200Model();
 
-        public List<GSM02200DTO> GeographyList { get; set; } = new List<GSM02200DTO>();
+        public List<GSM02200TreeDTO> GeographyList { get; set; } = new List<GSM02200TreeDTO>();
         public GSM02200DTO Geography { get; set; } = new GSM02200DTO();
 
         public bool ShowInactiveGeography { get; set; } = false;
@@ -32,14 +32,25 @@ namespace GSM02200MODEL
             {
                 var loResult = await _GSM02200Model.GetGeographyAsync();
 
+                var loGridData = loResult.Select(x =>
+                   new GSM02200TreeDTO
+                   {
+                       ParentId = x.CPARENT_CODE,
+                       Id = x.CCODE,
+                       CCODE = x.CCODE,
+                       CNAME = x.CNAME,
+                       LACTIVE = x.LACTIVE,
+                       Description = x.CCODE_CNAME_DISPLAY
+                   }).ToList();
+
                 if (ShowInactiveGeography)
                 {
-                    GeographyList = loResult;
+                    GeographyList = loGridData;
                 }
                 else
                 {
-                    var loData = loResult.Where(x => x.LACTIVE).ToList();
-                    GeographyList = loData;
+                    var loData = loGridData.Where(x => x.LACTIVE).ToList();
+                    GeographyList = loGridData;
                 }
             }
             catch (Exception ex)

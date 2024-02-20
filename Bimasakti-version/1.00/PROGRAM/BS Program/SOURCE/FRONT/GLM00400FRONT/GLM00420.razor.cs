@@ -165,7 +165,7 @@ namespace GLM00400FRONT
             try
             {
                 ProsessMove = true;
-                await _AllocationCenterPeriod_conGrid.R_SaveBatch();
+                await _AllocationCenterPeriod_gridRef.R_SaveBatch();
             }
             catch (Exception ex)
             {

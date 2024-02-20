@@ -342,7 +342,7 @@ namespace GLM00400BACK
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
                 _LoggerPrint.LogDebug("EXEC RSP_GL_REP_ALLOCATION_CENTER {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);

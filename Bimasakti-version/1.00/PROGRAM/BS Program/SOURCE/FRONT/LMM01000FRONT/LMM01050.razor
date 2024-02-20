@@ -149,10 +149,15 @@
                 Pageable
                 R_ConductorGridSource="@_RateOTDetailWD_conductorRef"
                 R_GridType="@R_eGridType.Batch"
-                AllowAddNewRow="@EnableEdit"
-                AllowEditRow="@EnableEdit"
-                AllowDeleteRow="@EnableEdit"
-                R_ServiceGetListRecord="@RateOTDetailWD_ServiceGetListRecord" Height="300px">
+                AllowAddNewRow="@true"
+                AllowEditRow="@true"
+                AllowDeleteRow="@true"
+                Enabled="@(EnableEdit)"
+                R_ServiceGetListRecord="@RateOTDetailWD_ServiceGetListRecord" 
+                R_ServiceGetRecord="@RateOTDetailWD_ServiceGetRecord"
+                R_Saving="@RateOTWDDetail_Saving"
+                R_ServiceSaveBatch="@RateOTWDDetail_ServiceSaveBatch"
+                Height="300px">
             <R_GridColumns>
                 <R_GridNumericColumn FieldName="ILEVEL" Arrows="false" HeaderText="@_localizer["_Level"]" R_EnableAdd R_EnableEdit Width="120px"></R_GridNumericColumn>
                 <R_GridTextColumn FieldName="CLEVEL_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit Width="300px"></R_GridTextColumn>
@@ -168,10 +173,15 @@
                 Pageable
                 R_ConductorGridSource="@_RateOTDetailWK_conductorRef"
                 R_GridType="@R_eGridType.Batch"
-                AllowAddNewRow="@EnableEdit"
-                AllowEditRow="@EnableEdit"
-                AllowDeleteRow="@EnableEdit"
-                R_ServiceGetListRecord="@RateOTDetailWK_ServiceGetListRecord" Height="300px">
+                AllowAddNewRow="@true"
+                AllowEditRow="@true"
+                AllowDeleteRow="@true"
+                Enabled="@(EnableEdit)"
+                R_ServiceGetListRecord="@RateOTDetailWK_ServiceGetListRecord" 
+                R_ServiceGetRecord="@RateWGDetailWK_ServiceGetRecord"
+                R_Saving="@RateOTWKDetail_Saving"
+                R_ServiceSaveBatch="@RateOTWKDetail_ServiceSaveBatch"
+                Height="300px">
             <R_GridColumns>
                 <R_GridNumericColumn FieldName="ILEVEL" Arrows="false" HeaderText="@_localizer["_Level"]" R_EnableAdd R_EnableEdit Width="150px"></R_GridNumericColumn>
                 <R_GridTextColumn FieldName="CLEVEL_DESC" HeaderText="@_localizer["_Desc"]" R_EnableAdd R_EnableEdit Width="300px"></R_GridTextColumn>
@@ -227,17 +237,11 @@
 <R_ConductorGrid @ref="@_RateOTDetailWD_conductorRef"
              R_ViewModel="@_viewModel"
              R_ConductorParent="@_RateOT_conductorRef"
-             R_ServiceGetRecord="@RateOTDetailWD_ServiceGetRecord"
-             R_Saving="@RateOTWDDetail_Saving"
-             R_ServiceSaveBatch="@RateOTWDDetail_ServiceSaveBatch"
              >
 </R_ConductorGrid>
 
 <R_ConductorGrid @ref="@_RateOTDetailWK_conductorRef"
              R_ViewModel="@_viewModel"
              R_ConductorParent="@_RateOT_conductorRef"
-             R_ServiceGetRecord="@RateWGDetailWK_ServiceGetRecord"
-             R_Saving="@RateOTWKDetail_Saving"
-             R_ServiceSaveBatch="@RateOTWKDetail_ServiceSaveBatch"
              >
 </R_ConductorGrid>

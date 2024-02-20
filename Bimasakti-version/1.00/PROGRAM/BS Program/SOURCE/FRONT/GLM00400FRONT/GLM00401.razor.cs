@@ -57,6 +57,7 @@ namespace GLM00400FRONT
         }
         private void Allocation_Department_Before_Open_Lookup(R_BeforeOpenLookupEventArgs e)
         {
+            e.Parameter = new GSL00700ParameterDTO();
             e.TargetPageType = typeof(GSL00700);
         }
 

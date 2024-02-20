@@ -79,7 +79,7 @@ namespace GSM03000FRONT
 
             try
             {
-                Additional_viewModel.PropertyValueContext = poParam;
+                Additional_viewModel.PropertyValueContext = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
                 Deducation_viewModel.PropertyValueContext = Additional_viewModel.PropertyValueContext;
                 switch (TabParent.ActiveTabIndex)
                 {

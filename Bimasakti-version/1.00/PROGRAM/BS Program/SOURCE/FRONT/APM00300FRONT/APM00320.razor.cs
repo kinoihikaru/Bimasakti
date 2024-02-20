@@ -113,7 +113,8 @@ namespace APM00300FRONT
                 {
                     return;
                 }
-                var loData = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
+
+                var loData = (APM00320DTO)_Supplier_conductorRef.R_GetCurrentData();
 
                 loData.CCITY_CODE = loTempResult.CCODE;
                 loData.CCITY_NAME = loTempResult.CNAME;

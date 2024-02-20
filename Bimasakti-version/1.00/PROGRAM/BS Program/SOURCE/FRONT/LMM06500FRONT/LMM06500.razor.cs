@@ -65,7 +65,7 @@ namespace LMM06500FRONT
 
             try
             {
-                _Staff_viewModel.PropertyValueContext = poParam;
+                _Staff_viewModel.PropertyValueContext = string.IsNullOrWhiteSpace(poParam) ? "" : poParam;
 
                 await _Staff_gridRef.R_RefreshGrid(null);
             }

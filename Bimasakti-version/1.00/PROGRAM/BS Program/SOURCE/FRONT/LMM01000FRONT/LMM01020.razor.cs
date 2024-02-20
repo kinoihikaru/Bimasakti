@@ -162,7 +162,7 @@ namespace LMM01000FRONT
 
             try
             {
-                await _RateWGDetail_conductorRef.R_SaveBatch();
+                await _RateWGDetail_gridRef.R_SaveBatch();
                 var loData = (LMM01020DTO)eventArgs.Data;
                 if (loData.CUSAGE_RATE_MODE == "HM" && ListDetailData.Count <= 0)
                 {
@@ -363,7 +363,7 @@ namespace LMM01000FRONT
         public void UsageRateMode_OnChange(string poParam)
         {
             _viewModel.Data.CUSAGE_RATE_MODE = poParam;
-            if (_viewModel.Data.CUSAGE_RATE_MODE == "SM")
+            if (poParam == "SM")
             {
                 _RateWGDetail_gridRef.DataSource.Clear();
             }
