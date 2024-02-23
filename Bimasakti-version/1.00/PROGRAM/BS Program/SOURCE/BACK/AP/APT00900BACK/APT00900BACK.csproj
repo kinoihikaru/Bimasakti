@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\AP\APT00900COMMON\APT00900COMMON.csproj" />
+    <ProjectReference Include="..\AP_SPR\RSP_AP_INVOICE_UPLOADResources\RSP_AP_INVOICE_UPLOADResources.csproj" />
   </ItemGroup>
 
 

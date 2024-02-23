@@ -117,10 +117,121 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="326" xml:space="preserve">
-    <value>Branch is required!</value>
+  <data name="_AllocID" xml:space="preserve">
+    <value>Allocation ID</value>
+  </data>
+  <data name="_BCBaseRate" xml:space="preserve">
+    <value>Base Curr. Base Rate</value>
+  </data>
+  <data name="_BCRate" xml:space="preserve">
+    <value>Base Curr. Rate</value>
+  </data>
+  <data name="_BTNCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_BTNChooseFile" xml:space="preserve">
+    <value>Choose File</value>
+  </data>
+  <data name="_BTNProcess" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="_BTNSaveToExcel" xml:space="preserve">
+    <value>Save To Excel</value>
+  </data>
+  <data name="_BTNTemplate" xml:space="preserve">
+    <value>Template</value>
+  </data>
+  <data name="_Curr" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Departement</value>
+  </data>
+  <data name="_DetDesc" xml:space="preserve">
+    <value>Detail Notes</value>
+  </data>
+  <data name="_DocDate" xml:space="preserve">
+    <value>Supplier Ref. Date</value>
+  </data>
+  <data name="_DocNo" xml:space="preserve">
+    <value>Supplier Ref. No</value>
+  </data>
+  <data name="_FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="_HeadDesc" xml:space="preserve">
+    <value>Header Notes</value>
+  </data>
+  <data name="_Invalid" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="_LcBaseRate" xml:space="preserve">
+    <value>Local Curr. Base Rate</value>
+  </data>
+  <data name="_LCRate" xml:space="preserve">
+    <value>Local Curr. Rate</value>
+  </data>
+  <data name="_No" xml:space="preserve">
+    <value>No.</value>
+  </data>
+  <data name="_Note" xml:space="preserve">
+    <value>NOTES</value>
+  </data>
+  <data name="_NotifBeforeProcess" xml:space="preserve">
+    <value>Are you sure to process this Invoice?</value>
+  </data>
+  <data name="_NotifSuccesUpload" xml:space="preserve">
+    <value>Import Invoice Successfully</value>
+  </data>
+  <data name="_NotifTemplate" xml:space="preserve">
+    <value>Are you sure download this template?</value>
+  </data>
+  <data name="_ProdDept" xml:space="preserve">
+    <value>Product Department</value>
+  </data>
+  <data name="_ProdID" xml:space="preserve">
+    <value>Product ID / Expenditure ID</value>
+  </data>
+  <data name="_ProdType" xml:space="preserve">
+    <value>Product Type</value>
   </data>
   <data name="_Property" xml:space="preserve">
     <value>Property</value>
+  </data>
+  <data name="_QTY" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Reference Date</value>
+  </data>
+  <data name="_RefNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_SuppID" xml:space="preserve">
+    <value>Supplier ID</value>
+  </data>
+  <data name="_TaxBaseRate" xml:space="preserve">
+    <value>Tax Base Rate</value>
+  </data>
+  <data name="_TaxCode" xml:space="preserve">
+    <value>Tax Code</value>
+  </data>
+  <data name="_TaxRate" xml:space="preserve">
+    <value>Tax Rate</value>
+  </data>
+  <data name="_TermCode" xml:space="preserve">
+    <value>Term Code</value>
+  </data>
+  <data name="_TotalRow" xml:space="preserve">
+    <value>Total Row(s)</value>
+  </data>
+  <data name="_UnitPrice" xml:space="preserve">
+    <value>Unit Price</value>
+  </data>
+  <data name="_Valid" xml:space="preserve">
+    <value>VALID</value>
+  </data>
+  <data name="_ValidLabel" xml:space="preserve">
+    <value>Valid</value>
   </data>
 </root>

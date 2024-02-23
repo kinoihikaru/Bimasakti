@@ -11,6 +11,8 @@ namespace APT00900BACK
 {
     public class APT00900Cls : R_IBatchProcess
     {
+        private RSP_AP_INVOICE_UPLOADResources.Resources_Dummy_Class _loRsp = new RSP_AP_INVOICE_UPLOADResources.Resources_Dummy_Class();
+
         private readonly ActivitySource _activitySource;
         private LoggerAPT00900 _Logger;
         public APT00900Cls()

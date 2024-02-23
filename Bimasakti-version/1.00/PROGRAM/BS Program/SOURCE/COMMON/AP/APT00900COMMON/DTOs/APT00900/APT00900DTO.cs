@@ -37,9 +37,11 @@ namespace APT00900COMMON
         public string Department_Code { get; set; }
         public string Reference_No { get; set; }
         public string Reference_Date { get; set; }
+        public DateTime Reference_Date_Display { get; set; }
         public string Supplier_Id { get; set; }
         public string Supplier_Reference_No { get; set; }
         public string Supplier_Reference_Date { get; set; }
+        public DateTime Supplier_Reference_Date_Display { get; set; }
         public string Currency_Code { get; set; }
         public string Term_Code { get; set; }
         public string Tax_Code { get; set; }

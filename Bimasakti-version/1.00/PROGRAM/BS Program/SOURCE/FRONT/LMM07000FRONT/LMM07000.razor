@@ -25,7 +25,6 @@
         <R_Grid @ref="@_ChargesType_gridRef"
                 DataSource="@_LMM07000ViewModel.ChargesTypeGrid"
                 R_ConductorGridSource="@_ChargesType_conductorRef"
-                R_GridType="@R_eGridType.Original"
                 R_ServiceGetListRecord="@ChargesTypeGrid_ServiceGetListRecord"
                 AllowAddNewRow="false"
                 AllowDeleteRow="false"
@@ -189,14 +188,12 @@
 </R_StackLayout>
 
 <R_ConductorGrid @ref="@_ChargesType_conductorRef"
-             R_ViewModel="@_LMM07000ViewModel"
-             R_IsHeader="true"
              >
 </R_ConductorGrid>
 
 <R_Conductor @ref="@_ChargesDiscount_conductorRef"
              R_ViewModel="@_LMM07000ViewModel"
-             R_ConductorParent="@_ChargesType_conductorRef"
+             R_IsHeader
              R_ServiceGetRecord="@ChargesDiscount_ServiceGetRecord"
              R_Display="@ChargesDiscount_Display"
              R_Validation="@ChargesDiscount_Validation" 

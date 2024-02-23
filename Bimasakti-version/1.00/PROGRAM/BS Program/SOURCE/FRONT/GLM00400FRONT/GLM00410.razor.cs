@@ -6,12 +6,14 @@ using Lookup_GSFRONT;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 using System.Xml.Linq;
 
 namespace GLM00400FRONT
@@ -47,7 +49,63 @@ namespace GLM00400FRONT
 
             R_DisplayException(loEx);
         }
+        private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlGL";
+        private const string DEFAULT_MODULE_NAME = "GL";
+        protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            var llRtn = false;
+            R_LockingFrontResult loLockResult = null;
 
+            try
+            {
+                var loData = (GLM00410DTO)eventArgs.Data;
+
+                var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                    plSendWithContext: true,
+                    plSendWithToken: true,
+                    pcHttpClientName: DEFAULT_HTTP_NAME);
+
+                if (eventArgs.Mode == R_eLockUnlock.Lock)
+                {
+                    var loLockPar = new R_ServiceLockingLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "GLM00410",
+                        Table_Name = "GLM_ALLOCATION_HD",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CALLOC_NO)
+                    };
+
+                    loLockResult = await loCls.R_Lock(loLockPar);
+                }
+                else
+                {
+                    var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "GLM00410",
+                        Table_Name = "GLM_ALLOCATION_HD",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CALLOC_NO)
+                    };
+
+                    loLockResult = await loCls.R_UnLock(loUnlockPar);
+                }
+
+                llRtn = loLockResult.IsSuccess;
+                if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+                    throw loLockResult.Exception;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return llRtn;
+        }
         #region Allocation Header Data
         private async Task AllocationJournalDT_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {

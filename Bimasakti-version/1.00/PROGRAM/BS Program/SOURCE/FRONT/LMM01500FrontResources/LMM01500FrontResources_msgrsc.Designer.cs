@@ -583,6 +583,15 @@ namespace LMM01500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department or Bank Code Is Required.
+        /// </summary>
+        internal static string _NotifFillDeptAndBankCode {
+            get {
+                return ResourceManager.GetString("_NotifFillDeptAndBankCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         internal static string _OkBtn {

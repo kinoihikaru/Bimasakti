@@ -126,6 +126,9 @@
   <data name="_Active" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="_Actual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
   <data name="_BankCode" xml:space="preserve">
     <value>Bank Code</value>
   </data>
@@ -228,6 +231,9 @@
   <data name="_GOAName" xml:space="preserve">
     <value>Group of Account Name</value>
   </data>
+  <data name="_Gross" xml:space="preserve">
+    <value>Gross</value>
+  </data>
   <data name="_JrnlGrpCode" xml:space="preserve">
     <value>Journal Group Code</value>
   </data>
@@ -245,6 +251,9 @@
   </data>
   <data name="_LocCurrRate" xml:space="preserve">
     <value>Local Currency Rate</value>
+  </data>
+  <data name="_Net" xml:space="preserve">
+    <value>Net</value>
   </data>
   <data name="_NotifGSL02000MustCity" xml:space="preserve">
     <value>Current Selected Data Must City</value>
@@ -308,6 +317,21 @@
   </data>
   <data name="_TOPName" xml:space="preserve">
     <value>Term Of Payment Name</value>
+  </data>
+  <data name="_UnitCategory" xml:space="preserve">
+    <value>Unit Category</value>
+  </data>
+  <data name="_UnitId" xml:space="preserve">
+    <value>Unit Id</value>
+  </data>
+  <data name="_UnitName" xml:space="preserve">
+    <value>Unit Name</value>
+  </data>
+  <data name="_UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="_UnitView" xml:space="preserve">
+    <value>Unit View</value>
   </data>
   <data name="_UntTypeCatId" xml:space="preserve">
     <value>Unit Type Category Id</value>

@@ -395,7 +395,7 @@ namespace Lookup_GSModel
 
             try
             {
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_CODE, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID );
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROGRAM_CODE, string.IsNullOrWhiteSpace(poParameter.CPROGRAM_ID) ? "" : poParameter.CPROGRAM_ID);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00700DTO>(
@@ -1088,6 +1088,44 @@ namespace Lookup_GSModel
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02200DTO>(
                     _RequestServiceEndPoint,
                     nameof(IPublicLookup.GSL02200GetBuildingList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL02300
+
+        public IAsyncEnumerable<GSL02300DTO> GSL02300GetBuildingUnitList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02300DTO>> GSL02300GetBuildingUnitListAsync(GSL02300ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02300DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CFLOOR_ID, string.IsNullOrWhiteSpace(poParameter.CFLOOR_ID) ? "" : poParameter.CFLOOR_ID);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02300DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02300GetBuildingUnitList),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);

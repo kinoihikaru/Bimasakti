@@ -7,6 +7,7 @@ using Lookup_GSFRONT;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Grid;
 using R_BlazorFrontEnd.Controls.MessageBox;
@@ -14,6 +15,7 @@ using R_BlazorFrontEnd.Controls.Tab;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 
 namespace APM00300FRONT
 {
@@ -60,6 +62,63 @@ namespace APM00300FRONT
             R_DisplayException(loEx);
         }
 
+        private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlAP";
+        private const string DEFAULT_MODULE_NAME = "AP";
+        protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            var llRtn = false;
+            R_LockingFrontResult loLockResult = null;
+
+            try
+            {
+                var loData = (APM00310DTO)eventArgs.Data;
+
+                var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                    plSendWithContext: true,
+                    plSendWithToken: true,
+                    pcHttpClientName: DEFAULT_HTTP_NAME);
+
+                if (eventArgs.Mode == R_eLockUnlock.Lock)
+                {
+                    var loLockPar = new R_ServiceLockingLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "APM00310",
+                        Table_Name = "APM_SUPPLIER",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CSUPPLIER_ID) 
+                    };
+
+                    loLockResult = await loCls.R_Lock(loLockPar);
+                }
+                else
+                {
+                    var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "APM00310",
+                        Table_Name = "APM_SUPPLIER",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CSUPPLIER_ID)
+                    };
+
+                    loLockResult = await loCls.R_UnLock(loUnlockPar);
+                }
+
+                llRtn = loLockResult.IsSuccess;
+                if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+                    throw loLockResult.Exception;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return llRtn;
+        }
         private async Task PropertyComboBox_OnChange(string poParam)
         {
             var loEx = new R_Exception();
@@ -377,6 +436,36 @@ namespace APM00300FRONT
                     loData.CLOB_NAME = loTempResult.CLOB_NAME;
                     loData.CSTATUS = loTempResult.CSTATUS;
                     loData.CDELIVERY_OPTION = loTempResult.CDELIVERY_OPTION;
+                    loData.CADDRESS = loTempResult.CADDRESS;
+                    loData.CCITY_CODE = loTempResult.CCITY_CODE;
+                    loData.CCITY_NAME = loTempResult.CCITY_NAME;
+                    loData.CSTATE_CODE = loTempResult.CSTATE_CODE;
+                    loData.CPOSTAL_CODE = loTempResult.CPOSTAL_CODE;
+                    loData.CCOUNTRY_CODE = loTempResult.CCOUNTRY_CODE;
+                    loData.CCOUNTRY_NAME = loTempResult.CCOUNTRY_NAME;
+                    loData.CPHONE1 = loTempResult.CPHONE1;
+                    loData.CPHONE2 = loTempResult.CPHONE2;
+                    loData.CEMAIL1 = loTempResult.CEMAIL1;
+                    loData.CEMAIL2 = loTempResult.CEMAIL2;
+                    loData.CCONTACT_EMAIL1 = loTempResult.CCONTACT_EMAIL1;
+                    loData.CCONTACT_NAME1 = loTempResult.CCONTACT_NAME1;
+                    loData.CCONTACT_EMAIL2 = loTempResult.CCONTACT_EMAIL2;
+                    loData.CCONTACT_NAME2 = loTempResult.CCONTACT_NAME2;
+                    loData.CCONTACT_PHONE1 = loTempResult.CCONTACT_PHONE1;
+                    loData.CCONTACT_PHONE2 = loTempResult.CCONTACT_PHONE2;
+                    loData.CCONTACT_POSITION1 = loTempResult.CCONTACT_POSITION1;
+                    loData.CCONTACT_POSITION2 = loTempResult.CCONTACT_POSITION2;
+                    loData.CTAX_NAME = loTempResult.CTAX_NAME;
+                    loData.CTAX_TYPE = loTempResult.CTAX_TYPE;
+                    loData.CTAX_REG_ID = loTempResult.CTAX_REG_ID;
+                    loData.CTAX_REG_DATE = loData.CTAX_REG_DATE;
+                    loData.NBALANCE = loTempResult.NBALANCE;
+                    loData.NBLAST_PAYMENT = loTempResult.NBLAST_PAYMENT;
+                    loData.NBBALANCE = loTempResult.NBBALANCE;
+                    loData.NBDP_BALANCE = loTempResult.NBDP_BALANCE;
+                    loData.NBPO_BALANCE = loTempResult.NBPO_BALANCE;
+                    loData.NLAST_PAYMENT = loTempResult.NLAST_PAYMENT;
+                    loData.NLAST_PURCHASE = loTempResult.NLAST_PURCHASE;
                 }
             }
             catch (Exception ex)

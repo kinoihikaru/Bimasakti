@@ -10,6 +10,12 @@ namespace APM00300BACK
 {
     public class APM00300Cls
     {
+        private RSP_AP_DELETE_SUPPLIERResources.Resources_Dummy_Class _loRSP1 = new RSP_AP_DELETE_SUPPLIERResources.Resources_Dummy_Class();
+        private RSP_AP_SAVE_SUPPLIERResources.Resources_Dummy_Class _loRSP2 = new RSP_AP_SAVE_SUPPLIERResources.Resources_Dummy_Class();
+        private RSP_AP_SAVE_SUPPLIER_BANKResources.Resources_Dummy_Class _loRSP3 = new RSP_AP_SAVE_SUPPLIER_BANKResources.Resources_Dummy_Class();
+        private RSP_AP_SAVE_SUPPLIER_INFOResources.Resources_Dummy_Class _loRSP4 = new RSP_AP_SAVE_SUPPLIER_INFOResources.Resources_Dummy_Class();
+        private RSP_GS_MAINTAIN_SALES_TAXResources.Resources_Dummy_Class _loRSP5 = new RSP_GS_MAINTAIN_SALES_TAXResources.Resources_Dummy_Class();
+
         private LoggerAPM00300 _Logger;
         private readonly ActivitySource _activitySource;
         public APM00300Cls()

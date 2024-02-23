@@ -73,7 +73,14 @@ namespace APM00300MODEL
             {
                 var loData = new APM00320DTO() { CREC_ID = RecId };
                 var loResult = await _APM00320Model.GetSupplierInfoAsync(loData);
-                TaxRegDate = DateTime.ParseExact(loResult.CTAX_REG_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                if (DateTime.TryParseExact(loResult.CTAX_REG_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out DateTime dateTime))
+                {
+                    TaxRegDate = dateTime;
+                }
+                else
+                {
+                    TaxRegDate = DateTime.Now;
+                }
 
                 Supplier = loResult;
             }
@@ -84,16 +91,17 @@ namespace APM00300MODEL
 
             loEx.ThrowExceptionIfErrors();
         }
-        public async Task<APM00320DTO> SaveSupplier(APM00320DTO poEntity)
+        public async Task SaveSupplier(APM00320DTO poEntity)
         {
             var loEx = new R_Exception();
-            APM00320DTO loRtn = null;
             try
             {
                 poEntity.CTAX_REG_DATE = TaxRegDate.ToString("yyyyMMdd");
                 poEntity.CSUPPLIER_REC_ID = SupplierRecId;
                 
-                loRtn = await _APM00320Model.SaveSupplierInfoAsync(poEntity);
+                await _APM00320Model.SaveSupplierInfoAsync(poEntity);
+
+                await GetSupplier();
             }
             catch (Exception ex)
             {
@@ -101,8 +109,6 @@ namespace APM00300MODEL
             }
 
             loEx.ThrowExceptionIfErrors();
-
-            return loRtn;
         }
     }
 }

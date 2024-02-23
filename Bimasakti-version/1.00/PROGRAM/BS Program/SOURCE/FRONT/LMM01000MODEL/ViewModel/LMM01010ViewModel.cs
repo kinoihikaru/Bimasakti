@@ -60,14 +60,29 @@ namespace LMM01000MODEL
 
             loEx.ThrowExceptionIfErrors();
         }
+        public async Task<LMM01010DTO> GetRateECCheckData(LMM01010DTO poParam)
+        {
+            var loEx = new R_Exception();
+            LMM01010DTO loResult = null;
+            try
+            {
+                loResult = await _LMM01010Model.R_ServiceGetRecordAsync(poParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
         public async Task GetRateEC(LMM01010DTO poParam)
         {
             var loEx = new R_Exception();
             try
             {
-                var loResult = await _LMM01010Model.R_ServiceGetRecordAsync(poParam);
-
-                RateEC = loResult;
+                RateEC = await GetRateECCheckData(poParam);
             }
             catch (Exception ex)
             {

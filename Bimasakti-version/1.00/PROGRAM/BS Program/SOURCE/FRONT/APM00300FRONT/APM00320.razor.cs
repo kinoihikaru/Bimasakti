@@ -7,12 +7,14 @@ using Lookup_GSFRONT;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
+using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Grid;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
+using R_LockingFront;
 
 namespace APM00300FRONT
 {
@@ -51,21 +53,18 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
-        private void Supplier_SetHasData(R_SetEventArgs eventArgs)
-        {
-            _EnableSaveHasData = eventArgs.Enable;
-        }
 
-        private async Task Supplier_BtnRefreshOnClick()
+        protected async override Task R_PageClosing(R_PageClosingEventArgs eventArgs)
         {
             var loEx = new R_Exception();
+            var llRtn = false;
 
             try
             {
-                if (!string.IsNullOrWhiteSpace(_Supplier_viewModel.RecId))
-                {
-                    await _Supplier_conductorRef.R_GetEntity(null);
-                }
+                //if (_Supplier_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit)
+                //{
+                //    await _Supplier_conductorRef.Cancel();
+                //}
             }
             catch (Exception ex)
             {
@@ -74,7 +73,80 @@ namespace APM00300FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-        private R_TabStrip _tabSupplierDetailChill;
+        private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlAP";
+        private const string DEFAULT_MODULE_NAME = "AP";
+        protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            var llRtn = false;
+            R_LockingFrontResult loLockResult = null;
+
+            try
+            {
+                var loData = (APM00320DTO)eventArgs.Data;
+                var loSeqID = _Supplier_viewModel.SupplierSeqList.FirstOrDefault(x => x.CREC_ID == _Supplier_viewModel.RecId);
+
+                var loCls = new R_LockingServiceClient(pcModuleName: DEFAULT_MODULE_NAME,
+                    plSendWithContext: true,
+                    plSendWithToken: true,
+                    pcHttpClientName: DEFAULT_HTTP_NAME);
+
+                if (eventArgs.Mode == R_eLockUnlock.Lock)
+                {
+                    var loLockPar = new R_ServiceLockingLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "APM00320",
+                        Table_Name = "APM_SUPPLIER_INFO",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CSUPPLIER_ID, loSeqID.CSEQ_NO)
+                    };
+
+                    loLockResult = await loCls.R_Lock(loLockPar);
+                }
+                else
+                {
+                    var loUnlockPar = new R_ServiceLockingUnLockParameterDTO
+                    {
+                        Company_Id = clientHelper.CompanyId,
+                        User_Id = clientHelper.UserId,
+                        Program_Id = "APM00320",
+                        Table_Name = "APM_SUPPLIER_INFO",
+                        Key_Value = string.Join("|", clientHelper.CompanyId, loData.CPROPERTY_ID, loData.CSUPPLIER_ID, loSeqID.CSEQ_NO)
+                    };
+
+                    loLockResult = await loCls.R_UnLock(loUnlockPar);
+                }
+
+                llRtn = loLockResult.IsSuccess;
+                if (!loLockResult.IsSuccess && loLockResult.Exception != null)
+                    throw loLockResult.Exception;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return llRtn;
+        }
+        
+        private async Task Supplier_BtnRefreshOnClick()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await _Supplier_conductorRef.R_GetEntity(null);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
 
         private async Task Supplier_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
@@ -92,6 +164,27 @@ namespace APM00300FRONT
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        private void Supplier_SetHasData(R_SetEventArgs eventArgs)
+        {
+            _EnableSaveHasData = eventArgs.Enable;
+        }
+        private async Task Supplier_ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                await _Supplier_viewModel.SaveSupplier((APM00320DTO)eventArgs.Data);
+
+                eventArgs.Result = _Supplier_viewModel.Supplier;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
         }
         private void cityCode_OnLostFocus(object poParam)
         {
@@ -152,13 +245,13 @@ namespace APM00300FRONT
             }
         }
 
-        private void Supplier_Validation(APM00320DTO poParam)
+        private void Supplier_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-                var loData = poParam;
+                var loData = (APM00320DTO)eventArgs.Data;
 
                 bool lCancel;
 
@@ -276,41 +369,24 @@ namespace APM00300FRONT
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task Button_OnClickOkAsync()
-        {
-            var loEx = new R_Exception();
+        //private async Task Button_OnClickCancelAsync()
+        //{
+        //    var loEx = new R_Exception();
 
-            try
-            {
-                var loParamData = (APM00320DTO)_Supplier_conductorRef.R_GetCurrentData();
-                Supplier_Validation(loParamData);
+        //    try
+        //    {
+        //        if (_Supplier_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit)
+        //        {
+        //            await _Supplier_conductorRef.Cancel();
+        //        }
+        //        await this.Close(true, false);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
 
-                var loData = await _Supplier_viewModel.SaveSupplier(loParamData);
-                await R_MessageBox.Show("", "OneTime modify Successfully”", R_eMessageBoxButtonType.OK);
-
-                await this.Close(true, loData);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
-        private async Task Button_OnClickCancelAsync()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                await this.Close(true, false);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
     }
 }

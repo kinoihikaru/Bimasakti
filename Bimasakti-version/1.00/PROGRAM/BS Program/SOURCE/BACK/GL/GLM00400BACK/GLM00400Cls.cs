@@ -10,6 +10,14 @@ namespace GLM00400BACK
 {
     public class GLM00400Cls
     {
+        private RSP_GL_ADD_ALLOCATION_ACCOUNT_LISTResources.Resources_Dummy_Class _loRSP1 = new RSP_GL_ADD_ALLOCATION_ACCOUNT_LISTResources.Resources_Dummy_Class();
+        private RSP_GL_ADD_ALLOCATION_CENTER_LISTResources.Resources_Dummy_Class _loRSP2 = new RSP_GL_ADD_ALLOCATION_CENTER_LISTResources.Resources_Dummy_Class();
+        private RSP_GL_DELETE_ALLOCATION_ACCOUNT_LISTResources.Resources_Dummy_Class _loRSP3 = new RSP_GL_DELETE_ALLOCATION_ACCOUNT_LISTResources.Resources_Dummy_Class();
+        private RSP_GL_DELETE_ALLOCATION_CENTER_LISTResources.Resources_Dummy_Class _loRSP4 = new RSP_GL_DELETE_ALLOCATION_CENTER_LISTResources.Resources_Dummy_Class();
+        private RSP_GL_DELETE_ALLOCATION_HDResources.Resources_Dummy_Class _loRSP5 = new RSP_GL_DELETE_ALLOCATION_HDResources.Resources_Dummy_Class();
+        private RSP_GL_SAVE_ALLOCATION_HDResources.Resources_Dummy_Class _loRSP6 = new RSP_GL_SAVE_ALLOCATION_HDResources.Resources_Dummy_Class();
+        private RSP_GL_UPDATE_ALLOCATION_CENTER_VALUEResources.Resources_Dummy_Class _loRSP7 = new RSP_GL_UPDATE_ALLOCATION_CENTER_VALUEResources.Resources_Dummy_Class();
+
         private LoggerGLM00400Print _LoggerPrint;
         private LoggerGLM00400 _Logger;
         private readonly ActivitySource _activitySource;

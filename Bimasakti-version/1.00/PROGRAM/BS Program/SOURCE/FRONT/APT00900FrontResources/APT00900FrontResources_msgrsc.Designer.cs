@@ -61,11 +61,236 @@ namespace APT00900FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Branch is required!.
+        ///   Looks up a localized string similar to Allocation ID.
         /// </summary>
-        internal static string _326 {
+        internal static string _AllocID {
             get {
-                return ResourceManager.GetString("326", resourceCulture);
+                return ResourceManager.GetString("_AllocID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Curr. Base Rate.
+        /// </summary>
+        internal static string _BCBaseRate {
+            get {
+                return ResourceManager.GetString("_BCBaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Curr. Rate.
+        /// </summary>
+        internal static string _BCRate {
+            get {
+                return ResourceManager.GetString("_BCRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string _BTNCancel {
+            get {
+                return ResourceManager.GetString("_BTNCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose File.
+        /// </summary>
+        internal static string _BTNChooseFile {
+            get {
+                return ResourceManager.GetString("_BTNChooseFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process.
+        /// </summary>
+        internal static string _BTNProcess {
+            get {
+                return ResourceManager.GetString("_BTNProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save To Excel.
+        /// </summary>
+        internal static string _BTNSaveToExcel {
+            get {
+                return ResourceManager.GetString("_BTNSaveToExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template.
+        /// </summary>
+        internal static string _BTNTemplate {
+            get {
+                return ResourceManager.GetString("_BTNTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string _Curr {
+            get {
+                return ResourceManager.GetString("_Curr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Departement.
+        /// </summary>
+        internal static string _Dept {
+            get {
+                return ResourceManager.GetString("_Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Notes.
+        /// </summary>
+        internal static string _DetDesc {
+            get {
+                return ResourceManager.GetString("_DetDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier Ref. Date.
+        /// </summary>
+        internal static string _DocDate {
+            get {
+                return ResourceManager.GetString("_DocDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier Ref. No.
+        /// </summary>
+        internal static string _DocNo {
+            get {
+                return ResourceManager.GetString("_DocNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        internal static string _FileName {
+            get {
+                return ResourceManager.GetString("_FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Header Notes.
+        /// </summary>
+        internal static string _HeadDesc {
+            get {
+                return ResourceManager.GetString("_HeadDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid.
+        /// </summary>
+        internal static string _Invalid {
+            get {
+                return ResourceManager.GetString("_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Curr. Base Rate.
+        /// </summary>
+        internal static string _LcBaseRate {
+            get {
+                return ResourceManager.GetString("_LcBaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Curr. Rate.
+        /// </summary>
+        internal static string _LCRate {
+            get {
+                return ResourceManager.GetString("_LCRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No..
+        /// </summary>
+        internal static string _No {
+            get {
+                return ResourceManager.GetString("_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOTES.
+        /// </summary>
+        internal static string _Note {
+            get {
+                return ResourceManager.GetString("_Note", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to process this Invoice?.
+        /// </summary>
+        internal static string _NotifBeforeProcess {
+            get {
+                return ResourceManager.GetString("_NotifBeforeProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Invoice Successfully.
+        /// </summary>
+        internal static string _NotifSuccesUpload {
+            get {
+                return ResourceManager.GetString("_NotifSuccesUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure download this template?.
+        /// </summary>
+        internal static string _NotifTemplate {
+            get {
+                return ResourceManager.GetString("_NotifTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Department.
+        /// </summary>
+        internal static string _ProdDept {
+            get {
+                return ResourceManager.GetString("_ProdDept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product ID / Expenditure ID.
+        /// </summary>
+        internal static string _ProdID {
+            get {
+                return ResourceManager.GetString("_ProdID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Type.
+        /// </summary>
+        internal static string _ProdType {
+            get {
+                return ResourceManager.GetString("_ProdType", resourceCulture);
             }
         }
         
@@ -75,6 +300,114 @@ namespace APT00900FrontResources {
         internal static string _Property {
             get {
                 return ResourceManager.GetString("_Property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        internal static string _QTY {
+            get {
+                return ResourceManager.GetString("_QTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date.
+        /// </summary>
+        internal static string _RefDate {
+            get {
+                return ResourceManager.GetString("_RefDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference No..
+        /// </summary>
+        internal static string _RefNo {
+            get {
+                return ResourceManager.GetString("_RefNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier ID.
+        /// </summary>
+        internal static string _SuppID {
+            get {
+                return ResourceManager.GetString("_SuppID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Base Rate.
+        /// </summary>
+        internal static string _TaxBaseRate {
+            get {
+                return ResourceManager.GetString("_TaxBaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Code.
+        /// </summary>
+        internal static string _TaxCode {
+            get {
+                return ResourceManager.GetString("_TaxCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Rate.
+        /// </summary>
+        internal static string _TaxRate {
+            get {
+                return ResourceManager.GetString("_TaxRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Term Code.
+        /// </summary>
+        internal static string _TermCode {
+            get {
+                return ResourceManager.GetString("_TermCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Row(s).
+        /// </summary>
+        internal static string _TotalRow {
+            get {
+                return ResourceManager.GetString("_TotalRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Price.
+        /// </summary>
+        internal static string _UnitPrice {
+            get {
+                return ResourceManager.GetString("_UnitPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VALID.
+        /// </summary>
+        internal static string _Valid {
+            get {
+                return ResourceManager.GetString("_Valid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Valid.
+        /// </summary>
+        internal static string _ValidLabel {
+            get {
+                return ResourceManager.GetString("_ValidLabel", resourceCulture);
             }
         }
     }

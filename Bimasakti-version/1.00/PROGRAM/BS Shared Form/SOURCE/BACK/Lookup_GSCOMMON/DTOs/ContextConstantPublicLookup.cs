@@ -27,5 +27,7 @@
         public const string CCATEGORY_TYPE = "CCATEGORY_TYPE";
         public const string CLOB_CODE = "CLOB_CODE";
         public const string CCOUNTRY_ID = "CCOUNTRY_ID";
+        public const string CBUILDING_ID = "CBUILDING_ID";
+        public const string CFLOOR_ID = "CFLOOR_ID";
     }
 }

@@ -21,7 +21,7 @@ namespace GSM03000MODEL.ViewModel
 
         public string PropertyValueContext = "";
         public bool StatusChange;
-        private string PropertyTypeContext = "A";
+        private const string PropertyTypeContext = "A";
 
 
         public async Task GetOtherChargesList()

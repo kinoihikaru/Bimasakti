@@ -1,0 +1,142 @@
+﻿@page "/APT00900"
+@inherits R_Page
+@attribute [R_Page(Title = "APT00900 Import AP Invoice")]
+@using APT00900MODEL
+@using APT00900COMMON
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_ComboBox @ref="@PropertyComboBox"
+                    Data="@_viewModel.PropertyList"
+                    @bind-Value="@_viewModel.PropertyValueContext"
+                    PopupMaxHeight="140px"
+                    ValueField="@nameof(APT00900PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(APT00900PropertyDTO.CPROPERTY_NAME)"
+                    >
+        </R_ComboBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_FileName"]</R_Label>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="FileName"
+                   Enabled="false">
+        </R_TextBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="2">
+        <R_OpenFileDialogButton OnChange="@SourceUpload_OnChange" Accepts="@accepts">@_localizer["_BTNChooseFile"]</R_OpenFileDialogButton>
+        <R_Button OnClick="@TemplateBtn_OnClick">@_localizer["_BTNTemplate"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.InvoiceUploadGrid"
+                Pageable
+                Height="400px"
+                R_ServiceGetListRecord="@ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.SEQ_NO))" HeaderText="@_localizer["_No"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Department_Code))" HeaderText="@_localizer["_Dept"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Reference_No))" HeaderText="@_localizer["_RefNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@(nameof(APT00900DisplayDTO.Reference_Date_Display))" HeaderText="@_localizer["_RefDate"]" Width="200px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Supplier_Id))" HeaderText="@_localizer["_SuppID"]" Width="130px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Supplier_Reference_No))" HeaderText="@_localizer["_DocNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridDatePickerColumn FieldName="@(nameof(APT00900DisplayDTO.Supplier_Reference_Date_Display))" HeaderText="@_localizer["_DocDate"]" Width="200px"></R_GridDatePickerColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Currency_Code))" HeaderText="@_localizer["_Curr"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Term_Code))" HeaderText="@_localizer["_TermCode"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Tax_Base_Rate))" HeaderText="@_localizer["_TaxCode"]" Width="150px"></R_GridTextColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Local_Currency_Base_Rate))" HeaderText="@_localizer["_LcBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Local_Currency_Rate))" HeaderText="@_localizer["_LCRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Base_Currency_Base_Rate))" HeaderText="@_localizer["_BCBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Base_Currency_Rate))" HeaderText="@_localizer["_BCRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Tax_Base_Rate))" HeaderText="@_localizer["_TaxBaseRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Tax_Rate))" HeaderText="@_localizer["_TaxRate"]" Width="200px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Header_Notes))" HeaderText="@_localizer["_HeadDesc"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Product_Department))" HeaderText="@_localizer["_ProdDept"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Product_Type))" HeaderText="@_localizer["_ProdType"]" Width="150px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Product_Id))" HeaderText="@_localizer["_ProdID"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Allocation_Id))" HeaderText="@_localizer["_AllocID"]" Width="200px"></R_GridTextColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Quantity))" HeaderText="@_localizer["_QTY"]" Width="200px"></R_GridNumericColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@(nameof(APT00900DisplayDTO.Unit_Price))" HeaderText="@_localizer["_UnitPrice"]" Width="200px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Detail_Notes))" HeaderText="@_localizer["_DetDesc"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Valid))" HeaderText="@_localizer["_Valid"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@(nameof(APT00900DisplayDTO.Notes))" HeaderText="@_localizer["_Note"]" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_ProgressBar Label="@_viewModel.Message" MaxValue="100" Value="@_viewModel.Percentage"></R_ProgressBar>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mb-2"> 
+    <R_ItemLayout col="8">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_TotalRow"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_NumericTextBox @bind-Value="@_viewModel.SumListStaffExcel"
+                                  Arrows="false"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_ValidLabel"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="bg-success">
+                <R_NumericTextBox @bind-Value="@_viewModel.SumValidDataStaffExcel"
+                                  Arrows="false"
+                                  ReadOnly="true"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_Invalid"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2" Class="bg-danger">
+                <R_NumericTextBox @bind-Value="@_viewModel.SumInvalidDataStaffExcel"
+                                  Arrows="false"
+                                  ReadOnly="true"
+                                  Enabled="false">
+                </R_NumericTextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" hidden="@_viewModel.VisibleError">
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button OnClick="Button_OnClickCloseAsync">
+                    @_localizer["_BTNCancel"]
+                </R_Button>
+                <R_Button OnClick="Button_OnClickProcessAsync" Enabled="@(_gridRef.DataSource.Count > 0 && !string.IsNullOrWhiteSpace(_viewModel.PropertyValueContext))">
+                    @_localizer["_BTNProcess"]
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" hidden="@(!_viewModel.VisibleError)">
+        <R_StackLayout Row Class="justify-content-end">
+            <R_ItemLayout>
+                <R_Button OnClick="Button_OnClickCloseAsync">
+                    @_localizer["_BTNCancel"]
+                </R_Button>
+                <R_Button OnClick="@Button_OnClickSaveExcelAsync">
+                    @_localizer["_BTNSaveToExcel"]
+                </R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>

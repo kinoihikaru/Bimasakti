@@ -73,7 +73,7 @@ namespace APT00900SERVICE
                 Assembly loAsm = Assembly.Load("BIMASAKTI_AP_API");
 
                 _Logger.LogInfo("Load File Template From DownloadTemplateFile");
-                var lcResourceFile = "BIMASAKTI_GS_API.Template.AP_INVOICE_UPLOAD.xlsx";
+                var lcResourceFile = "BIMASAKTI_AP_API.Template.AP_INVOICE_UPLOAD.xlsx";
                 using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
                 {
                     var ms = new MemoryStream();

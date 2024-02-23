@@ -1130,6 +1130,43 @@ namespace Lookup_GSSERVICES
 
             return loRtn;
         }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02300DTO> GSL02300GetBuildingUnitList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02300GetBuildingUnitList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02300DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02300GetBuildingUnitList");
+
+            try
+            {
+                var poParameter = new GSL02300ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02300GetBuildingUnitList");
+                var loCls = new PublicLookupCls();
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUILDING_ID);
+                poParameter.CFLOOR_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CFLOOR_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLBuilding");
+                var loResult = loCls.GetALLBuildingUnit(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02300GetBuildingUnitList");
+                loRtn = GetStream<GSL02300DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02300GetBuildingUnitList");
+
+            return loRtn;
+        }
+
         private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
         {
             foreach (var item in poParam)
@@ -1137,7 +1174,5 @@ namespace Lookup_GSSERVICES
                 yield return item;
             }
         }
-
-        
     }
 }

@@ -20,7 +20,7 @@ namespace GSM03000MODEL.ViewModel
 
         public string PropertyValueContext = "";
         public bool StatusChange;
-        private string PropertyTypeContextDeducation = "D";
+        private const string PropertyTypeContextDeducation = "D";
 
         public async Task GetOtherChargesListDeducation()
         {
