@@ -21,6 +21,7 @@ namespace APM00300FRONT
         [Inject] IClientHelper clientHelper { get; set; }
         R_PredefinedDock tesPredif;
 
+        private bool PageOnCrudMode = true;
         private R_ComboBox<APM00300PropertyDTO, string> Property_ComboBox;
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -41,7 +42,6 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
-
         private void LOBComboBox_OnChange(string poParam)
         {
             _Supplier_viewModel.LOBValueContext = poParam is null ? "" : poParam;
@@ -124,16 +124,6 @@ namespace APM00300FRONT
         private bool _isCopySource = false;
         private void SupplierDetail_InstantiateDock(R_InstantiateDockEventArgs eventArgs)
         {
-            //if (_isCopySource)
-            //{
-
-            //}
-            //else
-            //{
-            //    var loData = _Supllier_gridRef.CurrentSelectedData;
-            //    eventArgs.Parameter = loData;
-            //}
-
             APM00300DTO loData = (APM00300DTO)_Supplier_conductorRef.R_GetCurrentData();
             eventArgs.Parameter = loData;
 
@@ -146,13 +136,7 @@ namespace APM00300FRONT
 
             try
             {
-                if (!string.IsNullOrWhiteSpace(_Supplier_viewModel.PropertyValueContext))
-                {
-                    await _Supllier_gridRef.R_RefreshGrid(null);
-                }
-
                 await Property_ComboBox.FocusAsync();
-
             }
             catch (Exception ex)
             {

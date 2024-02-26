@@ -131,7 +131,7 @@ namespace APT00900FRONT
             }
 
         EndBlock:
-            loEx.ThrowExceptionIfErrors();
+            R_DisplayException(loEx);
         }
 
         private async Task ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)

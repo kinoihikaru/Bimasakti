@@ -16,6 +16,7 @@ using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 using R_LockingFront;
+using System;
 
 namespace APM00300FRONT
 {
@@ -61,7 +62,6 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
-
         private const string DEFAULT_HTTP_NAME = "R_DefaultServiceUrlAP";
         private const string DEFAULT_MODULE_NAME = "AP";
         protected async override Task<bool> R_LockUnlock(R_LockUnlockEventArgs eventArgs)
