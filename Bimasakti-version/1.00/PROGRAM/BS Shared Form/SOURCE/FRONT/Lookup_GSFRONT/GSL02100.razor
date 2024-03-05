@@ -6,6 +6,7 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.PaymentTermGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable="true">
             <R_GridColumns>

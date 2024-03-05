@@ -39,6 +39,7 @@ namespace GLTR00100BACK
                 var loCmd = loDb.GetCommand();
 
                 var lcQuery = "SELECT dbo.RFN_GET_DB_TODAY(@CCOMPANY_ID) AS DTODAY";
+                loCmd.CommandType = CommandType.Text;
                 loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);

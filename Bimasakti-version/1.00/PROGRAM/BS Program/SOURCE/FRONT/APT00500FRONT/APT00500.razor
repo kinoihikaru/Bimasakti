@@ -1,0 +1,133 @@
+﻿@page "/APT00500"
+@inherits R_Page
+@attribute [R_Page(Title = "Debit Adjustment List")]
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox Data="@_viewModel.PropertyList"
+                    Value="_viewModel.PurchaseAdjuParam.CPROPERTY_ID"
+                    ValueField="@nameof(APT00500PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(APT00500PropertyDTO.CPROPERTY_NAME)" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))">
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Department"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.PurchaseAdjuParam.CDEPT_CODE"
+                   ></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
+                  R_After_Open_Lookup="@R_After_Open_LookupDepartment">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4" Class="me-2">
+        <R_TextBox @bind-Value="@DeptName"
+                    Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Button  OnClick="OnClickRefresh">@_localizer["_Refresh"]</R_Button>
+    </R_ItemLayout>
+</R_StackLayout>
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Supplier"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_RadioGroup Data="@_viewModel.CSUPPLIER_OPTIONS_LIST"
+                      @bind-Value="@_viewModel.CSUPPLIER_OPTIONS"
+                      ValueField="Key"
+                      TextField="Value"
+                      Layout="R_eRadioGroupLayout.Horizontal"
+                      ></R_RadioGroup>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Periodfrom"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.PERIOD_FROM_YEAR"
+                                  ThousandSeparator="false"
+                                  Min=_viewModel.VAR_GSM_PERIOD.IMIN_YEAR
+                                  Max=_viewModel.VAR_GSM_PERIOD.IMAX_YEAR></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DropDownList Data="@_viewModel.CFROM_PERIOD_LIST"
+                                @bind-Value="_viewModel.PERIOD_FROM_MONTH"
+                                ValueField="Key"
+                                TextField="Value"
+                                PopupMaxHeight="250px"
+                                >
+                </R_DropDownList>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 10px">
+                <R_Label>@_localizer["_to"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_NumericTextBox @bind-Value="@_viewModel.PERIOD_TO_YEAR"
+                                  ThousandSeparator="false"
+                                  Min=_viewModel.VAR_GSM_PERIOD.IMIN_YEAR
+                                  Max=_viewModel.VAR_GSM_PERIOD.IMAX_YEAR></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DropDownList Data="@_viewModel.CTO_PERIOD_LIST"
+                                @bind-Value="_viewModel.PERIOD_TO_MONTH"
+                                ValueField="Key"
+                                TextField="Value"
+                                PopupMaxHeight="250px">
+                </R_DropDownList>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label></R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.PurchaseAdjuParam.CSUPPLIER_ID"
+                   Enabled="@(_viewModel.CSUPPLIER_OPTIONS == "S")"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup Enabled="@(_viewModel.CSUPPLIER_OPTIONS == "S")" R_Before_Open_Lookup="@R_Before_Open_LookupSupplier" R_After_Open_Lookup="@R_After_Open_LookupSupplier">...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@SupplierName"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+
+<R_StackLayout Row>
+    <R_ItemLayout col="12">
+        <R_Grid @ref="@_gridInvoiceRef"
+                DataSource="@_viewModel.PurchaseAdjusmentGrid"
+                Pageable="true"
+                R_GridType="@R_eGridType.Navigator"
+                Height="300px"
+                R_ServiceGetListRecord="@Grid_Invoice_R_ServiceGetListRecord">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName=@nameof(APT00500DTO.CREF_NO) HeaderText="@_localizer["_ReferenceNo"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDatePickerColumn FieldName=@nameof(APT00500DTO.DREF_DATE) HeaderText="@_localizer["_Date"]" Width="200px"></R_GridDatePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.CSUPPLIER_NAME_ID)" HeaderText="@_localizer["_Supplier"]" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.CTRANS_STATUS_NAME)" HeaderText="@_localizer["_Status"]" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.CCURRENCY_CODE)" HeaderText="@_localizer["_Curr"]" Width="150px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.NADJ_AMOUNT)" HeaderText="@_localizer["_Amount"]" Width="200px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.CTRANS_DESC)" HeaderText="@_localizer["_Description"]" Width="350px"></R_GridTextColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(APT00500DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                    <R_GridTextColumn FieldName="@nameof(APT00500DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                    <R_GridDateTimePickerColumn FieldName="@nameof(APT00500DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_PredefinedDock R_InstantiateDock="@PreDock_InstantiateDock"
+                  Title="@_localizer["_DebitAdjEntry"]"></R_PredefinedDock>

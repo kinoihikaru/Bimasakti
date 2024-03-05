@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_LM_MAINTAIN_RATE_WGResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53656;http://localhost:53657"
+    }
+  }
+}

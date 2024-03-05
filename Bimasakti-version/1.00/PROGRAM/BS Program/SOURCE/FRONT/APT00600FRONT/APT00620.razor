@@ -1,0 +1,494 @@
+﻿@inherits R_Page
+@attribute [R_Page(Title = "Allocation")]
+
+<R_StackLayout Style="width: 1250px;">
+    @*Header*@
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_Property"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="3">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CPROPERTY_NAME"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_RefNo"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CREF_NO"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout Style="width: auto">
+            <R_Label>@_localizer["_Supplier"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CSUPPLIER_ID"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CSUPPLIER_NAME"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CSUPPLIER_SEQ_NO"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+    </R_StackLayout>
+    <R_StackLayout Row>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_Department"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CDEPT_CODE"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="@_viewModel.HeaderPurchaseAdju.CDEPT_NAME"
+                       Enabled="false"></R_TextBox>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>@_localizer["_RefDate"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_DatePicker @bind-Value="@_headerRefDate"
+                       Enabled="false"></R_DatePicker>
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    <R_StackLayout Row Class="mt-1">
+        <R_Grid @ref="@_gridPurchaseAdjAllocRef"
+                DataSource="@_viewModel.PurchaseAdjustmentAllocGrid"
+                R_ConductorSource="@_conRef"
+                Pageable="true"
+                R_GridType="@R_eGridType.Navigator"
+                Height="150px"
+                R_ServiceGetListRecord="@PurchAdjAlloc_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridNumericColumn Arrows="false" ThousandSeparator="false" FieldName=@nameof(APT00610DTO.INO) HeaderText="@_localizer["_No"]" Width="100px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName=@nameof(APT00610DTO.CALLOC_NO) HeaderText="@_localizer["_AllocRefNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CTRANS_NAME)" HeaderText="@_localizer["_AllocTrxType"]" Width="250px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CTRANS_REF_NO)" HeaderText="@_localizer["_AllocTrxRefNo"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CTO_CURRENCY_CODE)" HeaderText="@_localizer["_Curr"]" Width="150px"></R_GridTextColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@nameof(APT00610DTO.NALLOC_AMOUNT)" HeaderText="@_localizer["_Amount"]" Width="200px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CDEPT_CODE)" HeaderText="@_localizer["_ChargeDept"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CCHARGES_ID)" HeaderText="@_localizer["_ChargeID"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CCHARGES_DESC)" HeaderText="@_localizer["_ChargeName"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(APT00610DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(APT00610DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+    <R_GroupBox Title="@_localizer["_AllocationDetail"]" TitleClass="text-danger" ShowBorder>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_TransactionType"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_ComboBox @ref="@_TrxTypeComboBox"
+                            Data="@_viewModel.VAR_ALLOC_TRX_TYPE_LIST"
+                            Value="_viewModel.Data.CTO_TRANS_CODE"
+                            R_ConductorSource="@_conRef"
+                            ValueField="@nameof(APT00600AllocTrxTypeAPDTO.CTRANS_CODE)"
+                            TextField="@nameof(APT00600AllocTrxTypeAPDTO.CTRANSACTION_NAME)" ValueChanged="@((string value) => TrxTypeDropdown_ValueChanged(value))"
+                            R_EnableAdd>
+                </R_ComboBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_ReferenceNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CTO_REF_NO" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add && !string.IsNullOrWhiteSpace(_viewModel.Data.CTO_TRANS_CODE))"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupReferenceNo"
+                          R_After_Open_Lookup="@R_After_Open_LookupReferenceNo" 
+                          Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add && !string.IsNullOrWhiteSpace(_viewModel.Data.CTO_TRANS_CODE))">...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>@_localizer["_RefDate"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.RefDate" Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_Department"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox Enabled="false" @bind-Value="@_viewModel.Data.CTO_DEPT_CODE"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="4">
+                <R_TextBox Enabled="false" @bind-Value="@_viewModel.Data.CTO_DEPT_NAME"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_AllocRefNo"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox Enabled="false" @bind-Value="@_viewModel.Data.CALLOC_NO"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 200px">
+                <R_Label FontStyle="@R_eFontStyle.Bold" FontColor="@R_eFontColor.Primary">@_localizer["_Transaction"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 200px">
+                <R_Label FontStyle="@R_eFontStyle.Bold" FontColor="@R_eFontColor.Primary">@_localizer["_Local"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label FontStyle="@R_eFontStyle.Bold" FontColor="@R_eFontColor.Primary">@_localizer["_Base"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_Amount"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox @ref="@_amountNumericTextBox" 
+                                    Arrows="false" Decimals="2" 
+                                    @bind-Value="@_viewModel.Data.NTO_AP_AMOUNT" 
+                                    OnLostFocused="@Amount_OnLostFocus"
+                                  Enabled="@(_conRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && !string.IsNullOrWhiteSpace(_viewModel.Data.CTO_REF_NO))"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLTO_AP_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBTO_AP_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_LocalCurrency"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NLBASE_RATE" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLCURRENCY_RATE" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_Remaining"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NAP_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLAP_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBTARGET_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_TaxRate"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NTAX_BASE_RATE" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NTAX_CURRENCY_RATE" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_TaxAmount"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" Decimals="2" 
+                                  @bind-Value="@_viewModel.Data.NTO_TAX_AMOUNT" 
+                                  OnLostFocused="@Tax_OnlostFocus"
+                                  Enabled="@(_conRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal && !string.IsNullOrWhiteSpace(_viewModel.Data.CTO_REF_NO))"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLTO_TAX_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBTO_TAX_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_BaseCurrency"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NBBASE_RATE" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBCURRENCY_RATE" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_Remaining"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NTAX_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLTAX_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBTAX_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_TotalRemaining"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NTOTAL_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLTOTAL_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBTOTAL_REMAINING" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_AllocAmount"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" @bind-Value="_viewModel.Data.NALLOC_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.Data.CTO_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NLALLOC_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_Label>=</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 130px">
+                <R_NumericTextBox Arrows="false" R_ConductorSource="@_conRef" @bind-Value="_viewModel.Data.NBALLOC_AMOUNT" Enabled="false"></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 50px">
+                <R_TextBox @bind-Value="_viewModel.VAR_GSM_COMPANY.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_ChargeDept"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CCHARGES_DEPT_CODE" R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_conRef"
+                          R_Before_Open_Lookup="@R_Before_Open_LookupChargesDept"
+                          R_After_Open_Lookup="@R_After_Open_LookupChargesDept" R_EnableAdd R_EnableEdit>...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_DEPT_NAME" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_UpdatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE" Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width: 150px">
+                <R_Label>@_localizer["_ChargeID"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CCHARGES_ID" R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="0">
+                <R_Lookup R_ConductorSource="@_conRef"
+                          R_Before_Open_Lookup="@R_Before_Open_LookupCharges"
+                          R_After_Open_Lookup="@R_After_Open_LookupCharges" R_EnableAdd R_EnableEdit>...</R_Lookup>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCHARGES_NAME" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_Label></R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_Label>@_localizer["_CreatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_DatePicker @bind-Value="@_viewModel.Data.DCREATE_DATE" Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_GroupBox>
+
+    <R_StackLayout Row Class="mt-2">
+        <R_ItemLayout col="3">
+            <R_AddButton R_Conductor="_conRef" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.HeaderPurchaseAdju.CTRANS_STATUS == "00")"></R_AddButton>
+            <R_EditButton R_Conductor="_conRef" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.HeaderPurchaseAdju.CTRANS_STATUS == "00" && _viewModel.PurchaseAdjustmentAllocGrid.Count > 0)"></R_EditButton>
+            <R_DeleteButton R_Conductor="_conRef" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.HeaderPurchaseAdju.CTRANS_STATUS == "00" && _viewModel.PurchaseAdjustmentAllocGrid.Count > 0)"></R_DeleteButton>
+        </R_ItemLayout>
+        <R_ItemLayout col="7">
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_CancelButton R_Conductor="_conRef"></R_CancelButton>
+            <R_SaveButton R_Conductor="_conRef"></R_SaveButton>
+        </R_ItemLayout>
+    </R_StackLayout>
+</R_StackLayout>
+
+
+<R_Conductor @ref="@_conRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@PurchAdjAlloc_ServiceGetRecord"
+             R_DisableCancelConfirmation
+             R_DisableDeleteConfirmation
+             R_BeforeCancel="@PurchAdjAlloc_BeforeCancel"
+             R_BeforeDelete="@PurchAdjAlloc_BeforeDelete"
+             R_BeforeAdd="@PurchAdjAlloc_BeforeAdd" 
+             R_AfterAdd="@PurchAdjAlloc_AfterAdd"
+             R_Display="@PurchAdjAlloc_Display"
+             R_ServiceDelete="@PurchAdjAlloc_ServiceDelete"
+             R_Validation="@PurchAdjAlloc_Validation"
+             R_ServiceSave="@PurchAdjAlloc_ServiceSave"
+             R_ConvertToGridEntity="@PurchAdjAlloc_ConvertToGridEntity"
+             />

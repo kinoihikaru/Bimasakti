@@ -35,8 +35,8 @@ namespace Lookup_APFRONT
 
 
                 _viewModel.ParameterLookup = (APL00300ParameterDTO)poParameter;
-
-                GridRef.R_RefreshGrid(null);
+                await _viewModel.GetProductLookup();
+                // GridRef.R_RefreshGrid(null);
 
             }
             catch (Exception ex)
@@ -122,8 +122,13 @@ namespace Lookup_APFRONT
 
             try
             {
+                // await _viewModel.GetProductLookup();
                 await GridRef.R_RefreshGrid(null);
-
+                if (_viewModel.ProductLookupGrid.Count == 0)
+                {
+                    await R_MessageBox.Show("Error", "Data not found!", R_eMessageBoxButtonType.OK);
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -174,6 +179,13 @@ namespace Lookup_APFRONT
                 await R_MessageBox.Show("Error", "Please select Category!", R_eMessageBoxButtonType.OK);
                 return;
             }
+            
+            if (_viewModel.ProductLookupGrid.Count == 0)
+            {
+                await R_MessageBox.Show("Error", "Data not found!", R_eMessageBoxButtonType.OK);
+                return;
+            }
+      
 
             var loData = GridRef.GetCurrentData();
             await this.Close(true, loData);

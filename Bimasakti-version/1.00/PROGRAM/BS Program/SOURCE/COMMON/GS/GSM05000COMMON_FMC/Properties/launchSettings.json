@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "GSM05000COMMON_FMC": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53709;http://localhost:53711"
+    }
+  }
+}

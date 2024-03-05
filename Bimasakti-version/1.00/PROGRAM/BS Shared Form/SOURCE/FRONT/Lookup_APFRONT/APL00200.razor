@@ -19,22 +19,24 @@
         <R_ItemLayout col="2">
             <R_TextBox @bind-Value="@_viewModel.loExpenditureEntity.CCATEGORY_ID"
                        R_ConductorSource="@_conductorRef"
-                       Enabled="false" />
+                       Enabled="false"/>
         </R_ItemLayout>
 
         <R_ItemLayout>
             <R_Lookup R_Before_Open_Lookup="@R_BeforeOpenLookUp" R_After_Open_Lookup="R_AfterOpenLookUp"
-                      Enabled="@(_viewModel.loExpenditureEntity.RadioButton == "S")"> ...</R_Lookup>
+                      Enabled="@(_viewModel.loExpenditureEntity.RadioButton == "S")">
+                ...
+            </R_Lookup>
         </R_ItemLayout>
 
         <R_ItemLayout col="3">
             <R_TextBox @bind-Value="@_viewModel.loExpenditureEntity.CCATEGORY_NAME"
                        R_ConductorSource="@_conductorRef"
-                       Enabled="false" />
+                       Enabled="false"/>
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Button OnClick="Refresh_Button">
-               @_localizer["RFSH"]
+                @_localizer["RFSH"]
             </R_Button>
         </R_ItemLayout>
 
@@ -43,8 +45,12 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.ExpenditureGrid"
+                  R_GridType="R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
                 PageSize="5">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CEXPENDITURE_ID" HeaderText="@_localizer["EXPN_ID"]"></R_GridTextColumn>
@@ -54,16 +60,16 @@
                 <R_GridTextColumn FieldName="CWITHHOLDING_TAX_NAME" HeaderText="@_localizer["WTH_TAX"]"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
-        </R_StackLayout>
+    </R_StackLayout>
 
-        <R_StackLayout Row Class="justify-content-end">
+    <R_StackLayout Row Class="justify-content-end">
         <R_Button Enabled="@(_viewModel.ExpenditureGrid.Count != 0)"
                   OnClick="Button_OnClickOkAsync">
             @_localizer["OK"]
         </R_Button>
-            <R_Button OnClick="Button_OnClickCloseAsync">
+        <R_Button OnClick="Button_OnClickCloseAsync">
             @_localizer["CNCL"]
         </R_Button>
     </R_StackLayout>
 
-    </R_StackLayout>
+</R_StackLayout>

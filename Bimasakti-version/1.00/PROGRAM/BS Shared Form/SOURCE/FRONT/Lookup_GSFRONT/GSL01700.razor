@@ -37,6 +37,7 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.CurrencyRateGrid"
+                R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable="true"
                 Height="300px">

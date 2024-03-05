@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_LM_MAINTAIN_TENANT_CLASSResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53754;http://localhost:53755"
+    }
+  }
+}

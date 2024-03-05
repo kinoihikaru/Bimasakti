@@ -11,7 +11,7 @@ namespace Lookup_APModel.ViewModel.APL00300
 {
     public class LookupAPL00300ViewModel : R_ViewModel<APL00300DTO>
     {
-        private PublicLookupModel _model = new PublicLookupModel();
+        private PublicAPLookupModel _model = new PublicAPLookupModel();
         public ObservableCollection<APL00300DTO> ProductLookupGrid = new ObservableCollection<APL00300DTO>();
         public APL00300DTO ProductLookupEntity = new APL00300DTO();
         public APL00300ParameterDTO ParameterLookup { get; set; }
@@ -26,8 +26,8 @@ namespace Lookup_APModel.ViewModel.APL00300
             var loEx = new R_Exception();
             try
             {
+                ParameterLookup.CCATEGORY_ID = ProductLookupEntity.CCATEGORY_ID;
                 var loResult = await _model.APL00300ProductLookUpAsync(ParameterLookup);
-
                 ProductLookupGrid = new ObservableCollection<APL00300DTO>(loResult);
             }
             catch (Exception ex)

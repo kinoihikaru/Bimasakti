@@ -1,0 +1,203 @@
+﻿@inherits R_Page
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Property"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_ComboBox @ref="@_propertyComboBox"
+                    Data="@_viewModel.PropertyList"
+                    Value="_viewModel.Data.CPROPERTY_ID"
+                    R_ConductorSource="@_conRef"
+                    ValueField="@nameof(APT00600PropertyDTO.CPROPERTY_ID)"
+                    TextField="@nameof(APT00600PropertyDTO.CPROPERTY_NAME)" ValueChanged="@((string value) => PropertyDropdown_ValueChanged(value))"
+                    R_EnableAdd>
+        </R_ComboBox>
+    </R_ItemLayout>
+    <R_ItemLayout Style="width:190px">
+        <R_Label FontColor="@R_eFontColor.Primary" FontSize="15px" FontStyle="@R_eFontStyle.Bold">@_viewModel.Data.CTRANS_STATUS_NAME</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="3" Class="align-items-end">
+        <R_Label FontColor="@R_eFontColor.Primary" FontStyle="@R_eFontStyle.Bold">@_localizer["_totalAdjAmount"]</R_Label>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Department"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CDEPT_CODE" R_EnableAdd ></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_ConductorSource="@_conRef" 
+                  R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
+                  R_After_Open_Lookup="@R_After_Open_LookupDepartment" R_EnableAdd>...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout Style="width: 340px">
+        <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_NAME"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="3">
+        <R_NumericTextBox Arrows="false" @bind-Value="@_viewModel.Data.NADJ_AMOUNT" Enabled="false"></R_NumericTextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @bind-Value="@_viewModel.VAR_GSM_COMPANY.CLOCAL_CURRENCY_CODE"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_ReferenceNo"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox Enabled="false" @bind-Value="@_viewModel.Data.CREF_NO"></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_RefDate"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_DatePicker R_ConductorSource="@_conRef" @bind-Value="@_viewModel.RefDate" R_EnableAdd R_EnableEdit></R_DatePicker>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label>@_localizer["_Supplier"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_TextBox @ref="@_supplierIdTextBox" R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CSUPPLIER_ID" R_EnableAdd R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_ConductorSource="@_conRef" R_Before_Open_Lookup="@R_Before_Open_LookupSupplier" R_After_Open_Lookup="@R_After_Open_LookupSupplier" R_EnableAdd R_EnableEdit>...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout Style="width: 220px">
+        <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_SEQ_NO"
+                   Enabled=@(!string.IsNullOrWhiteSpace(_viewModel.Data.CSUPPLIER_ID) 
+                   && _viewModel.Data.LONETIME == true 
+                   && _conRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)>
+        </R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupSupplierSEQ" R_After_Open_Lookup="@R_After_Open_LookupSupplierSEQ"
+                  Enabled=@(!string.IsNullOrWhiteSpace(_viewModel.Data.CSUPPLIER_ID) 
+                  && _viewModel.Data.LONETIME == true 
+                  && _conRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)>...</R_Lookup>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="1">
+        <R_Label></R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="5">
+        <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_NAME" Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout Style="width:570px">
+        <R_StackLayout Row>
+            <R_ItemLayout Style="width:90px">
+                <R_Label>@_localizer["_Desc"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout Style="width: 480px">
+                <R_TextArea R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CTRANS_DESC" R_EnableAdd R_EnableEdit></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_UpdatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_DatePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE" Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_CreatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_DatePicker @bind-Value="@_viewModel.Data.DCREATE_DATE" Enabled="false"></R_DatePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="3">
+        <R_AddButton R_Conductor="_conRef"></R_AddButton>
+        <R_EditButton R_Conductor="_conRef" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.Data.CTRANS_STATUS == "00")"></R_EditButton>
+        <R_DeleteButton R_Conductor="_conRef" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.Data.CTRANS_STATUS == "00")"></R_DeleteButton>
+    </R_ItemLayout>
+    <R_ItemLayout col="7">
+        <R_Button OnClick="SubmitPurchaseAdjProcess" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.Data.CTRANS_STATUS == "00")">@_localizer["_Submit"]</R_Button>
+        <R_Button OnClick="RedraftPurchaseAdjProcess" Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _viewModel.Data.CTRANS_STATUS == "10")">@_localizer["_Redraft"]</R_Button>
+        <R_Popup R_Before_Open_Popup="@R_Before_Open_PopupAllocate" R_After_Open_Popup="@R_After_Open_PopupAllocate"
+                 Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && !string.IsNullOrWhiteSpace(_viewModel.Data.CREF_NO))">@_localizer["_Allocate"]</R_Popup>
+        <R_Popup R_Before_Open_Popup="@R_Before_Open_PopupJournal"
+                 Enabled="@(_conRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Normal
+                        && _TransStatusInt > 0 && !string.IsNullOrWhiteSpace(_viewModel.Data.CGL_REF_NO))">@_localizer["_Journal"]</R_Popup>
+    </R_ItemLayout>
+    <R_ItemLayout col="2">
+        <R_CancelButton R_Conductor="_conRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="_conRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_GroupBox Title="@_localizer["_Allocation"]" TitleClass="text-danger" ShowBorder>
+    <R_StackLayout Row>
+        <R_Grid @ref="@_gridPurchaseAdjAllocRef"
+                DataSource="@_viewModel.PurchaseAdjustmentAllocGrid"
+                Pageable="true"
+                R_GridType="@R_eGridType.Navigator"
+                Height="300px"
+                R_ServiceGetListRecord="@PurchAdjAlloc_ServiceGetListRecord">
+            <R_GridColumns>
+                <R_GridNumericColumn Arrows="false" ThousandSeparator="false" FieldName=@nameof(APT00610DTO.INO) HeaderText="@_localizer["_No"]" Width="100px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName=@nameof(APT00610DTO.CALLOC_NO) HeaderText="@_localizer["_AllocRefNo"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CTRANS_NAME)" HeaderText="@_localizer["_AllocTrxType"]" Width="250px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CTRANS_REF_NO)" HeaderText="@_localizer["_AllocTrxRefNo"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CTO_CURRENCY_CODE)" HeaderText="@_localizer["_Curr"]" Width="150px"></R_GridTextColumn>
+                <R_GridNumericColumn Arrows="false" FieldName="@nameof(APT00610DTO.NALLOC_AMOUNT)" HeaderText="@_localizer["_Amount"]" Width="200px"></R_GridNumericColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CDEPT_CODE)" HeaderText="@_localizer["_ChargeDept"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CCHARGES_ID)" HeaderText="@_localizer["_ChargeID"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CCHARGES_DESC)" HeaderText="@_localizer["_ChargeName"]" Width="300px"></R_GridTextColumn>
+
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CUPDATE_BY)" HeaderText="@_localizer["_UpdatedBy"]" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(APT00610DTO.DUPDATE_DATE)" HeaderText="@_localizer["_UpdatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+                <R_GridTextColumn FieldName="@nameof(APT00610DTO.CCREATE_BY)" HeaderText="@_localizer["_CreatedBy"]" Width="150px"></R_GridTextColumn>
+                <R_GridDateTimePickerColumn FieldName="@nameof(APT00610DTO.DCREATE_DATE)" HeaderText="@_localizer["_CreatedDate"]" Width="200px"></R_GridDateTimePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+</R_GroupBox>
+
+<R_Conductor @ref="@_conRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@PurchAdj_ServiceGetRecord"
+             R_BeforeAdd="@PurchAdj_BeforeAdd"
+             R_AfterAdd="@PurchAdj_AfterAdd"
+             R_Validation="@PurchAdj_Validation"
+             R_ServiceSave="@PurchAdj_ServiceSave"
+             R_DisableDeleteConfirmation
+             R_DisableCancelConfirmation
+             R_BeforeCancel="PurchAdj_BeforeCancel"
+             R_BeforeDelete="@PurchAdj_BeforeDelete"
+             R_ServiceDelete="@PurchAdj_ServiceDelete"
+             R_Display="@PurchAdj_Display"  />

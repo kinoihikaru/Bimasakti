@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GL_UPDATE_ALLOCATION_CENTER_VALUEResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53649;http://localhost:53650"
+    }
+  }
+}

@@ -11,7 +11,7 @@ namespace Lookup_APModel.ViewModel.APL00100
 {
     public class LookupAPL00100ViewModel : R_ViewModel<APL00100DTO>
     {
-        private PublicLookupModel _model = new PublicLookupModel();
+        private PublicAPLookupModel _model = new PublicAPLookupModel();
         public ObservableCollection<APL00100DTO> SupplierGrid = new ObservableCollection<APL00100DTO>();
         public string SearchText { get; set; } = "";
         public APL00100ParameterDTO ParameterLookup { get; set; }

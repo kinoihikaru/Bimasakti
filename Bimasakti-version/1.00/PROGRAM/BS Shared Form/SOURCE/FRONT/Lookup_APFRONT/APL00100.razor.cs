@@ -84,8 +84,14 @@ namespace Lookup_APFRONT
  
             try
             {
+                
                 _viewModel.SearchText = "";
                 await GridRef.R_RefreshGrid(null);
+                if (_viewModel.SupplierGrid.Count == 0)
+                {
+                    await R_MessageBox.Show("Error", "Data not found!", R_eMessageBoxButtonType.OK);
+                    return;
+                }
 
             }
             catch (Exception ex)
@@ -128,7 +134,11 @@ namespace Lookup_APFRONT
                 {
                     await GridRef.R_RefreshGrid(null);
                 }
-
+                if (_viewModel.SupplierGrid.Count == 0)
+                {
+                    await R_MessageBox.Show("Error", "Data not found!", R_eMessageBoxButtonType.OK);
+                    return;
+                }
                 //await GridRef.R_RefreshGrid(null);
 
             }

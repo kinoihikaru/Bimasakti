@@ -3,7 +3,7 @@
 @attribute [R_Page(Title = "Supplier Info")]
 @inject R_ILocalizer<Resources_Dummy_Class_LookupAP> _localizer
 <R_StackLayout Style="width: 800px">
-@*    <R_StackLayout Row>
+    @*    <R_StackLayout Row>
         <R_ItemLayout>
             <R_Button OnClick="Search_Button">
                 Search
@@ -21,8 +21,12 @@
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
                 DataSource="_viewModel.SupplierInfoGrid"
+                  R_GridType="R_eGridType.Navigator"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable
+                AllowAddNewRow="false"
+                AllowEditRow="false"
+                AllowDeleteRow="false"
                 PageSize="5">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CSEQ_NO" HeaderText="@_localizer["SEQ_NO"]"></R_GridTextColumn>
@@ -33,8 +37,8 @@
 
     <R_StackLayout Row Class="justify-content-end">
         <R_Button Enabled="@(_viewModel.SupplierInfoGrid.Count != 0)"
-                  OnClick="Button_OnClickOkAsync" >
-           @_localizer["OK"]
+                  OnClick="Button_OnClickOkAsync">
+            @_localizer["OK"]
         </R_Button>
         <R_Button OnClick="Button_OnClickCloseAsync">
             @_localizer["CNCL"]

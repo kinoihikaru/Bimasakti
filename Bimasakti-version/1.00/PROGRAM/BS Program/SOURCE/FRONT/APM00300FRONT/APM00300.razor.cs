@@ -31,6 +31,11 @@ namespace APM00300FRONT
             {
                 await _Supplier_viewModel.GetInitialVar();
                 await _Supplier_viewModel.GetPropertyList();
+                if (_Supplier_viewModel.PropertyList.Count > 0)
+                {
+                    _Supplier_viewModel.PropertyValueContext = _Supplier_viewModel.PropertyList.FirstOrDefault().CPROPERTY_ID;
+                }
+
                 await _Supplier_viewModel.GetLOBList();
 
                 await Property_ComboBox.FocusAsync();

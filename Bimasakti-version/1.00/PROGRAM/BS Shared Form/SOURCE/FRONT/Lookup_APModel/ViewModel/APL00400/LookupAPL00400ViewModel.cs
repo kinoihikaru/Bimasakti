@@ -11,7 +11,7 @@ namespace Lookup_APModel.ViewModel.APL00400
 {
     public class LookupAPL00400ViewModel : R_ViewModel<APL00400DTO>
     {
-        private PublicLookupModel _model = new PublicLookupModel();
+        private PublicAPLookupModel _model = new PublicAPLookupModel();
         public ObservableCollection<APL00400DTO> ProductAllocationGrid = new ObservableCollection<APL00400DTO>();
         public APL00400ParameterDTO ParameterLookup { get; set; }
 

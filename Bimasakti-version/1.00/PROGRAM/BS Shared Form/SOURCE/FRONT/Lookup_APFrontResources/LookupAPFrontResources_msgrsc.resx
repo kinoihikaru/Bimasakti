@@ -55,7 +55,7 @@
         <value>Category</value>
     </data>
     <data name="TXBLE" xml:space="preserve">
-        <value>Taxk Able</value>
+        <value>Tax Able</value>
     </data>
     <data name="EXPN_ID" xml:space="preserve">
         <value>Expenditure ID</value>
@@ -86,5 +86,35 @@
     </data>
     <data name="CITY" xml:space="preserve">
         <value>City</value>
+    </data>
+    <data name="SPLR" xml:space="preserve">
+        <value>Supplier</value>
+    </data>
+    <data name="DEPT" xml:space="preserve">
+        <value>Dept.</value>
+    </data>
+    <data name="RFRNCE" xml:space="preserve">
+        <value>Reference No.</value>
+    </data>
+    <data name="RFRNCE_DT" xml:space="preserve">
+        <value>Reference Date</value>
+    </data>
+    <data name="DCMNT_NO" xml:space="preserve">
+        <value>Document No.</value>
+    </data>
+    <data name="DCMNT_DATE" xml:space="preserve">
+        <value>Document Date</value>
+    </data>
+    <data name="DUE_DATE" xml:space="preserve">
+        <value>Due Date</value>
+    </data>
+    <data name="CURR" xml:space="preserve">
+        <value>Curr.</value>
+    </data>
+    <data name="RMN_AMNT" xml:space="preserve">
+        <value>Remaining Amount</value>
+    </data>
+    <data name="DESC" xml:space="preserve">
+        <value>Description</value>
     </data>
 </root>

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using R_BlazorFrontEnd.Controls.MessageBox;
 
 namespace Lookup_APFRONT
 {
@@ -28,7 +29,7 @@ namespace Lookup_APFRONT
 
                 _viewModel.ParameterLookup = (APL00400ParameterDTO)poParameter;
 
-                GridRef.R_RefreshGrid(null);
+              await  GridRef.R_RefreshGrid(null);
 
             }
             catch (Exception ex)
@@ -64,12 +65,42 @@ namespace Lookup_APFRONT
 
         public async Task Button_OnClickOkAsync()
         {
-            var loData = GridRef.GetCurrentData();
-            await this.Close(true, loData);
+            if (_viewModel.ProductAllocationGrid.Count == 0)
+            {
+                await R_MessageBox.Show("Error", "Data not found!", R_eMessageBoxButtonType.OK);
+                return;
+            }
+            else
+            {
+                var loData = GridRef.GetCurrentData();
+                await this.Close(true, loData);
+            }
         }
         public async Task Button_OnClickCloseAsync()
         {
             await this.Close(true, null);
+        }
+        public async Task Refresh_Button()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+             await _viewModel.GetSuplierInfoList();
+             await  GridRef.R_RefreshGrid(null);
+                
+                if (_viewModel.ProductAllocationGrid.Count == 0)
+                {
+                    await R_MessageBox.Show("Error", "Data not found!", R_eMessageBoxButtonType.OK);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
     }
 }

@@ -28,7 +28,6 @@ namespace Lookup_APFRONT
 
 
                 _viewModel.ParameterLookup = (APL00110ParameterDTO)poParameter;
-
                 GridRef.R_RefreshGrid(null);
 
             }
@@ -49,8 +48,6 @@ namespace Lookup_APFRONT
             {
 
                 await _viewModel.GetSuplierInfoList();
-
-
                 eventArgs.ListEntityResult = _viewModel.SupplierInfoGrid;
 
 

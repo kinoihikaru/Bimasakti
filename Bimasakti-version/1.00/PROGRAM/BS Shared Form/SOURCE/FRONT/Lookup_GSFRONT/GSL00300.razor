@@ -5,6 +5,7 @@
 <R_StackLayout Style="width: 800px">
     <R_StackLayout Row>
         <R_Grid @ref="@GridRef"
+                R_GridType="@R_eGridType.Navigator"
                 DataSource="_viewModel.CurrencyGrid"
                 R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
                 Pageable="true">

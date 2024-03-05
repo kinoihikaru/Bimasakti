@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_DELETE_SUPPLIERResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53666;http://localhost:53668"
+    }
+  }
+}

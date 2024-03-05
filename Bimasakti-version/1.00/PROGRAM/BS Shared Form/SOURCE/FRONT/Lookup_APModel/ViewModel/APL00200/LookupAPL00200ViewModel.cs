@@ -12,7 +12,7 @@ namespace Lookup_APModel.ViewModel.APL00200
 {
     public class LookupAPL00200ViewModel : R_ViewModel<APL00200DTO>
     {
-        private PublicLookupModel _model = new PublicLookupModel();
+        private PublicAPLookupModel _model = new PublicAPLookupModel();
         public ObservableCollection<APL00200DTO> ExpenditureGrid = new ObservableCollection<APL00200DTO>();
         public APL00200DTO loExpenditureEntity = new APL00200DTO();
         public APL00200ParameterDTO ParameterLookup { get; set; }
@@ -27,8 +27,8 @@ namespace Lookup_APModel.ViewModel.APL00200
             var loEx = new R_Exception();
             try
             {
+                ParameterLookup.CCATEGORY_ID = loExpenditureEntity.CCATEGORY_ID;
                 var loResult = await _model.APL00200ExpenditureLookUpAsync(ParameterLookup);
-
                 ExpenditureGrid = new ObservableCollection<APL00200DTO>(loResult);
             }
             catch (Exception ex)
