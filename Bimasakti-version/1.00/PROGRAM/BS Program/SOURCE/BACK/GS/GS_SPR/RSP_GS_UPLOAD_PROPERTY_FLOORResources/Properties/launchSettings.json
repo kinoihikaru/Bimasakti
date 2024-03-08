@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_GS_UPLOAD_PROPERTY_FLOORResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51880;http://localhost:51881"
+    }
+  }
+}

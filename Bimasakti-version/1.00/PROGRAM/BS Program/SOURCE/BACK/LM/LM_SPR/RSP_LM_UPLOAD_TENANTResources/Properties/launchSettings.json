@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_LM_UPLOAD_TENANTResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51947;http://localhost:51948"
+    }
+  }
+}

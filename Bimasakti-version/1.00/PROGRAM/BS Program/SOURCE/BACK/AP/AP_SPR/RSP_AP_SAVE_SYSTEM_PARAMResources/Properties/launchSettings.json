@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SAVE_SYSTEM_PARAMResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51828;http://localhost:51829"
+    }
+  }
+}

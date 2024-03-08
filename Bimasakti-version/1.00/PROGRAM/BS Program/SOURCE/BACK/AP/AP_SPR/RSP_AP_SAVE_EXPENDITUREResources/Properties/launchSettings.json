@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_SAVE_EXPENDITUREResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51834;http://localhost:51835"
+    }
+  }
+}

@@ -140,10 +140,11 @@
     </R_ItemLayout>
 </R_StackLayout>
 
-<R_PredefinedDock Title="Journal Entry" R_InstantiateDock="@Predef_JournalEntry" R_AfterOpenPredefinedDock="@AfterPredef_JournalEntry"></R_PredefinedDock>
 
 <R_Conductor @ref="_conductorRef"
     R_ViewModel="_JournalEntryViewModel"
     R_IsHeader
     R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
     R_Display="JournalGrid_Display" />
+
+<R_PredefinedDock Title="Journal Entry" R_InstantiateDock="@Predef_JournalEntry" R_AfterOpenPredefinedDock="@AfterPredef_JournalEntry"></R_PredefinedDock>

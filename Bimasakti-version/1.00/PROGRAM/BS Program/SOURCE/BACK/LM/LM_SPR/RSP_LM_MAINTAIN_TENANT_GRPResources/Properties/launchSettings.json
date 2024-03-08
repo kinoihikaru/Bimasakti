@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_LM_MAINTAIN_TENANT_GRPResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52010;http://localhost:52012"
+    }
+  }
+}

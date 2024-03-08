@@ -1,0 +1,248 @@
+﻿@page "/CBM00100"
+@inherits R_Page
+@attribute [R_Page(Title = "CB System Parameter")]
+
+<R_StackLayout Row>
+    <R_ItemLayout col="2">
+        <R_Label>@_localizer["_ForexGainAccount"]</R_Label>
+    </R_ItemLayout>
+    <R_ItemLayout col="1">
+        <R_TextBox @ref="_CurrencyRateType" R_ConductorSource="@_conductorRef" @bind-Value="@_viewModel.Data.CRATETYPE_CODE" R_EnableEdit></R_TextBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="0">
+        <R_Lookup R_ConductorSource="@_conductorRef"
+                  R_Before_Open_Lookup="@R_Before_Open_LookupCurrRateType"
+                  R_After_Open_Lookup="@R_After_Open_LookupCurrRateType" R_EnableEdit>...</R_Lookup>
+    </R_ItemLayout>
+    <R_ItemLayout col="4">
+        <R_TextBox @bind-Value="@_viewModel.Data.CRATETYPE_DESCRIPTION"
+                   Enabled="false"></R_TextBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row>
+    <R_ItemLayout col="6">
+        <R_GroupBox Title="@_localizer["_Period"]" TitleClass="text-danger">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_CBLinkDate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_DatePicker @bind-Value="@_viewModel.CBLinkDate"
+                                 Enabled="@(_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit && _viewModel.Data.LALLOW_EDIT_CB_LINK_DATE == true)"></R_DatePicker>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_CurrentPeriod"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENT_PERIOD_MM"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCURRENT_PERIOD_YY"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_By"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CLPRD_END_BY"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_SoftClosePeriod"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSOFT_PERIOD_MM"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CSOFT_PERIOD_YY"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_By"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CLSOFT_END_BY"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout col="7">
+                    <R_CheckBox @bind-Value="@_viewModel.Data.LPRD_END_FLAG"
+                                Enabled="false">
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_ClosingInProgress"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_By"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CPRD_END_CLOSING_BY"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_CheckBox @bind-Value="@_viewModel.Data.LALLOW_CANCEL_SOFT_END"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableEdit>
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_AllowCancelSoftClose"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+    <R_ItemLayout col="6">
+        <R_GroupBox Title="@_localizer["_Cheque"]" TitleClass="text-danger">
+            <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_CheckBox @bind-Value="@_viewModel.Data.LINPUT_CHEQUE_DATE"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableEdit>
+                    </R_CheckBox>
+                    <R_Label>@_localizer["_EnableInputChequeDueDate"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout>
+                    <R_Label>@_localizer["_BankInMode"]</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="1"></R_ItemLayout>
+                <R_ItemLayout>
+                    <R_RadioGroup R_ConductorSource="@_conductorRef"
+                                  Data="@_viewModel.CBANK_IN_MODE_LIST"
+                                  @bind-Value="@_viewModel.Data.CBANK_IN_MODE"
+                                  Layout="R_eRadioGroupLayout.Vertical"
+                                  ValueField="Key"
+                                  TextField="Value"
+                                  R_EnableEdit
+                                  >
+                    </R_RadioGroup>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Class="mt-2">
+    <R_ItemLayout col="8">
+        <R_GroupBox Title="@_localizer["_JournalSetup"]" TitleClass="text-danger">
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_ContraAccount"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox R_ConductorSource="@_conductorRef" @bind-Value="@_viewModel.Data.CCONTRA_ACCOUNT_NO" R_EnableEdit></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@R_Before_Open_LookupGLAccount"
+                              R_After_Open_Lookup="@R_After_Open_LookupContraAccount" R_EnableEdit>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCONTRA_ACCOUNT_NAME"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_ForexGainAccount"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox R_ConductorSource="@_conductorRef" @bind-Value="@_viewModel.Data.CCRDVG_ACCOUNT_NO" R_EnableEdit></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@R_Before_Open_LookupGLAccount"
+                              R_After_Open_Lookup="@R_After_Open_LookupForexGainAccount" R_EnableEdit>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCRDVG_ACCOUNT_NAME"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_ForexLossAccount"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox R_ConductorSource="@_conductorRef" @bind-Value="@_viewModel.Data.CCRDVL_ACCOUNT_NO" R_EnableEdit></R_TextBox>
+                </R_ItemLayout>
+                <R_ItemLayout col="0">
+                    <R_Lookup R_ConductorSource="@_conductorRef"
+                              R_Before_Open_Lookup="@R_Before_Open_LookupGLAccount"
+                              R_After_Open_Lookup="@R_After_Open_ForexLossAccount" R_EnableEdit>...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="@_viewModel.Data.CCRDVL_ACCOUNT_NAME"
+                               Enabled="false"></R_TextBox>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="4">
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_UpdatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_DateTimePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE"
+                           Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_CreatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_DateTimePicker @bind-Value="@_viewModel.Data.DCREATE_DATE"
+                           Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_StackLayout Row Justify="@R_eJustify.SpaceBetween" Class="mt-2" >
+    <R_ItemLayout>
+        <R_EditButton R_Conductor="_conductorRef"></R_EditButton>
+    </R_ItemLayout>
+    <R_ItemLayout>
+        <R_CancelButton R_Conductor="_conductorRef"></R_CancelButton>
+        <R_SaveButton R_Conductor="_conductorRef"></R_SaveButton>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@SystemParamCB_ServiceGetRecord"
+             R_Validation="@SystemParamCB_Validation"
+             R_ServiceSave="@SystemParamCB_ServiceSave"
+             R_DisableCancelConfirmation
+             R_BeforeCancel="SystemParamCB_BeforeCancel"
+             R_Display="@SystemParamCB_Display"  />

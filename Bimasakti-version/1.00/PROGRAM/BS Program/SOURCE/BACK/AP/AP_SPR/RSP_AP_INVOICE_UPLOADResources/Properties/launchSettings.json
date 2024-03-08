@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "RSP_AP_INVOICE_UPLOADResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52047;http://localhost:52048"
+    }
+  }
+}

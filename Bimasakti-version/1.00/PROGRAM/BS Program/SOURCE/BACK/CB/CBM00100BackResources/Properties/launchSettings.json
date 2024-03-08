@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CBM00100BackResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:52071;http://localhost:52072"
+    }
+  }
+}

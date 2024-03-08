@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "APM00300BackResources": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:51776;http://localhost:51777"
+    }
+  }
+}
