@@ -31,6 +31,16 @@ namespace Lookup_GSSERVICES
             _activitySource = PublicLookupGSActivitySourceBase.R_InitializeAndGetActivitySource(nameof(PublicLookupGSController));
         }
 
+        #region Stream Data
+        private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
+        {
+            foreach (var item in poParam)
+            {
+                yield return item;
+            }
+        }
+        #endregion
+
         [HttpPost]
         public IAsyncEnumerable<GSL00100DTO> GSL00100GetSalesTaxList()
         {
@@ -1166,13 +1176,111 @@ namespace Lookup_GSSERVICES
 
             return loRtn;
         }
-
-        private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
+        
+        [HttpPost]
+        public IAsyncEnumerable<GSL02400DTO> GSL02400GetFloorList()
         {
-            foreach (var item in poParam)
+            using Activity activity = _activitySource.StartActivity("GSL02400GetFloorList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02400DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02400GetFloorList");
+
+            try
             {
-                yield return item;
+                var poParameter = new GSL02400ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02400GetFloorList");
+                var loCls = new PublicLookupCls();
+                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                poParameter.CBUILDING_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBUILDING_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLFloor");
+                var loResult = loCls.GetALLFloor(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02400GetFloorList");
+                loRtn = GetStream<GSL02400DTO>(loResult);
             }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02400GetFloorList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02500DTO> GSL02500GetCBList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02500GetCBList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02500DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02500GetCBList");
+
+            try
+            {
+                var poParameter = new GSL02500ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02500GetCBList");
+                var loCls = new PublicLookupCls();
+                poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
+                poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
+
+                _Logger.LogInfo("Call Back Method GetALLCB");
+                var loResult = loCls.GetALLCB(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02500GetCBList");
+                loRtn = GetStream<GSL02500DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02500GetCBList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSL02600DTO> GSL02600GetCBAccountList()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL02600GetCBAccountList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<GSL02600DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL02600GetCBAccountList");
+
+            try
+            {
+                var poParameter = new GSL02600ParameterDTO();
+
+                _Logger.LogInfo("Set Param GSL02600GetCBAccountList");
+                var loCls = new PublicLookupCls();
+                poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
+                poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
+                poParameter.CCB_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_CODE);
+
+                _Logger.LogInfo("Call Back Method GetALLCBAccount");
+                var loResult = loCls.GetALLCBAccount(poParameter);
+
+                _Logger.LogInfo("Call Stream Method Data GSL02600GetCBAccountList");
+                loRtn = GetStream<GSL02600DTO>(loResult);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL02600GetCBAccountList");
+
+            return loRtn;
         }
     }
 }

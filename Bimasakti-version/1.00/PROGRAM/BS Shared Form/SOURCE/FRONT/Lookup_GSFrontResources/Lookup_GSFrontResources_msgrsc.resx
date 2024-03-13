@@ -189,6 +189,9 @@
   <data name="_ChargesName" xml:space="preserve">
     <value>Charges Name</value>
   </data>
+  <data name="_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
   <data name="_Country" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -210,6 +213,9 @@
   <data name="_DCDesc" xml:space="preserve">
     <value>D/C</value>
   </data>
+  <data name="_Departement" xml:space="preserve">
+    <value>Departement</value>
+  </data>
   <data name="_DeptCode" xml:space="preserve">
     <value>Department Code</value>
   </data>
@@ -221,6 +227,15 @@
   </data>
   <data name="_EnableCOA" xml:space="preserve">
     <value>Include Inactive COA</value>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_FloorId" xml:space="preserve">
+    <value>Floor ID</value>
+  </data>
+  <data name="_FloorName" xml:space="preserve">
+    <value>Floor Name</value>
   </data>
   <data name="_GLAccount" xml:space="preserve">
     <value>GL Account</value>
@@ -251,6 +266,9 @@
   </data>
   <data name="_LocCurrRate" xml:space="preserve">
     <value>Local Currency Rate</value>
+  </data>
+  <data name="_Name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="_Net" xml:space="preserve">
     <value>Net</value>

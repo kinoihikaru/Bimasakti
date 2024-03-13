@@ -37,5 +37,8 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL02100DTO> GSL02100GetPaymentTermList();
         IAsyncEnumerable<GSL02200DTO> GSL02200GetBuildingList();
         IAsyncEnumerable<GSL02300DTO> GSL02300GetBuildingUnitList();
+        IAsyncEnumerable<GSL02400DTO> GSL02400GetFloorList();
+        IAsyncEnumerable<GSL02500DTO> GSL02500GetCBList();
+        IAsyncEnumerable<GSL02600DTO> GSL02600GetCBAccountList();
     }
 }

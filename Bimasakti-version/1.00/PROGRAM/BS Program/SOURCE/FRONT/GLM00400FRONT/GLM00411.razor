@@ -13,9 +13,10 @@
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="@Allocation_Center_ServiceGetListRecord"
                 Pageable="true"
+                PageSize="20"
                 Enabled="@_PageOnCRUDMode"
                 R_ConductorSource="@_AllocationCenter_condutorRef"
-                Height="160px">
+                Height="330px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="@_localizer["_CenterCode"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_CenterName"]"></R_GridTextColumn>
@@ -59,8 +60,7 @@
                         R_ServiceGetListRecord="@Allocation_CenterPeriod_ServiceGetListRecord"
                         R_ServiceGetRecord="@Allocation_CenterPeriod_ServiceGetRecord"
                         R_ServiceSave="@Allocation_CenterPeriod_ServiceSave"
-                        Pageable="true"
-                        Height="120px">
+                        Height="290px">
                     <R_GridColumns>
                         <R_GridTextColumn FieldName="CYEAR" HeaderText="@_localizer["_Year"]"></R_GridTextColumn>
                         <R_GridTextColumn FieldName="CPERIOD_NO" HeaderText="@_localizer["_Period"]"></R_GridTextColumn>

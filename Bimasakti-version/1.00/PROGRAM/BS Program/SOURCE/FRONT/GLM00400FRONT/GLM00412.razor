@@ -19,9 +19,8 @@
                 DataSource="@_AllocationPeriod_viewModel.AllocationPeriodGrid"
                 R_GridType="@R_eGridType.Navigator"
                 R_ServiceGetListRecord="@Allocation_Period_ServiceGetListRecord"
-                Pageable="true"
                 R_ConductorSource="@_AllocationPeriod_condutorRef"
-                Height="150px">
+                Height="290px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCYEAR" HeaderText="@_localizer["_Year"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CPERIOD_NO" HeaderText="@_localizer["_Period"]"></R_GridTextColumn>
@@ -32,8 +31,9 @@
         <R_Grid @ref="@_AllocationPeriodCenter_gridRef"
                 DataSource="@_AllocationPeriod_viewModel.AllocationPeriodCenterGrid"
                 R_ServiceGetListRecord="@Allocation_CenterPeriod_ServiceGetListRecord"
+                R_GridType="R_eGridType.Navigator"
                 Pageable="true"
-                Height="150px">
+                Height="300px">
             <R_GridColumns>
                 <R_GridTextColumn FieldName="CCENTER_CODE" HeaderText="@_localizer["_CenterCode"]"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="CCENTER_NAME" HeaderText="@_localizer["_CenterName"]"></R_GridTextColumn>

@@ -1141,5 +1141,115 @@ namespace Lookup_GSModel
 
         }
         #endregion
+
+        #region GSL02400
+        public IAsyncEnumerable<GSL02400DTO> GSL02400GetFloorList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<GSL02400DTO>> GSL02400GetFloorListAsync(GSL02400ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02400DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBUILDING_ID, string.IsNullOrWhiteSpace(poParameter.CBUILDING_ID) ? "" : poParameter.CBUILDING_ID);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02400DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02400GetFloorList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL02500
+        public IAsyncEnumerable<GSL02500DTO> GSL02500GetCBList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02500DTO>> GSL02500GetCBListAsync(GSL02500ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02500DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBANK_TYPE, string.IsNullOrWhiteSpace(poParameter.CBANK_TYPE) ? "" : poParameter.CBANK_TYPE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02500DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02500GetCBList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
+        #region GSL02600
+        public IAsyncEnumerable<GSL02600DTO> GSL02600GetCBAccountList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL02600DTO>> GSL02600GetCBAccountListAsync(GSL02600ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            List<GSL02600DTO> loResult = null;
+
+            try
+            {
+                //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_CODE, string.IsNullOrWhiteSpace(poParameter.CCB_CODE) ? "" : poParameter.CCB_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBANK_TYPE, string.IsNullOrWhiteSpace(poParameter.CBANK_TYPE) ? "" : poParameter.CBANK_TYPE);
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL02600DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL02600GetCBAccountList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
     }
 }

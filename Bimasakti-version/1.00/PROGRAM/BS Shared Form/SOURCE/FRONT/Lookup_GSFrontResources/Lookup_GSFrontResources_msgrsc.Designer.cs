@@ -277,6 +277,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Code.
+        /// </summary>
+        internal static string _Code {
+            get {
+                return ResourceManager.GetString("_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string _Country {
@@ -340,6 +349,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Departement.
+        /// </summary>
+        internal static string _Departement {
+            get {
+                return ResourceManager.GetString("_Departement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department Code.
         /// </summary>
         internal static string _DeptCode {
@@ -372,6 +390,33 @@ namespace Lookup_GSFrontResources {
         internal static string _EnableCOA {
             get {
                 return ResourceManager.GetString("_EnableCOA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor.
+        /// </summary>
+        internal static string _Floor {
+            get {
+                return ResourceManager.GetString("_Floor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor ID.
+        /// </summary>
+        internal static string _FloorId {
+            get {
+                return ResourceManager.GetString("_FloorId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor Name.
+        /// </summary>
+        internal static string _FloorName {
+            get {
+                return ResourceManager.GetString("_FloorName", resourceCulture);
             }
         }
         
@@ -462,6 +507,15 @@ namespace Lookup_GSFrontResources {
         internal static string _LocCurrRate {
             get {
                 return ResourceManager.GetString("_LocCurrRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string _Name {
+            get {
+                return ResourceManager.GetString("_Name", resourceCulture);
             }
         }
         

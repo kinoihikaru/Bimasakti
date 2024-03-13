@@ -62,6 +62,7 @@ namespace Lookup_GSLBACK
 
             return loResult;
         }
+
         public List<GSL00110DTO> GetALLTaxByDate(GSL00110ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetALLTaxByDate");
@@ -1115,6 +1116,7 @@ namespace Lookup_GSLBACK
 
             return loResult;
         }
+
         public List<GSL01900DTO> GetALLLOB()
         {
             using Activity activity = _activitySource.StartActivity("GetALLLOB");
@@ -1228,6 +1230,7 @@ namespace Lookup_GSLBACK
 
             return loResult;
         }
+
         public List<GSL02100DTO> GetALLPaymentTerm(GSL02100ParameterDTO poEntity)
         {
             using Activity activity = _activitySource.StartActivity("GetALLPaymentTerm");
@@ -1338,6 +1341,128 @@ namespace Lookup_GSLBACK
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<GSL02300DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL02400DTO> GetALLFloor(GSL02400ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLFloor");
+            var loEx = new R_Exception();
+            List<GSL02400DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_BUILDING_FLOOR_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CBUILDING_ID", DbType.String, 50, poEntity.CBUILDING_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_BUILDING_FLOOR_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02400DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL02500DTO> GetALLCB(GSL02500ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLCB");
+            var loEx = new R_Exception();
+            List<GSL02500DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_CASH_BANK_LOOKUP";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CASH_BANK_LOOKUP {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02500DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        public List<GSL02600DTO> GetALLCBAccount(GSL02600ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLCBAccount");
+            var loEx = new R_Exception();
+            List<GSL02600DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = loDb.GetConnection("R_DefaultConnectionString");
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_CB_ACCOUNT_LOOKUP";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CCB_CODE", DbType.String, 50, poEntity.CCB_CODE);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_CB_ACCOUNT_LOOKUP {@poParameter}", loDbParam);
+
+                var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL02600DTO>(loDataTable).ToList();
             }
             catch (Exception ex)
             {

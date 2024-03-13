@@ -152,8 +152,10 @@
                             DataSource="@_AllocationJournalDT_viewModel.AllocationAccountGrid"
                             R_ServiceGetListRecord="@Allocation_Account_ServiceGetListRecord"
                             Enabled="@(!_pageSupplierOnCRUDmode)"
+                            R_GridType="R_eGridType.Navigator"
                             Pageable="true"
-                            Height="150px">
+                            PageSize="20"
+                            Height="350px">
                         <R_GridColumns>
                             <R_GridTextColumn FieldName="CGLACCOUNT_NO" HeaderText="Account No."></R_GridTextColumn>
                             <R_GridTextColumn FieldName="CGLACCOUNT_NAME" HeaderText="Account Name"></R_GridTextColumn>
