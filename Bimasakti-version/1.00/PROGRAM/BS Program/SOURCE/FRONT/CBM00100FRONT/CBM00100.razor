@@ -196,7 +196,15 @@
     </R_ItemLayout>
 
     <R_ItemLayout col="4">
-        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout>
+                <R_CheckBox @bind-Value="@_viewModel.Data.LCB_NUMBERING"
+                            R_ConductorSource="@_conductorRef"
+                            R_EnableEdit>
+                </R_CheckBox>
+                <R_Label>@_localizer["_DocNumByCashOrBank"]</R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
         <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
         <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
         <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>

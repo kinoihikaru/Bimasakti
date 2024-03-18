@@ -31,6 +31,7 @@
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GLSERVICES\Lookup_GLSERVICES.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLB00600SERVICE\GLB00600SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLB09900SERVICE\GLB09900SERVICE.csproj" />
+    <ProjectReference Include="..\..\..\SERVICE\GL\GLM00200SERVICE\GLM00200Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00400SERVICE\GLM00400SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLR00200SERVICE\GLR00200SERVICE.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLT00100SERVICE\GLT00100SERVICE.csproj" />

@@ -1411,6 +1411,7 @@ namespace Lookup_GSLBACK
                 loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
 
@@ -1451,6 +1452,7 @@ namespace Lookup_GSLBACK
                 loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poEntity.CDEPT_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_TYPE", DbType.String, 50, poEntity.CCB_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CBANK_TYPE", DbType.String, 50, poEntity.CBANK_TYPE);
                 loDb.R_AddCommandParameter(loCmd, "@CCB_CODE", DbType.String, 50, poEntity.CCB_CODE);

@@ -149,6 +149,14 @@
         </R_ItemLayout>
     </R_StackLayout>
 
+    <R_StackLayout Row>
+        <R_ItemLayout>
+            <R_CheckBox @bind-Value="@_viewModel.SystemParameterCB.LCB_NUMBERING"
+                        Enabled="true">
+            </R_CheckBox>
+            <R_Label>@_localizer["_DocNumByCashOrBank"]</R_Label>
+        </R_ItemLayout>
+    </R_StackLayout>
 </R_StackLayout>
 
 <R_StackLayout Row Class="mt-2">

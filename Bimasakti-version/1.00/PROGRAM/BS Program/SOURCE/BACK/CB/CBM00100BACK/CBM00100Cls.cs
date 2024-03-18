@@ -176,6 +176,7 @@ namespace CBM00100BACK
                 loDb.R_AddCommandParameter(loCmd, "@CCONTRA_ACCOUNT_NO", DbType.String, 20, poNewEntity.CCONTRA_ACCOUNT_NO);
                 loDb.R_AddCommandParameter(loCmd, "@CCRDVG_ACCOUNT_NO", DbType.String, 20, poNewEntity.CCRDVG_ACCOUNT_NO);
                 loDb.R_AddCommandParameter(loCmd, "@CCRDVL_ACCOUNT_NO", DbType.String, 20, poNewEntity.CCRDVL_ACCOUNT_NO);
+                loDb.R_AddCommandParameter(loCmd, "@LCB_NUMBERING", DbType.Boolean, 20, poNewEntity.LCB_NUMBERING);
 
                 R_ExternalException.R_SP_Init_Exception(loConn);
 

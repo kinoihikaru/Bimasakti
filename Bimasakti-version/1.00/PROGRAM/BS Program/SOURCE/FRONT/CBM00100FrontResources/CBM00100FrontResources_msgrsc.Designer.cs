@@ -169,6 +169,15 @@ namespace CBM00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Document Numbering by Cash/Bank Code.
+        /// </summary>
+        internal static string _DocNumByCashOrBank {
+            get {
+                return ResourceManager.GetString("_DocNumByCashOrBank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enable Input Cheque Due Date.
         /// </summary>
         internal static string _EnableInputChequeDueDate {

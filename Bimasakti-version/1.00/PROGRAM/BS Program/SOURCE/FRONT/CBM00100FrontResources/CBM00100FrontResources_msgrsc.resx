@@ -204,4 +204,7 @@
   <data name="_N02" xml:space="preserve">
     <value>CB System Parameter Created Successfully!</value>
   </data>
+  <data name="_DocNumByCashOrBank" xml:space="preserve">
+    <value>Document Numbering by Cash/Bank Code</value>
+  </data>
 </root>
