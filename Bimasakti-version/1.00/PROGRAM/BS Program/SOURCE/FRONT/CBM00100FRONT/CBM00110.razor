@@ -13,14 +13,14 @@
             <R_Label>@_localizer["_ForexGainAccount"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @ref="_CurrencyRateType" @bind-Value="@_viewModel.SystemParameterCB.CRATETYPE_CODE" Enabled="true"></R_TextBox>
+            <R_TextBox @ref="_CurrencyRateType" @bind-Value="@_viewModel.SystemParameterCB.CRATETYPE_CODE" Enabled="true" OnLostFocus="@CurrencyRateType_OnLostFocus"></R_TextBox>
         </R_ItemLayout>
         <R_ItemLayout col="0">
             <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupCurrRateType"
                       R_After_Open_Lookup="@R_After_Open_LookupCurrRateType" Enabled="true">...</R_Lookup>
         </R_ItemLayout>
         <R_ItemLayout col="3">
-            <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CDEPT_NAME"
+            <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CRATETYPE_DESCRIPTION"
                        Enabled="false"></R_TextBox>
         </R_ItemLayout>
     </R_StackLayout>
@@ -95,10 +95,10 @@
                         <R_Label>@_localizer["_ContraAccount"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CCONTRA_ACCOUNT_NO" Enabled="true"></R_TextBox>
+                        <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CCONTRA_ACCOUNT_NO" Enabled="true" OnLostFocus="@ContraAccount_OnLostFocus"></R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
-                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupGLAccount"
+                        <R_Lookup R_Before_Open_Lookup="@R_Contact_Before_Open_LookupGLAccount"
                                   R_After_Open_Lookup="@R_After_Open_LookupContraAccount" Enabled="true">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">
@@ -111,10 +111,10 @@
                         <R_Label>@_localizer["_ForexGainAccount"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CCRDVG_ACCOUNT_NO" Enabled="true"></R_TextBox>
+                        <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CCRDVG_ACCOUNT_NO" Enabled="true" OnLostFocus="@ForexGain_OnLostFocus"></R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
-                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupGLAccount"
+                        <R_Lookup R_Before_Open_Lookup="@R_ForexGain_Before_Open_LookupGLAccount"
                                   R_After_Open_Lookup="@R_After_Open_LookupForexGainAccount" Enabled="true">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">
@@ -127,10 +127,10 @@
                         <R_Label>@_localizer["_ForexLossAccount"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CCRDVL_ACCOUNT_NO" Enabled="true"></R_TextBox>
+                        <R_TextBox @bind-Value="@_viewModel.SystemParameterCB.CCRDVL_ACCOUNT_NO" Enabled="true" OnLostFocus="@ForexLoss_OnLostFocus"></R_TextBox>
                     </R_ItemLayout>
                     <R_ItemLayout col="0">
-                        <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupGLAccount"
+                        <R_Lookup R_Before_Open_Lookup="@R_ForexLoss_Before_Open_LookupGLAccount"
                                   R_After_Open_Lookup="@R_After_Open_ForexLossAccount" Enabled="true">...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout col="6">

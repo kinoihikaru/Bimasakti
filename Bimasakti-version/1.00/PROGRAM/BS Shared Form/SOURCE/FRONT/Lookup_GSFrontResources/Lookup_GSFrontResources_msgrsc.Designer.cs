@@ -394,6 +394,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not found data by search text!!.
+        /// </summary>
+        internal static string _ErrLookup01 {
+            get {
+                return ResourceManager.GetString("_ErrLookup01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string _Floor {

@@ -222,6 +222,7 @@ namespace Lookup_GSModel
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LCENTER_RESTR, poParam.LCENTER_RESTR);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.LUSER_RESTR, poParam.LUSER_RESTR);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCENTER_CODE, poParam.CCENTER_CODE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CGOA_CODE, poParam.CGOA_CODE);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
                 loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL00500DTO>(
@@ -240,8 +241,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
-
         #endregion
 
         #region GSL00510
@@ -790,8 +789,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
-
         #endregion
 
         #region GSL01700
@@ -890,8 +887,6 @@ namespace Lookup_GSModel
 
             return loResult;
         }
-
-
         #endregion
 
         #region GSL01800
@@ -1105,7 +1100,6 @@ namespace Lookup_GSModel
         #endregion
 
         #region GSL02300
-
         public IAsyncEnumerable<GSL02300DTO> GSL02300GetBuildingUnitList()
         {
             throw new NotImplementedException();

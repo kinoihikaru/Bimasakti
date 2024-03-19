@@ -4,8 +4,8 @@
 @using APM00300MODEL
 @inject R_ILocalizer<APM00300FrontResources.Resources_Dummy_Class> _localizer
 
-<R_TabStrip @ref="@_tabSupplierDetailChill" >
-    <R_TabStripTab Title="@(_localizer["_MainInfo"])" Id="Main" Enabled>
+<R_TabStrip @ref="@_tabSupplierDetailChill" OnActiveTabIndexChanging="@OnActiveTabIndexChanging">
+    <R_TabStripTab Title="@(_localizer["_MainInfo"])" Id="Main">
         <R_StackLayout Row>
             <R_ItemLayout col="8">
                 <R_StackLayout Row>
@@ -132,7 +132,7 @@
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_ComboBox Data="@_Supplier_viewModel.LOBList"
-                                    Value="@_Supplier_viewModel.Data.CLOB_CODE"
+                                    @bind-Value="@_Supplier_viewModel.Data.CLOB_CODE"
                                     PopupMaxHeight="140px"
                                     ValueField="@nameof(APM00300LOBDTO.CLOB_CODE)"
                                     TextField="@nameof(APM00300LOBDTO.CLOB_CODE)"
@@ -254,17 +254,8 @@
                 </R_ItemLayout>
             </R_StackLayout>
         </R_StackLayout>
-    </R_TabStripTab>
-        <R_TabStripTab Title="@(_localizer["_TabAddrContact"])" Id="AddressContact" Enabled>
-        <R_TabPage @ref="@_AddressTabPage" R_Before_Open_TabPage="@Supplier_Address_Before_Open_TabPage" ></R_TabPage>
-    </R_TabStripTab>
-    <R_TabStripTab Title="@(_localizer["_TabtaxBalance"])" Id="Period" Enabled>
-        <R_TabPage @ref="@_TaxBalanceTabPage" R_Before_Open_TabPage="@Supplier_TaxBalance_Before_Open_TabPage"></R_TabPage>
-    </R_TabStripTab>
-</R_TabStrip>
 
-
-<R_Conductor @ref="@_Supplier_conductorRef"
+        <R_Conductor @ref="@_Supplier_conductorRef"
              R_ViewModel="@_Supplier_viewModel"
              R_IsHeader="true" 
              R_ServiceGetRecord="@Supplier_ServiceGetRecord"
@@ -273,4 +264,14 @@
              R_ServiceSave="@Supplier_ServiceSave"
              R_ServiceDelete="@Supplier_ServiceDelete"
              R_Display="@Supplier_Display"
-             />
+             R_SetOther="@Supplier_SetOther" />
+    </R_TabStripTab>
+    <R_TabStripTab Title="@(_localizer["_TabAddrContact"])" Id="AddressContact">
+        <R_TabPage @ref="@_AddressTabPage" R_Before_Open_TabPage="@Supplier_Address_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+        <R_TabStripTab Title="@(_localizer["_TabtaxBalance"])" Id="Period">
+        <R_TabPage @ref="@_TaxBalanceTabPage" R_Before_Open_TabPage="@Supplier_TaxBalance_Before_Open_TabPage" R_TabEventCallback="@R_TabEventCallback"></R_TabPage>
+    </R_TabStripTab>
+</R_TabStrip>
+
+

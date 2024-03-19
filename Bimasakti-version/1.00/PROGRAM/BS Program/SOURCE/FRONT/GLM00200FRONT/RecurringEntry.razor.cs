@@ -64,7 +64,7 @@ namespace GLM00200Front
                     {
                         loEx.Add("", "Account No. is required!");
                     }
-                    if (_journalVM.RefDate == DateTime.MinValue)
+                    if (_journalVM.RefDate == null)
                     {
                         loEx.Add("", "Reference Date is required!");
                     }
@@ -80,19 +80,19 @@ namespace GLM00200Front
                     {
                         loEx.Add("", "Start Date cannot be before Current Period!");
                     }
-                    if (string.IsNullOrEmpty(loData.CDOC_NO) || string.IsNullOrWhiteSpace(loData.CDOC_NO) && _journalVM.DocDate != DateTime.MinValue)
+                    if (string.IsNullOrEmpty(loData.CDOC_NO) && _journalVM.DocDate.HasValue)
                     {
                         loEx.Add("", "Please input Document No.!");
                     }
-                    if (_journalVM.DocDate == DateTime.MinValue && _journalVM.DocDate > DateTime.Now)
+                    if (_journalVM.DocDate == null && _journalVM.DocDate > DateTime.Now)
                     {
                         loEx.Add("", "Document Date cannot be after today");
                     }
-                    if (_journalVM.DocDate == DateTime.MinValue && _journalVM.DocDate < DateTime.ParseExact(_journalVM.CURRENT_PERIOD_START_DATE.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture))
+                    if (_journalVM.DocDate == null && _journalVM.DocDate < DateTime.ParseExact(_journalVM.CURRENT_PERIOD_START_DATE.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture))
                     {
                         loEx.Add("", "Document Date cannot be before Current Period!");
                     }
-                    if (!string.IsNullOrEmpty(loData.CDOC_NO) || !string.IsNullOrWhiteSpace(loData.CDOC_NO) && _journalVM.DocDate == DateTime.MinValue)
+                    if (!string.IsNullOrEmpty(loData.CDOC_NO) && _journalVM.DocDate == null)
                     {
                         loEx.Add("", "Please input Document Date!");
                     }
@@ -295,10 +295,7 @@ namespace GLM00200Front
         {
             var param = new GSL00500ParameterDTO
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
                 CPROGRAM_CODE = "GLM00200",
-                CUSER_ID = _clientHelper.UserId,
-                CUSER_LANGUAGE = _clientHelper.CultureUI.TwoLetterISOLanguageName,
                 CBSIS = "",
                 CDBCR = "",
                 CCENTER_CODE = "",
@@ -378,7 +375,7 @@ namespace GLM00200Front
                 var lodata = (JournalDetailGridDTO)eventArgs.Data;
 
                 //findout credit or debit
-                lodata.CDBCR = lodata.NDEBIT > 0 ? "D" : "C";
+                lodata.CDBCR = lodata.NDEBIT > 0 ? 'D' : lodata.NCREDIT > 0 ? 'C' : '\0';
 
                 //fill ccentercode if null based on ccentername
                 if (string.IsNullOrWhiteSpace(lodata.CCENTER_CODE) || string.IsNullOrWhiteSpace(lodata.CCENTER_CODE))
@@ -414,9 +411,28 @@ namespace GLM00200Front
                 loData.INO = 1;
             }
 
+            loData.CCENTER_CODE = _journalVM.CENTER_LIST.FirstOrDefault().CCENTER_CODE;
+            loData.CDETAIL_DESC = _journalVM.Data.CTRANS_DESC;
+        }
+        private void JurnalDetail_Saving(R_SavingEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var data = (JournalDetailGridDTO)eventArgs.Data;
 
-            //assign to data grid
-            eventArgs.Data = loData;
+                data.CDBCR = data.NDEBIT > 0 ? 'D' : data.NCREDIT > 0 ? 'C' : '\0';
+                data.NAMOUNT = data.NDEBIT + data.NCREDIT;
+                data.CDOCUMENT_NO = string.IsNullOrWhiteSpace(_journalVM.Data.CDOC_NO) ? "" : _journalVM.Data.CDOC_NO;
+                data.CDOCUMENT_DATE = _journalVM.DocDate.HasValue == true ? _journalVM.DocDate.Value.ToString("yyyyMMdd") : "";
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
         }
         #endregion
 

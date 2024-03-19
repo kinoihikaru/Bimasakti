@@ -13,6 +13,7 @@ using Lookup_APFRONT;
 using APT00500COMMON;
 using R_BlazorFrontEnd.Helpers;
 using APT00500FrontResources;
+using Lookup_GSModel.ViewModel;
 
 namespace APT00500FRONT
 {
@@ -129,7 +130,41 @@ namespace APT00500FRONT
             }
             loException.ThrowExceptionIfErrors();
         }
+        #region Dept Lookup
+        private async Task DeptCode_OnLostFocus()
+        {
+            var loEx = new R_Exception();
 
+            try
+            {
+                GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
+                {
+                    CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
+                    CSEARCH_TEXT = _viewModel.PurchaseAdjuParam.CDEPT_CODE
+                };
+
+                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+
+                var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    DeptName = "";
+                    goto EndBlock;
+                }
+
+                DeptName = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
         private void R_Before_Open_LookupDepartment(R_BeforeOpenLookupEventArgs eventArgs)
         {
             if (string.IsNullOrWhiteSpace(_viewModel.PurchaseAdjuParam.CPROPERTY_ID))
@@ -138,14 +173,11 @@ namespace APT00500FRONT
             }
             GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
             {
-                CCOMPANY_ID = "",
                 CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
-                CUSER_LOGIN_ID = ""
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL00710);
         }
-
         private void R_After_Open_LookupDepartment(R_AfterOpenLookupEventArgs eventArgs)
         {
             GSL00710DTO loTempResult = (GSL00710DTO)eventArgs.Result;
@@ -156,19 +188,52 @@ namespace APT00500FRONT
             _viewModel.PurchaseAdjuParam.CDEPT_CODE = loTempResult.CDEPT_CODE;
             DeptName = loTempResult.CDEPT_NAME;
         }
+        #endregion
 
+        #region Supplier Lookup
+        private async Task SupplierId_OnLostFocus()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                APL00100ParameterDTO loParam = new APL00100ParameterDTO()
+                {
+                    CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
+                    CSEARCH_TEXT = ""
+                };
+
+                //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+
+                //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+
+                //if (loResult == null)
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(
+                //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                //            "_ErrLookup01"));
+                //    DeptName = "";
+                //    goto EndBlock;
+                //}
+
+                //DeptName = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
         private void R_Before_Open_LookupSupplier(R_BeforeOpenLookupEventArgs eventArgs)
         {
             APL00100ParameterDTO loParam = new APL00100ParameterDTO()
             {
-                CCOMPANY_ID = "",
                 CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
-                CLANGUAGE_ID = ""
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(APL00100);
         }
-
         private void R_After_Open_LookupSupplier(R_AfterOpenLookupEventArgs eventArgs)
         {
             APL00100DTO loTempResult = (APL00100DTO)eventArgs.Result;
@@ -179,5 +244,6 @@ namespace APT00500FRONT
             _viewModel.PurchaseAdjuParam.CSUPPLIER_ID = loTempResult.CSUPPLIER_ID;
             SupplierName = loTempResult.CSUPPLIER_NAME;
         }
+        #endregion
     }
 }

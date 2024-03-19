@@ -194,7 +194,6 @@ namespace LMM03500FRONT
             {
                 eventArgs.Parameter = new GSL01200ParameterDTO()
                 {
-                    CCOMPANY_ID = _clientHelper.CompanyId,
                     CCB_TYPE = "B"
                 };
                 eventArgs.TargetPageType = typeof(GSL01200);

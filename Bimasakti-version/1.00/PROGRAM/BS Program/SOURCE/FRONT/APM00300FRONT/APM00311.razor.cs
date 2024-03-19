@@ -237,6 +237,11 @@ namespace APM00300FRONT
             R_DisplayException(loEx);
         }
 
+        private async Task Supplier_SetOther(R_SetEventArgs eventArgs)
+        {
+            await InvokeTabEventCallbackAsync(!eventArgs.Enable);
+        }
+
         #region Btn
         private void Supplier_Before_Open_Popup(R_BeforeOpenPopupEventArgs eventArgs)
         {

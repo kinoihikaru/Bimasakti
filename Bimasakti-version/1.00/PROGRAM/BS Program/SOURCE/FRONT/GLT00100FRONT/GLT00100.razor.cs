@@ -216,8 +216,6 @@ namespace GLT00100FRONT
         {
             var param = new GSL00700ParameterDTO
             {
-                CUSER_ID = clientHelper.UserId,
-                CCOMPANY_ID = clientHelper.CompanyId
             };
             eventArgs.Parameter = param;
             eventArgs.TargetPageType = typeof(GSL00700);

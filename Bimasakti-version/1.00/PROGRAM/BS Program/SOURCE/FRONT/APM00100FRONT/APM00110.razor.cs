@@ -97,8 +97,6 @@ namespace APM00100FRONT
         {
             GSL00800ParameterDTO loParam = new GSL00800ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
-                CUSER_ID = _clientHelper.UserId
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(Lookup_GSFRONT.GSL00800);
@@ -123,8 +121,6 @@ namespace APM00100FRONT
         {
             GSL00800ParameterDTO loParam = new GSL00800ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
-                CUSER_ID = _clientHelper.UserId
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(Lookup_GSFRONT.GSL00800);
@@ -150,8 +146,6 @@ namespace APM00100FRONT
         {
             GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
-                CUSER_ID = _clientHelper.UserId
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(Lookup_GSFRONT.GSL00700);

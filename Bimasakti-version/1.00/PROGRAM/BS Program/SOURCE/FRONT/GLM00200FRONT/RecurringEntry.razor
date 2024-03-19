@@ -99,7 +99,8 @@
         <R_ItemLayout col="1">
             <R_TextBox @bind-Value="@_journalVM.Data.CDOC_NO"
                        R_ConductorSource="_conJournalNavigator"
-                       R_EnableAdd="true" />
+                       R_EnableAdd="true"
+                       R_EnableEdit/>
         </R_ItemLayout>
         <R_ItemLayout col="1">
             <R_Label>Doc Date.</R_Label>
@@ -313,6 +314,7 @@
     <R_Grid @ref="@_gridJournalDet"
             DataSource="@_journalVM.JournaDetailGrid"
             Pageable
+            Height="250px"
             R_ConductorSource="@_conJournalNavigator"
              R_GridType="R_eGridType.Batch"
              R_ServiceGetListRecord="JournalDetGrid_ServiceGetListRecord"
@@ -326,6 +328,7 @@
              R_ServiceGetRecord="@JurnalDetail_GetRecord"
              R_Display="JurnalDetail_Display"
              R_AfterAdd="JurnalDetail_AfterAdd"
+             R_Saving="JurnalDetail_Saving"
              R_Validation="JurnalDetail_Validation">
          <R_GridColumns>
              <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.INO)"
@@ -333,7 +336,7 @@
                                   Enabled=false
                                   Width="100px" Max="0"></R_GridNumericColumn>
              <R_GridLookupColumn Width="300px" FieldName="@nameof(JournalDetailGridDTO.CGLACCOUNT_NO)" R_EnableAdd="true" R_EnableEdit="true" HeaderText="Account No." />
-             <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" R_EnableAdd R_EnableEdit Width="400px" />
+             <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CGLACCOUNT_NAME)" HeaderText="Account Name" Enabled="false" Width="400px" />
             <R_GridComboBoxColumn Data=@_journalVM.CENTER_LIST
                                    FieldName="@nameof(JournalDetailGridDTO.CCENTER_CODE)"
                                    ValueField="@nameof(GSL00900DTO.CCENTER_CODE)"

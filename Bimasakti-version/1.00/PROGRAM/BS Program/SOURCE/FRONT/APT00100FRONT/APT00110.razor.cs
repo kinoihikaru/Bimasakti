@@ -326,9 +326,7 @@ namespace APT00100FRONT
             }
             GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
             {
-                CCOMPANY_ID = "",
                 CPROPERTY_ID = loViewModel.loProperty.CPROPERTY_ID,
-                CUSER_LOGIN_ID = ""
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL00710);
@@ -404,9 +402,7 @@ namespace APT00100FRONT
             loViewModel.Data.CREF_DATE = loViewModel.Data.DREF_DATE.ToString("yyyyMMdd");
             GSL00110ParameterDTO loParam = new GSL00110ParameterDTO()
             {
-                CCOMPANY_ID = "",
                 CTAX_DATE = loViewModel.Data.CREF_DATE,
-                CUSER_ID = ""
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL00110);

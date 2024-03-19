@@ -365,7 +365,6 @@ namespace APM00200FRONT
         {
             GSL00400ParameterDTO loParam = new GSL00400ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
                 CPROPERTY_ID = loExpenditureViewModel.loProperty.CPROPERTY_ID,
                 CJRNGRP_TYPE = "40"
             };
@@ -416,8 +415,6 @@ namespace APM00200FRONT
         {
             GSL00100ParameterDTO loParam = new GSL00100ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
-                CUSER_ID = _clientHelper.UserId
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL00100);
@@ -440,7 +437,6 @@ namespace APM00200FRONT
         {
             GSL00200ParameterDTO loParam = new GSL00200ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
                 CPROPERTY_ID = loExpenditureViewModel.loProperty.CPROPERTY_ID,
                 CTAX_TYPE_LIST = loExpenditureViewModel.Data.CWITHHOLDING_TAX_TYPE
             };

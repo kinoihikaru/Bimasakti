@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL02400ViewModel : R_ViewModel<GSL02400DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL02400DTO> FloorGrid = new ObservableCollection<GSL02400DTO>();
 
@@ -29,6 +30,23 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<GSL02400DTO> GetFloor(GSL02400ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            GSL02400DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL02400GetFloorAsync(poParameter);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

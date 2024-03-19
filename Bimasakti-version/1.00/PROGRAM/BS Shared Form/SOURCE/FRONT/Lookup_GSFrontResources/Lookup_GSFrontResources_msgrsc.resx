@@ -228,6 +228,9 @@
   <data name="_EnableCOA" xml:space="preserve">
     <value>Include Inactive COA</value>
   </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Not found data by search text!!</value>
+  </data>
   <data name="_Floor" xml:space="preserve">
     <value>Floor</value>
   </data>

@@ -54,12 +54,8 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 var poParameter = new GSL00100ParameterDTO();
 
-                _Logger.LogInfo("Set Param GSL00100GetSalesTaxList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLSalesTax");
-                var loResult = loCls.GetALLSalesTax(poParameter);
+                var loResult = loCls.GetALLSalesTax();
 
                 _Logger.LogInfo("Call Stream Method Data GSL00100GetSalesTaxList");
                 loRtn = GetStream<GSL00100DTO>(loResult);
@@ -90,9 +86,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00110ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00110GetTaxByDateList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CTAX_DATE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_DATE);
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLTaxByDate");
                 var loResult = loCls.GetALLTaxByDate(poParameter);
@@ -126,7 +120,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00200ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00200GetWithholdingTaxList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CTAX_TYPE_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTAX_TYPE_LIST);
 
@@ -161,12 +154,8 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 GSL00300ParameterDTO loParam = new GSL00300ParameterDTO();
 
-                _Logger.LogInfo("Set Param GSL00300GetCurrencyList");
-                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                loParam.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLCurrency");
-                var loResult = loCls.GetALLCurrency(loParam);
+                var loResult = loCls.GetALLCurrency();
 
                 _Logger.LogInfo("Call Stream Method Data GSL00300GetCurrencyList");
                 loRtn = GetStream<GSL00300DTO>(loResult);
@@ -197,10 +186,8 @@ namespace Lookup_GSSERVICES
                 var poParameter =  new GSL00400ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00400GetJournalGroupList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CJRNGRP_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CJRNGRP_TYPE);
-                poParameter.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLJournalGroup");
                 var loResult = loCls.GetALLJournalGroup(poParameter);
@@ -234,9 +221,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00500ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00500GetGLAccountList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-                poParameter.CUSER_LANGUAGE = R_BackGlobalVar.CULTURE;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CDBCR = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDBCR);
                 poParameter.CBSIS = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBSIS);
@@ -244,6 +228,7 @@ namespace Lookup_GSSERVICES
                 poParameter.CCENTER_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCENTER_CODE);
                 poParameter.CPROGRAM_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_CODE);
                 poParameter.LCENTER_RESTR = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LCENTER_RESTR);
+                poParameter.CGOA_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CGOA_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLGLAccount");
                 var loResult = loCls.GetALLGLAccount(poParameter);
@@ -277,8 +262,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00510ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00510GetCOAList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CGLACCOUNT_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CGLACCOUNT_TYPE);
                 poParameter.LINACTIVE_COA = R_Utility.R_GetStreamingContext<bool>(ContextConstantPublicLookup.LINACTIVE_COA);
 
@@ -314,7 +297,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00520ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00520GetGOACOAList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CGOA_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CGOA_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLGOACOA");
@@ -349,10 +331,9 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00550ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00550GetGOAList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLGOA");
-                var loResult = loCls.GetALLGOA(poParameter);
+                var loResult = loCls.GetALLGOA();
 
                 _Logger.LogInfo("Call Stream Method Data GSL00550GetGOAList");
                 loRtn = GetStream<GSL00550DTO>(loResult);
@@ -383,8 +364,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00600ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00600GetUnitTypeCategoryList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLUnitTypeCategory");
@@ -419,8 +398,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00700ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00700GetDepartmentList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROGRAM_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLDepartment");
@@ -456,9 +433,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL00710ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL00710GetDepartmentPropertyList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
-                poParameter.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLDepartmentProperty");
                 var loResult = loCls.GetALLDepartmentProperty(poParameter);
@@ -491,12 +466,8 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 var poParameter = new GSL00800ParameterDTO();
 
-                _Logger.LogInfo("Set Param GSL00800GetCurrencyTypeList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLCurrencyRateType");
-                var loResult = loCls.GetALLCurrencyRateType(poParameter);
+                var loResult = loCls.GetALLCurrencyRateType();
 
                 _Logger.LogInfo("Call Stream Method Data GSL00800GetCurrencyTypeList");
                 loRtn = GetStream<GSL00800DTO>(loResult);
@@ -525,12 +496,8 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 var poParameter = new GSL00900ParameterDTO();
 
-                _Logger.LogInfo("Set Param GSL00900GetCenterList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLCenter");
-                var loResult = loCls.GetALLCenter(poParameter);
+                var loResult = loCls.GetALLCenter();
 
                 _Logger.LogInfo("Call Stream Method Data GSL00900GetCenterList");
                 loRtn = GetStream<GSL00900DTO>(loResult);
@@ -560,11 +527,8 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
 
                 _Logger.LogInfo("Set Param GSL01000GetUserList");
-                var poParameter = new GSL01000DTO();
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLUser");
-                var loResult = loCls.GetALLUser(poParameter);
+                var loResult = loCls.GetALLUser();
 
                 _Logger.LogInfo("Call Stream Method Data GSL01000GetUserList");
                 loRtn = GetStream<GSL01000DTO>(loResult);
@@ -595,7 +559,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01100ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL01100GetUserApprovalList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CTRANSACTION_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CTRANSACTION_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLUserApproval");
@@ -630,9 +593,7 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01200ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL01200GetBankList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLBank");
                 var loResult = loCls.GetALLBank(poParameter);
@@ -666,11 +627,9 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01300ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL01300GetBankAccountList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
                 poParameter.CCB_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_CODE);
                 poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLBankAccount");
                 var loResult = loCls.GetALLBankAccount(poParameter);
@@ -704,8 +663,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01400ParameterDTO();
 
                 _Logger.LogInfo("Set Param GSL01400GetOtherChargesList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_LOGIN_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CCHARGES_TYPE_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCHARGES_TYPE_ID);
 
@@ -741,8 +698,6 @@ namespace Lookup_GSSERVICES
                 var poParameter = new GSL01500ParameterDetailDTO();
 
                 _Logger.LogInfo("Set Param GSL01500GetCashDetailList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
                 poParameter.CCASH_FLOW_GROUP_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCASH_FLOW_GROUP_CODE);
 
                 _Logger.LogInfo("Call Back Method GetALLCashFlowDetail");
@@ -776,10 +731,6 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 var poParameter = new GSL01500ParameterGroupDTO();
 
-                _Logger.LogInfo("Set Param GSL01500GetCashFlowGroupList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLCashFlowGroup");
                 var loResult = loCls.GetALLCashFlowGroup(poParameter);
 
@@ -811,12 +762,8 @@ namespace Lookup_GSSERVICES
                 var loCls = new PublicLookupCls();
                 var poParameter = new GSL01600ParameterDTO();
 
-                _Logger.LogInfo("Set Param GSL01600GetCashFlowGroupTypeList");
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 _Logger.LogInfo("Call Back Method GetALLCashFlowGruopType");
-                var loResult = loCls.GetALLCashFlowGruopType(poParameter);
+                var loResult = loCls.GetALLCashFlowGruopType();
 
                 _Logger.LogInfo("Call Stream Method Data GSL01600GetCashFlowGroupTypeList");
                 loRtn = GetStream<GSL01600DTO>(loResult);
@@ -882,12 +829,10 @@ namespace Lookup_GSSERVICES
 
             try
             {
-                _Logger.LogInfo("Set Param GSL01700GetRateTypeList");
                 var loCls = new PublicLookupCls();
-                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLRateType");
-                var loResult = loCls.GetALLRateType(loParam);
+                var loResult = loCls.GetALLRateType();
 
                 _Logger.LogInfo("Call Stream Method Data GSL01700GetRateTypeList");
                 loRtn = GetStream<GSL01701DTO>(loResult);
@@ -915,12 +860,10 @@ namespace Lookup_GSSERVICES
 
             try
             {
-                _Logger.LogInfo("Set Param GSL01700GetLocalAndBaseCurrencyList");
                 var loCls = new PublicLookupCls();
-                loParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
 
                 _Logger.LogInfo("Call Back Method GetALLLocalAndBaseCurrency");
-                var loResult = loCls.GetALLLocalAndBaseCurrency(loParam);
+                var loResult = loCls.GetALLLocalAndBaseCurrency();
 
                 _Logger.LogInfo("Call Stream Method Data GSL01700GetLocalAndBaseCurrencyList");
                 loRtn = GetStream<GSL01702DTO>(loResult);

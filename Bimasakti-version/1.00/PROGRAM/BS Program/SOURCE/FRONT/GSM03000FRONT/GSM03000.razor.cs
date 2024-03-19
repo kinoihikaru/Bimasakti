@@ -4,6 +4,7 @@ using GSM03000Common.DTOs;
 using GSM03000MODEL.ViewModel;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -17,6 +18,7 @@ using R_BlazorFrontEnd.Exceptions;
 using R_BlazorFrontEnd.Helpers;
 using R_CommonFrontBackAPI;
 using R_LockingFront;
+using System;
 
 namespace GSM03000FRONT
 {
@@ -320,9 +322,47 @@ namespace GSM03000FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-        private void AdditionalGLAccount_OnLostFocus(object poParam)
+        //private R_TextBox GLAccount_TextBox;
+        private async Task AdditionalGLAccount_OnLostFocus()
         {
-            //Additional_viewModel.Data.CGLACCOUNT_NO = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var param = new GSL00500ParameterDTO
+                {
+                    CPROPERTY_ID = Additional_viewModel.PropertyValueContext,
+                    CPROGRAM_CODE = "GSM03000",
+                    CBSIS = "",
+                    CDBCR = "D",
+                    LCENTER_RESTR = false,
+                    LUSER_RESTR = false,
+                    CCENTER_CODE = "",
+                    CSEARCH_TEXT = Additional_viewModel.Data.CGLACCOUNT_NO
+                };
+
+                LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
+
+                var loResult = await loLookupViewModel.GetGLAccount(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    Additional_viewModel.Data.CGLACCOUNT_NAME = "";
+                    //await GLAccount_TextBox.FocusAsync();
+                    goto EndBlock;
+                }
+                
+                Additional_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Additional_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
@@ -335,7 +375,6 @@ namespace GSM03000FRONT
                 LCENTER_RESTR = false,
                 LUSER_RESTR = false,
                 CCENTER_CODE = "",
-                CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName
             };
             eventArgs.Parameter = param;
 

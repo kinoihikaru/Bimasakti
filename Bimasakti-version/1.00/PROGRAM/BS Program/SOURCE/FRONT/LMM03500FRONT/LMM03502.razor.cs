@@ -389,7 +389,6 @@ namespace LMM03500FRONT
         {
             eventArgs.Parameter = new GSL00400ParameterDTO()
             {
-                CCOMPANY_ID = _clientHelper.CompanyId,
                 CPROPERTY_ID = loTenantProfileViewModel.loTabParameter.CSELECTED_PROPERTY_ID,
                 CJRNGRP_TYPE = "20"
             };

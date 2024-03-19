@@ -12,6 +12,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL01800ViewModel
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL01800TreeDTO> CategoryGrid = new ObservableCollection<GSL01800TreeDTO>();
         public List<GSL01800DTO> ListResult = new List<GSL01800DTO>();  
@@ -44,6 +45,24 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task<GSL01800DTO> GetCategory(GSL01800DTOParameter poParameter)
+        {
+            var loEx = new R_Exception();
+            GSL01800DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL01800GetCategoryAsync(poParameter);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

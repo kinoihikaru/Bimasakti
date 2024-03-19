@@ -4,6 +4,7 @@ using APM00300MODEL;
 using BlazorClientHelper;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -147,9 +148,37 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
-        private void bankCode_OnLostFocus(object poParam)
+        private async Task bankCode_OnLostFocus()
         {
-            //_Supplier_viewModel.Data.CBANK_CODE = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (APM00330DTO)_SupplierBank_conductorRef.R_GetCurrentData();
+                var loParam = new GSL01200ParameterDTO() { CCB_TYPE = "B", CSEARCH_TEXT = loData.CBANK_CODE };
+
+                LookupGSL01200ViewModel loLookupViewModel = new LookupGSL01200ViewModel();
+
+                var loResult = await loLookupViewModel.GetBank(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CBANK_NAME = "";
+                    goto EndBlock;
+                }
+
+
+                loData.CBANK_NAME = loResult.CCB_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void cityCode_OnLostFocus(object poParam)
         {

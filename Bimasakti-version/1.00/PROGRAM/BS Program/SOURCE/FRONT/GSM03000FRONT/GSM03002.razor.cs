@@ -283,7 +283,6 @@ namespace GSM03000FRONT
                 LCENTER_RESTR = false,
                 LUSER_RESTR = false,
                 CCENTER_CODE = "",
-                CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName
             };
             eventArgs.Parameter = param;
             eventArgs.TargetPageType = typeof(GSL00500);

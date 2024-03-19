@@ -17,8 +17,7 @@
         <R_Label>@_localizer["_Department"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox @bind-Value="@_viewModel.PurchaseAdjuParam.CDEPT_CODE"
-                   ></R_TextBox>
+        <R_TextBox @bind-Value="@_viewModel.PurchaseAdjuParam.CDEPT_CODE" OnLostFocus="@DeptCode_OnLostFocus"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout col="0">
         <R_Lookup R_Before_Open_Lookup="@R_Before_Open_LookupDepartment"
@@ -92,7 +91,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="1">
         <R_TextBox @bind-Value="@_viewModel.PurchaseAdjuParam.CSUPPLIER_ID"
-                   Enabled="@(_viewModel.CSUPPLIER_OPTIONS == "S")"></R_TextBox>
+                   Enabled="@(_viewModel.CSUPPLIER_OPTIONS == "S")" OnLostFocus="@SupplierId_OnLostFocus"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout col="0">
         <R_Lookup Enabled="@(_viewModel.CSUPPLIER_OPTIONS == "S")" R_Before_Open_Lookup="@R_Before_Open_LookupSupplier" R_After_Open_Lookup="@R_After_Open_LookupSupplier">...</R_Lookup>

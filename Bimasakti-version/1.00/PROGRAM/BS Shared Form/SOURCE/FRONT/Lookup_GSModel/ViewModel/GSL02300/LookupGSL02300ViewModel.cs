@@ -10,6 +10,7 @@ namespace Lookup_GSModel.ViewModel
     public class LookupGSL02300ViewModel : R_ViewModel<GSL02300DTO>
     {
         private PublicLookupModel _model = new PublicLookupModel();
+        private PublicLookupRecordModel _modelRecord = new PublicLookupRecordModel();
 
         public ObservableCollection<GSL02300DTO> BuildingUnitGrid = new ObservableCollection<GSL02300DTO>();
 
@@ -29,6 +30,23 @@ namespace Lookup_GSModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<GSL02300DTO> GetBuildingUnit(GSL02300ParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            GSL02300DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelRecord.GSL02300GetBuildingUnitAsync(poParameter);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

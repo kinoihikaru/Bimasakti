@@ -27,7 +27,7 @@
         <R_Label>@_localizer["_Department"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="1">
-        <R_TextBox R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CDEPT_CODE" R_EnableAdd ></R_TextBox>
+        <R_TextBox R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CDEPT_CODE" R_EnableAdd OnLostFocus="@DeptCode_OnLostFocus"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout col="0">
         <R_Lookup R_ConductorSource="@_conRef" 
@@ -67,13 +67,14 @@
         <R_Label>@_localizer["_Supplier"]</R_Label>
     </R_ItemLayout>
     <R_ItemLayout col="2">
-        <R_TextBox @ref="@_supplierIdTextBox" R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CSUPPLIER_ID" R_EnableAdd R_EnableEdit></R_TextBox>
+        <R_TextBox @ref="@_supplierIdTextBox" R_ConductorSource="@_conRef" @bind-Value="@_viewModel.Data.CSUPPLIER_ID" R_EnableAdd R_EnableEdit OnLostFocus="@SupplierId_OnLostFocus"></R_TextBox>
     </R_ItemLayout>
     <R_ItemLayout col="0">
         <R_Lookup R_ConductorSource="@_conRef" R_Before_Open_Lookup="@R_Before_Open_LookupSupplier" R_After_Open_Lookup="@R_After_Open_LookupSupplier" R_EnableAdd R_EnableEdit>...</R_Lookup>
     </R_ItemLayout>
     <R_ItemLayout Style="width: 220px">
         <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_SEQ_NO"
+                   OnLostFocus="@"
                    Enabled=@(!string.IsNullOrWhiteSpace(_viewModel.Data.CSUPPLIER_ID) 
                    && _viewModel.Data.LONETIME == true 
                    && _conRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)>

@@ -514,10 +514,7 @@ namespace GLT00100FRONT
         {
             var param = new GSL00500ParameterDTO
             {
-                CCOMPANY_ID = clientHelper.CompanyId,
                 CPROGRAM_CODE = "GLM00100",
-                CUSER_ID = clientHelper.UserId,
-                CUSER_LANGUAGE = clientHelper.CultureUI.TwoLetterISOLanguageName,
                 CBSIS = "",
                 CDBCR = "",
                 CCENTER_CODE = "",
@@ -825,8 +822,6 @@ namespace GLT00100FRONT
         {
             var param = new GSL00700ParameterDTO
             {
-                CUSER_ID = clientHelper.UserId,
-                CCOMPANY_ID = clientHelper.CompanyId
             };
             eventArgs.Parameter = param;
             eventArgs.TargetPageType = typeof(GSL00700);

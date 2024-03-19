@@ -138,9 +138,7 @@ namespace APT00600FRONT
             }
             GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
             {
-                CCOMPANY_ID = "",
                 CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
-                CUSER_LOGIN_ID = ""
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL00710);

@@ -430,8 +430,6 @@ namespace GSM02500FRONT
         {
             var param = new GSL00600ParameterDTO()
             {
-                CCOMPANY_ID = "",
-                CUSER_ID = "",
                 CPROPERTY_ID = loUnitTypeViewModel.SelectedProperty.CPROPERTY_ID
             };
             eventArgs.Parameter = param;

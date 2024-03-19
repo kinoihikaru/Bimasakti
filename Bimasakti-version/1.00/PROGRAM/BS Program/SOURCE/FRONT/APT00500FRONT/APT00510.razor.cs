@@ -21,6 +21,7 @@ using R_LockingFront;
 using Lookup_APCOMMON.DTOs.APL00110;
 using GLF00100COMMON;
 using GLF00100FRONT;
+using Lookup_GSModel.ViewModel;
 
 namespace APT00500FRONT
 {
@@ -365,6 +366,41 @@ namespace APT00500FRONT
         #endregion
 
         #region Dept Lookup
+        private async Task DeptCode_OnLostFocus()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (APT00500DTO)_conRef.R_GetCurrentData();
+                GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
+                {
+                    CPROPERTY_ID = loData.CPROPERTY_ID,
+                    CSEARCH_TEXT = loData.CDEPT_CODE
+                };
+
+                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+
+                var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CDEPT_NAME = "";
+                    goto EndBlock;
+                }
+
+                loData.CDEPT_NAME = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
         private void R_Before_Open_LookupDepartment(R_BeforeOpenLookupEventArgs eventArgs)
         {
             if (string.IsNullOrWhiteSpace(_viewModel.Data.CPROPERTY_ID))
@@ -373,9 +409,7 @@ namespace APT00500FRONT
             }
             GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
             {
-                CCOMPANY_ID = "",
                 CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
-                CUSER_LOGIN_ID = ""
             };
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(GSL00710);
@@ -395,6 +429,40 @@ namespace APT00500FRONT
         #endregion
 
         #region Supplier Lookup
+        private async Task SupplierId_OnLostFocus()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                APL00100ParameterDTO loParam = new APL00100ParameterDTO()
+                {
+                    CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
+                    CSEARCH_TEXT = ""
+                };
+
+                //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+
+                //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+
+                //if (loResult == null)
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(
+                //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                //            "_ErrLookup01"));
+                //    DeptName = "";
+                //    goto EndBlock;
+                //}
+
+                //DeptName = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
         private void R_Before_Open_LookupSupplier(R_BeforeOpenLookupEventArgs eventArgs)
         {
             APL00100ParameterDTO loParam = new APL00100ParameterDTO()
@@ -423,6 +491,41 @@ namespace APT00500FRONT
         #endregion
 
         #region Supplier SEQ Lookup
+        private async Task SupplierSEQ_OnLostFocus()
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                //APL00110ParameterDTO loParam = new APL00110ParameterDTO()
+                //{
+                //    CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
+                //    CSUPPLIER_ID = _viewModel.Data.CSUPPLIER_ID,
+                //    CSEARCH_TEXT = ""
+                //};
+
+                //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+
+                //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+
+                //if (loResult == null)
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(
+                //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                //            "_ErrLookup01"));
+                //    DeptName = "";
+                //    goto EndBlock;
+                //}
+
+                //DeptName = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
+        }
         private void R_Before_Open_LookupSupplierSEQ(R_BeforeOpenLookupEventArgs eventArgs)
         {
             APL00110ParameterDTO loParam = new APL00110ParameterDTO()
