@@ -65,7 +65,7 @@
          R_GridType="R_eGridType.Original" R_ServiceGetListRecord="JournalGrid_ServiceGetListRecord"
          AllowAddNewRow="false"
          AllowDeleteRow="false"
-         AllowEditRow="false" Height="50%"
+         AllowEditRow="false" Height="250px"
          R_ServiceGetRecord="JournalGrid_ServiceGetRecord"
          R_Display="JournalGrid_Display">
      <R_GridColumns>
@@ -90,13 +90,10 @@
 
  <R_Grid Class="mt-3" @ref="@_gridJournalDet"
          DataSource="@_journalVM.JournaDetailGrid"
-        Pageable
-         R_ConductorGridSource="_conJournalDet"
-         R_GridType="R_eGridType.Original"
+         Pageable
+         R_GridType="R_eGridType.Navigator"
          R_ServiceGetListRecord="JournalDetGrid_ServiceGetListRecord"
-         AllowAddNewRow="false"
-         AllowDeleteRow="false"
-         AllowEditRow="false" Height="50%">
+        Height="250px">
      <R_GridColumns>
          <R_GridNumericColumn FieldName="@nameof(JournalDetailGridDTO.INO)" HeaderText="No." Width="100px"></R_GridNumericColumn>
          <R_GridTextColumn FieldName="@nameof(JournalDetailGridDTO.CGLACCOUNT_NO)" HeaderText="Account No." Width="100px"></R_GridTextColumn>
@@ -140,8 +137,4 @@
 
 <R_ConductorGrid @ref="_conJournal"
                       R_IsHeader>
-</R_ConductorGrid>
-
-<R_ConductorGrid @ref="_conJournalDet"
-                 R_ConductorParent="_conJournal">
 </R_ConductorGrid>

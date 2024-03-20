@@ -229,7 +229,6 @@ namespace LMM01500FRONT
                 return;
             }
 
-            loData.CPROPERTY_ID = _OtherCharges_viewModel.PropertyValueContext;
             loData.CINVGRP_CODE = _OtherCharges_viewModel.Data.CINVGRP_CODE;
             loData.CCHARGES_ID = loTempResult.CCHARGES_ID;
             loData.CCHARGES_NAME = loTempResult.CCHARGES_NAME;
@@ -238,5 +237,52 @@ namespace LMM01500FRONT
             loData.CCHARGES_TYPE_DESCR = loTempResult.CCHARGES_TYPE_DESCR;
         }
 
+        private async Task OtherCharges_CellLostFocus(R_CellLostFocusedEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (eventArgs.ColumnName == "CCHARGES_ID")
+                {
+                    var loParam = new LMM01531DTO { CPROPERTY_ID = _OtherCharges_viewModel.PropertyValueContext, CSEARCH_TEXT = eventArgs.Value.ToString() };
+
+                    LMM01531ViewModel loLookupViewModel = new LMM01531ViewModel();
+
+                    var loResult = await loLookupViewModel.GetLookupOtherChargesRecord(loParam);
+
+                    var loChargesNameColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_NAME");
+                    var loUnitUtilityChargeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "UNIT_UTILITY_CHARGE");
+                    var loUnitChargesTypeDescColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE_DESCR");
+                    var loUnitChargesTypeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE");
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+
+                        //loChargesNameColumn.Value = "";
+                        //loUnitUtilityChargeColumn.Value = "";
+                        //loUnitChargesTypeDescColumn.Value = "";
+                        //loUnitChargesTypeColumn.Value = "";
+                        goto EndBlock;
+                    }
+
+                    //loChargesNameColumn.Value = loResult.CCHARGES_NAME;
+                    //loUnitUtilityChargeColumn.Value = loResult.UNIT_UTILITY_CHARGE;
+                    //loUnitChargesTypeDescColumn.Value = loResult.CCHARGES_TYPE_DESCR;
+                    //loUnitChargesTypeColumn.Value = loResult.CCHARGES_TYPE;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
     }
 }

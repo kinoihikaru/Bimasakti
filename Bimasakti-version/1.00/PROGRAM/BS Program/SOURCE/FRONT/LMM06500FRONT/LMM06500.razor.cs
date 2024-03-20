@@ -5,6 +5,7 @@ using LMM06500FrontResources;
 using LMM06500MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Lookup_LMCOMMON.DTOs;
 using Lookup_LMFRONT;
 using Microsoft.AspNetCore.Components;
@@ -225,9 +226,39 @@ namespace LMM06500FRONT
             btnUploadEnable = !string.IsNullOrEmpty(_Staff_viewModel.PropertyValueContext);
         }
 
-        private void DeptCode_OnLostFocus(object poParam)
+        private async Task DeptCode_OnLostFocus()
         {
-            //_Staff_viewModel.Data.CDEPT_CODE = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM06500DTO)_Staff_conductorRef.R_GetCurrentData();
+                var param = new GSL00700ParameterDTO
+                {
+                    CSEARCH_TEXT = loData.CDEPT_CODE
+                };
+
+                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+
+                var loResult = await loLookupViewModel.GetDepartment(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CDEPT_NAME = "";
+                    goto EndBlock;
+                }
+
+                loData.CDEPT_NAME = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Staff_Department_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
@@ -254,7 +285,7 @@ namespace LMM06500FRONT
         }
 
         private bool SupervisorLookup = false;
-        private void Staff_Position_OnChange(string poParam)
+        private async Task Staff_Position_OnChange(string poParam)
         {
             _Staff_viewModel.Data.CPOSITION = poParam;
             var loData = (LMM06500DTO)_Staff_conductorRef.R_GetCurrentData();

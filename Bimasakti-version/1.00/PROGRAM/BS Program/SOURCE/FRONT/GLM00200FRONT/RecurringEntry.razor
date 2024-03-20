@@ -1,7 +1,7 @@
 ﻿@using Lookup_GSCOMMON.DTOs;
 @inherits R_Page
 
-<R_GroupBox Title="Journal Description">
+<R_GroupBox Title="Journal Description" TitleClass="text-danger">
     <R_StackLayout Row>
         <R_ItemLayout col="1">
             <R_Label>Department</R_Label>
@@ -265,7 +265,7 @@
             <R_TextBox @bind-value="@_journalVM.Data.CTRANS_DESC"
                        R_ConductorSource="_conJournalNavigator"
                        MaxLength="200"
-                       R_EnableAdd />
+                       R_EnableAdd R_EnableEdit/>
          </R_ItemLayout>
          <R_ItemLayout col="1">
              <R_Label>Created By</R_Label>
@@ -310,7 +310,7 @@
     </R_StackLayout>
 </R_GroupBox>
 
-<R_GroupBox Title="Journal Detail">
+<R_GroupBox Title="Journal Detail" TitleClass="text-danger">
     <R_Grid @ref="@_gridJournalDet"
             DataSource="@_journalVM.JournaDetailGrid"
             Pageable

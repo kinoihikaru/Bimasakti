@@ -188,7 +188,7 @@ namespace CBM00100FRONT
             {
                 GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
                 {
-                    CPROGRAM_CODE = "CBM00100",
+                    CPROGRAM_CODE = "GSM06001",
                     CGOA_CODE = "TRF",
                     CSEARCH_TEXT = _viewModel.SystemParameterCB.CCONTRA_ACCOUNT_NO
                 };
@@ -219,7 +219,7 @@ namespace CBM00100FRONT
         {
             GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
             {
-                CPROGRAM_CODE = "CBM00100",
+                CPROGRAM_CODE = "GSM06001",
                 CGOA_CODE = "TRF"
             };
             eventArgs.Parameter = loParam;
@@ -247,7 +247,7 @@ namespace CBM00100FRONT
             {
                 GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
                 {
-                    CPROGRAM_CODE = "CBM00100",
+                    CPROGRAM_CODE = "GSM06001",
                     CGOA_CODE = "CRDVG",
                     CSEARCH_TEXT = _viewModel.SystemParameterCB.CCRDVG_ACCOUNT_NO
                 };
@@ -278,7 +278,7 @@ namespace CBM00100FRONT
         {
             GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
             {
-                CPROGRAM_CODE = "CBM00100",
+                CPROGRAM_CODE = "GSM06001",
                 CGOA_CODE = "CRDVG"
             };
             eventArgs.Parameter = loParam;
@@ -305,7 +305,7 @@ namespace CBM00100FRONT
             {
                 GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
                 {
-                    CPROGRAM_CODE = "CBM00100",
+                    CPROGRAM_CODE = "GSM06001",
                     CGOA_CODE = "CRDVL",
                     CSEARCH_TEXT = _viewModel.SystemParameterCB.CCRDVL_ACCOUNT_NO
                 };
@@ -336,7 +336,7 @@ namespace CBM00100FRONT
         {
             GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
             {
-                CPROGRAM_CODE = "CBM00100",
+                CPROGRAM_CODE = "GSM06001",
                 CGOA_CODE = "CRDVL"
             };
             eventArgs.Parameter = loParam;

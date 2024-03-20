@@ -5,6 +5,7 @@ using LMM01000FrontResources;
 using LMM01000MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -275,9 +276,39 @@ namespace LMM01000FRONT
         }
 
 
-        private void OtherTaxID_OnLostFocus(object poParam)
+        private async Task OtherTaxID_OnLostFocus()
         {
-            //_General_viewModel.Data.COTHER_TAX_ID = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
+                var param = new GSL00100ParameterDTO
+                {
+                    CSEARCH_TEXT = loData.COTHER_TAX_ID
+                };
+
+                LookupGSL00100ViewModel loLookupViewModel = new LookupGSL00100ViewModel();
+
+                var loResult = await loLookupViewModel.GetSalesTax(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CTAX_OTHER_NAME = "";
+                    goto EndBlock;
+                }
+
+                loData.CTAX_OTHER_NAME = loResult.CTAX_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void UtilityCharges_OtherTax_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
@@ -300,9 +331,43 @@ namespace LMM01000FRONT
             loData.CTAX_OTHER_NAME = loTempResult.CTAX_NAME;
         }
 
-        private void WitholdTaxID_OnLostFocus(object poParam)
+        private async Task WitholdTaxID_OnLostFocus()
         {
-            //_General_viewModel.Data.CWITHHOLDING_TAX_ID = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
+                var param = new GSL00200ParameterDTO
+                {
+                    CPROPERTY_ID = _General_viewModel.PropertyValueContext,
+                    CTAX_TYPE_LIST = loData.CWITHHOLDING_TAX_TYPE,
+                    CSEARCH_TEXT = loData.CWITHHOLDING_TAX_ID
+                };
+
+                LookupGSL00200ViewModel loLookupViewModel = new LookupGSL00200ViewModel();
+
+                var loResult = await loLookupViewModel.GetWithholdingTax(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CWITHHOLDING_TAX_NAME = "";
+                    loData.NTAX_PERCENTAGE_WITHHOLDING = 0;
+                    goto EndBlock;
+                }
+
+                loData.CWITHHOLDING_TAX_NAME = loResult.CTAX_NAME;
+                loData.NTAX_PERCENTAGE_WITHHOLDING = loResult.NTAX_PERCENTAGE;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void UtilityCharges_WithholdingTax_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
@@ -329,9 +394,45 @@ namespace LMM01000FRONT
             loData.CWITHHOLDING_TAX_NAME = loTempResult.CTAX_NAME;
             loData.NTAX_PERCENTAGE_WITHHOLDING = loTempResult.NTAX_PERCENTAGE;
         }
-        private void JrnlCode_OnLostFocus(object poParam)
+        private async Task JrnlCode_OnLostFocus()
         {
-            //_General_viewModel.Data.CUTILITY_JRNGRP_CODE = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
+                var param = new GSL00400ParameterDTO
+                {
+                    CPROPERTY_ID = _General_viewModel.PropertyValueContext,
+                    CJRNGRP_TYPE = "11",
+                    CSEARCH_TEXT = loData.CUTILITY_JRNGRP_CODE
+                };
+
+                LookupGSL00400ViewModel loLookupViewModel = new LookupGSL00400ViewModel();
+
+                var loResult = await loLookupViewModel.GetJournalGroup(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CUTILITY_JRNGRP_NAME = "";
+                    loData.LACCRUAL = false;
+                    _General_viewModel.Accrual = false;
+                    goto EndBlock;
+                }
+
+                loData.CUTILITY_JRNGRP_NAME = loResult.CJRNGRP_NAME;
+                loData.LACCRUAL = loResult.LACCRUAL;
+                _General_viewModel.Accrual = loResult.LACCRUAL;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void UtilityCharges_JournalGrp_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {

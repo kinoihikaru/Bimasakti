@@ -165,7 +165,7 @@
                 <R_TextBox @bind-Value="@_Staff_viewModel.Data.CCITY_CODE"
                            R_ConductorSource="@_Staff_conductorRef"
                            OnLostFocus="@City_OnLostFocus"
-                           R_EnableAdd R_EnableEdit></R_TextBox>
+                           Enabled="false"></R_TextBox>
             </R_ItemLayout>
             <R_ItemLayout col="0">
                 <R_Lookup R_ConductorSource="@_Staff_conductorRef" R_Before_Open_Lookup="@_Staff_City_Before_Open_Popup" R_After_Open_Lookup="@_Staff_City_After_Open_Popup" R_EnableAdd R_EnableEdit>...</R_Lookup>

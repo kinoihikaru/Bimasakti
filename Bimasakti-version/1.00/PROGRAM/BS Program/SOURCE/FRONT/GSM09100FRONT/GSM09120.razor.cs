@@ -5,6 +5,7 @@ using GSM09100MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_GSModel;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.VisualBasic;
 using R_BlazorFrontEnd.Controls;
@@ -72,9 +73,40 @@ namespace GSM09100FRONT
             R_DisplayException(loEx);
         }
 
-        private void Catogory_OnLostFocus(object poParam)
+        private async Task Catogory_OnLostFocus()
         {
-            //_viewModel_MoveProduct.MoveProduct.CTO_CATEGORY = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var param = new GSL01800DTOParameter
+                {
+                    CPROPERTY_ID = _viewModel_MoveProduct.MoveProduct.CPROPERTY_ID,
+                    CCATEGORY_TYPE = ContextConstant.VAR_CATEGORY_TYPE,
+                    CSEARCH_TEXT = _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY
+                };
+
+                LookupGSL01800ViewModel loLookupViewModel = new LookupGSL01800ViewModel();
+
+                var loResult = await loLookupViewModel.GetCategory(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = "";
+                    goto EndBlock;
+                }
+
+                _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = loResult.CCATEGORY_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Product_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {

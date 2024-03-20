@@ -3,6 +3,7 @@ using LMM01500COMMON;
 using LMM01500MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -311,9 +312,41 @@ namespace LMM01500FRONT
 
             OneTimePercentageEnable = false;
         }
-        private void PinaltyId_OnLostFocus(object poParam)
+        private async Task PinaltyId_OnLostFocus()
         {
-            //_InvPinalty_viewModel.Data.CPENALTY_ADD_ID = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM01520DTO)_InvPinalty_conductorRef.R_GetCurrentData();
+                var param = new GSL01400ParameterDTO
+                {
+                    CPROPERTY_ID = _InvPinalty_viewModel.PropertyValueContext,
+                    CCHARGES_TYPE_ID = "A",
+                    CSEARCH_TEXT = loData.CPENALTY_ADD_ID
+                };
+
+                LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
+
+                var loResult = await loLookupViewModel.GetOtherCharges(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CCHARGES_NAME = "";
+                    goto EndBlock;
+                }
+
+                loData.CCHARGES_NAME = loResult.CCHARGES_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Pinalty_OtherCharges_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {

@@ -31,6 +31,24 @@ namespace LMM01500MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
+        public async Task<LMM01531DTO> GetLookupOtherChargesRecord(LMM01531DTO poParam)
+        {
+            var loEx = new R_Exception();
+            LMM01531DTO loRtn = null;
+            try
+            {
+                var loResult = await _LMM01530Model.GetOtherChargesRecordLookupAsync(poParam);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
     }
 
 }

@@ -113,6 +113,40 @@ namespace LMM01500SERVICE
         }
 
         [HttpPost]
+        public LMM01500SingleResult<LMM01531DTO> GetOtherChargesRecordLookup(LMM01531DTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetOtherChargesRecordLookup");
+            var loEx = new R_Exception();
+            LMM01500SingleResult<LMM01531DTO> loRtn = new();
+            _Logger.LogInfo("Start GetOtherChargesRecordLookup");
+
+            try
+            {
+                var loCls = new LMM01530Cls();
+
+                _Logger.LogInfo("Set Param GetOtherChargesRecordLookup");
+                poEntity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poEntity.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _Logger.LogInfo("Call Back Method GetAllOtherChargesLookup");
+                var loResult = loCls.GetAllOtherChargesLookup(poEntity);
+
+                _Logger.LogInfo("Get data by search text GetOtherChargesRecordLookup");
+                loRtn.Data = loResult.Find(x => x.CCHARGES_ID == poEntity.CSEARCH_TEXT);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GetOtherChargesRecordLookup");
+
+            return loRtn;
+        }
+
+        [HttpPost]
         public R_ServiceDeleteResultDTO R_ServiceDelete(R_ServiceDeleteParameterDTO<LMM01530DTO> poParameter)
         {
             using Activity activity = _activitySource.StartActivity("R_ServiceDelete");

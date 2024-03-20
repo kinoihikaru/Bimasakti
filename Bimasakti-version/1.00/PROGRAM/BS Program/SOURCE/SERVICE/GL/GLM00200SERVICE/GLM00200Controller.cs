@@ -266,5 +266,39 @@ namespace GLM00200Service
             //_Logger.LogInfo("End GetLastCurrency");
             return loRtn;
         }
+
+        [HttpPost]
+        public IAsyncEnumerable<JournalDetailActualGridDTO> GetAllActualJournalDetailList()
+        {
+            //using Activity activity = _activitySource.StartActivity("GetAllActualJournalDetailList");
+            var loEx = new R_Exception();
+            IAsyncEnumerable<JournalDetailActualGridDTO> loRtn = null;
+            //_Logger.LogInfo("Start GetAllActualJournalDetailList");
+
+            try
+            {
+                //_Logger.LogInfo("Set Param GetAllActualJournalDetailList");
+                var poParam = new RecurringJournalListParamDTO();
+                poParam.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(RecurringJournalContext.CDEPT_CODE);
+                poParam.CREF_NO = R_Utility.R_GetStreamingContext<string>(RecurringJournalContext.CREF_NO);
+
+                //_Logger.LogInfo("Call Back Method GetActualJournalList");
+                var loCls = new GLM00200Cls();
+                var loTempRtn = loCls.GetActualJournalList(poParam);
+
+                //_Logger.LogInfo("Call Stream Method Data GetAllActualJournalDetailList");
+                loRtn = GetStreamData<JournalDetailActualGridDTO>(loTempRtn);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                //_Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            //_Logger.LogInfo("End GetAllActualJournalDetailList");
+
+            return loRtn;
+        }
     }
 }

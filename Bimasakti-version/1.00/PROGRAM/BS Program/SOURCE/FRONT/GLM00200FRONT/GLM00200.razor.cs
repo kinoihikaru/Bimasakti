@@ -45,8 +45,8 @@ namespace GLM00200Front
         { }
         private void Predef_ActualJournalList(R_InstantiateDockEventArgs eventArgs)
         {
-            //eventArgs.TargetPageType = typeof(ActualJournalList);
-            eventArgs.Parameter = "ACTUAL JOURNAL LIST";
+            eventArgs.TargetPageType = typeof(ActualJournalList);
+            eventArgs.Parameter = _journalVM.Journal;
         }
         private void AfterPredef_ActualJournalList(R_AfterOpenPredefinedDockEventArgs eventArgs)
         { }
@@ -156,7 +156,7 @@ namespace GLM00200Front
             {
                 var loData = (JournalDTO)eventArgs.Parameter;
                 await _journalVM.ShowAllJournalDetail(loData);
-                //eventArgs.ListEntityResult = _journalVM._JournaDetailList;
+                eventArgs.ListEntityResult = _journalVM.JournaDetailGrid;
             }
             catch (Exception ex)
             {

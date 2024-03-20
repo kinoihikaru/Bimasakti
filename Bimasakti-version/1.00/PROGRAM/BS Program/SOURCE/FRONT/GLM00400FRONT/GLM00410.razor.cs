@@ -3,6 +3,7 @@ using GLM00400COMMON;
 using GLM00400MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
@@ -267,9 +268,44 @@ namespace GLM00400FRONT
 
         #endregion
         #region Lost Focus
-        private void DeptCode_OnLostFocus(object poParam)
+        private async Task DeptCode_OnLostFocus(object poParam)
         {
-            //_AllocationJournalDT_viewModel.Data.CDEPT_CODE = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (GLM00410DTO)_AllocationJournalDT_conductorRef.R_GetCurrentData();
+
+                GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                {
+                    CSEARCH_TEXT = loData.CDEPT_CODE
+                };
+
+                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+
+                var loResult = await loLookupViewModel.GetDepartment(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    loData.CDEPT_NAME = "";
+                    loData.CSOURCE_CENTER_CODE = "";
+                    loData.CSOURCE_CENTER_NAME = "";
+                    goto EndBlock;
+                }
+
+                loData.CDEPT_NAME = loResult.CDEPT_NAME;
+                loData.CSOURCE_CENTER_CODE = loResult.CCENTER_CODE;
+                loData.CSOURCE_CENTER_NAME = loResult.CCENTER_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         #endregion
 

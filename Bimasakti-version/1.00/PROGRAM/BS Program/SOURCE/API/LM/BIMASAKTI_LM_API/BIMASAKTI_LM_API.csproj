@@ -2,8 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+	  <Nullable>disable</Nullable>
+	  <RootNamespace>BIMASAKTI_LM_API</RootNamespace>
+	  <AssemblyName>BIMASAKTI_LM_API</AssemblyName>
+	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,14 +15,9 @@
 
   <ItemGroup>
 	 <PackageReference Include="Realta.BackCollectionNuGet" Version="1.0.1" />
-	 <!--<PackageReference Include="Realta.CommonCollectionNuGet" Version="1.0.0" />-->
-    <!--<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />-->
   </ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Image\CompanyLogo.png">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</EmbeddedResource>
 		<EmbeddedResource Include="Template\Contractor.xlsx" />
 		<EmbeddedResource Include="Template\Staff.xlsx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>

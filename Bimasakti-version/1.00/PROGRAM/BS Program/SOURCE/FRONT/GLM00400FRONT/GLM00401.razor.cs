@@ -3,11 +3,13 @@ using GLM00400COMMON;
 using GLM00400MODEL;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Lookup_GSModel.ViewModel;
 using Microsoft.AspNetCore.Components;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;
 using R_BlazorFrontEnd.Controls.Grid;
 using R_BlazorFrontEnd.Exceptions;
+using R_BlazorFrontEnd.Helpers;
 using R_BlazorFrontEnd.Interfaces;
 
 namespace GLM00400FRONT
@@ -51,9 +53,39 @@ namespace GLM00400FRONT
 
             R_DisplayException(loEx);
         }
-        private void DeptCode_OnLostFocus(object poParam)
+        private async Task DeptCode_OnLostFocus()
         {
-            //_AllocationJournalHD_viewModel.Data.CDEPT_CODE = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                
+                GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                {
+                    CSEARCH_TEXT = _AllocationJournalHD_viewModel.Data.CDEPT_CODE
+                };
+
+                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+
+                var loResult = await loLookupViewModel.GetDepartment(loParam);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                            "_ErrLookup01"));
+                    _DeptName = "";
+                    goto EndBlock;
+                }
+
+                _DeptName = loResult.CDEPT_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Allocation_Department_Before_Open_Lookup(R_BeforeOpenLookupEventArgs e)
         {

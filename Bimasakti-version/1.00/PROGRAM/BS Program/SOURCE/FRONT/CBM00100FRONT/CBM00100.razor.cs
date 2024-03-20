@@ -312,7 +312,7 @@ namespace CBM00100FRONT
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
                 GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
                 {
-                    CPROGRAM_CODE = "CBM00100",
+                    CPROGRAM_CODE = "GSM06001",
                     CGOA_CODE = "TRF",
                     CSEARCH_TEXT = loData.CCONTRA_ACCOUNT_NO
                 };
@@ -343,7 +343,7 @@ namespace CBM00100FRONT
         {
             GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
             {
-                CPROGRAM_CODE = "CBM00100",
+                CPROGRAM_CODE = "GSM06001",
                 CGOA_CODE = "TRF"
             };
             eventArgs.Parameter = loParam;
@@ -372,7 +372,7 @@ namespace CBM00100FRONT
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
                 GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
                 {
-                    CPROGRAM_CODE = "CBM00100",
+                    CPROGRAM_CODE = "GSM06001",
                     CGOA_CODE = "CRDVG",
                     CSEARCH_TEXT = loData.CCRDVG_ACCOUNT_NO
                 };
@@ -403,7 +403,7 @@ namespace CBM00100FRONT
         {
             GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
             {
-                CPROGRAM_CODE = "CBM00100",
+                CPROGRAM_CODE = "GSM06001",
                 CGOA_CODE = "CRDVG"
             };
             eventArgs.Parameter = loParam;
@@ -432,7 +432,7 @@ namespace CBM00100FRONT
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
                 GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
                 {
-                    CPROGRAM_CODE = "CBM00100",
+                    CPROGRAM_CODE = "GSM06001",
                     CGOA_CODE = "CRDVL",
                     CSEARCH_TEXT = loData.CCRDVL_ACCOUNT_NO
                 };
@@ -463,7 +463,7 @@ namespace CBM00100FRONT
         {
             GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
             {
-                CPROGRAM_CODE = "CBM00100",
+                CPROGRAM_CODE = "GSM06001",
                 CGOA_CODE = "CRDVL"
             };
             eventArgs.Parameter = loParam;

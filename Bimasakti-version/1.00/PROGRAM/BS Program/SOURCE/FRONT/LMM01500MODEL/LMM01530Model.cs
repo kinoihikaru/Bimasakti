@@ -91,5 +91,38 @@ namespace LMM01500MODEL
 
             return loResult;
         }
+
+        public LMM01500SingleResult<LMM01531DTO> GetOtherChargesRecordLookup(LMM01531DTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<LMM01531DTO> GetOtherChargesRecordLookupAsync(LMM01531DTO poParam)
+        {
+            var loEx = new R_Exception();
+            LMM01531DTO loResult = null;
+
+            try
+            {
+
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<LMM01500SingleResult<LMM01531DTO>, LMM01531DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(ILMM01530.GetOtherChargesRecordLookup),
+                    poParam,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
     }
 }

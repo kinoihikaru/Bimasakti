@@ -74,7 +74,7 @@
     </R_ItemLayout>
     <R_ItemLayout Style="width: 220px">
         <R_TextBox @bind-Value="@_viewModel.Data.CSUPPLIER_SEQ_NO"
-                   OnLostFocus="@"
+                   OnLostFocus="@SupplierSEQ_OnLostFocus"
                    Enabled=@(!string.IsNullOrWhiteSpace(_viewModel.Data.CSUPPLIER_ID) 
                    && _viewModel.Data.LONETIME == true 
                    && _conRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal)>

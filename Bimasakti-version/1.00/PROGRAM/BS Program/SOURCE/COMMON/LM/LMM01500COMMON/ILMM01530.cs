@@ -7,6 +7,7 @@ namespace LMM01500COMMON
     {
         IAsyncEnumerable<LMM01530DTO> GetAllOtherChargerList();
         IAsyncEnumerable<LMM01531DTO> GetOtherChargesLookup();
+        LMM01500SingleResult<LMM01531DTO> GetOtherChargesRecordLookup(LMM01531DTO poEntity);
     }
 
 }
