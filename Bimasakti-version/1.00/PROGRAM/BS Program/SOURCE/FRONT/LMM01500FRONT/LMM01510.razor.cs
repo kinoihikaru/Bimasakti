@@ -276,26 +276,33 @@ namespace LMM01500FRONT
 
             try
             {
-                var param = new GSL00700ParameterDTO
+                if (_BankAccountGrid_viewModel.Data.CDEPT_CODE.Length > 0)
                 {
-                    CSEARCH_TEXT = _BankAccountGrid_viewModel.Data.CDEPT_CODE
-                };
+                    var param = new GSL00700ParameterDTO
+                    {
+                        CSEARCH_TEXT = _BankAccountGrid_viewModel.Data.CDEPT_CODE
+                    };
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
 
-                var loResult = await loLookupViewModel.GetDepartment(param);
+                    var loResult = await loLookupViewModel.GetDepartment(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
-                    //await GLAccount_TextBox.FocusAsync();
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                        goto EndBlock;
+                    }
+
+                    _BankAccountGrid_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
                 }
-
-                _BankAccountGrid_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
+                else
+                {
+                    _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -339,27 +346,34 @@ namespace LMM01500FRONT
 
             try
             {
-                var param = new GSL01200ParameterDTO
+                if (_BankAccountGrid_viewModel.Data.CBANK_CODE.Length > 0)
                 {
-                    CCB_TYPE = "B",
-                    CSEARCH_TEXT = _BankAccountGrid_viewModel.Data.CBANK_CODE
-                };
+                    var param = new GSL01200ParameterDTO
+                    {
+                        CCB_TYPE = "B",
+                        CSEARCH_TEXT = _BankAccountGrid_viewModel.Data.CBANK_CODE
+                    };
 
-                LookupGSL01200ViewModel loLookupViewModel = new LookupGSL01200ViewModel();
+                    LookupGSL01200ViewModel loLookupViewModel = new LookupGSL01200ViewModel();
 
-                var loResult = await loLookupViewModel.GetBank(param);
+                    var loResult = await loLookupViewModel.GetBank(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    _BankAccountGrid_viewModel.Data.CBANK_NAME = "";
-                    //await GLAccount_TextBox.FocusAsync();
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _BankAccountGrid_viewModel.Data.CBANK_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                        goto EndBlock;
+                    }
+
+                    _BankAccountGrid_viewModel.Data.CBANK_NAME = loResult.CCB_NAME;
                 }
-
-                _BankAccountGrid_viewModel.Data.CBANK_NAME = loResult.CCB_NAME;
+                else
+                {
+                    _BankAccountGrid_viewModel.Data.CBANK_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -397,24 +411,27 @@ namespace LMM01500FRONT
             try
             {
                 var loGetData = (LMM01511DTO)_BankAccountGrid_conductorRef.R_GetCurrentData();
-                var param = new GSL01300ParameterDTO
+                if (loGetData.CBANK_ACCOUNT.Length > 0)
                 {
-                    CBANK_TYPE = "B",
-                    CCB_CODE = loGetData.CBANK_CODE,
-                    CDEPT_CODE = loGetData.CDEPT_CODE,
-                    CSEARCH_TEXT = loGetData.CBANK_ACCOUNT
-                };
+                    var param = new GSL01300ParameterDTO
+                    {
+                        CBANK_TYPE = "B",
+                        CCB_CODE = loGetData.CBANK_CODE,
+                        CDEPT_CODE = loGetData.CDEPT_CODE,
+                        CSEARCH_TEXT = loGetData.CBANK_ACCOUNT
+                    };
 
-                LookupGSL01300ViewModel loLookupViewModel = new LookupGSL01300ViewModel();
+                    LookupGSL01300ViewModel loLookupViewModel = new LookupGSL01300ViewModel();
 
-                var loResult = await loLookupViewModel.GetBankAccount(param);
+                    var loResult = await loLookupViewModel.GetBankAccount(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        goto EndBlock;
+                    }
                 }
             }
             catch (Exception ex)

@@ -283,25 +283,32 @@ namespace LMM01000FRONT
             try
             {
                 var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
-                var param = new GSL00100ParameterDTO
+                if (loData.COTHER_TAX_ID.Length > 0)
                 {
-                    CSEARCH_TEXT = loData.COTHER_TAX_ID
-                };
+                    var param = new GSL00100ParameterDTO
+                    {
+                        CSEARCH_TEXT = loData.COTHER_TAX_ID
+                    };
 
-                LookupGSL00100ViewModel loLookupViewModel = new LookupGSL00100ViewModel();
+                    LookupGSL00100ViewModel loLookupViewModel = new LookupGSL00100ViewModel();
 
-                var loResult = await loLookupViewModel.GetSalesTax(param);
+                    var loResult = await loLookupViewModel.GetSalesTax(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CTAX_OTHER_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CTAX_OTHER_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CTAX_OTHER_NAME = loResult.CTAX_NAME;
                 }
-
-                loData.CTAX_OTHER_NAME = loResult.CTAX_NAME;
+                else
+                {
+                    loData.CTAX_OTHER_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -338,29 +345,37 @@ namespace LMM01000FRONT
             try
             {
                 var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
-                var param = new GSL00200ParameterDTO
+                if (loData.CWITHHOLDING_TAX_ID.Length > 0)
                 {
-                    CPROPERTY_ID = _General_viewModel.PropertyValueContext,
-                    CTAX_TYPE_LIST = loData.CWITHHOLDING_TAX_TYPE,
-                    CSEARCH_TEXT = loData.CWITHHOLDING_TAX_ID
-                };
+                    var param = new GSL00200ParameterDTO
+                    {
+                        CPROPERTY_ID = _General_viewModel.PropertyValueContext,
+                        CTAX_TYPE_LIST = loData.CWITHHOLDING_TAX_TYPE,
+                        CSEARCH_TEXT = loData.CWITHHOLDING_TAX_ID
+                    };
 
-                LookupGSL00200ViewModel loLookupViewModel = new LookupGSL00200ViewModel();
+                    LookupGSL00200ViewModel loLookupViewModel = new LookupGSL00200ViewModel();
 
-                var loResult = await loLookupViewModel.GetWithholdingTax(param);
+                    var loResult = await loLookupViewModel.GetWithholdingTax(param);
 
-                if (loResult == null)
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CWITHHOLDING_TAX_NAME = "";
+                        loData.NTAX_PERCENTAGE_WITHHOLDING = 0;
+                        goto EndBlock;
+                    }
+
+                    loData.CWITHHOLDING_TAX_NAME = loResult.CTAX_NAME;
+                    loData.NTAX_PERCENTAGE_WITHHOLDING = loResult.NTAX_PERCENTAGE;
+                }
+                else
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
                     loData.CWITHHOLDING_TAX_NAME = "";
                     loData.NTAX_PERCENTAGE_WITHHOLDING = 0;
-                    goto EndBlock;
                 }
-
-                loData.CWITHHOLDING_TAX_NAME = loResult.CTAX_NAME;
-                loData.NTAX_PERCENTAGE_WITHHOLDING = loResult.NTAX_PERCENTAGE;
             }
             catch (Exception ex)
             {
@@ -401,31 +416,40 @@ namespace LMM01000FRONT
             try
             {
                 var loData = (LMM01000DTO)_UtilityCharges_conductorRef.R_GetCurrentData();
-                var param = new GSL00400ParameterDTO
+                if (loData.CUTILITY_JRNGRP_CODE.Length > 0)
                 {
-                    CPROPERTY_ID = _General_viewModel.PropertyValueContext,
-                    CJRNGRP_TYPE = "11",
-                    CSEARCH_TEXT = loData.CUTILITY_JRNGRP_CODE
-                };
+                    var param = new GSL00400ParameterDTO
+                    {
+                        CPROPERTY_ID = _General_viewModel.PropertyValueContext,
+                        CJRNGRP_TYPE = "11",
+                        CSEARCH_TEXT = loData.CUTILITY_JRNGRP_CODE
+                    };
 
-                LookupGSL00400ViewModel loLookupViewModel = new LookupGSL00400ViewModel();
+                    LookupGSL00400ViewModel loLookupViewModel = new LookupGSL00400ViewModel();
 
-                var loResult = await loLookupViewModel.GetJournalGroup(param);
+                    var loResult = await loLookupViewModel.GetJournalGroup(param);
 
-                if (loResult == null)
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CUTILITY_JRNGRP_NAME = "";
+                        loData.LACCRUAL = false;
+                        _General_viewModel.Accrual = false;
+                        goto EndBlock;
+                    }
+
+                    loData.CUTILITY_JRNGRP_NAME = loResult.CJRNGRP_NAME;
+                    loData.LACCRUAL = loResult.LACCRUAL;
+                    _General_viewModel.Accrual = loResult.LACCRUAL;
+                }
+                else
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
                     loData.CUTILITY_JRNGRP_NAME = "";
                     loData.LACCRUAL = false;
                     _General_viewModel.Accrual = false;
-                    goto EndBlock;
                 }
-
-                loData.CUTILITY_JRNGRP_NAME = loResult.CJRNGRP_NAME;
-                loData.LACCRUAL = loResult.LACCRUAL;
-                _General_viewModel.Accrual = loResult.LACCRUAL;
             }
             catch (Exception ex)
             {

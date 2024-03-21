@@ -373,26 +373,33 @@ namespace APT00500FRONT
             try
             {
                 var loData = (APT00500DTO)_conRef.R_GetCurrentData();
-                GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
+                if (loData.CDEPT_CODE.Length > 0)
                 {
-                    CPROPERTY_ID = loData.CPROPERTY_ID,
-                    CSEARCH_TEXT = loData.CDEPT_CODE
-                };
+                    GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
+                    {
+                        CPROPERTY_ID = loData.CPROPERTY_ID,
+                        CSEARCH_TEXT = loData.CDEPT_CODE
+                    };
 
-                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                    LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
 
-                var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+                    var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CDEPT_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CDEPT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CDEPT_NAME = loResult.CDEPT_NAME;
                 }
-
-                loData.CDEPT_NAME = loResult.CDEPT_NAME;
+                else
+                {
+                    loData.CDEPT_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -435,26 +442,34 @@ namespace APT00500FRONT
 
             try
             {
-                APL00100ParameterDTO loParam = new APL00100ParameterDTO()
+                var loData = (APT00500DTO)_conRef.R_GetCurrentData();
+                if (loData.CSUPPLIER_ID.Length > 0)
                 {
-                    CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
-                    CSEARCH_TEXT = ""
-                };
+                    APL00100ParameterDTO loParam = new APL00100ParameterDTO()
+                    {
+                        CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
+                        CSEARCH_TEXT = loData.CSUPPLIER_ID
+                    };
 
-                //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                    //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
 
-                //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+                    //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-                //if (loResult == null)
-                //{
-                //    loEx.Add(R_FrontUtility.R_GetError(
-                //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                //            "_ErrLookup01"));
-                //    DeptName = "";
-                //    goto EndBlock;
-                //}
+                    //if (loResult == null)
+                    //{
+                    //    loEx.Add(R_FrontUtility.R_GetError(
+                    //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    //            "_ErrLookup01"));
+                    //    loData.CSUPPLIER_NAME = "";
+                    //    goto EndBlock;
+                    //}
 
-                //DeptName = loResult.CDEPT_NAME;
+                    //loData.CSUPPLIER_NAME = loResult.CDEPT_NAME;
+                }
+                else
+                {
+                    loData.CSUPPLIER_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -497,27 +512,28 @@ namespace APT00500FRONT
 
             try
             {
-                //APL00110ParameterDTO loParam = new APL00110ParameterDTO()
-                //{
-                //    CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
-                //    CSUPPLIER_ID = _viewModel.Data.CSUPPLIER_ID,
-                //    CSEARCH_TEXT = ""
-                //};
+                var loData = (APT00500DTO)_conRef.R_GetCurrentData();
+                if (loData.CSUPPLIER_SEQ_NO.Length > 0)
+                {
+                    //APL00110ParameterDTO loParam = new APL00110ParameterDTO()
+                    //{
+                    //    CPROPERTY_ID = _viewModel.Data.CPROPERTY_ID,
+                    //    CSUPPLIER_ID = _viewModel.Data.CSUPPLIER_ID,
+                    //    CSEARCH_TEXT = loData.CSUPPLIER_SEQ_NO
+                    //};
 
-                //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                    //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
 
-                //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+                    //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-                //if (loResult == null)
-                //{
-                //    loEx.Add(R_FrontUtility.R_GetError(
-                //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                //            "_ErrLookup01"));
-                //    DeptName = "";
-                //    goto EndBlock;
-                //}
-
-                //DeptName = loResult.CDEPT_NAME;
+                    //if (loResult == null)
+                    //{
+                    //    loEx.Add(R_FrontUtility.R_GetError(
+                    //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    //            "_ErrLookup01"));
+                    //    goto EndBlock;
+                    //}
+                }
             }
             catch (Exception ex)
             {
@@ -548,8 +564,6 @@ namespace APT00500FRONT
             }
             var loData = (APT00500DTO)_conRef.R_GetCurrentData();
             loData.CSUPPLIER_SEQ_NO = loTempResult.CSEQ_NO;
-            loData.CSUPPLIER_NAME = loTempResult.CSUPPLIER_NAME;
-            
         }
         #endregion
 

@@ -13,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\COMMON\GL\GLM00200COMMON\GLM00200Common.csproj" />
 	  <ProjectReference Include="..\..\..\COMMON\GL\GLM00400COMMON\GLM00400COMMON.csproj" />
 	  <ProjectReference Include="..\..\..\COMMON\GL\GLR00200COMMON\GLR00200COMMON.csproj" />
 	  <ProjectReference Include="..\..\..\COMMON\GL\GLTR00100COMMON\GLTR00100COMMON.csproj" />

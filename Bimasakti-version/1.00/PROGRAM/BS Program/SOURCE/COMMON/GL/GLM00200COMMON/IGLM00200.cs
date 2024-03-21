@@ -17,6 +17,7 @@ namespace GLM00200Common
         IAsyncEnumerable<JournalDetailGridDTO> GetAllJournalDetailList();
         IAsyncEnumerable<JournalDetailActualGridDTO> GetAllActualJournalDetailList();
 
+        UploadByte DownloadTemplate();
         //IAsyncEnumerable<JournalGridDTO> GetFilteredRecurringList();
     }
 }

@@ -137,26 +137,33 @@ namespace APT00500FRONT
 
             try
             {
-                GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
+                if (_viewModel.PurchaseAdjuParam.CDEPT_CODE.Length > 0)
                 {
-                    CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
-                    CSEARCH_TEXT = _viewModel.PurchaseAdjuParam.CDEPT_CODE
-                };
+                    GSL00710ParameterDTO loParam = new GSL00710ParameterDTO()
+                    {
+                        CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
+                        CSEARCH_TEXT = _viewModel.PurchaseAdjuParam.CDEPT_CODE
+                    };
 
-                LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                    LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
 
-                var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+                    var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    DeptName = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        DeptName = "";
+                        goto EndBlock;
+                    }
+
+                    DeptName = loResult.CDEPT_NAME;
                 }
-
-                DeptName = loResult.CDEPT_NAME;
+                else
+                {
+                        DeptName = "";
+                }
             }
             catch (Exception ex)
             {
@@ -197,26 +204,33 @@ namespace APT00500FRONT
 
             try
             {
-                APL00100ParameterDTO loParam = new APL00100ParameterDTO()
+                if (_viewModel.PurchaseAdjuParam.CSUPPLIER_ID.Length > 0)
                 {
-                    CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
-                    CSEARCH_TEXT = ""
-                };
+                    APL00100ParameterDTO loParam = new APL00100ParameterDTO()
+                    {
+                        CPROPERTY_ID = _viewModel.PurchaseAdjuParam.CPROPERTY_ID,
+                        CSEARCH_TEXT = _viewModel.PurchaseAdjuParam.CSUPPLIER_ID
+                    };
 
-                //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
+                    //LookupGSL00710ViewModel loLookupViewModel = new LookupGSL00710ViewModel();
 
-                //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
+                    //var loResult = await loLookupViewModel.GetDepartmentProperty(loParam);
 
-                //if (loResult == null)
-                //{
-                //    loEx.Add(R_FrontUtility.R_GetError(
-                //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                //            "_ErrLookup01"));
-                //    DeptName = "";
-                //    goto EndBlock;
-                //}
+                    //if (loResult == null)
+                    //{
+                    //    loEx.Add(R_FrontUtility.R_GetError(
+                    //            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    //            "_ErrLookup01"));
+                    //    SupplierName = "";
+                    //    goto EndBlock;
+                    //}
 
-                //DeptName = loResult.CDEPT_NAME;
+                    //SupplierName = loResult.CDEPT_NAME;
+                }
+                else
+                {
+                    SupplierName = "";
+                }
             }
             catch (Exception ex)
             {

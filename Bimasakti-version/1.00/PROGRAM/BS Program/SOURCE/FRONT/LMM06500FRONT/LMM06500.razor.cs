@@ -8,6 +8,7 @@ using Lookup_GSFRONT;
 using Lookup_GSModel.ViewModel;
 using Lookup_LMCOMMON.DTOs;
 using Lookup_LMFRONT;
+using Lookup_LMModel.ViewModel.LML00300;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using R_BlazorFrontEnd;
@@ -233,25 +234,32 @@ namespace LMM06500FRONT
             try
             {
                 var loData = (LMM06500DTO)_Staff_conductorRef.R_GetCurrentData();
-                var param = new GSL00700ParameterDTO
+                if (loData.CDEPT_CODE.Length > 0)
                 {
-                    CSEARCH_TEXT = loData.CDEPT_CODE
-                };
+                    var param = new GSL00700ParameterDTO
+                    {
+                        CSEARCH_TEXT = loData.CDEPT_CODE
+                    };
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
 
-                var loResult = await loLookupViewModel.GetDepartment(param);
+                    var loResult = await loLookupViewModel.GetDepartment(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CDEPT_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CDEPT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CDEPT_NAME = loResult.CDEPT_NAME;
                 }
-
-                loData.CDEPT_NAME = loResult.CDEPT_NAME;
+                else
+                {
+                    loData.CDEPT_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -296,9 +304,49 @@ namespace LMM06500FRONT
                 loData.CSUPERVISOR_NAME = "";
             }
         }
-        private void Supervisor_OnLostFocus(object poParam)
+        private async Task Supervisor_OnLostFocus()
         {
-            //_Staff_viewModel.Data.CSUPERVISOR = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM06500DTO)_Staff_conductorRef.R_GetCurrentData();
+                if (loData.CSUPERVISOR.Length > 0)
+                {
+                    var param = new LML00300ParameterDTO
+                    {
+                        CCOMPANY_ID = clientHelper.CompanyId,
+                        CPROPERTY_ID = _Staff_viewModel.PropertyValueContext,
+                        CUSER_ID = clientHelper.UserId,
+                        CSEARCH_TEXT = loData.CSUPERVISOR
+                    };
+
+                    LookupLML00300ViewModel loLookupViewModel = new LookupLML00300ViewModel();
+
+                    var loResult = await loLookupViewModel.GetSupervisor(param);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CSUPERVISOR_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CSUPERVISOR_NAME = loResult.CSUPERVISOR_NAME;
+                }
+                else
+                {
+                    loData.CSUPERVISOR_NAME = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Staff_Supervisor_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {

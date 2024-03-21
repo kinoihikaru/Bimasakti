@@ -241,6 +241,30 @@ namespace GLM00200Model
 
             return loResult;
         }
+        public async Task<UploadByte> DownloadTemplateAsync()
+        {
+            var loEx = new R_Exception();
+            UploadByte loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<UploadByte>(
+                    _RequestServiceEndPoint,
+                    nameof(IGLM00200.DownloadTemplate),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
         #endregion real function
 
         #region for implement only
@@ -273,6 +297,10 @@ namespace GLM00200Model
             throw new NotImplementedException();
         }
         public IAsyncEnumerable<JournalDetailActualGridDTO> GetAllActualJournalDetailList()
+        {
+            throw new NotImplementedException();
+        }
+        public UploadByte DownloadTemplate()
         {
             throw new NotImplementedException();
         }

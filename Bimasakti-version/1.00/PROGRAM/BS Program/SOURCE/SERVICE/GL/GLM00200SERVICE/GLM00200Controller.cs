@@ -6,6 +6,7 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
 
 namespace GLM00200Service
 {
@@ -297,6 +298,41 @@ namespace GLM00200Service
 
             loEx.ThrowExceptionIfErrors();
             //_Logger.LogInfo("End GetAllActualJournalDetailList");
+
+            return loRtn;
+        }
+
+        [HttpPost]
+        public UploadByte DownloadTemplate()
+        {
+            //using Activity activity = _activitySource.StartActivity("DownloadTemplate");
+            var loEx = new R_Exception();
+            var loRtn = new UploadByte();
+            //_Logger.LogInfo("Start DownloadTemplate");
+
+            try
+            {
+                Assembly loAsm = Assembly.Load("BIMASAKTI_GL_API");
+
+                //_Logger.LogInfo("Load File Template From DownloadTemplateFile");
+                var lcResourceFile = "BIMASAKTI_GL_API.Template.GL_RECURRING_JOURNAL_UPLOAD.xlsx";
+                using (Stream resFilestream = loAsm.GetManifestResourceStream(lcResourceFile))
+                {
+                    var ms = new MemoryStream();
+                    resFilestream.CopyTo(ms);
+                    var bytes = ms.ToArray();
+
+                    loRtn.data = bytes;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                //_Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            //_Logger.LogInfo("End DownloadTemplateFile");
 
             return loRtn;
         }

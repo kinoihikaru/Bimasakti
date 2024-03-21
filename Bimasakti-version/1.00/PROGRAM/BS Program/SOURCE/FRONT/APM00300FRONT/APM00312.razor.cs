@@ -175,7 +175,7 @@ namespace APM00300FRONT
         {
             eventArgs.TargetPageType = typeof(APM00340);
         }
-        private async Task SupplierDetail_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
+        private void SupplierDetail_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
@@ -195,14 +195,12 @@ namespace APM00300FRONT
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(APM00320);
         }
-
         private void Supplier_OneTime_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-
             }
             catch (Exception ex)
             {
@@ -217,14 +215,12 @@ namespace APM00300FRONT
             eventArgs.Parameter = loParam;
             eventArgs.TargetPageType = typeof(APM00330);
         }
-
         private void Supplier_Bank_After_Open_Popup(R_AfterOpenPopupEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
-
             }
             catch (Exception ex)
             {

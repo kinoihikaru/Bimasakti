@@ -130,6 +130,23 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
+        protected async override Task R_PageClosing(R_PageClosingEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            var llRtn = false;
+
+            try
+            {
+                eventArgs.Cancel = _SupplierBank_conductorRef.R_ConductorMode != R_BlazorFrontEnd.Enums.R_eConductorMode.Normal;
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
 
         private async Task SupplierBank_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {

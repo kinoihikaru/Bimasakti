@@ -237,43 +237,115 @@ namespace LMM01500FRONT
             loData.CCHARGES_TYPE_DESCR = loTempResult.CCHARGES_TYPE_DESCR;
         }
 
-        private async Task OtherCharges_CellLostFocus(R_CellLostFocusedEventArgs eventArgs)
+        private void OtherCharges_CellLostFocus(R_CellLostFocusedEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
+                
                 if (eventArgs.ColumnName == "CCHARGES_ID")
                 {
-                    var loParam = new LMM01531DTO { CPROPERTY_ID = _OtherCharges_viewModel.PropertyValueContext, CSEARCH_TEXT = eventArgs.Value.ToString() };
+                    var loData = (LMM01530DTO)_OtherCharges_gridRef.GetCurrentData();
+                    loData.CCHARGES_NAME = "tes";
+                    //if (eventArgs.Value.ToString().Length > 0)
+                    //{
+                    //    var loParam = new LMM01531DTO { CPROPERTY_ID = _OtherCharges_viewModel.PropertyValueContext, CSEARCH_TEXT = eventArgs.Value.ToString() };
 
-                    LMM01531ViewModel loLookupViewModel = new LMM01531ViewModel();
+                    //    LMM01531ViewModel loLookupViewModel = new LMM01531ViewModel();
 
-                    var loResult = await loLookupViewModel.GetLookupOtherChargesRecord(loParam);
+                    //    var loResult = await loLookupViewModel.GetLookupOtherChargesRecord(loParam);
 
-                    var loChargesNameColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_NAME");
-                    var loUnitUtilityChargeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "UNIT_UTILITY_CHARGE");
-                    var loUnitChargesTypeDescColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE_DESCR");
-                    var loUnitChargesTypeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE");
+                    //    var loChargesNameColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_NAME");
+                    //    var loUnitUtilityChargeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "UNIT_UTILITY_CHARGE");
+                    //    var loUnitChargesTypeDescColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE_DESCR");
+                    //    var loUnitChargesTypeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE");
 
-                    if (loResult == null)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(
-                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                                "_ErrLookup01"));
+                    //    if (loResult == null)
+                    //    {
+                    //        loEx.Add(R_FrontUtility.R_GetError(
+                    //                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    //                "_ErrLookup01"));
 
-                        //loChargesNameColumn.Value = "";
-                        //loUnitUtilityChargeColumn.Value = "";
-                        //loUnitChargesTypeDescColumn.Value = "";
-                        //loUnitChargesTypeColumn.Value = "";
-                        goto EndBlock;
-                    }
+                    //        //loChargesNameColumn.Value = "";
+                    //        //loUnitUtilityChargeColumn.Value = "";
+                    //        //loUnitChargesTypeDescColumn.Value = "";
+                    //        //loUnitChargesTypeColumn.Value = "";
+                    //        goto EndBlock;
+                    //    }
 
-                    //loChargesNameColumn.Value = loResult.CCHARGES_NAME;
-                    //loUnitUtilityChargeColumn.Value = loResult.UNIT_UTILITY_CHARGE;
-                    //loUnitChargesTypeDescColumn.Value = loResult.CCHARGES_TYPE_DESCR;
-                    //loUnitChargesTypeColumn.Value = loResult.CCHARGES_TYPE;
+                    //    //loChargesNameColumn.Value = loResult.CCHARGES_NAME;
+                    //    //loUnitUtilityChargeColumn.Value = loResult.UNIT_UTILITY_CHARGE;
+                    //    //loUnitChargesTypeDescColumn.Value = loResult.CCHARGES_TYPE_DESCR;
+                    //    //loUnitChargesTypeColumn.Value = loResult.CCHARGES_TYPE;
+                    //}
+                    //else
+                    //{
+                    //    //loChargesNameColumn.Value = "";
+                    //    //loUnitUtilityChargeColumn.Value = "";
+                    //    //loUnitChargesTypeDescColumn.Value = "";
+                    //    //loUnitChargesTypeColumn.Value = "";
+                    //}
+                }
 
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void OtherCharges_ValueChange(R_CellValueChangedEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loData = (LMM01530DTO)_OtherCharges_gridRef.GetCurrentData();
+                loData.CCHARGES_NAME = "tes";
+                if (eventArgs.ColumnName == "CCHARGES_ID")
+                {
+                    
+                    //if (eventArgs.Value.ToString().Length > 0)
+                    //{
+                    //    var loParam = new LMM01531DTO { CPROPERTY_ID = _OtherCharges_viewModel.PropertyValueContext, CSEARCH_TEXT = eventArgs.Value.ToString() };
+
+                    //    LMM01531ViewModel loLookupViewModel = new LMM01531ViewModel();
+
+                    //    var loResult = await loLookupViewModel.GetLookupOtherChargesRecord(loParam);
+
+                    //    var loChargesNameColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_NAME");
+                    //    var loUnitUtilityChargeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "UNIT_UTILITY_CHARGE");
+                    //    var loUnitChargesTypeDescColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE_DESCR");
+                    //    var loUnitChargesTypeColumn = eventArgs.Columns.FirstOrDefault(x => x.Name == "CCHARGES_TYPE");
+
+                    //    if (loResult == null)
+                    //    {
+                    //        loEx.Add(R_FrontUtility.R_GetError(
+                    //                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    //                "_ErrLookup01"));
+
+                    //        //loChargesNameColumn.Value = "";
+                    //        //loUnitUtilityChargeColumn.Value = "";
+                    //        //loUnitChargesTypeDescColumn.Value = "";
+                    //        //loUnitChargesTypeColumn.Value = "";
+                    //        goto EndBlock;
+                    //    }
+
+                    //    //loChargesNameColumn.Value = loResult.CCHARGES_NAME;
+                    //    //loUnitUtilityChargeColumn.Value = loResult.UNIT_UTILITY_CHARGE;
+                    //    //loUnitChargesTypeDescColumn.Value = loResult.CCHARGES_TYPE_DESCR;
+                    //    //loUnitChargesTypeColumn.Value = loResult.CCHARGES_TYPE;
+                    //}
+                    //else
+                    //{
+                    //    //loChargesNameColumn.Value = "";
+                    //    //loUnitUtilityChargeColumn.Value = "";
+                    //    //loUnitChargesTypeDescColumn.Value = "";
+                    //    //loUnitChargesTypeColumn.Value = "";
+                    //}
                 }
 
             }

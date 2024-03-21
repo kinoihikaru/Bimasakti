@@ -59,26 +59,32 @@ namespace GLM00400FRONT
 
             try
             {
-                
-                GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                if (_AllocationJournalHD_viewModel.Data.CDEPT_CODE.Length > 0)
                 {
-                    CSEARCH_TEXT = _AllocationJournalHD_viewModel.Data.CDEPT_CODE
-                };
+                    GSL00700ParameterDTO loParam = new GSL00700ParameterDTO()
+                    {
+                        CSEARCH_TEXT = _AllocationJournalHD_viewModel.Data.CDEPT_CODE
+                    };
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
 
-                var loResult = await loLookupViewModel.GetDepartment(loParam);
+                    var loResult = await loLookupViewModel.GetDepartment(loParam);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    _DeptName = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _DeptName = "";
+                        goto EndBlock;
+                    }
+
+                    _DeptName = loResult.CDEPT_NAME;
                 }
-
-                _DeptName = loResult.CDEPT_NAME;
+                else
+                {
+                    _DeptName = "";
+                }
             }
             catch (Exception ex)
             {

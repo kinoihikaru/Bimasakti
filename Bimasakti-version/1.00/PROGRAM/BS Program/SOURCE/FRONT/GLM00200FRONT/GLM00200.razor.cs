@@ -2,6 +2,8 @@
 using GLM00200Model;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.DataControls;
 using R_BlazorFrontEnd.Controls.Events;
@@ -19,6 +21,7 @@ namespace GLM00200Front
 
         private R_Grid<JournalDetailGridDTO> _gridJournalDet;
         private R_ConductorGrid _conJournalDet;
+        [Inject] IJSRuntime JS { get; set; }
 
         protected override async Task R_Init_From_Master(object poParameter)
         {
@@ -198,5 +201,28 @@ namespace GLM00200Front
         }
         #endregion
 
+        #region Download
+        private async Task TemplateBtn_OnClick()
+        {
+            try
+            {
+                //var loValidate = await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifTemplate"), R_eMessageBoxButtonType.YesNo);
+                var loValidate = await R_MessageBox.Show("", "Are you sure download this template?", R_eMessageBoxButtonType.YesNo);
+
+                if (loValidate == R_eMessageBoxResult.Yes)
+                {
+                    var loByteFile = await _journalVM.DownloadTemplate();
+
+                    var saveFileName = "GL_RECURRING_JOURNAL_UPLOAD.xlsx";
+
+                    await JS.downloadFileFromStreamHandler(saveFileName, loByteFile.data);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        #endregion
     }
 }

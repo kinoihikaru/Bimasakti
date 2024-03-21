@@ -64,5 +64,13 @@ namespace DesainGLForm
             loReport.RegisterData(loData, "ResponseDataModel");
             loReport.Design();
         }
+
+        private void GLM00200_Click(object sender, EventArgs e)
+        {
+            ArrayList loData = new ArrayList();
+            loData.Add(GLM00200Common.Models.GenerateDataModelGLR00200.DefaultDataWithHeader());
+            loReport.RegisterData(loData, "ResponseDataModel");
+            loReport.Design();
+        }
     }
 }

@@ -257,22 +257,29 @@ namespace CBM00100FRONT
             try
             {
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
-                GSL00800ParameterDTO loParam = new GSL00800ParameterDTO() { CSEARCH_TEXT = loData.CRATETYPE_CODE };
-
-                LookupGSL00800ViewModel loLookupViewModel = new LookupGSL00800ViewModel();
-
-                var loResult = await loLookupViewModel.GetCurrencyRateType(loParam);
-
-                if (loResult == null)
+                if (loData.CRATETYPE_CODE.Length > 0)
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CRATETYPE_DESCRIPTION = "";
-                    goto EndBlock;
-                }
+                    GSL00800ParameterDTO loParam = new GSL00800ParameterDTO() { CSEARCH_TEXT = loData.CRATETYPE_CODE };
 
-                loData.CRATETYPE_DESCRIPTION = loResult.CRATETYPE_DESCRIPTION;
+                    LookupGSL00800ViewModel loLookupViewModel = new LookupGSL00800ViewModel();
+
+                    var loResult = await loLookupViewModel.GetCurrencyRateType(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CRATETYPE_DESCRIPTION = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CRATETYPE_DESCRIPTION = loResult.CRATETYPE_DESCRIPTION;
+                }
+                else
+                {
+                    loData.CRATETYPE_DESCRIPTION = "";
+                }
             }
             catch (Exception ex)
             {
@@ -310,27 +317,34 @@ namespace CBM00100FRONT
             try
             {
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
-                GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
+                if (loData.CCONTRA_ACCOUNT_NO.Length > 0)
                 {
-                    CPROGRAM_CODE = "GSM06001",
-                    CGOA_CODE = "TRF",
-                    CSEARCH_TEXT = loData.CCONTRA_ACCOUNT_NO
-                };
+                    GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
+                    {
+                        CPROGRAM_CODE = "GSM06001",
+                        CGOA_CODE = "TRF",
+                        CSEARCH_TEXT = loData.CCONTRA_ACCOUNT_NO
+                    };
 
-                LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
+                    LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
 
-                var loResult = await loLookupViewModel.GetGLAccount(loParam);
+                    var loResult = await loLookupViewModel.GetGLAccount(loParam);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CCONTRA_ACCOUNT_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CCONTRA_ACCOUNT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CCONTRA_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
-
-                loData.CCONTRA_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+                else
+                {
+                    loData.CCONTRA_ACCOUNT_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -370,27 +384,34 @@ namespace CBM00100FRONT
             try
             {
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
-                GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
+                if (loData.CCRDVG_ACCOUNT_NO.Length > 0)
                 {
-                    CPROGRAM_CODE = "GSM06001",
-                    CGOA_CODE = "CRDVG",
-                    CSEARCH_TEXT = loData.CCRDVG_ACCOUNT_NO
-                };
+                    GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
+                    {
+                        CPROGRAM_CODE = "GSM06001",
+                        CGOA_CODE = "CRDVG",
+                        CSEARCH_TEXT = loData.CCRDVG_ACCOUNT_NO
+                    };
 
-                LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
+                    LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
 
-                var loResult = await loLookupViewModel.GetGLAccount(loParam);
+                    var loResult = await loLookupViewModel.GetGLAccount(loParam);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CCRDVG_ACCOUNT_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CCRDVG_ACCOUNT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CCRDVG_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
-
-                loData.CCRDVG_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+                else
+                {
+                    loData.CCRDVG_ACCOUNT_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -430,27 +451,34 @@ namespace CBM00100FRONT
             try
             {
                 var loData = (CBM00100DTO)_conductorRef.R_GetCurrentData();
-                GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
+                if (loData.CCRDVL_ACCOUNT_NO.Length > 0)
                 {
-                    CPROGRAM_CODE = "GSM06001",
-                    CGOA_CODE = "CRDVL",
-                    CSEARCH_TEXT = loData.CCRDVL_ACCOUNT_NO
-                };
+                    GSL00500ParameterDTO loParam = new GSL00500ParameterDTO()
+                    {
+                        CPROGRAM_CODE = "GSM06001",
+                        CGOA_CODE = "CRDVL",
+                        CSEARCH_TEXT = loData.CCRDVL_ACCOUNT_NO
+                    };
 
-                LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
+                    LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
 
-                var loResult = await loLookupViewModel.GetGLAccount(loParam);
+                    var loResult = await loLookupViewModel.GetGLAccount(loParam);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CCRDVL_ACCOUNT_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CCRDVL_ACCOUNT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CCRDVL_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
-
-                loData.CCRDVL_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+                else
+                {
+                    loData.CCRDVL_ACCOUNT_NAME = "";
+                }
             }
             catch (Exception ex)
             {

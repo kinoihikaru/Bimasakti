@@ -13,7 +13,7 @@ namespace Lookup_LMModel.ViewModel.LML00200
     public class LookupLML00200ViewModel
     {
         private PublicLookupLMModel _model = new PublicLookupLMModel();
-
+        private PublicLookupLMGetRecordModel _modelGetRecord = new PublicLookupLMGetRecordModel();
         public ObservableCollection<LML00200DTO> UnitChargesList = new ObservableCollection<LML00200DTO>();
 
         public async Task GetUnitChargesList(LML00200ParameterDTO poParam)
@@ -36,6 +36,22 @@ namespace Lookup_LMModel.ViewModel.LML00200
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+        public async Task<LML00200DTO> GetUnitCharges(LML00200ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            LML00200DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelGetRecord.LML00200GetUnitChargesAsync(poParam);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

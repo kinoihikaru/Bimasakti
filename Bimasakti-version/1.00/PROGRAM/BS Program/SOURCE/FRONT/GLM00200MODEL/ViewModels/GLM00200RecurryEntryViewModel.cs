@@ -71,12 +71,30 @@ namespace GLM00200Model
             try
             {
                 var loResult = await _model.GetJournalDataAsync(poEntity);
-                if (!string.IsNullOrWhiteSpace(loResult.CREF_DATE))
-                    RefDate = DateTime.ParseExact(loResult.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                if (!string.IsNullOrWhiteSpace(loResult.CDOC_DATE))
-                    DocDate = DateTime.ParseExact(loResult.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
-                if (!string.IsNullOrWhiteSpace(loResult.CSTART_DATE))
-                    StartDate = DateTime.ParseExact(loResult.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture);
+                //if (DateTime.TryParseExact(loResult.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldRefDate))
+                //{
+                //    RefDate = ldRefDate;
+                //}
+                //else
+                //{
+                //    RefDate = null;
+                //}
+                //if (DateTime.TryParseExact(loResult.CDOC_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldDocDate))
+                //{
+                //    DocDate = ldDocDate;
+                //}
+                //else
+                //{
+                //    RefDate = null;
+                //}
+                //if (DateTime.TryParseExact(loResult.CSTART_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldStartDate))
+                //{
+                //    StartDate = ldStartDate;
+                //}
+                //else
+                //{
+                //    StartDate = null;
+                //}
 
                 Journal = loResult;
             }

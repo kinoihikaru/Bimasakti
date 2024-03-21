@@ -12,6 +12,7 @@
     <None Remove="Image\CompanyLogo.png" />
     <None Remove="Template\GL_JOURNAL_UPLOAD.xlsx" />
     <None Remove="Template\GL_JOURNAL_UPLOAD_SPLIT_DBCR.xlsx" />
+    <None Remove="Template\GL_RECURRING_JOURNAL_UPLOAD.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Template\GL_JOURNAL_UPLOAD.xlsx" />
     <EmbeddedResource Include="Template\GL_JOURNAL_UPLOAD_SPLIT_DBCR.xlsx" />
+    <EmbeddedResource Include="Template\GL_RECURRING_JOURNAL_UPLOAD.xlsx" />
   </ItemGroup>
 
 	<ItemGroup>

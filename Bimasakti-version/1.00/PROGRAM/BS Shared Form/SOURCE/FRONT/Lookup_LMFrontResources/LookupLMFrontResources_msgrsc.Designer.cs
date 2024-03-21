@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lookup_LMFrontResources {
+namespace LookupLMFrontResources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Lookup_LMFrontResources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LookupLMFrontResources_msgrs {
+    internal class LookupLMFrontResources_msgrsc {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal LookupLMFrontResources_msgrs() {
+        internal LookupLMFrontResources_msgrsc() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Lookup_LMFrontResources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lookup_LMFrontResources.LookupLMFrontResources_msgrs", typeof(LookupLMFrontResources_msgrs).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LookupLMFrontResources.LookupLMFrontResources_msgrsc", typeof(LookupLMFrontResources_msgrsc).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -79,11 +79,83 @@ namespace Lookup_LMFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Charges Type Description.
+        /// </summary>
+        internal static string _ChargesTypeDesc {
+            get {
+                return ResourceManager.GetString("_ChargesTypeDesc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charges Type.
+        /// </summary>
+        internal static string _ChargeType {
+            get {
+                return ResourceManager.GetString("_ChargeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Department.
         /// </summary>
         internal static string _Dept {
             get {
                 return ResourceManager.GetString("_Dept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Id.
+        /// </summary>
+        internal static string _discountId {
+            get {
+                return ResourceManager.GetString("_discountId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Name.
+        /// </summary>
+        internal static string _discountName {
+            get {
+                return ResourceManager.GetString("_discountName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount Type.
+        /// </summary>
+        internal static string _discountType {
+            get {
+                return ResourceManager.GetString("_discountType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string _Email {
+            get {
+                return ResourceManager.GetString("_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not found data by search text!!.
+        /// </summary>
+        internal static string _ErrLookup01 {
+            get {
+                return ResourceManager.GetString("_ErrLookup01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone 1.
+        /// </summary>
+        internal static string _Phone {
+            get {
+                return ResourceManager.GetString("_Phone", resourceCulture);
             }
         }
         
@@ -147,6 +219,60 @@ namespace Lookup_LMFrontResources {
         internal static string _TaxName {
             get {
                 return ResourceManager.GetString("_TaxName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant Category.
+        /// </summary>
+        internal static string _TenantCat {
+            get {
+                return ResourceManager.GetString("_TenantCat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant Group.
+        /// </summary>
+        internal static string _TenantGroup {
+            get {
+                return ResourceManager.GetString("_TenantGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant Id.
+        /// </summary>
+        internal static string _TenantId {
+            get {
+                return ResourceManager.GetString("_TenantId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant Name.
+        /// </summary>
+        internal static string _TenantName {
+            get {
+                return ResourceManager.GetString("_TenantName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenant Type.
+        /// </summary>
+        internal static string _TenantType {
+            get {
+                return ResourceManager.GetString("_TenantType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Units.
+        /// </summary>
+        internal static string _Units {
+            get {
+                return ResourceManager.GetString("_Units", resourceCulture);
             }
         }
     }

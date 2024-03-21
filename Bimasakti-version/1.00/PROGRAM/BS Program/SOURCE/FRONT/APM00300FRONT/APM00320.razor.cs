@@ -61,10 +61,8 @@ namespace APM00300FRONT
 
             try
             {
-                //if (_Supplier_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit)
-                //{
-                //    await _Supplier_conductorRef.Cancel();
-                //}
+                eventArgs.Cancel = _Supplier_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Edit;
+                await Task.CompletedTask;
             }
             catch (Exception ex)
             {
@@ -223,8 +221,6 @@ namespace APM00300FRONT
 
             R_DisplayException(loEx);
         }
-
-      
 
         private bool IsValidEmail(string email)
         {

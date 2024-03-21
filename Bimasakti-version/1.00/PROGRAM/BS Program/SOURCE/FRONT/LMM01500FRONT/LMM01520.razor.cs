@@ -319,27 +319,34 @@ namespace LMM01500FRONT
             try
             {
                 var loData = (LMM01520DTO)_InvPinalty_conductorRef.R_GetCurrentData();
-                var param = new GSL01400ParameterDTO
+                if (loData.CPENALTY_ADD_ID.Length > 0)
                 {
-                    CPROPERTY_ID = _InvPinalty_viewModel.PropertyValueContext,
-                    CCHARGES_TYPE_ID = "A",
-                    CSEARCH_TEXT = loData.CPENALTY_ADD_ID
-                };
+                    var param = new GSL01400ParameterDTO
+                    {
+                        CPROPERTY_ID = _InvPinalty_viewModel.PropertyValueContext,
+                        CCHARGES_TYPE_ID = "A",
+                        CSEARCH_TEXT = loData.CPENALTY_ADD_ID
+                    };
 
-                LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
+                    LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
 
-                var loResult = await loLookupViewModel.GetOtherCharges(param);
+                    var loResult = await loLookupViewModel.GetOtherCharges(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CCHARGES_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CCHARGES_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CCHARGES_NAME = loResult.CCHARGES_NAME;
                 }
-
-                loData.CCHARGES_NAME = loResult.CCHARGES_NAME;
+                else
+                {
+                    loData.CCHARGES_NAME = "";
+                }
             }
             catch (Exception ex)
             {

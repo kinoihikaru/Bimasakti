@@ -123,8 +123,32 @@
   <data name="_ChargesName" xml:space="preserve">
     <value>Charges Name</value>
   </data>
+  <data name="_ChargesTypeDesc" xml:space="preserve">
+    <value>Charges Type Description</value>
+  </data>
+  <data name="_ChargeType" xml:space="preserve">
+    <value>Charges Type</value>
+  </data>
   <data name="_Dept" xml:space="preserve">
     <value>Department</value>
+  </data>
+  <data name="_discountId" xml:space="preserve">
+    <value>Discount Id</value>
+  </data>
+  <data name="_discountName" xml:space="preserve">
+    <value>Discount Name</value>
+  </data>
+  <data name="_discountType" xml:space="preserve">
+    <value>Discount Type</value>
+  </data>
+  <data name="_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Not found data by search text!!</value>
+  </data>
+  <data name="_Phone" xml:space="preserve">
+    <value>Phone 1</value>
   </data>
   <data name="_SalesmanId" xml:space="preserve">
     <value>Salesman Id</value>
@@ -146,5 +170,23 @@
   </data>
   <data name="_TaxName" xml:space="preserve">
     <value>Tax Name</value>
+  </data>
+  <data name="_TenantCat" xml:space="preserve">
+    <value>Tenant Category</value>
+  </data>
+  <data name="_TenantGroup" xml:space="preserve">
+    <value>Tenant Group</value>
+  </data>
+  <data name="_TenantId" xml:space="preserve">
+    <value>Tenant Id</value>
+  </data>
+  <data name="_TenantName" xml:space="preserve">
+    <value>Tenant Name</value>
+  </data>
+  <data name="_TenantType" xml:space="preserve">
+    <value>Tenant Type</value>
+  </data>
+  <data name="_Units" xml:space="preserve">
+    <value>Units</value>
   </data>
 </root>

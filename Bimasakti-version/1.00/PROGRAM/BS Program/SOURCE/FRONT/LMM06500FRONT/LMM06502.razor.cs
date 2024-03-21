@@ -4,6 +4,7 @@ using LMM06500FrontResources;
 using LMM06500MODEL;
 using Lookup_LMCOMMON.DTOs;
 using Lookup_LMFRONT;
+using Lookup_LMModel.ViewModel.LML00300;
 using Microsoft.AspNetCore.Components;
 using R_APICommonDTO;
 using R_BlazorFrontEnd.Controls;
@@ -43,13 +44,103 @@ namespace LMM06500FRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-        private void OldSupervisor_OnLostFocus(object poParam)
+        private async Task OldSupervisor_OnLostFocus()
         {
-            //_viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (_viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID.Length > 0)
+                {
+                    var param = new LML00300ParameterDTO
+                    {
+                        CCOMPANY_ID = clientHelper.CompanyId,
+                        CPROPERTY_ID = _viewModel.PropertyValueContext,
+                        CUSER_ID = clientHelper.UserId,
+                        CSEARCH_TEXT = _viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID
+                    };
+
+                    LookupLML00300ViewModel loLookupViewModel = new LookupLML00300ViewModel();
+
+                    var loResult = await loLookupViewModel.GetSupervisor(param);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _viewModel.StaffMoveHeader.COLD_SUPERVISOR_NAME = "";
+                        _viewModel.StaffMoveHeader.COLD_DEPT_CODE = "";
+                        _viewModel.StaffMoveHeader.COLD_DEPT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    _viewModel.StaffMoveHeader.COLD_SUPERVISOR_NAME = loResult.CSUPERVISOR_NAME;
+                    _viewModel.StaffMoveHeader.COLD_DEPT_CODE = loResult.CDEPT_CODE;
+                    _viewModel.StaffMoveHeader.COLD_DEPT_NAME = loResult.CDEPT_NAME;
+                }
+                else
+                {
+                    _viewModel.StaffMoveHeader.COLD_SUPERVISOR_NAME = "";
+                    _viewModel.StaffMoveHeader.COLD_DEPT_CODE = "";
+                    _viewModel.StaffMoveHeader.COLD_DEPT_NAME = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
-        private void NewSupervisor_OnLostFocus(object poParam)
+        private async Task NewSupervisor_OnLostFocus()
         {
-            //_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID = (string)poParam;
+            var loEx = new R_Exception();
+
+            try
+            {
+                if (_viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID.Length > 0)
+                {
+                    var param = new LML00300ParameterDTO
+                    {
+                        CCOMPANY_ID = clientHelper.CompanyId,
+                        CPROPERTY_ID = _viewModel.PropertyValueContext,
+                        CUSER_ID = clientHelper.UserId,
+                        CSEARCH_TEXT = _viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID
+                    };
+
+                    LookupLML00300ViewModel loLookupViewModel = new LookupLML00300ViewModel();
+
+                    var loResult = await loLookupViewModel.GetSupervisor(param);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _viewModel.StaffMoveHeader.CNEW_SUPERVISOR_NAME = "";
+                        _viewModel.StaffMoveHeader.CNEW_DEPT_CODE = "";
+                        _viewModel.StaffMoveHeader.CNEW_DEPT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    _viewModel.StaffMoveHeader.CNEW_SUPERVISOR_NAME = loResult.CSUPERVISOR_NAME;
+                    _viewModel.StaffMoveHeader.CNEW_DEPT_CODE = loResult.CDEPT_CODE;
+                    _viewModel.StaffMoveHeader.CNEW_DEPT_NAME = loResult.CDEPT_NAME;
+                }
+                else
+                {
+                    _viewModel.StaffMoveHeader.CNEW_SUPERVISOR_NAME = "";
+                    _viewModel.StaffMoveHeader.CNEW_DEPT_CODE = "";
+                    _viewModel.StaffMoveHeader.CNEW_DEPT_NAME = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+        EndBlock:
+            R_DisplayException(loEx);
         }
         private void Staff_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {

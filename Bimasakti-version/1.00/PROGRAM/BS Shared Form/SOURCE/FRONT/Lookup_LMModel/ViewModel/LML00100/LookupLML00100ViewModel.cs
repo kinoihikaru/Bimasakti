@@ -13,6 +13,7 @@ namespace Lookup_LMModel.ViewModel
     public class LookupLML00100ViewModel : R_ViewModel<LML00100DTO>
     {
         private PublicLookupLMModel _model = new PublicLookupLMModel();
+        private PublicLookupLMGetRecordModel _modelGetRecord = new PublicLookupLMGetRecordModel();
 
         public ObservableCollection<LML00100DTO> SalesTaxList = new ObservableCollection<LML00100DTO>();
 
@@ -35,6 +36,24 @@ namespace Lookup_LMModel.ViewModel
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task<LML00100DTO> GetSalesTax(LML00100ParameterDTO poParam)
+        {
+            var loEx = new R_Exception();
+            LML00100DTO loRtn = null;
+            try
+            {
+                var loResult = await _modelGetRecord.LML00100GetSalesTaxAsync(poParam);
+                loRtn = loResult;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
     }
 }

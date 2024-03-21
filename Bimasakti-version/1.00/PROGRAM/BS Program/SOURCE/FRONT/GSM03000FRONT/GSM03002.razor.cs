@@ -275,32 +275,39 @@ namespace GSM03000FRONT
 
             try
             {
-                var param = new GSL00500ParameterDTO
+                if (Deducation_viewModel.Data.CGLACCOUNT_NO.Length > 0)
                 {
-                    CPROPERTY_ID = Deducation_viewModel.PropertyValueContext,
-                    CPROGRAM_CODE = "GSM03000",
-                    CBSIS = "",
-                    CDBCR = "D",
-                    LCENTER_RESTR = false,
-                    LUSER_RESTR = false,
-                    CCENTER_CODE = "",
-                    CSEARCH_TEXT = Deducation_viewModel.Data.CGLACCOUNT_NO
-                };
+                    var param = new GSL00500ParameterDTO
+                    {
+                        CPROPERTY_ID = Deducation_viewModel.PropertyValueContext,
+                        CPROGRAM_CODE = "GSM03000",
+                        CBSIS = "",
+                        CDBCR = "D",
+                        LCENTER_RESTR = false,
+                        LUSER_RESTR = false,
+                        CCENTER_CODE = "",
+                        CSEARCH_TEXT = Deducation_viewModel.Data.CGLACCOUNT_NO
+                    };
 
-                LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
+                    LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
 
-                var loResult = await loLookupViewModel.GetGLAccount(param);
+                    var loResult = await loLookupViewModel.GetGLAccount(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    Deducation_viewModel.Data.CGLACCOUNT_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        Deducation_viewModel.Data.CGLACCOUNT_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    Deducation_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
-
-                Deducation_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+                else
+                {
+                    Deducation_viewModel.Data.CGLACCOUNT_NAME = "";
+                }
             }
             catch (Exception ex)
             {

@@ -329,33 +329,40 @@ namespace GSM03000FRONT
 
             try
             {
-                var param = new GSL00500ParameterDTO
+                if (Additional_viewModel.Data.CGLACCOUNT_NO.Length > 0)
                 {
-                    CPROPERTY_ID = Additional_viewModel.PropertyValueContext,
-                    CPROGRAM_CODE = "GSM03000",
-                    CBSIS = "",
-                    CDBCR = "D",
-                    LCENTER_RESTR = false,
-                    LUSER_RESTR = false,
-                    CCENTER_CODE = "",
-                    CSEARCH_TEXT = Additional_viewModel.Data.CGLACCOUNT_NO
-                };
+                    var param = new GSL00500ParameterDTO
+                    {
+                        CPROPERTY_ID = Additional_viewModel.PropertyValueContext,
+                        CPROGRAM_CODE = "GSM03000",
+                        CBSIS = "",
+                        CDBCR = "D",
+                        LCENTER_RESTR = false,
+                        LUSER_RESTR = false,
+                        CCENTER_CODE = "",
+                        CSEARCH_TEXT = Additional_viewModel.Data.CGLACCOUNT_NO
+                    };
 
-                LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
+                    LookupGSL00500ViewModel loLookupViewModel = new LookupGSL00500ViewModel();
 
-                var loResult = await loLookupViewModel.GetGLAccount(param);
+                    var loResult = await loLookupViewModel.GetGLAccount(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    Additional_viewModel.Data.CGLACCOUNT_NAME = "";
-                    //await GLAccount_TextBox.FocusAsync();
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        Additional_viewModel.Data.CGLACCOUNT_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                        goto EndBlock;
+                    }
+
+                    Additional_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
-                
-                Additional_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
+                else
+                {
+                    Additional_viewModel.Data.CGLACCOUNT_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -379,6 +386,7 @@ namespace GSM03000FRONT
             eventArgs.Parameter = param;
 
             eventArgs.TargetPageType = typeof(GSL00500);
+
         }
         private void Additional_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
         {

@@ -78,6 +78,24 @@ namespace GLM00200Model
             }
             loEx.ThrowExceptionIfErrors();
         }
+        public async Task<UploadByte> DownloadTemplate()
+        {
+            var loEx = new R_Exception();
+            UploadByte loResult = null;
+
+            try
+            {
+                loResult = await _model.DownloadTemplateAsync();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
         #endregion
 
 

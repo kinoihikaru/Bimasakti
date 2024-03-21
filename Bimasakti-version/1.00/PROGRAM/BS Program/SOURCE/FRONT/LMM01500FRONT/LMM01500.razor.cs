@@ -647,28 +647,35 @@ namespace LMM01500FRONT
 
             try
             {
-                var param = new GSL01400ParameterDTO
+                if (_Genereal_viewModel.Data.CSTAMP_ADD_ID.Length > 0)
                 {
-                    CPROPERTY_ID = _Genereal_viewModel.PropertyValueContext,
-                    CCHARGES_TYPE_ID = "A",
-                    CSEARCH_TEXT = _Genereal_viewModel.Data.CSTAMP_ADD_ID
-                };
+                    var param = new GSL01400ParameterDTO
+                    {
+                        CPROPERTY_ID = _Genereal_viewModel.PropertyValueContext,
+                        CCHARGES_TYPE_ID = "A",
+                        CSEARCH_TEXT = _Genereal_viewModel.Data.CSTAMP_ADD_ID
+                    };
 
-                LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
+                    LookupGSL01400ViewModel loLookupViewModel = new LookupGSL01400ViewModel();
 
-                var loResult = await loLookupViewModel.GetOtherCharges(param);
+                    var loResult = await loLookupViewModel.GetOtherCharges(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    _Genereal_viewModel.Data.CSTAMP_ADD_NAME = "";
-                    //await GLAccount_TextBox.FocusAsync();
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _Genereal_viewModel.Data.CSTAMP_ADD_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                        goto EndBlock;
+                    }
+
+                    _Genereal_viewModel.Data.CSTAMP_ADD_NAME = loResult.CCHARGES_NAME;
                 }
-
-                _Genereal_viewModel.Data.CSTAMP_ADD_NAME = loResult.CCHARGES_NAME;
+                else
+                {
+                    _Genereal_viewModel.Data.CSTAMP_ADD_NAME = "";
+                }
             }
             catch (Exception ex)
             {
@@ -704,28 +711,36 @@ namespace LMM01500FRONT
 
             try
             {
-                var param = new GSL00700ParameterDTO
+                if (_Genereal_viewModel.Data.CDEPT_CODE.Length > 0)
                 {
-                    CSEARCH_TEXT = _Genereal_viewModel.Data.CDEPT_CODE
-                };
+                    var param = new GSL00700ParameterDTO
+                    {
+                        CSEARCH_TEXT = _Genereal_viewModel.Data.CDEPT_CODE
+                    };
 
-                LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
 
-                var loResult = await loLookupViewModel.GetDepartment(param);
+                    var loResult = await loLookupViewModel.GetDepartment(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    _Genereal_viewModel.Data.CDEPT_NAME = "";
-                    //await GLAccount_TextBox.FocusAsync();
-                    GeneralButtonEnable = false;
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _Genereal_viewModel.Data.CDEPT_NAME = "";
+                        //await GLAccount_TextBox.FocusAsync();
+                        GeneralButtonEnable = false;
+                        goto EndBlock;
+                    }
+
+                    _Genereal_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
+                    GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
                 }
-
-                _Genereal_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
-                GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
+                else
+                {
+                    _Genereal_viewModel.Data.CDEPT_NAME = "";
+                    GeneralButtonEnable = false;
+                }
             }
             catch (Exception ex)
             {
@@ -758,29 +773,37 @@ namespace LMM01500FRONT
 
             try
             {
-                var param = new GSL01200ParameterDTO
+                if (_Genereal_viewModel.Data.CBANK_CODE.Length > 0)
                 {
-                    CCB_TYPE = "B",
-                    CSEARCH_TEXT = _Genereal_viewModel.Data.CBANK_CODE
-                };
+                    var param = new GSL01200ParameterDTO
+                    {
+                        CCB_TYPE = "B",
+                        CSEARCH_TEXT = _Genereal_viewModel.Data.CBANK_CODE
+                    };
 
-                LookupGSL01200ViewModel loLookupViewModel = new LookupGSL01200ViewModel();
+                    LookupGSL01200ViewModel loLookupViewModel = new LookupGSL01200ViewModel();
 
-                var loResult = await loLookupViewModel.GetBank(param);
+                    var loResult = await loLookupViewModel.GetBank(param);
 
-                if (loResult == null)
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _Genereal_viewModel.Data.CCB_NAME = "";
+                        GeneralButtonEnable = false;
+                        //await GLAccount_TextBox.FocusAsync();
+                        goto EndBlock;
+                    }
+
+                    _Genereal_viewModel.Data.CCB_NAME = loResult.CCB_NAME;
+                    GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
+                }
+                else
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
                     _Genereal_viewModel.Data.CCB_NAME = "";
                     GeneralButtonEnable = false;
-                    //await GLAccount_TextBox.FocusAsync();
-                    goto EndBlock;
                 }
-
-                _Genereal_viewModel.Data.CCB_NAME = loResult.CCB_NAME;
-                GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
             }
             catch (Exception ex)
             {
@@ -818,24 +841,27 @@ namespace LMM01500FRONT
             try
             {
                 var loGetData = (LMM01500DTO)_Genereal_conductorRef.R_GetCurrentData();
-                var param = new GSL01300ParameterDTO
+                if (loGetData.CBANK_ACCOUNT.Length > 0)
                 {
-                    CBANK_TYPE = "B",
-                    CCB_CODE = loGetData.CBANK_CODE,
-                    CDEPT_CODE = loGetData.CDEPT_CODE,
-                    CSEARCH_TEXT = loGetData.CBANK_ACCOUNT
-                };
+                    var param = new GSL01300ParameterDTO
+                    {
+                        CBANK_TYPE = "B",
+                        CCB_CODE = loGetData.CBANK_CODE,
+                        CDEPT_CODE = loGetData.CDEPT_CODE,
+                        CSEARCH_TEXT = loGetData.CBANK_ACCOUNT
+                    };
 
-                LookupGSL01300ViewModel loLookupViewModel = new LookupGSL01300ViewModel();
+                    LookupGSL01300ViewModel loLookupViewModel = new LookupGSL01300ViewModel();
 
-                var loResult = await loLookupViewModel.GetBankAccount(param);
+                    var loResult = await loLookupViewModel.GetBankAccount(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        goto EndBlock;
+                    }
                 }
             }
             catch (Exception ex)

@@ -161,31 +161,38 @@ namespace APM00300FRONT
             R_DisplayException(loEx);
         }
         #region Lost Focus
-        private async Task jrnlCode_OnLostFocus(object poParam) 
+        private async Task jrnlCode_OnLostFocus() 
         {
             var loEx = new R_Exception();
 
             try
             {
                 var loData = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
-                var loParam = new GSL00400ParameterDTO() { CPROPERTY_ID = _Supplier_viewModel.PropertyValueContext, CJRNGRP_TYPE = "50", CSEARCH_TEXT = loData.CJRNGRP_CODE };
-
-                LookupGSL00400ViewModel loLookupViewModel = new LookupGSL00400ViewModel();
-
-                var loResult = await loLookupViewModel.GetJournalGroup(loParam);
-
-                if (loResult == null)
+                if (loData.CJRNGRP_CODE.Length > 0)
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
+                    var loParam = new GSL00400ParameterDTO() { CPROPERTY_ID = _Supplier_viewModel.PropertyValueContext, CJRNGRP_TYPE = "50", CSEARCH_TEXT = loData.CJRNGRP_CODE };
+
+                    LookupGSL00400ViewModel loLookupViewModel = new LookupGSL00400ViewModel();
+
+                    var loResult = await loLookupViewModel.GetJournalGroup(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CJRNGRP_NAME = "";
+                        loData.CJRNGRP_TYPE = "";
+                        goto EndBlock;
+                    }
+                    loData.CJRNGRP_NAME = loResult.CJRNGRP_NAME;
+                    loData.CJRNGRP_TYPE = loResult.CJRNGRP_TYPE;
+                }
+                else
+                {
                     loData.CJRNGRP_NAME = "";
                     loData.CJRNGRP_TYPE = "";
-                    goto EndBlock;
                 }
-
-                loData.CJRNGRP_NAME = loResult.CJRNGRP_NAME;
-                loData.CJRNGRP_TYPE = loResult.CJRNGRP_TYPE;
             }
             catch (Exception ex)
             {
@@ -194,31 +201,39 @@ namespace APM00300FRONT
         EndBlock:
             R_DisplayException(loEx);
         }
-        private async Task categoryId_OnLostFocus(object poParam)
+        private async Task categoryId_OnLostFocus()
         {
             var loEx = new R_Exception();
 
             try
             {
                 var loData = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
-                var loParam = new GSL01800DTOParameter() { CPROPERTY_ID = _Supplier_viewModel.PropertyValueContext, CCATEGORY_TYPE = "50", CSEARCH_TEXT = loData.CCATEGORY_ID };
-
-                LookupGSL01800ViewModel loLookupViewModel = new LookupGSL01800ViewModel();
-
-                var loResult = await loLookupViewModel.GetCategory(loParam);
-
-                if (loResult == null)
+                if (loData.CCATEGORY_ID.Length > 0)
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
+                    var loParam = new GSL01800DTOParameter() { CPROPERTY_ID = _Supplier_viewModel.PropertyValueContext, CCATEGORY_TYPE = "50", CSEARCH_TEXT = loData.CCATEGORY_ID };
+
+                    LookupGSL01800ViewModel loLookupViewModel = new LookupGSL01800ViewModel();
+
+                    var loResult = await loLookupViewModel.GetCategory(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CCATEGORY_NAME = "";
+                        loData.CCATEGORY_TYPE = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CCATEGORY_NAME = loResult.CCATEGORY_NAME;
+                    loData.CCATEGORY_TYPE = loResult.CCATEGORY_TYPE;
+                }
+                else
+                {
                     loData.CCATEGORY_NAME = "";
                     loData.CCATEGORY_TYPE = "";
-                    goto EndBlock;
                 }
-
-                loData.CCATEGORY_NAME = loResult.CCATEGORY_NAME;
-                loData.CCATEGORY_TYPE = loResult.CCATEGORY_TYPE;
             }
             catch (Exception ex)
             {
@@ -227,29 +242,36 @@ namespace APM00300FRONT
         EndBlock:
             R_DisplayException(loEx);
         }
-        private async Task LOBCode_OnLostFocus(object poParam)
+        private async Task LOBCode_OnLostFocus()
         {
             var loEx = new R_Exception();
 
             try
             {
                 var loData = (APM00310DTO)_Supplier_conductorRef.R_GetCurrentData();
-                var loParam = new GSL01900ParameterDTO() { CSEARCH_TEXT = loData.CLOB_CODE };
-
-                LookupGSL01900ViewModel loLookupViewModel = new LookupGSL01900ViewModel();
-
-                var loResult = await loLookupViewModel.GetLOB(loParam);
-
-                if (loResult == null)
+                if (loData.CLOB_CODE.Length > 0)
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    loData.CLOB_NAME = "";
-                    goto EndBlock;
-                }
+                    var loParam = new GSL01900ParameterDTO() { CSEARCH_TEXT = loData.CLOB_CODE };
 
-                loData.CLOB_NAME = loResult.CLOB_NAME;
+                    LookupGSL01900ViewModel loLookupViewModel = new LookupGSL01900ViewModel();
+
+                    var loResult = await loLookupViewModel.GetLOB(loParam);
+
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        loData.CLOB_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    loData.CLOB_NAME = loResult.CLOB_NAME;
+                }
+                else
+                {
+                   loData.CLOB_NAME = "";
+                }
             }
             catch (Exception ex)
             {

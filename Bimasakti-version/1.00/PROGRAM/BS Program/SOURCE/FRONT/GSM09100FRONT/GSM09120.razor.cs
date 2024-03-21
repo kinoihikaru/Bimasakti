@@ -79,27 +79,34 @@ namespace GSM09100FRONT
 
             try
             {
-                var param = new GSL01800DTOParameter
+                if (_viewModel_MoveProduct.MoveProduct.CTO_CATEGORY.Length > 0)
                 {
-                    CPROPERTY_ID = _viewModel_MoveProduct.MoveProduct.CPROPERTY_ID,
-                    CCATEGORY_TYPE = ContextConstant.VAR_CATEGORY_TYPE,
-                    CSEARCH_TEXT = _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY
-                };
+                    var param = new GSL01800DTOParameter
+                    {
+                        CPROPERTY_ID = _viewModel_MoveProduct.MoveProduct.CPROPERTY_ID,
+                        CCATEGORY_TYPE = ContextConstant.VAR_CATEGORY_TYPE,
+                        CSEARCH_TEXT = _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY
+                    };
 
-                LookupGSL01800ViewModel loLookupViewModel = new LookupGSL01800ViewModel();
+                    LookupGSL01800ViewModel loLookupViewModel = new LookupGSL01800ViewModel();
 
-                var loResult = await loLookupViewModel.GetCategory(param);
+                    var loResult = await loLookupViewModel.GetCategory(param);
 
-                if (loResult == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(
-                            typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                            "_ErrLookup01"));
-                    _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = "";
-                    goto EndBlock;
+                    if (loResult == null)
+                    {
+                        loEx.Add(R_FrontUtility.R_GetError(
+                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                "_ErrLookup01"));
+                        _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = "";
+                        goto EndBlock;
+                    }
+
+                    _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = loResult.CCATEGORY_NAME;
                 }
-
-                _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = loResult.CCATEGORY_NAME;
+                else
+                {
+                    _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = "";
+                }
             }
             catch (Exception ex)
             {

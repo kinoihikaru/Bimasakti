@@ -20,5 +20,12 @@ namespace GLM00200Common
         public List<T> data { get; set; }
     }
 
+    public class UploadByte : R_APIResultBaseDTO
+    {
+        public byte[] data { get; set; }
+        public byte[] CLOGO { get; set; }
+
+    }
+
 
 }
