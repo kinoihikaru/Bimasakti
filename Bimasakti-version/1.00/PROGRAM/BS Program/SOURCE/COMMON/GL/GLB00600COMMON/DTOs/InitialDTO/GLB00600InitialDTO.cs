@@ -3,7 +3,7 @@ using System;
 
 namespace GLB00600COMMON
 {
-    public class GLB00600InitialDTO : R_APIResultBaseDTO
+    public class GLB00600InitialDTO
     {
         // param
         public string CCOMPANY_ID { get; set; }

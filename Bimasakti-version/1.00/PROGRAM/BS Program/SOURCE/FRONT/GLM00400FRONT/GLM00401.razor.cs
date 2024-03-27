@@ -78,7 +78,7 @@ namespace GLM00400FRONT
                         _DeptName = "";
                         goto EndBlock;
                     }
-
+                    _AllocationJournalHD_viewModel.Data.CDEPT_CODE = loResult.CDEPT_CODE;
                     _DeptName = loResult.CDEPT_NAME;
                 }
                 else

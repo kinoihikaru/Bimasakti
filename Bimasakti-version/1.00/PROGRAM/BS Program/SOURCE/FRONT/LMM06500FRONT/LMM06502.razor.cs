@@ -74,7 +74,7 @@ namespace LMM06500FRONT
                         _viewModel.StaffMoveHeader.COLD_DEPT_NAME = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.StaffMoveHeader.COLD_SUPERVISOR_ID = loResult.CSUPERVISOR;
                     _viewModel.StaffMoveHeader.COLD_SUPERVISOR_NAME = loResult.CSUPERVISOR_NAME;
                     _viewModel.StaffMoveHeader.COLD_DEPT_CODE = loResult.CDEPT_CODE;
                     _viewModel.StaffMoveHeader.COLD_DEPT_NAME = loResult.CDEPT_NAME;
@@ -123,7 +123,7 @@ namespace LMM06500FRONT
                         _viewModel.StaffMoveHeader.CNEW_DEPT_NAME = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.StaffMoveHeader.CNEW_SUPERVISOR_ID = loResult.CSUPERVISOR;
                     _viewModel.StaffMoveHeader.CNEW_SUPERVISOR_NAME = loResult.CSUPERVISOR_NAME;
                     _viewModel.StaffMoveHeader.CNEW_DEPT_CODE = loResult.CDEPT_CODE;
                     _viewModel.StaffMoveHeader.CNEW_DEPT_NAME = loResult.CDEPT_NAME;

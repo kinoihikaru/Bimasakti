@@ -28,7 +28,7 @@ namespace LMM06500MODEL
 
         public string PropertyValueContext = "";
         public bool StatusChange = false;
-        public DateTime JoinDateTime = DateTime.Now;
+        public DateTime? JoinDateTime = DateTime.Now;
         public string Position = "";
 
 

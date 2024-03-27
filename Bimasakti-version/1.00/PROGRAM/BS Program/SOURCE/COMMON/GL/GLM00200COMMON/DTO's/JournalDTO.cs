@@ -50,9 +50,9 @@ namespace GLM00200Common
         public decimal NNTRANS_AMOUNT_C { get; set; }
         public decimal NNTRANS_AMOUNT_D { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CLANGUAGE_ID { get; set; } = "";
         public bool LALLOW_APPROVE { get; set; }
         public string CNEXT_PRD { get; set; } = "";

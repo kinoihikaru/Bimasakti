@@ -58,8 +58,8 @@ namespace APT00100COMMON.DTOs.APT00110
         public decimal NDEDUCTION { get; set; } = 0;
         public decimal NTOTAL_AMOUNT { get; set; } = 0;
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; } = DateTime.Now;
+        public DateTime? DCREATE_DATE { get; set; } = DateTime.Now;
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; } = DateTime.Now;
+        public DateTime? DUPDATE_DATE { get; set; } = DateTime.Now;
     }
 }

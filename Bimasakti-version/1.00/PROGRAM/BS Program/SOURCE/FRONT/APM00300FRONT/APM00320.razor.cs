@@ -344,7 +344,7 @@ namespace APM00300FRONT
                         "320"));
                     }
                 }
-                lCancel = _Supplier_viewModel.TaxRegDate == DateTime.MinValue || string.IsNullOrWhiteSpace(_Supplier_viewModel.TaxRegDate.ToString(""));
+                lCancel = _Supplier_viewModel.TaxRegDate.HasValue == false;
 
                 if (loData.CTAX_TYPE == "02")
                 {

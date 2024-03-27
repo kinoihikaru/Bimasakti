@@ -63,9 +63,9 @@ namespace APT00300COMMON
         public string CUNIT3 { get; set; }
 
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
 
         public decimal NAP_REMAINING { get; set; }
         public decimal NLAP_REMAINING { get; set; }

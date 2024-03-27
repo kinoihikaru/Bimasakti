@@ -340,7 +340,7 @@ namespace LMM01500FRONT
                         loData.CCHARGES_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CPENALTY_ADD_ID = loResult.CCHARGES_ID;
                     loData.CCHARGES_NAME = loResult.CCHARGES_NAME;
                 }
                 else

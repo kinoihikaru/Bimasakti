@@ -296,7 +296,7 @@ namespace GLM00400FRONT
                         loData.CSOURCE_CENTER_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CDEPT_CODE = loResult.CDEPT_CODE;
                     loData.CDEPT_NAME = loResult.CDEPT_NAME;
                     loData.CSOURCE_CENTER_CODE = loResult.CCENTER_CODE;
                     loData.CSOURCE_CENTER_NAME = loResult.CCENTER_NAME;

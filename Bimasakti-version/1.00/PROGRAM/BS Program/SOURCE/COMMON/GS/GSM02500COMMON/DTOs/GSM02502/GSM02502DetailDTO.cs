@@ -14,8 +14,8 @@ namespace GSM02500COMMON.DTOs.GSM02502
         public bool LSINGLE_UNIT { get; set; } = false;
         public int IINVITATION_INVOICE_PERIOD { get; set; } = 0;
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

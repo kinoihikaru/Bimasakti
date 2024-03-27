@@ -15,7 +15,7 @@
 <R_StackLayout Row Class="justify-content-center">
     <R_ItemLayout col="2"> <R_Label FontSize="16">@_localizer["_CurrentPeriod"]</R_Label></R_ItemLayout>
     <R_ItemLayout col="3">
-        <R_TextBox @bind-Value="@_CloseEntries_viewModel.SystemParam.CURRENT_PERIOD_DISPLAY"
+        <R_TextBox @bind-Value="@(_CloseEntries_viewModel.SystemParam.CURRENT_PERIOD_DISPLAY)"
                    Enabled="false" MaxLength="20">
         </R_TextBox>
     </R_ItemLayout>

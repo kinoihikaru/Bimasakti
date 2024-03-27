@@ -11,7 +11,7 @@ namespace CBM00100BACK
 {
     public class CBM00100Cls
     {
-        RSP_AP_SAVE_SUPPLIER_BANKResources.Resources_Dummy_Class _loRsp = new RSP_AP_SAVE_SUPPLIER_BANKResources.Resources_Dummy_Class();
+        RSP_CB_SAVE_SYSTEM_PARAMResources.Resources_Dummy_Class _loRsp = new RSP_CB_SAVE_SYSTEM_PARAMResources.Resources_Dummy_Class();
 
         private LoggerCBM00100 _Logger;
         private readonly ActivitySource _activitySource;

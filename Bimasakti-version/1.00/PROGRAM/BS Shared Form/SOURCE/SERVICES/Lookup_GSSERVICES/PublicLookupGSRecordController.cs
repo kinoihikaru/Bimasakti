@@ -47,7 +47,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLSalesTax();
 
                 _Logger.LogInfo("Filter Search by text GSL00100GetSalesTax");
-                loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -77,7 +77,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLTaxByDate(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00110GetTaxByDate");
-                loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLWithholdingTax(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00200GetWithholdingTax");
-                loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CTAX_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -137,7 +137,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCurrency();
 
                 _Logger.LogInfo("Filter Search by text GSL00300GetCurrency");
-                loRtn.Data = loResult.Find(x => x.CCURRENCY_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCURRENCY_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -167,7 +167,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLJournalGroup(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00400GetJournalGroup");
-                loRtn.Data = loResult.Find(x => x.CJRNGRP_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CJRNGRP_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -197,7 +197,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLGLAccount(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00500GetGLAccount");
-                loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -227,7 +227,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCOA(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00510GetCOA");
-                loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -257,7 +257,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLGOACOA(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00520GetGOACOA");
-                loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CGLACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -287,7 +287,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLGOA();
 
                 _Logger.LogInfo("Filter Search by text GSL00550GetGOA");
-                loRtn.Data = loResult.Find(x => x.CGOA_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CGOA_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -317,7 +317,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLUnitTypeCategory(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00600GetUnitTypeCategory");
-                loRtn.Data = loResult.Find(x => x.CUNIT_TYPE_CATEGORY_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CUNIT_TYPE_CATEGORY_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -347,7 +347,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLDepartment(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00700GetDepartment");
-                loRtn.Data = loResult.Find(x => x.CDEPT_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CDEPT_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -377,7 +377,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLDepartmentProperty(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL00710GetDepartmentProperty");
-                loRtn.Data = loResult.Find(x => x.CDEPT_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CDEPT_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -407,7 +407,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCurrencyRateType();
 
                 _Logger.LogInfo("Filter Search by text GSL00800GetCurrencyType");
-                loRtn.Data = loResult.Find(x => x.CRATETYPE_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CRATETYPE_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -437,7 +437,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCenter();
 
                 _Logger.LogInfo("Filter Search by text GSL00900GetCenter");
-                loRtn.Data = loResult.Find(x => x.CCENTER_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCENTER_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -467,7 +467,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLUser();
 
                 _Logger.LogInfo("Filter Search by text GSL01000GetUser");
-                loRtn.Data = loResult.Find(x => x.CUSER_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CUSER_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -497,7 +497,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLUserApproval(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01100GetUserApproval");
-                loRtn.Data = loResult.Find(x => x.CUSER_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CUSER_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -527,7 +527,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLBank(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01200GetBank");
-                loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -557,7 +557,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLBankAccount(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01300GetBankAccount");
-                loRtn.Data = loResult.Find(x => x.CCB_ACCOUNT_NO.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCB_ACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -587,7 +587,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLOtherCharges(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01400GetOtherCharges");
-                loRtn.Data = loResult.Find(x => x.CCHARGES_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCHARGES_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -617,7 +617,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCashFlowGruopType();
 
                 _Logger.LogInfo("Filter Search by text GSL01600GetCashFlowGroupType");
-                loRtn.Data = loResult.Find(x => x.CCASH_FLOW_GROUP_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCASH_FLOW_GROUP_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -647,7 +647,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCategory(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL01800GetCategory");
-                loRtn.Data = loResult.Find(x => x.CCATEGORY_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCATEGORY_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -677,7 +677,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLLOB();
 
                 _Logger.LogInfo("Filter Search by text GSL01900GetLOB");
-                loRtn.Data = loResult.Find(x => x.CLOB_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CLOB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -707,7 +707,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLPaymentTerm(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02100GetPaymentTerm");
-                loRtn.Data = loResult.Find(x => x.CPAY_TERM_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CPAY_TERM_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -737,7 +737,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLBuilding(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02200GetBuilding");
-                loRtn.Data = loResult.Find(x => x.CBUILDING_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CBUILDING_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -767,7 +767,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLBuildingUnit(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02300GetBuildingUnit");
-                loRtn.Data = loResult.Find(x => x.CUNIT_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CUNIT_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -797,7 +797,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLFloor(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02400GetFloor");
-                loRtn.Data = loResult.Find(x => x.CFLOOR_ID.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CFLOOR_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -827,7 +827,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCB(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02500GetCB");
-                loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCB_CODE.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {
@@ -857,7 +857,7 @@ namespace Lookup_GSSERVICES
                 var loResult = loCls.GetALLCBAccount(poEntity);
 
                 _Logger.LogInfo("Filter Search by text GSL02600GetCBAccount");
-                loRtn.Data = loResult.Find(x => x.CCB_ACCOUNT_NO.Trim() == poEntity.CSEARCH_TEXT);
+                loRtn.Data = loResult.Find(x => x.CCB_ACCOUNT_NO.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
             }
             catch (Exception ex)
             {

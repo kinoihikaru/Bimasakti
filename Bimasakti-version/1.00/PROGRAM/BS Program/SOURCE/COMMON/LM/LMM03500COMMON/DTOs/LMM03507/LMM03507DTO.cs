@@ -15,8 +15,8 @@ namespace LMM03500COMMON.DTOs.LMM03507
         public string CMOBILE_PHONE1 { get; set; }
         public string CEMAIL { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

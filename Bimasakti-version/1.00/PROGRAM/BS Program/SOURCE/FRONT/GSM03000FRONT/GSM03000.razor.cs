@@ -356,7 +356,7 @@ namespace GSM03000FRONT
                         //await GLAccount_TextBox.FocusAsync();
                         goto EndBlock;
                     }
-
+                    Additional_viewModel.Data.CGLACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     Additional_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else

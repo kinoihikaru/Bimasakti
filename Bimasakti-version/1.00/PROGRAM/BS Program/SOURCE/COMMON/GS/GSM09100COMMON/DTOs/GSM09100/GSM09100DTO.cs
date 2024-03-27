@@ -21,9 +21,9 @@ namespace GSM09100COMMON
         public string CPARENT { get; set; } = "";
         public string CPARENT_NAME { get => cPARENT_NAME; set => cPARENT_NAME = string.IsNullOrWhiteSpace(value) ? "" : value; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CACTION { get; set; }
     }
 }

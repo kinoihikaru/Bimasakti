@@ -11,6 +11,6 @@ namespace Lookup_GSCOMMON.DTOs
         public string CCODE { get; set; }
         public string CNAME { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
     }
 }

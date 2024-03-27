@@ -304,7 +304,6 @@ namespace LMM01500FRONT
             try
             {
                 var loData = (LMM01530DTO)_OtherCharges_gridRef.GetCurrentData();
-                loData.CCHARGES_NAME = "tes";
                 if (eventArgs.ColumnName == "CCHARGES_ID")
                 {
                     

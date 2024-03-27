@@ -36,8 +36,8 @@ namespace APT00300COMMON
         public string CTHIRD_PARTY_VIEW_URL { get; set; }
         public string CTHIRD_PARTY_API_URL { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
     }
 }

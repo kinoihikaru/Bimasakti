@@ -9,6 +9,6 @@ namespace GSM02500COMMON.DTOs.GSM02503
         public string CIMAGE_ID { get; set; } = "";
         public string CIMAGE_NAME { get; set; } = "";
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }  
+        public DateTime? DCREATE_DATE { get; set; }  
     }
 }

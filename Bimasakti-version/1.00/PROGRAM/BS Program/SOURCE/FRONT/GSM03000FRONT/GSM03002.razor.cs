@@ -301,7 +301,7 @@ namespace GSM03000FRONT
                         Deducation_viewModel.Data.CGLACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    Deducation_viewModel.Data.CGLACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     Deducation_viewModel.Data.CGLACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else

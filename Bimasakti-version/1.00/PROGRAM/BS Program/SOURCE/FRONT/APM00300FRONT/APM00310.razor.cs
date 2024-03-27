@@ -185,6 +185,7 @@ namespace APM00300FRONT
                         loData.CJRNGRP_TYPE = "";
                         goto EndBlock;
                     }
+                    loData.CJRNGRP_CODE = loResult.CJRNGRP_CODE;
                     loData.CJRNGRP_NAME = loResult.CJRNGRP_NAME;
                     loData.CJRNGRP_TYPE = loResult.CJRNGRP_TYPE;
                 }
@@ -225,7 +226,7 @@ namespace APM00300FRONT
                         loData.CCATEGORY_TYPE = "";
                         goto EndBlock;
                     }
-
+                    loData.CCATEGORY_ID = loResult.CCATEGORY_ID;
                     loData.CCATEGORY_NAME = loResult.CCATEGORY_NAME;
                     loData.CCATEGORY_TYPE = loResult.CCATEGORY_TYPE;
                 }
@@ -265,7 +266,7 @@ namespace APM00300FRONT
                         loData.CLOB_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CLOB_CODE = loResult.CLOB_CODE;
                     loData.CLOB_NAME = loResult.CLOB_NAME;
                 }
                 else

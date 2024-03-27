@@ -16,8 +16,8 @@ namespace APM00100COMMON.DTOs.APM00100
         public bool LGLLINK { get; set; }
         public bool LBACKDATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

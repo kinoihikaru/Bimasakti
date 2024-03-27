@@ -25,7 +25,7 @@ namespace APM00300MODEL
         public string SupplierID = "";
         public string SupplierName = "";
         public string RecId = string.Empty;
-        public DateTime TaxRegDate;
+        public DateTime? TaxRegDate;
         public async Task GetSupplierSeqList()
         {
             var loEx = new R_Exception();
@@ -96,7 +96,7 @@ namespace APM00300MODEL
             var loEx = new R_Exception();
             try
             {
-                poEntity.CTAX_REG_DATE = TaxRegDate.ToString("yyyyMMdd");
+                poEntity.CTAX_REG_DATE = TaxRegDate.Value.ToString("yyyyMMdd");
                 poEntity.CSUPPLIER_REC_ID = SupplierRecId;
                 
                 await _APM00320Model.SaveSupplierInfoAsync(poEntity);

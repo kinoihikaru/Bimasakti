@@ -669,7 +669,7 @@ namespace LMM01500FRONT
                         //await GLAccount_TextBox.FocusAsync();
                         goto EndBlock;
                     }
-
+                    _Genereal_viewModel.Data.CSTAMP_ADD_ID = loResult.CCHARGES_ID;
                     _Genereal_viewModel.Data.CSTAMP_ADD_NAME = loResult.CCHARGES_NAME;
                 }
                 else
@@ -732,7 +732,7 @@ namespace LMM01500FRONT
                         GeneralButtonEnable = false;
                         goto EndBlock;
                     }
-
+                    _Genereal_viewModel.Data.CDEPT_CODE = loResult.CDEPT_CODE;
                     _Genereal_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
                     GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
                 }
@@ -795,7 +795,7 @@ namespace LMM01500FRONT
                         //await GLAccount_TextBox.FocusAsync();
                         goto EndBlock;
                     }
-
+                    _Genereal_viewModel.Data.CBANK_CODE = loResult.CCB_CODE;
                     _Genereal_viewModel.Data.CCB_NAME = loResult.CCB_NAME;
                     GeneralButtonEnable = !string.IsNullOrEmpty(_Genereal_viewModel.Data.CDEPT_CODE) && !string.IsNullOrEmpty(_Genereal_viewModel.Data.CBANK_CODE);
                 }
@@ -862,6 +862,7 @@ namespace LMM01500FRONT
                                 "_ErrLookup01"));
                         goto EndBlock;
                     }
+                    loGetData.CBANK_ACCOUNT = loResult.CCB_ACCOUNT_NO;
                 }
             }
             catch (Exception ex)

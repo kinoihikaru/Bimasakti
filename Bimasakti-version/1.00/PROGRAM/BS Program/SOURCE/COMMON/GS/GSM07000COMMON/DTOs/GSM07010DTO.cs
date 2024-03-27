@@ -9,6 +9,6 @@ namespace GSM07000COMMON.DTOs
         public string CAPPROVAL_USER { get; set; } = "";
         public string CUSER_NAME { get; set; } = "";
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

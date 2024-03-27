@@ -273,7 +273,7 @@ namespace CBM00100FRONT
                         loData.CRATETYPE_DESCRIPTION = "";
                         goto EndBlock;
                     }
-
+                    loData.CRATETYPE_CODE = loResult.CRATETYPE_CODE;
                     loData.CRATETYPE_DESCRIPTION = loResult.CRATETYPE_DESCRIPTION;
                 }
                 else
@@ -338,7 +338,7 @@ namespace CBM00100FRONT
                         loData.CCONTRA_ACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CCONTRA_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     loData.CCONTRA_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else
@@ -405,7 +405,7 @@ namespace CBM00100FRONT
                         loData.CCRDVG_ACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CCRDVG_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     loData.CCRDVG_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else
@@ -472,7 +472,7 @@ namespace CBM00100FRONT
                         loData.CCRDVL_ACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CCRDVL_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     loData.CCRDVL_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else

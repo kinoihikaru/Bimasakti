@@ -82,7 +82,7 @@ namespace GLR00200FRONT
                         _viewModel.FromAccountName = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.Data.CFROM_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     _viewModel.FromAccountName = loResult.CGLACCOUNT_NAME;
                 }
                 else
@@ -124,6 +124,7 @@ namespace GLR00200FRONT
                         _viewModel.ToAccountName = "";
                         goto EndBlock;
                     }
+                    _viewModel.Data.CTO_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     _viewModel.ToAccountName = loResult.CGLACCOUNT_NAME;
                 }
                 else
@@ -163,7 +164,7 @@ namespace GLR00200FRONT
                         _viewModel.FromCenterName = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.Data.CFROM_CENTER_CODE = loResult.CCENTER_CODE;
                     _viewModel.FromCenterName = loResult.CCENTER_NAME;
                 }
                 else
@@ -203,7 +204,7 @@ namespace GLR00200FRONT
                         _viewModel.ToCenterName = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.Data.CTO_CENTER_CODE = loResult.CCENTER_CODE;
                     _viewModel.ToCenterName = loResult.CCENTER_NAME;
                 }
                 else
@@ -348,8 +349,8 @@ namespace GLR00200FRONT
                     loData.CFROM_PERIOD_NO = "";
                     loData.CTO_PERIOD_NO = "";
 
-                    loData.CFROM_DATE = _viewModel.IFROMDATE.ToString("yyyyMMdd");
-                    loData.CTO_DATE = _viewModel.ITODATE.ToString("yyyyMMdd");
+                    loData.CFROM_DATE = _viewModel.IFROMDATE.Value.ToString("yyyyMMdd");
+                    loData.CTO_DATE = _viewModel.ITODATE.Value.ToString("yyyyMMdd");
                 }
 
                 await _viewModel.ValidationGLAccountLedger(loData);

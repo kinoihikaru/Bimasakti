@@ -34,9 +34,9 @@ namespace GLT00200COMMON.DTOs.GLT00200
         public string CLPRD_END_BY { get; set; } = "";
         public DateTime DLPRD_END_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public bool LALLOW_UNDO_COMMIT_JRN { get; set; } = false;
         public bool LALLOW_CANCEL_SOFT_END { get; set; } = false;
         public bool LALLOW_EDIT_IMPJRN_DESC { get; set; } = false;

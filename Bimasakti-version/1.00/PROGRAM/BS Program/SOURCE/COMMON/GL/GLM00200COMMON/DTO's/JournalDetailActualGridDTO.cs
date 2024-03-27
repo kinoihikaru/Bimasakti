@@ -16,6 +16,6 @@ namespace GLM00200Common
         public string NLTRANS_AMOUNT { get; set; }
         public string NBTRANS_AMOUNT { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

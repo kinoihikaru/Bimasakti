@@ -23,11 +23,8 @@ namespace GLB00600MODEL
         {
         }
 
-        public GLB00600GSMTransactionCodeDTO GetInitialGSMTransactionCode(GLB00600GSMTransactionCodeDTO poParam)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<GLB00600GSMTransactionCodeDTO> GetInitialGSMTransactionCodeAsync(GLB00600GSMTransactionCodeDTO poParam)
+
+        public async Task<GLB00600GSMTransactionCodeDTO> GetInitialGSMTransactionCodeAsync()
         {
             var loEx = new R_Exception();
             GLB00600GSMTransactionCodeDTO loResult = null;
@@ -35,14 +32,14 @@ namespace GLB00600MODEL
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600GSMTransactionCodeDTO, GLB00600GSMTransactionCodeDTO>(
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600Record<GLB00600GSMTransactionCodeDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGLB00600.GetInitialGSMTransactionCode),
-                    poParam,
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
 
+                loResult = loTempResult.Data;
             }
             catch (Exception ex)
             {
@@ -54,10 +51,6 @@ namespace GLB00600MODEL
             return loResult;
         }
 
-        public GLB00600SuspenseAmountDTO GetInitialSupenseAmount(GLB00600SuspenseAmountDTO poParam)
-        {
-            throw new NotImplementedException();
-        }
         public async Task<GLB00600SuspenseAmountDTO> GetInitialSupenseAmountAsync(GLB00600SuspenseAmountDTO poParam)
         {
             var loEx = new R_Exception();
@@ -66,7 +59,7 @@ namespace GLB00600MODEL
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600SuspenseAmountDTO, GLB00600SuspenseAmountDTO>(
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600Record<GLB00600SuspenseAmountDTO>, GLB00600SuspenseAmountDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGLB00600.GetInitialSupenseAmount),
                     poParam,
@@ -74,6 +67,7 @@ namespace GLB00600MODEL
                     _SendWithContext,
                     _SendWithToken);
 
+                loResult = loTempResult.Data;
             }
             catch (Exception ex)
             {
@@ -85,10 +79,6 @@ namespace GLB00600MODEL
             return loResult;
         }
 
-        public GLB00600InitialDTO GetInitialVar(GLB00600InitialDTO poParam)
-        {
-            throw new NotImplementedException();
-        }
         public async Task<GLB00600InitialDTO> GetInitialVarAsync(GLB00600InitialDTO poParam)
         {
             var loEx = new R_Exception();
@@ -97,7 +87,7 @@ namespace GLB00600MODEL
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600InitialDTO, GLB00600InitialDTO>(
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600Record<GLB00600InitialDTO>, GLB00600InitialDTO>(
                     _RequestServiceEndPoint,
                     nameof(IGLB00600.GetInitialVar),
                     poParam,
@@ -105,6 +95,7 @@ namespace GLB00600MODEL
                     _SendWithContext,
                     _SendWithToken);
 
+                loResult = loTempResult.Data;
             }
             catch (Exception ex)
             {
@@ -116,10 +107,6 @@ namespace GLB00600MODEL
             return loResult;
         }
 
-        public GLB00600DTO GetResultClosingEntries(GLB00600DTO poParam)
-        {
-            throw new NotImplementedException();
-        }
         public async Task GetResultClosingEntriesAsync(GLB00600DTO poParam)
         {
             var loEx = new R_Exception();
@@ -128,7 +115,7 @@ namespace GLB00600MODEL
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600DTO, GLB00600DTO>(
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600Record<GLB00600InitialDTO>, GLB00600DTO>(
                     _RequestServiceEndPoint,
                     nameof(IGLB00600.GetResultClosingEntries),
                     poParam,
@@ -146,10 +133,6 @@ namespace GLB00600MODEL
 
         }
 
-        public GLB00600GLSystemParamDTO GetSystemParam()
-        {
-            throw new NotImplementedException();
-        }
         public async Task<GLB00600GLSystemParamDTO> GetSystemParamAsync()
         {
             var loEx = new R_Exception();
@@ -158,13 +141,14 @@ namespace GLB00600MODEL
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600GLSystemParamDTO>(
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GLB00600Record<GLB00600GLSystemParamDTO>>(
                     _RequestServiceEndPoint,
                     nameof(IGLB00600.GetSystemParam),
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
 
+                loResult = loTempResult.Data;
             }
             catch (Exception ex)
             {
@@ -176,11 +160,7 @@ namespace GLB00600MODEL
             return loResult;
         }
 
-        public IAsyncEnumerable<GLB00600DTO> GetValidationClosingResult(GLB00600DTO poParam)
-        {
-            throw new NotImplementedException();
-        }
-        public async Task<List<GLB00600DTO>> GetValidationClosingResultAsync(GLB00600DTO poParam)
+        public async Task<List<GLB00600DTO>> GetValidationClosingResultAsync()
         {
             var loEx = new R_Exception();
             List<GLB00600DTO> loResult = null;
@@ -188,10 +168,9 @@ namespace GLB00600MODEL
             try
             {
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
-                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GLB00600DTO, GLB00600DTO>(
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GLB00600DTO>(
                     _RequestServiceEndPoint,
                     nameof(IGLB00600.GetValidationClosingResult),
-                    poParam,
                     DEFAULT_MODULE,
                     _SendWithContext,
                     _SendWithToken);
@@ -206,5 +185,29 @@ namespace GLB00600MODEL
             return loResult;
         }
 
+        public GLB00600Record<GLB00600GSMTransactionCodeDTO> GetInitialGSMTransactionCode()
+        {
+            throw new NotImplementedException();
+        }
+        public GLB00600Record<GLB00600DTO> GetResultClosingEntries()
+        {
+            throw new NotImplementedException();
+        }
+        public IAsyncEnumerable<GLB00600DTO> GetValidationClosingResult()
+        {
+            throw new NotImplementedException();
+        }
+        public GLB00600Record<GLB00600GLSystemParamDTO> GetSystemParam()
+        {
+            throw new NotImplementedException();
+        }
+        public GLB00600Record<GLB00600InitialDTO> GetInitialVar(GLB00600InitialDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
+        public GLB00600Record<GLB00600SuspenseAmountDTO> GetInitialSupenseAmount(GLB00600SuspenseAmountDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

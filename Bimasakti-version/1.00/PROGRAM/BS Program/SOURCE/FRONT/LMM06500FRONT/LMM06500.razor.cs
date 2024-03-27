@@ -253,7 +253,7 @@ namespace LMM06500FRONT
                         loData.CDEPT_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CDEPT_CODE = loResult.CDEPT_CODE;
                     loData.CDEPT_NAME = loResult.CDEPT_NAME;
                 }
                 else
@@ -333,7 +333,7 @@ namespace LMM06500FRONT
                         loData.CSUPERVISOR_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.CSUPERVISOR = loResult.CSUPERVISOR;
                     loData.CSUPERVISOR_NAME = loResult.CSUPERVISOR_NAME;
                 }
                 else
@@ -441,7 +441,7 @@ namespace LMM06500FRONT
             var loEx = new R_Exception();
             try
             {
-                loData.CJOIN_DATE = _Staff_viewModel.JoinDateTime.ToString("yyyyMMdd");
+                loData.CJOIN_DATE = _Staff_viewModel.JoinDateTime.Value.ToString("yyyyMMdd");
                 await _Staff_viewModel.StaffValidation(loData, (eCRUDMode)eventArgs.ConductorMode);
                 var loValidateViewModel = new GFF00900Model.ViewModel.GFF00900ViewModel();
 

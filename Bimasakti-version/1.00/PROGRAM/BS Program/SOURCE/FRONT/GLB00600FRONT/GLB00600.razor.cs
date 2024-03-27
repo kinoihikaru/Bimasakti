@@ -21,32 +21,33 @@ namespace GLB00600FRONT
 
             try
             {
-                await ClosingEntries_SystemParam_ServiceGetListRecord(null);
+                var loData = await _CloseEntries_viewModel.GetSystemParam();
 
-                if (string.IsNullOrWhiteSpace(_CloseEntries_viewModel.SystemParam.CCLOSE_DEPT_CODE))
+                if (loData.CCLOSE_DEPT_CODE == null)
                 {
-                    await R_MessageBox.Show("", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifMustMaintainParamProperty"), _CloseEntries_viewModel.SystemParam.CCOMPANY_ID), R_eMessageBoxButtonType.OK);
+                    await R_MessageBox.Show("", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifMustMaintainParamProperty"), clientHelper.CompanyId), R_eMessageBoxButtonType.OK);
                     await this.CloseProgram();
                 }
                 else
                 {
-                    if (_CloseEntries_viewModel.SystemParam.CSUSPENSE_ACCOUNT_NO == "")
+                    if (loData.CSUSPENSE_ACCOUNT_NO == "")
                     {
                         await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifErrorSetupSuspence"), R_eMessageBoxButtonType.OK);
                         await this.CloseProgram();
                     }
                     else
                     {
-                        if (_CloseEntries_viewModel.SystemParam.CRETAINED_ACCOUNT_NO == "")
+                        if (loData.CRETAINED_ACCOUNT_NO == "")
                         {
                             await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifErrorSetupRetained"), R_eMessageBoxButtonType.OK);
                             await this.CloseProgram();
                         }
                         else
                         {
-                            await ClosingEntries_InitialVar_ServiceGetListRecord(null);
+                            var loParam = new GLB00600InitialDTO() { CYEAR = loData.CCURRENT_PERIOD_YY };
+                            await _CloseEntries_viewModel.GetInitialVar(loParam);
 
-                            var loCurrentPeriodRight = _CloseEntries_viewModel.SystemParam.CCURRENT_PERIOD.Substring(_CloseEntries_viewModel.SystemParam.CCURRENT_PERIOD.Length - 2);
+                            var loCurrentPeriodRight = loData.CCURRENT_PERIOD_YY;
                             int ValidationInitial = int.Parse(loCurrentPeriodRight);
 
                             if (ValidationInitial != _CloseEntries_viewModel.InitialVar.INO_PERIOD)
@@ -56,7 +57,8 @@ namespace GLB00600FRONT
                             }
                             else
                             {
-                                await ClosingEntries_SuspenAmound_ServiceGetListRecord(null);
+                                var loSuspendParam = new GLB00600SuspenseAmountDTO() { CGLACCOUNT_NO = loData.CSUSPENSE_ACCOUNT_NO, CPERIOD = loData.CCURRENT_PERIOD };
+                                await _CloseEntries_viewModel.GetSsuspenAmount(loSuspendParam);
 
                                 if (_CloseEntries_viewModel.SuspenseAmountDTO.NSUSPENSE != 0)
                                 {
@@ -65,12 +67,16 @@ namespace GLB00600FRONT
                                 }
                                 else
                                 {
-                                    await ClosingEntries_GSMTransactionCode_ServiceGetListRecord(null);
+                                    await _CloseEntries_viewModel.GetGSMTransactionCode();
 
-                                    if (_CloseEntries_viewModel.SystemParam.CSOFT_PERIOD == _CloseEntries_viewModel.SystemParam.CCURRENT_PERIOD)
+                                    if (loData.CSOFT_PERIOD == loData.CCURRENT_PERIOD)
                                     {
                                         await R_MessageBox.Show("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifErrorSoftClose"), R_eMessageBoxButtonType.OK);
                                         await this.CloseProgram();
+                                    }
+                                    else
+                                    {
+                                        _CloseEntries_viewModel.SystemParam = loData;
                                     }
                                 }
                             }
@@ -78,91 +84,6 @@ namespace GLB00600FRONT
                     }
                 }
 
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
-
-        private async Task ClosingEntries_InitialVar_ServiceGetListRecord(object eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loParam = new GLB00600InitialDTO() { CYEAR = _CloseEntries_viewModel.SystemParam.CCURRENT_PERIOD.Substring(0, 4) };
-                await _CloseEntries_viewModel.GetInitialVar(loParam);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
-
-        private async Task ClosingEntries_SystemParam_ServiceGetListRecord(object eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                await _CloseEntries_viewModel.GetSystemParam();
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
-
-        private async Task ClosingEntries_SuspenAmound_ServiceGetListRecord(object eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loParam = new GLB00600SuspenseAmountDTO() { CGLACCOUNT_NO = _CloseEntries_viewModel.SystemParam.CSUSPENSE_ACCOUNT_NO, CPERIOD = _CloseEntries_viewModel.SystemParam.CCURRENT_PERIOD };
-                await _CloseEntries_viewModel.GetSsuspenAmount(loParam);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
-
-        private async Task ClosingEntries_GSMTransactionCode_ServiceGetListRecord(object eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loParam = new GLB00600GSMTransactionCodeDTO();
-                await _CloseEntries_viewModel.GetGSMTransactionCode(loParam);
-
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
-        }
-
-        private async Task ClosingEntries_ValidationResult_ServiceGetListRecord(object eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                var loParam = new GLB00600DTO();
-                await _CloseEntries_viewModel.GetGSMValidationResult(loParam);
             }
             catch (Exception ex)
             {
@@ -184,12 +105,11 @@ namespace GLB00600FRONT
                 }
                 else
                 {
-                    await ClosingEntries_ValidationResult_ServiceGetListRecord(null);
+                    await _CloseEntries_viewModel.GetGSMValidationResult();
 
                     if (_CloseEntries_viewModel.ResultClose.Any(x => x.CDEPT_CODE != _CloseEntries_viewModel.SystemParam.CCLOSE_DEPT_CODE))
                     {
                         await R_MessageBox.Show("", string.Format(R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_NotifErrorUserNotHaveAccessDept"), clientHelper.UserId, _CloseEntries_viewModel.SystemParam.CCLOSE_DEPT_CODE), R_eMessageBoxButtonType.OK);
-                        await this.CloseProgram();
                     }
                     else
                     {

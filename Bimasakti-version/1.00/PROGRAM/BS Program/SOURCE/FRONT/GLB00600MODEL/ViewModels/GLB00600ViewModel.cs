@@ -33,14 +33,14 @@ namespace GLB00600MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task GetSystemParam()
+        public async Task<GLB00600GLSystemParamDTO> GetSystemParam()
         {
             var loEx = new R_Exception();
+            GLB00600GLSystemParamDTO loRtn = null;
             try
             {
                 var loResult = await _GLB00600Model.GetSystemParamAsync();
-
-                SystemParam = loResult;
+                loRtn = loResult;
             }
             catch (Exception ex)
             {
@@ -48,6 +48,7 @@ namespace GLB00600MODEL
             }
 
             loEx.ThrowExceptionIfErrors();
+            return loRtn;
         }
 
         public async Task GetSsuspenAmount(GLB00600SuspenseAmountDTO poParam)
@@ -67,12 +68,12 @@ namespace GLB00600MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task GetGSMTransactionCode(GLB00600GSMTransactionCodeDTO poParam)
+        public async Task GetGSMTransactionCode()
         {
             var loEx = new R_Exception();
             try
             {
-                var loResult = await _GLB00600Model.GetInitialGSMTransactionCodeAsync(poParam);
+                var loResult = await _GLB00600Model.GetInitialGSMTransactionCodeAsync();
 
                 GSMTransactionCode = loResult;
             }
@@ -84,12 +85,12 @@ namespace GLB00600MODEL
             loEx.ThrowExceptionIfErrors();
         }
 
-        public async Task GetGSMValidationResult(GLB00600DTO poParam)
+        public async Task GetGSMValidationResult()
         {
             var loEx = new R_Exception();
             try
             {
-                var loResult = await _GLB00600Model.GetValidationClosingResultAsync(poParam);
+                var loResult = await _GLB00600Model.GetValidationClosingResultAsync();
 
                 ResultClose = loResult;
             }

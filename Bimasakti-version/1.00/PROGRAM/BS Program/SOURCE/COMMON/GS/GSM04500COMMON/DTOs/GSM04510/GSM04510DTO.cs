@@ -18,9 +18,9 @@ namespace GSM04500COMMON
         public string CGLACCOUNT_NAME { get; set; }
 
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
     }
 
     public class GSM04510ParameterDTO

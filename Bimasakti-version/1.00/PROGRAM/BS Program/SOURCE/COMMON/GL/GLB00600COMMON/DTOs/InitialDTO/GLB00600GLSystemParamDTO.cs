@@ -3,12 +3,8 @@ using System;
 
 namespace GLB00600COMMON
 {
-    public class GLB00600GLSystemParamDTO : R_APIResultBaseDTO
+    public class GLB00600GLSystemParamDTO
     {
-        // param
-        public string CCOMPANY_ID { get; set; }
-        public string CUSER_LANGUAGE { get; set; }
-
         // result
         public string CCLOSE_DEPT_CODE { get; set; }
         public string CCLOSE_DEPT_NAME { get; set; }
@@ -40,9 +36,9 @@ namespace GLB00600COMMON
         public string CLPRD_END_BY { get; set; }
         public DateTime DLPRD_END_DATE { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public bool LALLOW_UNDO_COMMIT_JRN { get; set; }
         public bool LALLOW_CANCEL_SOFT_END { get; set; }
         public bool LALLOW_EDIT_IMPJRN_DESC { get; set; }

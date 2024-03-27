@@ -296,7 +296,7 @@ namespace LMM01500FRONT
                         //await GLAccount_TextBox.FocusAsync();
                         goto EndBlock;
                     }
-
+                    _BankAccountGrid_viewModel.Data.CDEPT_CODE = loResult.CDEPT_CODE;
                     _BankAccountGrid_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
                 }
                 else
@@ -367,7 +367,7 @@ namespace LMM01500FRONT
                         //await GLAccount_TextBox.FocusAsync();
                         goto EndBlock;
                     }
-
+                    _BankAccountGrid_viewModel.Data.CBANK_CODE = loResult.CCB_CODE;
                     _BankAccountGrid_viewModel.Data.CBANK_NAME = loResult.CCB_NAME;
                 }
                 else
@@ -432,6 +432,7 @@ namespace LMM01500FRONT
                                 "_ErrLookup01"));
                         goto EndBlock;
                     }
+                    loGetData.CBANK_ACCOUNT = loResult.CCB_ACCOUNT_NO;
                 }
             }
             catch (Exception ex)

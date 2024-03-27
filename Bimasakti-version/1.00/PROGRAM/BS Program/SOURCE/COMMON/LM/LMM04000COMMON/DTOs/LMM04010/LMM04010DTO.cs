@@ -42,9 +42,9 @@ namespace LMM04000COMMON.DTOs.LMM04010
         public string CLOB_CODE { get; set; } = "";
         public string CLOB_DESCRIPTION { get; set; } = "";
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public void Clear()
         {
             CTENANT_ID = "";

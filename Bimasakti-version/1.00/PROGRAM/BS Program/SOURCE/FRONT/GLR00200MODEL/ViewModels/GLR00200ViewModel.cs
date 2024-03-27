@@ -28,8 +28,8 @@ namespace GLR00200MODEL
         public string ToCenterName = "";
         public bool LPrintbyCenter = false;
         public int IYEAR;
-        public DateTime IFROMDATE;
-        public DateTime ITODATE;
+        public DateTime? IFROMDATE;
+        public DateTime? ITODATE;
 
         public async Task GetInitialVar()
         {

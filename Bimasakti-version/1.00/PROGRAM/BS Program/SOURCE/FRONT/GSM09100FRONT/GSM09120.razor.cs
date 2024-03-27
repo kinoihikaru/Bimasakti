@@ -100,7 +100,7 @@ namespace GSM09100FRONT
                         _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = "";
                         goto EndBlock;
                     }
-
+                    _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY = loResult.CCATEGORY_ID;
                     _viewModel_MoveProduct.MoveProduct.CTO_CATEGORY_NAME = loResult.CCATEGORY_NAME;
                 }
                 else

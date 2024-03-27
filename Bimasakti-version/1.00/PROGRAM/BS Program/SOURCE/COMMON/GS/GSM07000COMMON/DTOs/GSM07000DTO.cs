@@ -12,7 +12,7 @@ namespace GSM07000COMMON.DTOs
         public string CAPPROVAL_CODE { get; set; } = "";
         public string CAPV_LOG_GRP { get; set; } = "";
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CAPPROVAL_OPTION { get; set; } = "";
 
     }

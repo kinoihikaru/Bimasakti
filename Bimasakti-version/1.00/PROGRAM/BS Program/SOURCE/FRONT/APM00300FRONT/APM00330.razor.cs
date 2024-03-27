@@ -187,7 +187,7 @@ namespace APM00300FRONT
                     goto EndBlock;
                 }
 
-
+                loData.CBANK_CODE = loResult.CCB_CODE;
                 loData.CBANK_NAME = loResult.CCB_NAME;
             }
             catch (Exception ex)

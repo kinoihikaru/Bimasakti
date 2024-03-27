@@ -1186,6 +1186,7 @@ namespace Lookup_GSModel
             try
             {
                 //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, string.IsNullOrWhiteSpace(poParameter.CDEPT_CODE) ? "" : poParameter.CDEPT_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBANK_TYPE, string.IsNullOrWhiteSpace(poParameter.CBANK_TYPE) ? "" : poParameter.CBANK_TYPE);
 
@@ -1222,6 +1223,7 @@ namespace Lookup_GSModel
             try
             {
                 //Set Context
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CDEPT_CODE, string.IsNullOrWhiteSpace(poParameter.CDEPT_CODE) ? "" : poParameter.CDEPT_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_CODE, string.IsNullOrWhiteSpace(poParameter.CCB_CODE) ? "" : poParameter.CCB_CODE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCB_TYPE, string.IsNullOrWhiteSpace(poParameter.CCB_TYPE) ? "" : poParameter.CCB_TYPE);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CBANK_TYPE, string.IsNullOrWhiteSpace(poParameter.CBANK_TYPE) ? "" : poParameter.CBANK_TYPE);

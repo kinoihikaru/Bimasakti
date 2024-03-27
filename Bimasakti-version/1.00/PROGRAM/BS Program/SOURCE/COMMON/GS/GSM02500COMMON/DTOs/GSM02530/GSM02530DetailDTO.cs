@@ -20,8 +20,8 @@ namespace GSM02500COMMON.DTOs.GSM02530
         public decimal NNET_AREA_SIZE { get; set; } = 0;
         public bool LACTIVE { get; set; } = true;
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

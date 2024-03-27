@@ -23,9 +23,9 @@ namespace GLM00400COMMON
         public string CSOURCE_CENTER_NAME { get; set; }
         public string CDESCRIPTION { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public bool LALLOW_EDIT { get; set; }
         public bool ON_CRUD_MODE { get; set; }
     }

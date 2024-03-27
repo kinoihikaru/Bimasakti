@@ -1169,6 +1169,7 @@ namespace Lookup_GSSERVICES
 
                 _Logger.LogInfo("Set Param GSL02500GetCBList");
                 var loCls = new PublicLookupCls();
+                poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
                 poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
 
@@ -1204,6 +1205,7 @@ namespace Lookup_GSSERVICES
 
                 _Logger.LogInfo("Set Param GSL02600GetCBAccountList");
                 var loCls = new PublicLookupCls();
+                poParameter.CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CDEPT_CODE);
                 poParameter.CCB_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_TYPE);
                 poParameter.CBANK_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CBANK_TYPE);
                 poParameter.CCB_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCB_CODE);

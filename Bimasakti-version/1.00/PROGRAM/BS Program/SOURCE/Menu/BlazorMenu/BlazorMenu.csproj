@@ -31,6 +31,7 @@
 		<ProjectReference Include="..\..\FRONT\APT00600FRONT\APT00600FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\APT00900FRONT\APT00900FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\CBM00100FRONT\CBM00100FRONT.csproj" />
+		<ProjectReference Include="..\..\FRONT\CBT00200FRONT\CBT00200FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\GLM00200FRONT\GLM00200Front.csproj" />
 		<ProjectReference Include="..\..\FRONT\GLT00100FRONT\GLT00100FRONT.csproj" />
 		<ProjectReference Include="..\..\FRONT\GLT00200FRONT\GLT00200FRONT.csproj" />

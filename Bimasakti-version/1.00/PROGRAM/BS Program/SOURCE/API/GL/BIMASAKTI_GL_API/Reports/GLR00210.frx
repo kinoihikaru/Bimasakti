@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/11/2024 16:06:49" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\BIMASAKTI\Bimasakti-version\Bimasakti-version\1.00\PROGRAM\BS Program\SOURCE\API\GL\BIMASAKTI_GL_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="03/25/2024 10:04:13" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="GLR" DataType="GLR00200COMMON.GLR00210ResultPrintDTO, GLR00200COMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -100,7 +100,7 @@
       <inherited Name="Text34"/>
       <inherited Name="Text37"/>
       <inherited Name="Text39"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="56.7">
+      <ChildBand Name="Child1" ZOrder="-1" Top="80.93" Width="1047.06" Height="56.7">
         <TextObject Name="Text45" Top="37.8" Width="94.5" Height="18.9" Text="Period" Font="MS Gothic, 10pt"/>
         <TextObject Name="Text73" Left="94.5" Top="37.8" Width="132.3" Height="18.9" Text=": [ResponseDataModel.GLR.HeaderData.CFROM_PERIOD]" VertAlign="Center" Font="MS Gothic, 10pt"/>
         <TextObject Name="Text75" Left="226.8" Top="37.8" Width="141.75" Height="18.9" Text="to [ResponseDataModel.GLR.HeaderData.CTO_PERIOD]" VertAlign="Center" Font="MS Gothic, 10pt"/>
@@ -118,28 +118,28 @@
         <TextObject Name="Text69" Left="226.8" Width="141.75" Height="18.9" Text="to [ResponseDataModel.GLR.HeaderData.CTO_ACCOUNT_NO]" VertAlign="Center" Font="MS Gothic, 10pt"/>
       </ChildBand>
     </inherited>
-    <ColumnHeaderBand Name="ColumnHeader1" ZOrder="-1" Top="140.3" Width="1047.06" Height="37.8">
-      <TextObject Name="Text78" Left="9.45" Width="94.5" Height="18.9" Text="Date" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text79" Left="103.95" Width="56.7" Height="18.9" Text="Module" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text80" Left="160.65" Width="211.1" Height="18.9" Text="Reference No." Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text81" Left="160.65" Top="18.9" Width="211.1" Height="18.9" Text="Description" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text83" Left="368.55" Width="141.75" Height="18.9" Text="Voucher No." Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text84" Left="368.55" Top="18.9" Width="141.75" Height="18.9" Text="Customer / Supplier" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text85" Left="510.3" Width="113.4" Height="18.9" Text="Voucher Date" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text88" Left="926.1" Width="122.85" Height="18.9" Text="Current Balance" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text86" Left="661.5" Width="132.3" Height="18.9" Text="Debit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
-      <TextObject Name="Text87" Left="793.8" Width="132.3" Height="18.9" Text="Credit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
-      <LineObject Name="Line9" Top="37.8" Width="1048.95"/>
-      <LineObject Name="Line10" Width="1048.95"/>
-    </ColumnHeaderBand>
-    <DataBand Name="Data1" ZOrder="0" Top="182.1" Width="1047.06" Height="18.9" DataSource="DetailData" KeepTogether="true" KeepDetail="true">
+    <DataBand Name="Data1" ZOrder="0" Top="186.1" Width="1047.06" Height="18.9" DataSource="DetailData" KeepTogether="true" KeepDetail="true">
       <TextObject Name="Text127" Width="94.5" Height="18.9" Text="Account No." Font="MS Gothic, 10pt, style=Bold"/>
       <TextObject Name="Text129" Left="368.55" Width="56.7" Height="18.9" Text="BS/IS" Font="MS Gothic, 10pt, style=Bold"/>
       <TextObject Name="Text130" Left="510.3" Width="56.7" Height="18.9" Text="Db/Cr" Font="MS Gothic, 10pt, style=Bold"/>
       <TextObject Name="Text132" Left="94.5" Width="274.05" Height="18.9" Text=": [ResponseDataModel.GLR.DetailData.CACCOUNT]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text133" Left="425.25" Width="85.05" Height="18.9" Text=": [ResponseDataModel.GLR.DetailData.CBSIS]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text134" Left="567" Width="94.5" Height="18.9" Text=": [ResponseDataModel.GLR.DetailData.CDBCR]" Font="MS Gothic, 10pt"/>
-      <DataBand Name="Data2" Top="205" Width="1047.06" Height="18.9" DataSource="AccountDetailData" KeepTogether="true" KeepDetail="true">
+      <DataHeaderBand Name="DataHeader2" Top="142.97" Width="1047.06" Height="37.8" KeepWithData="true" RepeatOnEveryPage="true">
+        <LineObject Name="Line9" Top="37.8" Width="1048.95"/>
+        <TextObject Name="Text81" Left="160.65" Top="18.9" Width="211.1" Height="18.9" Text="Description" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text84" Left="368.55" Top="18.9" Width="141.75" Height="18.9" Text="Customer / Supplier" Font="MS Gothic, 10pt, style=Bold"/>
+        <LineObject Name="Line10" Width="1048.95"/>
+        <TextObject Name="Text78" Left="9.45" Width="94.5" Height="18.9" Text="Date" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text79" Left="103.95" Width="56.7" Height="18.9" Text="Module" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text80" Left="160.65" Width="211.1" Height="18.9" Text="Reference No." Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text83" Left="368.55" Width="141.75" Height="18.9" Text="Voucher No." Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text85" Left="510.3" Width="113.4" Height="18.9" Text="Voucher Date" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text88" Left="926.1" Width="122.85" Height="18.9" Text="Current Balance" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text86" Left="661.5" Width="132.3" Height="18.9" Text="Debit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
+        <TextObject Name="Text87" Left="793.8" Width="132.3" Height="18.9" Text="Credit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
+      </DataHeaderBand>
+      <DataBand Name="Data2" Top="210.33" Width="1047.06" Height="18.9" DataSource="AccountDetailData" KeepTogether="true" KeepDetail="true">
         <TextObject Name="Text155" Width="94.5" Height="18.9" Text="Center" Font="MS Gothic, 10pt, style=Bold"/>
         <TextObject Name="Text157" Left="94.5" Width="274.05" Height="18.9" Text=": [ResponseDataModel.GLR.DetailData.AccountDetailData.CCENTER_CODE] - [ResponseDataModel.GLR.DetailData.AccountDetailData.CCENTER_NAME]" Font="MS Gothic, 10pt">
           <Formats>
@@ -149,7 +149,7 @@
         </TextObject>
         <TextObject Name="Text165" Left="803.25" Width="122.85" Height="18.9" Text="Balance Foward :" Font="MS Gothic, 10pt, style=Bold"/>
         <TextObject Name="Text166" Left="926.1" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.NBEGIN_BALANCE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
-        <DataBand Name="Data5" Top="227.9" Width="1047.06" Height="37.8" CanGrow="true" DataSource="CenterDetailData" KeepTogether="true" KeepDetail="true">
+        <DataBand Name="Data5" Top="234.57" Width="1047.06" Height="37.8" CanGrow="true" DataSource="CenterDetailData" KeepTogether="true" KeepDetail="true">
           <TextObject Name="Text158" Width="94.5" Height="18.9" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.CREF_DATE]" Font="MS Gothic, 10pt"/>
           <TextObject Name="Text159" Left="94.5" Width="66.15" Height="18.9" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.CSOURCE_MODULE]" HorzAlign="Center" Font="MS Gothic, 10pt"/>
           <TextObject Name="Text160" Left="160.65" Width="207.9" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.CREF_NO]" Font="MS Gothic, 10pt"/>
@@ -160,7 +160,7 @@
           <TextObject Name="Text167" Left="661.5" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.NDEBIT_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="Text168" Left="793.8" Width="132.3" Height="18.9" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.NCREDIT_AMOUNT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
           <TextObject Name="Text189" Left="926.1" Width="122.85" Height="18.9" Text="[ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.NEND_BALANCE]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
-          <DataFooterBand Name="DataFooter4" Top="269.7" Width="1047.06" Height="37.8" KeepWithData="true">
+          <DataFooterBand Name="DataFooter4" Top="277.7" Width="1047.06" Height="37.8" KeepWithData="true">
             <TextObject Name="Text110" Left="368.55" Width="292.95" Height="18.9" Text="Total Center [ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.CCENTER_CODE] for Account [ResponseDataModel.GLR.DetailData.AccountDetailData.CenterDetailData.CGLACCOUNT_NO]" Font="MS Gothic, 10pt, style=Bold">
               <Formats>
                 <GeneralFormat/>
@@ -192,7 +192,7 @@
             <TextObject Name="Text136" Left="661.5" Width="132.3" Height="18.9" Text="[TotalDebitByCenter]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter3" Top="311.5" Width="1047.06" Height="42.2" KeepWithData="true">
+        <DataFooterBand Name="DataFooter3" Top="320.83" Width="1047.06" Height="42.2" KeepWithData="true">
           <TextObject Name="Text113" Left="491.4" Top="23.3" Width="170.1" Height="18.9" Text="Difference" Font="MS Gothic, 10pt, style=Bold"/>
           <TextObject Name="Text180" Left="661.5" Width="132.3" Height="18.9" Text="[TotalDebitByAccount]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
           <TextObject Name="Text181" Left="793.8" Width="132.3" Height="18.9" Text="[TotalCreditByAccount]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
@@ -218,7 +218,7 @@
           <TextObject Name="Text112" Left="368.55" Top="4.4" Width="292.95" Height="18.9" Text="Total Account [ResponseDataModel.GLR.DetailData.AccountDetailData.CGLACCOUNT_NO]&#13;&#10;" Font="MS Gothic, 10pt, style=Bold"/>
         </DataFooterBand>
       </DataBand>
-      <DataFooterBand Name="DataFooter2" Top="357.7" Width="1047.06" Height="37.8" KeepWithData="true">
+      <DataFooterBand Name="DataFooter2" Top="368.37" Width="1047.06" Height="37.8" KeepWithData="true">
         <TextObject Name="Text114" Left="368.55" Top="-0.65" Width="292.95" Height="18.9" Text="Grand Total" Font="MS Gothic, 10pt, style=Bold"/>
         <LineObject Name="Line6" Top="37.15" Width="1048.95"/>
         <TextObject Name="Text115" Left="491.4" Top="18.25" Width="170.1" Height="18.9" Text="Difference" Font="MS Gothic, 10pt, style=Bold"/>
@@ -244,23 +244,23 @@
         </TextObject>
       </DataFooterBand>
     </DataBand>
-    <DataBand Name="Data3" ZOrder="1" Top="399.5" Width="1047.06" Height="18.9">
-      <TextObject Name="Text188" Width="368.55" Height="18.9" Text="Summary in [ResponseDataModel.GLR.HeaderData.CCURRENCY]" Font="MS Gothic, 10pt"/>
-    </DataBand>
-    <DataBand Name="Data4" ZOrder="2" Top="445.3" Width="1047.06" Height="18.9" DataSource="SummaryData">
+    <DataBand Name="Data4" ZOrder="1" Top="459.97" Width="1047.06" Height="18.9" DataSource="SummaryData">
       <TextObject Name="Text171" Left="481.95" Width="151.2" Height="18.9" Text="[ResponseDataModel.GLR.SummaryData.NTOTAL_DEBIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
       <TextObject Name="Text172" Left="633.15" Width="151.2" Height="18.9" Border.Lines="Right" Text="[ResponseDataModel.GLR.SummaryData.NTOTAL_CREDIT]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="MS Gothic, 10pt" Trimming="EllipsisCharacter"/>
       <TextObject Name="Text174" Width="113.4" Height="18.9" Border.Lines="Left" Text="[ResponseDataModel.GLR.SummaryData.CGLACCOUNT_NO]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text175" Left="113.4" Width="255.15" Height="18.9" Text="[ResponseDataModel.GLR.SummaryData.CGLACCOUNT_NAME]" Font="MS Gothic, 10pt"/>
       <TextObject Name="Text176" Left="368.55" Width="113.4" Height="18.9" Text="[ResponseDataModel.GLR.SummaryData.CCENTER_CODE]" Font="MS Gothic, 10pt"/>
-      <DataHeaderBand Name="DataHeader1" Top="422.4" Width="1047.06" Height="18.9">
-        <TextObject Name="Text146" Width="113.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Account No." Font="MS Gothic, 10pt, style=Bold"/>
-        <TextObject Name="Text147" Left="113.4" Width="255.15" Height="18.9" Border.Lines="Top, Bottom" Text="Account Name" Font="MS Gothic, 10pt, style=Bold"/>
-        <TextObject Name="Text148" Left="481.95" Width="151.2" Height="18.9" Border.Lines="Top, Bottom" Text="Total Debit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
-        <TextObject Name="Text149" Left="633.15" Width="151.2" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Total Credit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
-        <TextObject Name="Text173" Left="368.55" Width="113.4" Height="18.9" Border.Lines="Top, Bottom" Text="Center" Font="MS Gothic, 10pt, style=Bold"/>
+      <DataHeaderBand Name="DataHeader1" Top="411.5" Width="1047.06" Height="18.9" StartNewPage="true" KeepWithData="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text188" Width="368.55" Height="18.9" Text="Summary in [ResponseDataModel.GLR.HeaderData.CCURRENCY]" Font="MS Gothic, 10pt"/>
+        <ChildBand Name="Child2" Top="435.73" Width="1047.06" Height="18.9">
+          <TextObject Name="Text146" Width="113.4" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Account No." Font="MS Gothic, 10pt, style=Bold"/>
+          <TextObject Name="Text147" Left="113.4" Width="255.15" Height="18.9" Border.Lines="Top, Bottom" Text="Account Name" Font="MS Gothic, 10pt, style=Bold"/>
+          <TextObject Name="Text148" Left="481.95" Width="151.2" Height="18.9" Border.Lines="Top, Bottom" Text="Total Debit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
+          <TextObject Name="Text149" Left="633.15" Width="151.2" Height="18.9" Border.Lines="Right, Top, Bottom" Text="Total Credit" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
+          <TextObject Name="Text173" Left="368.55" Width="113.4" Height="18.9" Border.Lines="Top, Bottom" Text="Center" Font="MS Gothic, 10pt, style=Bold"/>
+        </ChildBand>
       </DataHeaderBand>
-      <DataFooterBand Name="DataFooter1" Top="468.2" Width="1047.06" Height="18.9">
+      <DataFooterBand Name="DataFooter1" Top="484.2" Width="1047.06" Height="18.9">
         <TextObject Name="Text154" Width="481.95" Height="18.9" Border.Lines="Left, Top, Bottom" Text="Grand Total" Font="MS Gothic, 10pt, style=Bold"/>
         <TextObject Name="Text169" Left="481.95" Width="151.2" Height="18.9" Border.Lines="Top, Bottom" Text="[TotalDebitFooter]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>
         <TextObject Name="Text170" Left="633.15" Width="151.2" Height="18.9" Border.Lines="Right, Top, Bottom" Text="[TotalCreditFooter]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="1" HorzAlign="Right" Font="MS Gothic, 10pt, style=Bold"/>

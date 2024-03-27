@@ -25,8 +25,8 @@ namespace APM00200COMMON.DTOs.APM00200
         public string CWITHHOLDING_TAX_NAME { get; set; } = "";
         public bool LACTIVE { get; set; } = false;
         public string CUPDATE_BY { get; set; } = "";
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; } = "";
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
     }
 }

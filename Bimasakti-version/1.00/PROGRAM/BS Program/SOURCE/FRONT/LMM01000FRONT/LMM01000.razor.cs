@@ -302,7 +302,7 @@ namespace LMM01000FRONT
                         loData.CTAX_OTHER_NAME = "";
                         goto EndBlock;
                     }
-
+                    loData.COTHER_TAX_ID = loResult.CTAX_ID;
                     loData.CTAX_OTHER_NAME = loResult.CTAX_NAME;
                 }
                 else
@@ -367,7 +367,7 @@ namespace LMM01000FRONT
                         loData.NTAX_PERCENTAGE_WITHHOLDING = 0;
                         goto EndBlock;
                     }
-
+                    loData.CWITHHOLDING_TAX_ID = loResult.CTAX_ID;
                     loData.CWITHHOLDING_TAX_NAME = loResult.CTAX_NAME;
                     loData.NTAX_PERCENTAGE_WITHHOLDING = loResult.NTAX_PERCENTAGE;
                 }
@@ -439,7 +439,7 @@ namespace LMM01000FRONT
                         _General_viewModel.Accrual = false;
                         goto EndBlock;
                     }
-
+                    loData.CUTILITY_JRNGRP_CODE = loResult.CJRNGRP_CODE;
                     loData.CUTILITY_JRNGRP_NAME = loResult.CJRNGRP_NAME;
                     loData.LACCRUAL = loResult.LACCRUAL;
                     _General_viewModel.Accrual = loResult.LACCRUAL;

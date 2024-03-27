@@ -33,6 +33,7 @@ namespace CBM00100FRONT
 
             try
             {
+                _viewModel.SystemParameterCB.CBANK_IN_MODE = "D";
                 await _CurrencyRateType.FocusAsync();
             }
             catch (Exception ex)
@@ -151,7 +152,7 @@ namespace CBM00100FRONT
                         _viewModel.SystemParameterCB.CRATETYPE_DESCRIPTION = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.SystemParameterCB.CRATETYPE_CODE = loResult.CRATETYPE_CODE;
                     _viewModel.SystemParameterCB.CRATETYPE_DESCRIPTION = loResult.CRATETYPE_DESCRIPTION;
                 }
                 else
@@ -214,7 +215,7 @@ namespace CBM00100FRONT
                         _viewModel.SystemParameterCB.CCONTRA_ACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.SystemParameterCB.CCONTRA_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     _viewModel.SystemParameterCB.CCONTRA_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else
@@ -280,7 +281,7 @@ namespace CBM00100FRONT
                         _viewModel.SystemParameterCB.CCRDVG_ACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.SystemParameterCB.CCRDVG_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     _viewModel.SystemParameterCB.CCRDVG_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else
@@ -345,7 +346,7 @@ namespace CBM00100FRONT
                         _viewModel.SystemParameterCB.CCRDVL_ACCOUNT_NAME = "";
                         goto EndBlock;
                     }
-
+                    _viewModel.SystemParameterCB.CCRDVL_ACCOUNT_NO = loResult.CGLACCOUNT_NO;
                     _viewModel.SystemParameterCB.CCRDVL_ACCOUNT_NAME = loResult.CGLACCOUNT_NAME;
                 }
                 else

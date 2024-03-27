@@ -14,6 +14,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\SERVICE\CB\CBM00100SERVICE\CBM00100SERVICE.csproj" />
+	  <ProjectReference Include="..\..\..\SERVICE\CB\CBT00200SERVICE\CBT00200SERVICE.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

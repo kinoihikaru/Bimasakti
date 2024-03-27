@@ -14,9 +14,9 @@ namespace GSM09000COMMON.DTOs.GSM09001
         public string CPHONE1 { get; set; }
         public string CEMAIL { get; set; }
         public string CUPDATE_BY { get; set; }
-        public DateTime DUPDATE_DATE { get; set; }
+        public DateTime? DUPDATE_DATE { get; set; }
         public string CCREATE_BY { get; set; }
-        public DateTime DCREATE_DATE { get; set; }
+        public DateTime? DCREATE_DATE { get; set; }
 
     }
 }

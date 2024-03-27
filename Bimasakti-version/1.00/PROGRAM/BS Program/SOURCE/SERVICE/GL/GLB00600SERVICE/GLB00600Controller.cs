@@ -27,24 +27,29 @@ namespace GLB00600SERVICE
             _activitySource = GLB00600ActivitySourceBase.R_InitializeAndGetActivitySource(nameof(GLB00600Controller));
         }
 
+        private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+        {
+            foreach (var item in poParameter)
+            {
+                yield return item;
+            }
+        }
+
         [HttpPost]
-        public GLB00600GSMTransactionCodeDTO GetInitialGSMTransactionCode(GLB00600GSMTransactionCodeDTO poParam)
+        public GLB00600Record<GLB00600GSMTransactionCodeDTO> GetInitialGSMTransactionCode()
         {
             using Activity activity = _activitySource.StartActivity("GetInitialGSMTransactionCode");
             var loEx = new R_Exception();
-            GLB00600GSMTransactionCodeDTO loRtn = null;
+            GLB00600Record<GLB00600GSMTransactionCodeDTO> loRtn = new();
             _Logger.LogInfo("Start GetInitialGSMTransactionCode");
 
             try
             {
-                _Logger.LogInfo("Set Param GetInitialGSMTransactionCode");
-                loRtn = new GLB00600GSMTransactionCodeDTO();
-                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-
                 var loCls = new GLB00600Cls();
 
                 _Logger.LogInfo("Call Back Method GetGSMTransactionCode");
-                loRtn = loCls.GetGSMTransactionCode(poParam);
+                var loTempRtn = loCls.GetGSMTransactionCode();
+                loRtn.Data = loTempRtn;
             }
             catch (Exception ex)
             {
@@ -59,136 +64,7 @@ namespace GLB00600SERVICE
         }
 
         [HttpPost]
-        public GLB00600SuspenseAmountDTO GetInitialSupenseAmount(GLB00600SuspenseAmountDTO poParam)
-        {
-            using Activity activity = _activitySource.StartActivity("GetInitialSupenseAmount");
-            var loEx = new R_Exception();
-            GLB00600SuspenseAmountDTO loRtn = null;
-            _Logger.LogInfo("Start GetInitialSupenseAmount");
-
-            try
-            {
-                _Logger.LogInfo("Set Param GetInitialSupenseAmount");
-                loRtn = new GLB00600SuspenseAmountDTO();
-                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-
-                var loCls = new GLB00600Cls();
-
-                _Logger.LogInfo("Call Back Method GetSuspenseAmount");
-                loRtn = loCls.GetSuspenseAmount(poParam);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _Logger.LogError(loEx);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            _Logger.LogInfo("End GetInitialSupenseAmount");
-
-            return loRtn;
-        }
-
-        [HttpPost]
-        public GLB00600InitialDTO GetInitialVar(GLB00600InitialDTO poParam)
-        {
-            using Activity activity = _activitySource.StartActivity("GetInitialVar");
-            var loEx = new R_Exception();
-            GLB00600InitialDTO loRtn = null;
-            _Logger.LogInfo("Start GetInitialVar");
-
-            try
-            {
-                loRtn = new GLB00600InitialDTO();
-
-                _Logger.LogInfo("Set Param GetInitialVar");
-                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
-                poParam.CUSER_LANGUAGE = R_BackGlobalVar.CULTURE;
-
-                var loCls = new GLB00600Cls();
-
-                _Logger.LogInfo("Call Back Method GetInitial");
-                loRtn = loCls.GetInitial(poParam);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _Logger.LogError(loEx);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            _Logger.LogInfo("End GetInitialVar");
-
-            return loRtn;
-        }
-
-        [HttpPost]
-        public GLB00600DTO GetResultClosingEntries(GLB00600DTO poParam)
-        {
-            using Activity activity = _activitySource.StartActivity("GetResultClosingEntries");
-            var loEx = new R_Exception();
-            GLB00600DTO loRtn = new GLB00600DTO();
-            _Logger.LogInfo("Start GetResultClosingEntries");
-
-            try
-            {
-                _Logger.LogInfo("Set Param GetResultClosingEntries");
-                var loCls = new GLB00600Cls();
-                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
-
-                _Logger.LogInfo("Call Back Method GetClosingEntries");
-                loCls.GetClosingEntries(poParam);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _Logger.LogError(loEx);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            _Logger.LogInfo("End GetResultClosingEntries");
-
-            return loRtn;
-        }
-
-        [HttpPost]
-        public GLB00600GLSystemParamDTO GetSystemParam()
-        {
-            using Activity activity = _activitySource.StartActivity("GetSystemParam");
-            var loEx = new R_Exception();
-            GLB00600GLSystemParamDTO loRtn = null;
-            _Logger.LogInfo("Start GetSystemParam");
-
-            try
-            {
-                loRtn = new GLB00600GLSystemParamDTO();
-
-                _Logger.LogInfo("Set Param GetSystemParam");
-                var poParam = new GLB00600GLSystemParamDTO();
-                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParam.CUSER_LANGUAGE = R_BackGlobalVar.CULTURE;
-
-                var loCls = new GLB00600Cls();
-
-                _Logger.LogInfo("Call Back Method GetSystemParam");
-                loRtn = loCls.GetSystemParam(poParam);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-                _Logger.LogError(loEx);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-            _Logger.LogInfo("End GetSystemParam");
-
-            return loRtn;
-        }
-
-        [HttpPost]
-        public IAsyncEnumerable<GLB00600DTO> GetValidationClosingResult(GLB00600DTO poParam)
+        public IAsyncEnumerable<GLB00600DTO> GetValidationClosingResult()
         {
             using Activity activity = _activitySource.StartActivity("GetValidationClosingResult");
             var loEx = new R_Exception();
@@ -197,14 +73,10 @@ namespace GLB00600SERVICE
 
             try
             {
-                _Logger.LogInfo("Set Param GetValidationClosingResult");
-                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
-                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
-
                 var loCls = new GLB00600Cls();
 
                 _Logger.LogInfo("Call Back Method GetResult");
-                var loResult = loCls.GetResult(poParam);
+                var loResult = loCls.GetResult();
 
                 _Logger.LogInfo("Call Stream Method Data GetValidationClosingResult");
                 loRtn = GetStream<GLB00600DTO>(loResult);
@@ -221,12 +93,117 @@ namespace GLB00600SERVICE
             return loRtn;
         }
 
-        private async IAsyncEnumerable<T> GetStream<T>(List<T> poParameter)
+        [HttpPost]
+        public GLB00600Record<GLB00600DTO> GetResultClosingEntries()
         {
-            foreach (var item in poParameter)
+            using Activity activity = _activitySource.StartActivity("GetResultClosingEntries");
+            var loEx = new R_Exception();
+            GLB00600Record<GLB00600DTO> loRtn = new GLB00600Record<GLB00600DTO>();
+            _Logger.LogInfo("Start GetResultClosingEntries");
+
+            try
             {
-                yield return item;
+                _Logger.LogInfo("Call Back Method GetClosingEntries");
+                var loCls = new GLB00600Cls();
+                loCls.GetClosingEntries();
             }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GetResultClosingEntries");
+
+            return loRtn;
+        }
+
+        public GLB00600Record<GLB00600GLSystemParamDTO> GetSystemParam()
+        {
+            using Activity activity = _activitySource.StartActivity("GetSystemParam");
+            var loEx = new R_Exception();
+            GLB00600Record<GLB00600GLSystemParamDTO> loRtn = new();
+            _Logger.LogInfo("Start GetSystemParam");
+
+            try
+            {
+                _Logger.LogInfo("Call Back Method GetSystemParam");
+                var loCls = new GLB00600Cls();
+                var loTempRtn = loCls.GetSystemParam();
+
+                loRtn.Data = loTempRtn;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GetSystemParam");
+
+            return loRtn;
+        }
+
+        public GLB00600Record<GLB00600InitialDTO> GetInitialVar(GLB00600InitialDTO poParam)
+        {
+            using Activity activity = _activitySource.StartActivity("GetInitialVar");
+            var loEx = new R_Exception();
+            GLB00600Record<GLB00600InitialDTO> loRtn = new();
+            _Logger.LogInfo("Start GetInitialVar");
+
+            try
+            {
+                _Logger.LogInfo("Set Param GetInitialVar");
+                poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParam.CUSER_ID = R_BackGlobalVar.USER_ID;
+                poParam.CUSER_LANGUAGE = R_BackGlobalVar.CULTURE;
+
+                var loCls = new GLB00600Cls();
+
+                _Logger.LogInfo("Call Back Method GetInitial");
+                var loTempRtn = loCls.GetInitial(poParam);
+
+                loRtn.Data = loTempRtn;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GetInitialVar");
+
+            return loRtn;
+        }
+
+        public GLB00600Record<GLB00600SuspenseAmountDTO> GetInitialSupenseAmount(GLB00600SuspenseAmountDTO poParam)
+        {
+            using Activity activity = _activitySource.StartActivity("GetInitialSupenseAmount");
+            var loEx = new R_Exception();
+            GLB00600Record<GLB00600SuspenseAmountDTO> loRtn = new();
+            _Logger.LogInfo("Start GetInitialSupenseAmount");
+
+            try
+            {
+                var loCls = new GLB00600Cls();
+
+                _Logger.LogInfo("Call Back Method GetSuspenseAmount");
+                var loTempRtn = loCls.GetSuspenseAmount(poParam);
+                loRtn.Data = loTempRtn;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GetInitialSupenseAmount");
+
+            return loRtn;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace GLB00600BACK
             _activitySource = GLB00600ActivitySourceBase.R_GetInstanceActivitySource();
         }
 
-        public GLB00600GLSystemParamDTO GetSystemParam(GLB00600GLSystemParamDTO poEntity)
+        public GLB00600GLSystemParamDTO GetSystemParam()
         {
             using Activity activity = _activitySource.StartActivity("GetSystemParam");
             var loEx = new R_Exception();
@@ -36,8 +36,8 @@ namespace GLB00600BACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, poEntity.CUSER_LANGUAGE);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -49,7 +49,7 @@ namespace GLB00600BACK
 
                 var loTempResult = R_Utility.R_ConvertTo<GLB00600GLSystemParamDTO>(loDataTable).FirstOrDefault();
 
-                loTempResult.CURRENT_PERIOD_DISPLAY = loTempResult.CCURRENT_PERIOD   + "-" + loTempResult.CCURRENT_PERIOD.Substring(4, 2);
+                loTempResult.CURRENT_PERIOD_DISPLAY = loTempResult.CCURRENT_PERIOD_YY + "-" + loTempResult.CCURRENT_PERIOD_MM;
                 loTempResult.CCLOSE_DEPT_CODE_NAME = string.Format("{0} - {1}", loTempResult.CCLOSE_DEPT_CODE, loTempResult.CCLOSE_DEPT_NAME);
 
                 loResult = loTempResult;
@@ -85,7 +85,7 @@ namespace GLB00600BACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CYEAR", DbType.String, 50, poEntity.CYEAR);
 
                 //Debug Logs
@@ -172,7 +172,7 @@ namespace GLB00600BACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CGLACCOUNT_NO", DbType.String, 50, poEntity.CGLACCOUNT_NO);
                 loDb.R_AddCommandParameter(loCmd, "@CCENTER_CODE", DbType.String, 50, "");
                 loDb.R_AddCommandParameter(loCmd, "@CPERIOD_NO", DbType.String, 50, poEntity.CPERIOD);
@@ -201,11 +201,11 @@ namespace GLB00600BACK
             return loResult;
         }
 
-        public GLB00600GSMTransactionCodeDTO GetGSMTransactionCode(GLB00600GSMTransactionCodeDTO poEntity)
+        public GLB00600GSMTransactionCodeDTO GetGSMTransactionCode()
         {
             using Activity activity = _activitySource.StartActivity("GetGSMTransactionCode");
             var loEx = new R_Exception();
-            GLB00600GSMTransactionCodeDTO loResult = poEntity;
+            GLB00600GSMTransactionCodeDTO loResult = null;
 
             try
             {
@@ -216,7 +216,7 @@ namespace GLB00600BACK
                 var lcQuery = "RSP_GS_GET_TRANS_CODE_INFO";
                 loCmd.CommandText = lcQuery;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 50, "000060");
 
                 //Debug Logs
@@ -226,10 +226,7 @@ namespace GLB00600BACK
                 _Logger.LogDebug("EXEC RSP_GS_GET_TRANS_CODE_INFO {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
-                var loTempResult = R_Utility.R_ConvertTo<GLB00600GSMTransactionCodeDTO>(loDataTable).FirstOrDefault();
-
-                loResult.LINCREMENT_FLAG = loTempResult.LINCREMENT_FLAG;
-                loResult.LAPPROVAL_FLAG = loTempResult.LAPPROVAL_FLAG;
+                loResult = R_Utility.R_ConvertTo<GLB00600GSMTransactionCodeDTO>(loDataTable).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -242,7 +239,7 @@ namespace GLB00600BACK
             return loResult;
         }
 
-        public List<GLB00600DTO> GetResult(GLB00600DTO poEntity)
+        public List<GLB00600DTO> GetResult()
         {
             using Activity activity = _activitySource.StartActivity("GetResult");
             var loEx = new R_Exception();
@@ -258,8 +255,8 @@ namespace GLB00600BACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -281,7 +278,7 @@ namespace GLB00600BACK
             return loResult;
         }
 
-        public void GetClosingEntries(GLB00600DTO poEntity)
+        public void GetClosingEntries()
         {
             using Activity activity = _activitySource.StartActivity("GetClosingEntries");
             var loEx = new R_Exception();
@@ -296,8 +293,8 @@ namespace GLB00600BACK
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
