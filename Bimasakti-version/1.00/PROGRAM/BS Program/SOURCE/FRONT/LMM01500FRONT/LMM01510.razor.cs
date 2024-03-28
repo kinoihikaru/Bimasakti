@@ -276,32 +276,35 @@ namespace LMM01500FRONT
 
             try
             {
-                if (_BankAccountGrid_viewModel.Data.CDEPT_CODE.Length > 0)
+                if (_BankAccountGrid_viewModel.Data.CDEPT_CODE != null)
                 {
-                    var param = new GSL00700ParameterDTO
+                    if (_BankAccountGrid_viewModel.Data.CDEPT_CODE.Length > 0)
                     {
-                        CSEARCH_TEXT = _BankAccountGrid_viewModel.Data.CDEPT_CODE
-                    };
+                        var param = new GSL00700ParameterDTO
+                        {
+                            CSEARCH_TEXT = _BankAccountGrid_viewModel.Data.CDEPT_CODE
+                        };
 
-                    LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
+                        LookupGSL00700ViewModel loLookupViewModel = new LookupGSL00700ViewModel();
 
-                    var loResult = await loLookupViewModel.GetDepartment(param);
+                        var loResult = await loLookupViewModel.GetDepartment(param);
 
-                    if (loResult == null)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(
-                                typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
-                                "_ErrLookup01"));
-                        _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
-                        //await GLAccount_TextBox.FocusAsync();
-                        goto EndBlock;
+                        if (loResult == null)
+                        {
+                            loEx.Add(R_FrontUtility.R_GetError(
+                                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                                    "_ErrLookup01"));
+                            _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
+                            //await GLAccount_TextBox.FocusAsync();
+                            goto EndBlock;
+                        }
+                        _BankAccountGrid_viewModel.Data.CDEPT_CODE = loResult.CDEPT_CODE;
+                        _BankAccountGrid_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
                     }
-                    _BankAccountGrid_viewModel.Data.CDEPT_CODE = loResult.CDEPT_CODE;
-                    _BankAccountGrid_viewModel.Data.CDEPT_NAME = loResult.CDEPT_NAME;
-                }
-                else
-                {
-                    _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
+                    else
+                    {
+                        _BankAccountGrid_viewModel.Data.CDEPT_NAME = "";
+                    }
                 }
             }
             catch (Exception ex)

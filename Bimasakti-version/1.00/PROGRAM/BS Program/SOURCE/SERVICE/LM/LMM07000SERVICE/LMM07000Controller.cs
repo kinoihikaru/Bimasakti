@@ -56,7 +56,7 @@ namespace LMM07000SERVICE
 
             try
             {
-                var loCls = new LMM07000Cls();
+                var loCls = new PMM07000Cls();
 
                 _Logger.LogInfo("Set Param GetProperty");
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -93,7 +93,7 @@ namespace LMM07000SERVICE
 
             try
             {
-                var loCls = new LMM07000Cls();
+                var loCls = new PMM07000Cls();
 
                 _Logger.LogInfo("Set Param GetProperty");
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -130,7 +130,7 @@ namespace LMM07000SERVICE
                 _Logger.LogInfo("Set Param Entity ServiceDelete LMM07000");
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
-                var loCls = new LMM07000Cls();
+                var loCls = new PMM07000Cls();
 
                 _Logger.LogInfo("Call Back Method R_Delete LMM07000Cls");
                 loCls.R_Delete(poParameter.Entity);
@@ -161,7 +161,7 @@ namespace LMM07000SERVICE
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-                var loCls = new LMM07000Cls();
+                var loCls = new PMM07000Cls();
 
                 _Logger.LogInfo("Call Back Method R_GetRecord LMM07000Cls");
                 loRtn.data = loCls.R_GetRecord(poParameter.Entity);
@@ -192,7 +192,7 @@ namespace LMM07000SERVICE
                 poParameter.Entity.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.Entity.CUSER_ID = R_BackGlobalVar.USER_ID;
 
-                var loCls = new LMM07000Cls();
+                var loCls = new PMM07000Cls();
 
                 _Logger.LogInfo("Call Back Method R_Save LMM07000Cls");
                 loRtn.data = loCls.R_Save(poParameter.Entity, poParameter.CRUDMode);
@@ -219,7 +219,7 @@ namespace LMM07000SERVICE
 
             try
             {
-                LMM07000Cls loCls = new LMM07000Cls();
+                PMM07000Cls loCls = new PMM07000Cls();
 
                 _Logger.LogInfo("Set Param LMM07000ActiveInactive");
                 poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -251,7 +251,7 @@ namespace LMM07000SERVICE
             try
             {
                 loRtn = new LMM07000Record<LMM07000PeriodDTO> ();
-                LMM07000Cls loCls = new LMM07000Cls();
+                PMM07000Cls loCls = new PMM07000Cls();
 
                 //set global var
                 _Logger.LogInfo("Set Param GetMaxInvoicePeriodValue");

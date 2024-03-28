@@ -9,13 +9,13 @@ using System.Diagnostics;
 
 namespace LMM07000BACK
 {
-    public class LMM07000Cls : R_BusinessObject<LMM07000DTO>
+    public class PMM07000Cls : R_BusinessObject<LMM07000DTO>
     {
-        RSP_LM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class _loRsp = new RSP_LM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class();
+        RSP_PM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class _loRsp = new RSP_PM_MAINTAIN_DISCOUNTResources.Resources_Dummy_Class();
 
         private LoggerLMM07000 _Logger;
         private readonly ActivitySource _activitySource;
-        public LMM07000Cls()
+        public PMM07000Cls()
         {
             _Logger = LoggerLMM07000.R_GetInstanceLogger();
             _activitySource = LMM07000ActivitySourceBase.R_GetInstanceActivitySource();
@@ -72,7 +72,7 @@ namespace LMM07000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                string lcQuery = "RSP_LM_GET_DISCOUNT_LIST";
+                string lcQuery = "RSP_PM_GET_DISCOUNT_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -84,7 +84,7 @@ namespace LMM07000BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_DISCOUNT_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_DISCOUNT_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -112,7 +112,7 @@ namespace LMM07000BACK
 
             try
             {
-                lcQuery = "RSP_LM_MAINTAIN_DISCOUNT";
+                lcQuery = "RSP_PM_MAINTAIN_DISCOUNT";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -142,7 +142,7 @@ namespace LMM07000BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_DISCOUNT {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_DISCOUNT {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -195,7 +195,7 @@ namespace LMM07000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                string lcQuery = "RSP_LM_GET_DISCOUNT_DETAIL";
+                string lcQuery = "RSP_PM_GET_DISCOUNT_DETAIL";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -208,7 +208,7 @@ namespace LMM07000BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_DISCOUNT_DETAIL {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_DISCOUNT_DETAIL {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -236,7 +236,7 @@ namespace LMM07000BACK
 
             try
             {
-                lcQuery = "RSP_LM_MAINTAIN_DISCOUNT";
+                lcQuery = "RSP_PM_MAINTAIN_DISCOUNT";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -274,7 +274,7 @@ namespace LMM07000BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_DISCOUNT {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_DISCOUNT {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -317,7 +317,7 @@ namespace LMM07000BACK
                 DbConnection loConn = loDb.GetConnection("R_DefaultConnectionString");
                 DbCommand loCmd = loDb.GetCommand();
 
-                string lcQuery = "RSP_LM_ACTIVE_INACTIVE_DISCOUNT";
+                string lcQuery = "RSP_PM_ACTIVE_INACTIVE_DISCOUNT";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -331,7 +331,7 @@ namespace LMM07000BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_ACTIVE_INACTIVE_DISCOUNT {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_ACTIVE_INACTIVE_DISCOUNT {@poParameter}", loDbParam);
 
                 loDb.SqlExecQuery(loConn, loCmd, true);
             }

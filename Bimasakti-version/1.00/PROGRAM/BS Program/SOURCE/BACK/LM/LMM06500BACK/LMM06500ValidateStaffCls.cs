@@ -61,7 +61,7 @@ namespace LMM06500BACK
 
                         loDb.R_BulkInsert<LMM06501RequestDTO>((SqlConnection)loConn, "#STAFF", loObject);
 
-                        lcQuery = "EXECUTE RSP_LM_VALIDATE_UPLOAD_STAFF @CCOMPANY_ID, @CPROPERTY_ID, @CUSER_ID, @CKEY_GUID";
+                        lcQuery = "EXECUTE RSP_PM_VALIDATE_UPLOAD_STAFF @CCOMPANY_ID, @CPROPERTY_ID, @CUSER_ID, @CKEY_GUID";
                         loCmd.CommandText = lcQuery;
 
                         loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poBatchProcessPar.Key.COMPANY_ID);

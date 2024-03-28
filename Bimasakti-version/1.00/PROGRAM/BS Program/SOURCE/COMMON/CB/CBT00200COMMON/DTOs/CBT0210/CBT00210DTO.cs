@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace CBT00200COMMON
 {
     public class CBT00210DTO
     {
+        private DateTime? dDOCUMENT_DATE;
+
         public string CACTION { get; set; }
         public int INO { get; set; }
         public string CREC_ID { get; set; }
@@ -27,7 +30,7 @@ namespace CBT00200COMMON
         public string CDETAIL_DESC { get; set; }
         public string CDOCUMENT_NO { get; set; }
         public string CDOCUMENT_DATE { get; set; }
-        public DateTime? DDOCUMENT_DATE { get; set; }
+        public DateTime? DDOCUMENT_DATE { get => dDOCUMENT_DATE; set => dDOCUMENT_DATE = DateTime.TryParseExact(CDOCUMENT_DATE, "yyyyMMdd", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var ldDocDate) ? ldDocDate : DateTime.MinValue; }
         public decimal NDEBIT { get; set; }
         public decimal NCREDIT { get; set; }
         public decimal NLDEBIT { get; set; }

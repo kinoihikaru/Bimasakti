@@ -53,7 +53,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_RATE_EC_LIST";
+                var lcQuery = "RSP_PM_GET_RATE_EC_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -66,7 +66,7 @@ namespace LMM01000BACK
                 //Logs Debug
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _LMM01010logger.LogDebug("EXEC RSP_LM_GET_RATE_EC_LIST {@poParameter}", loDbParam);
+                _LMM01010logger.LogDebug("EXEC RSP_PM_GET_RATE_EC_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -167,7 +167,7 @@ namespace LMM01000BACK
 
                 var loTesResult = loDb.SqlExecObjectQuery<LMM01011SaveBatchDTO>(lcQuery, loConn, false);
 
-                lcQuery = "EXECUTE RSP_LM_MAINTAIN_RATE_EC " +
+                lcQuery = "EXECUTE RSP_PM_MAINTAIN_RATE_EC " +
                      "@CCOMPANY_ID = @CCOMPANY_ID  " +
                      ",@CPROPERTY_ID = @CPROPERTY_ID " +
 
@@ -296,7 +296,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_UTILITY_RATE_EC";
+                var lcQuery = "RSP_PM_GET_CHARGES_UTILITY_RATE_EC";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -309,7 +309,7 @@ namespace LMM01000BACK
                 //Logs Debug
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _LMM01010logger.LogDebug("EXEC RSP_LM_GET_CHARGES_UTILITY_RATE_EC {@poParameter}", loDbParam);
+                _LMM01010logger.LogDebug("EXEC RSP_PM_GET_CHARGES_UTILITY_RATE_EC {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01010DTO>(loDataTable).FirstOrDefault();
@@ -368,7 +368,7 @@ namespace LMM01000BACK
 
                     }
 
-                    lcQuery += "EXECUTE RSP_LM_MAINTAIN_RATE_EC " +
+                    lcQuery += "EXECUTE RSP_PM_MAINTAIN_RATE_EC " +
                         $"@CCOMPANY_ID = '{poNewEntity.CCOMPANY_ID}' " +
                         $",@CPROPERTY_ID = '{poNewEntity.CPROPERTY_ID}' " +
                         $",@CCHARGES_TYPE = '{poNewEntity.CCHARGES_TYPE}' " +
@@ -493,7 +493,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_ReportConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_UTILITY_RATE_EC";
+                var lcQuery = "RSP_PM_GET_CHARGES_UTILITY_RATE_EC";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -506,7 +506,7 @@ namespace LMM01000BACK
                 //Logs Debug
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _LMM01010Printlogger.LogDebug("EXEC RSP_LM_GET_CHARGES_UTILITY_RATE_EC {@poParameter}", loDbParam);
+                _LMM01010Printlogger.LogDebug("EXEC RSP_PM_GET_CHARGES_UTILITY_RATE_EC {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01010DTO>(loDataTable).FirstOrDefault();
@@ -535,7 +535,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_ReportConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_RATE_EC_LIST";
+                var lcQuery = "RSP_PM_GET_RATE_EC_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -548,7 +548,7 @@ namespace LMM01000BACK
                 //Logs Debug
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _LMM01010Printlogger.LogDebug("EXEC RSP_LM_GET_RATE_EC_LIST {@poParameter}", loDbParam);
+                _LMM01010Printlogger.LogDebug("EXEC RSP_PM_GET_RATE_EC_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 

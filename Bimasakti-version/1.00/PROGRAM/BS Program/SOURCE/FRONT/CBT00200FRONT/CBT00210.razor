@@ -255,20 +255,20 @@
     <R_StackLayout Row Class="mt-2"> 
         <R_ItemLayout col="4">
             <R_AddButton R_Conductor="_conductorRef"></R_AddButton>
-            <R_Button OnClick="CopyJournalEntryProcess" Enabled="@EnableHaveRecId">@_localizer["_Copy"]</R_Button>
-            <R_EditButton R_Conductor="_conductorRef" Enabled="@EnableEdit"></R_EditButton>
-            <R_Button Enabled="@EnableEdit" OnClick="@BtnDelete_OnClick">@_localizer["_Delete"]</R_Button>
+            <R_Button OnClick="CopyJournalEntryProcess" Enabled="@(EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)">@_localizer["_Copy"]</R_Button>
+            <R_EditButton R_Conductor="_conductorRef" Enabled="@(EnableEdit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)"></R_EditButton>
+            <R_Button Enabled="@(EnableEdit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)" OnClick="@BtnDelete_OnClick">@_localizer["_Delete"]</R_Button>
         </R_ItemLayout>
         <R_ItemLayout col="3">
             <R_CancelButton R_Conductor="_conductorRef"></R_CancelButton>
             <R_SaveButton R_Conductor="_conductorRef"></R_SaveButton>
-            <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupPrint" Enabled="@EnableHaveRecId">@_localizer["_Print"]</R_Lookup>
+            <R_Lookup R_Before_Open_Lookup="@Before_Open_lookupPrint" Enabled="@(EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)">@_localizer["_Print"]</R_Lookup>
         </R_ItemLayout>
         <R_ItemLayout col="2"></R_ItemLayout>
         <R_ItemLayout col="3">
-            <R_Button Enabled="@EnableSubmit" OnClick="SubmitJournalProcess">@lcLabelSubmit</R_Button>
-            <R_Button Enabled="@EnableApprove" OnClick="ApproveJournalProcess">@_localizer["_Approve"]</R_Button>
-            <R_Button Enabled="@EnableCommit" OnClick="CommitJournalProcess">@lcLabelCommit</R_Button>
+            <R_Button Enabled="@(EnableSubmit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)" OnClick="SubmitJournalProcess">@lcLabelSubmit</R_Button>
+            <R_Button Enabled="@(EnableApprove && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)" OnClick="ApproveJournalProcess">@_localizer["_Approve"]</R_Button>
+            <R_Button Enabled="@(EnableCommit && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)" OnClick="CommitJournalProcess">@lcLabelCommit</R_Button>
         </R_ItemLayout>
     </R_StackLayout>
 </R_GroupBox>
@@ -282,7 +282,7 @@
                 R_GridType="R_eGridType.Original"
                 R_ServiceGetListRecord="JournalDet_ServiceGetListRecord"
                 Height="230px"
-                Enabled="@EnableHaveRecId"
+                Enabled="@(EnableHaveRecId && _conductorRef.R_ConductorMode == R_eConductorMode.Normal)"
                 AllowAddNewRow="true"
                 AllowDeleteRow="true"
                 AllowEditRow="true"

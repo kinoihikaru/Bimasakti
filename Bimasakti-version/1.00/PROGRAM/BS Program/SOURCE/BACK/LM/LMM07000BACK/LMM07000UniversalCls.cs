@@ -8,11 +8,11 @@ using System.Diagnostics;
 
 namespace LMM07000BACK
 {
-    public class LMM07000UniversalCls 
+    public class PMM07000UniversalCls 
     {
         private LoggerLMM07000Universal _Logger;
         private readonly ActivitySource _activitySource;
-        public LMM07000UniversalCls()
+        public PMM07000UniversalCls()
         {
             _Logger = LoggerLMM07000Universal.R_GetInstanceLogger();
             _activitySource = LMM07000UniversalActivitySourceBase.R_GetInstanceActivitySource();

@@ -36,7 +36,7 @@ namespace LMM01500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_INVGRP_CHARGES_LIST";
+                var lcQuery = "RSP_PM_GET_INVGRP_CHARGES_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -48,7 +48,7 @@ namespace LMM01500BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_INVGRP_CHARGES_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_INVGRP_CHARGES_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -78,7 +78,7 @@ namespace LMM01500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_LIST";
+                var lcQuery = "RSP_PM_GET_CHARGES_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -89,7 +89,7 @@ namespace LMM01500BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_CHARGES_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_CHARGES_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -124,7 +124,7 @@ namespace LMM01500BACK
                 // set action delete
                 poEntity.CACTION = "DELETE";
 
-                lcQuery = "RSP_LM_MAINTAIN_INVGRP_CHARGES";
+                lcQuery = "RSP_PM_MAINTAIN_INVGRP_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -142,7 +142,7 @@ namespace LMM01500BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVGRP_CHARGES {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_INVGRP_CHARGES {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -194,7 +194,7 @@ namespace LMM01500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_INVGRP_CHARGES_DETAIL";
+                var lcQuery = "RSP_PM_GET_INVGRP_CHARGES_DETAIL";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -207,7 +207,7 @@ namespace LMM01500BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_INVGRP_CHARGES_DETAIL {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_INVGRP_CHARGES_DETAIL {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01530DTO>(loDataTable).FirstOrDefault();
@@ -238,7 +238,7 @@ namespace LMM01500BACK
                 loConn = loDb.GetConnection("R_DefaultConnectionString");
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "RSP_LM_MAINTAIN_INVGRP_CHARGES";
+                lcQuery = "RSP_PM_MAINTAIN_INVGRP_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -267,7 +267,7 @@ namespace LMM01500BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVGRP_CHARGES {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_INVGRP_CHARGES {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }

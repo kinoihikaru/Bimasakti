@@ -97,6 +97,9 @@
             R_GridType="R_eGridType.Original"
             R_ServiceGetRecord="@JournalGridDetail_ServiceGetRecord"
             R_Display="@JournalGridDetail_Display"
+            AllowAddNewRow="false"
+            AllowDeleteRow="false"
+            AllowEditRow="false"
             Height="240px">
         <R_GridColumns>
             <R_GridNumericColumn Width="67px" FieldName="@nameof(CBT00210DTO.INO)" HeaderText="@_localizer["_No"]"></R_GridNumericColumn>
@@ -109,7 +112,7 @@
             <R_GridNumericColumn Width="92px" FieldName="@nameof(CBT00210DTO.NCREDIT)" HeaderText="@_localizer["_Credit"]"></R_GridNumericColumn>
             <R_GridTextColumn Width="475px" FieldName="@nameof(CBT00210DTO.CDETAIL_DESC)" HeaderText="@_localizer["_Description"]"></R_GridTextColumn>
             <R_GridTextColumn Width="120px" FieldName="@nameof(CBT00210DTO.CDOCUMENT_NO)" HeaderText="@_localizer["_VoucherNo"]"></R_GridTextColumn>
-            <R_GridTextColumn Width="130px" FieldName="@nameof(CBT00210DTO.CDOCUMENT_DATE)" HeaderText="@_localizer["_VoucherDate"]"></R_GridTextColumn>
+            <R_GridDatePickerColumn Width="140px" FieldName="@nameof(CBT00210DTO.DDOCUMENT_DATE)" HeaderText="@_localizer["_VoucherDate"]"></R_GridDatePickerColumn>
             <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT00210DTO.NLDEBIT)" HeaderText="@_localizer["_DbLocal"]"></R_GridNumericColumn>
             <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT00210DTO.NLCREDIT)" HeaderText="@_localizer["_CrLocal"]"></R_GridNumericColumn>
             <R_GridNumericColumn Width="110px" FieldName="@nameof(CBT00210DTO.NBDEBIT)" HeaderText="@_localizer["_DbBase"]"></R_GridNumericColumn>

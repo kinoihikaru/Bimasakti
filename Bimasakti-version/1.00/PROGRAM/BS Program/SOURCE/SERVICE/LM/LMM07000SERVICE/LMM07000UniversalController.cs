@@ -44,7 +44,7 @@ namespace LMM07000SERVICE
 
             try
             {
-                var loCls = new LMM07000UniversalCls();
+                var loCls = new PMM07000UniversalCls();
 
                 _Logger.LogInfo("Set Param GetChargesTypeList");
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -79,7 +79,7 @@ namespace LMM07000SERVICE
 
             try
             {
-                var loCls = new LMM07000UniversalCls();
+                var loCls = new PMM07000UniversalCls();
 
                 _Logger.LogInfo("Set Param GetDiscountTypeList");
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
@@ -114,7 +114,7 @@ namespace LMM07000SERVICE
 
             try
             {
-                var loCls = new LMM07000UniversalCls();
+                var loCls = new PMM07000UniversalCls();
 
                 _Logger.LogInfo("Set Param GetInvPeriodList");
                 loParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;

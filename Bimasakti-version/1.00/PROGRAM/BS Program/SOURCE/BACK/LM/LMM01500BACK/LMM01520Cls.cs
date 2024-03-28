@@ -81,7 +81,7 @@ namespace LMM01500BACK
                 loConn = loDb.GetConnection("R_DefaultConnectionString");
                 loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_INVOICE_GROUP";
+                var lcQuery = "RSP_PM_GET_INVOICE_GROUP";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -93,7 +93,7 @@ namespace LMM01500BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_INVOICE_GROUP {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_INVOICE_GROUP {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<LMM01520DTO>(loDataTable).FirstOrDefault();
@@ -142,7 +142,7 @@ namespace LMM01500BACK
                 loConn = loDb.GetConnection("R_DefaultConnectionString");
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "RSP_LM_MAINTAIN_INVGRP_PENALTY";
+                lcQuery = "RSP_PM_MAINTAIN_INVGRP_PENALTY";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -183,7 +183,7 @@ namespace LMM01500BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVGRP_PENALTY {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_INVGRP_PENALTY {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }

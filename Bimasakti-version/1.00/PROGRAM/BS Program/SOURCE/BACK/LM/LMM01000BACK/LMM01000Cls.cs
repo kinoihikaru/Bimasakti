@@ -15,10 +15,10 @@ namespace LMM01000BACK
 {
     public class LMM01000Cls : R_BusinessObject<LMM01000DTO>
     {
-        RSP_LM_MAINTAIN_RATE_ECResources.Resources_Dummy_Class _loRSP_EC = new RSP_LM_MAINTAIN_RATE_ECResources.Resources_Dummy_Class();
-        RSP_LM_MAINTAIN_RATE_OTResources.Resources_Dummy_Class _loRSP_OT = new RSP_LM_MAINTAIN_RATE_OTResources.Resources_Dummy_Class();
-        RSP_LM_MAINTAIN_RATE_WGResources.Resources_Dummy_Class _loRSP_WG = new RSP_LM_MAINTAIN_RATE_WGResources.Resources_Dummy_Class();
-        RSP_LM_MAINTAIN_UTILITY_CHARGESResources.Resources_Dummy_Class _loRSP = new RSP_LM_MAINTAIN_UTILITY_CHARGESResources.Resources_Dummy_Class();
+        RSP_PM_MAINTAIN_RATE_ECResources.Resources_Dummy_Class _loRSP_EC = new RSP_PM_MAINTAIN_RATE_ECResources.Resources_Dummy_Class();
+        RSP_PM_MAINTAIN_RATE_OTResources.Resources_Dummy_Class _loRSP_OT = new RSP_PM_MAINTAIN_RATE_OTResources.Resources_Dummy_Class();
+        RSP_PM_MAINTAIN_RATE_WGResources.Resources_Dummy_Class _loRSP_WG = new RSP_PM_MAINTAIN_RATE_WGResources.Resources_Dummy_Class();
+        RSP_PM_MAINTAIN_UTILITY_CHARGESResources.Resources_Dummy_Class _loRSP = new RSP_PM_MAINTAIN_UTILITY_CHARGESResources.Resources_Dummy_Class();
 
         private LoggerLMM01000 _LMM01000logger;
         private LoggerLMM01000Print _LMM01000Printlogger;
@@ -48,7 +48,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_UTILITY_LIST";
+                var lcQuery = "RSP_PM_GET_CHARGES_UTILITY_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -63,7 +63,7 @@ namespace LMM01000BACK
                     x.ParameterName == "@CPROPERTY_ID" ||
                     x.ParameterName == "@CCHARGE_TYPE_ID" ||
                     x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _LMM01000logger.LogDebug("EXEC RSP_LM_GET_CHARGES_UTILITY_LIST {@poParameter}", loDbParam);
+                _LMM01000logger.LogDebug("EXEC RSP_PM_GET_CHARGES_UTILITY_LIST {@poParameter}", loDbParam);
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
                 loResult = R_Utility.R_ConvertTo<LMM01002DTO>(loDataTable).ToList();
@@ -91,7 +91,7 @@ namespace LMM01000BACK
 
             try
             {
-                lcQuery = "RSP_LM_MAINTAIN_UTILITY_CHARGES";
+                lcQuery = "RSP_PM_MAINTAIN_UTILITY_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
                 poEntity.CACTION = "DELETE";
@@ -145,7 +145,7 @@ namespace LMM01000BACK
                         x.ParameterName == "@CACCRUAL_METHOD" ||
                         x.ParameterName == "@CACTION" ||
                         x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                    _LMM01000logger.LogDebug("EXEC RSP_LM_MAINTAIN_UTILITY_CHARGES {@poParameter}", loDbParam);
+                    _LMM01000logger.LogDebug("EXEC RSP_PM_MAINTAIN_UTILITY_CHARGES {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -198,7 +198,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_UTILITY_DETAIL";
+                var lcQuery = "RSP_PM_GET_CHARGES_UTILITY_DETAIL";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -215,7 +215,7 @@ namespace LMM01000BACK
                     x.ParameterName == "@CCHARGE_TYPE_ID" ||
                     x.ParameterName == "@CCHARGES_ID" ||
                     x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _LMM01000logger.LogDebug("EXEC RSP_LM_GET_CHARGES_UTILITY_DETAIL {@poParameter}", loDbParam);
+                _LMM01000logger.LogDebug("EXEC RSP_PM_GET_CHARGES_UTILITY_DETAIL {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01000DTO>(loDataTable).FirstOrDefault();
@@ -243,7 +243,7 @@ namespace LMM01000BACK
 
             try
             {
-                lcQuery = "RSP_LM_MAINTAIN_UTILITY_CHARGES";
+                lcQuery = "RSP_PM_MAINTAIN_UTILITY_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -306,7 +306,7 @@ namespace LMM01000BACK
                         x.ParameterName == "@CACCRUAL_METHOD" ||
                         x.ParameterName == "@CACTION" ||
                         x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                    _LMM01000logger.LogDebug("EXEC RSP_LM_MAINTAIN_UTILITY_CHARGES {@poParameter}", loDbParam);
+                    _LMM01000logger.LogDebug("EXEC RSP_PM_MAINTAIN_UTILITY_CHARGES {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -358,7 +358,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_ACTIVE_INACTIVE_UTILITY_CHARGES";
+                var lcQuery = "RSP_PM_ACTIVE_INACTIVE_UTILITY_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -377,7 +377,7 @@ namespace LMM01000BACK
                     x.ParameterName == "@CCHARGES_ID" ||
                     x.ParameterName == "@LACTIVE" ||
                     x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _LMM01000logger.LogDebug("EXEC RSP_LM_ACTIVE_INACTIVE_UTILITY_CHARGES {@poParameter}", loDbParam);
+                _LMM01000logger.LogDebug("EXEC RSP_PM_ACTIVE_INACTIVE_UTILITY_CHARGES {@poParameter}", loDbParam);
 
                 loDb.SqlExecNonQuery(loConn, loCmd, true);
 
@@ -404,7 +404,7 @@ namespace LMM01000BACK
 
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_COPY_NEW_UTILITY_CHARGES";
+                var lcQuery = "RSP_PM_COPY_NEW_UTILITY_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -425,7 +425,7 @@ namespace LMM01000BACK
                     x.ParameterName == "@CNEW_CHARGES_ID" ||
                     x.ParameterName == "@CNEW_CHARGES_NAME" ||
                     x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _LMM01000logger.LogDebug("EXEC RSP_LM_COPY_NEW_UTILITY_CHARGES {@poParameter}", loDbParam);
+                _LMM01000logger.LogDebug("EXEC RSP_PM_COPY_NEW_UTILITY_CHARGES {@poParameter}", loDbParam);
 
                 loDb.SqlExecNonQuery(loConn, loCmd, true);
 
@@ -489,7 +489,7 @@ namespace LMM01000BACK
 
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_PRINT_UTILITY_CHARGES";
+                var lcQuery = "RSP_PM_PRINT_UTILITY_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -512,7 +512,7 @@ namespace LMM01000BACK
                     x.ParameterName == "@LPRINT_INACTIVE" ||
                     x.ParameterName == "@LPRINT_DETAIL_ACC" ||
                     x.ParameterName == "@CUSER_LOGIN_ID").Select(x => x.Value);
-                _LMM01000Printlogger.LogDebug("EXEC RSP_LM_PRINT_UTILITY_CHARGES {@poParameters}", loDbParam);
+                _LMM01000Printlogger.LogDebug("EXEC RSP_PM_PRINT_UTILITY_CHARGES {@poParameters}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -541,7 +541,7 @@ namespace LMM01000BACK
                 var loCmd = loDb.GetCommand();
 
 
-                var lcQuery = "RSP_LM_VALIDATION_UTILITY_CHARGES";
+                var lcQuery = "RSP_PM_VALIDATION_UTILITY_CHARGES";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
@@ -553,7 +553,7 @@ namespace LMM01000BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                 .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _LMM01000logger.LogDebug("EXEC RSP_LM_VALIDATION_UTILITY_CHARGES {@Data}", loDbParam);
+                _LMM01000logger.LogDebug("EXEC RSP_PM_VALIDATION_UTILITY_CHARGES {@Data}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01000BeforeDeleteDTO>(loDataTable).FirstOrDefault();

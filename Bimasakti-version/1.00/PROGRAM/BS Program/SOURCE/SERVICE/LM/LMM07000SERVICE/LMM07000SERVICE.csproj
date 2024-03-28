@@ -11,6 +11,11 @@
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
 
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\BACK\LM\LMM07000BACK\LMM07000BACK.csproj" />
+	</ItemGroup>
+
 		<ItemGroup>
 		<Reference Include="R_APIBackEnd">
 			<HintPath>..\..\..\..\..\SYSTEM\SOURCE\LIBRARY\Back\R_APIBackEnd.dll</HintPath>
@@ -29,8 +34,4 @@
 		</Reference>
 	</ItemGroup>	
 	
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\BACK\LM\LMM07000BACK\LMM07000BACK.csproj" />
-  </ItemGroup>
-
 </Project>

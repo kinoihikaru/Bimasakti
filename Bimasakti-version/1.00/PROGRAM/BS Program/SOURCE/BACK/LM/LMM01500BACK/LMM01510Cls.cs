@@ -38,7 +38,7 @@ namespace LMM01500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_INVGRP_DEPT_LIST";
+                var lcQuery = "RSP_PM_GET_INVGRP_DEPT_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -50,7 +50,7 @@ namespace LMM01500BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
              .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_INVGRP_DEPT_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_INVGRP_DEPT_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -135,7 +135,7 @@ namespace LMM01500BACK
                 // set action delete
                 poEntity.CACTION = "DELETE";
 
-                lcQuery = "RSP_LM_MAINTAIN_INVGRP_BANK_ACC_DEPT";
+                lcQuery = "RSP_PM_MAINTAIN_INVGRP_BANK_ACC_DEPT";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -157,7 +157,7 @@ namespace LMM01500BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVGRP_BANK_ACC_DEPT {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_INVGRP_BANK_ACC_DEPT {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -210,7 +210,7 @@ namespace LMM01500BACK
                 loConn = loDb.GetConnection("R_DefaultConnectionString");
                 loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_INVGRP_DEPT_DETAIL";
+                var lcQuery = "RSP_PM_GET_INVGRP_DEPT_DETAIL";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -223,7 +223,7 @@ namespace LMM01500BACK
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_INVGRP_DEPT_DETAIL {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_INVGRP_DEPT_DETAIL {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<LMM01511DTO>(loDataTable).FirstOrDefault();
@@ -349,7 +349,7 @@ namespace LMM01500BACK
                 loConn = loDb.GetConnection();
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "SELECT TOP 1 1 FROM LMM_INVGRP_BANK_ACC_DEPT (NOLOCK) " +
+                lcQuery = "SELECT TOP 1 1 FROM PMM_INVGRP_BANK_ACC_DEPT (NOLOCK) " +
                    "WHERE CCOMPANY_ID = @CCOMPANY_ID " +
                    "AND CPROPERTY_ID = @CPROPERTY_ID " +
                    "AND CINVGRP_CODE = @CINVGRP_CODE " +
@@ -386,7 +386,7 @@ namespace LMM01500BACK
                             break;
                     }
                 });
-                lcQueryLog = string.Format("SELECT TOP 1 1 FROM LMM_INVGRP_BANK_ACC_DEPT (NOLOCK) " +
+                lcQueryLog = string.Format("SELECT TOP 1 1 FROM PMM_INVGRP_BANK_ACC_DEPT (NOLOCK) " +
                      "WHERE CCOMPANY_ID = {0} " +
                      "AND CPROPERTY_ID = {1} " +
                      "AND CINVGRP_CODE = {2} " +
@@ -571,7 +571,7 @@ namespace LMM01500BACK
                 loConn = loDb.GetConnection();
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "RSP_LM_MAINTAIN_INVGRP_BANK_ACC_DEPT";
+                lcQuery = "RSP_PM_MAINTAIN_INVGRP_BANK_ACC_DEPT";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -593,7 +593,7 @@ namespace LMM01500BACK
                     //Debug Logs
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                      .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_INVGRP_BANK_ACC_DEPT {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_INVGRP_BANK_ACC_DEPT {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }

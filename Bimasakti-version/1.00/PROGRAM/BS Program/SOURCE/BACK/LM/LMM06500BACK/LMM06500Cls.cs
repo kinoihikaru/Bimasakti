@@ -16,8 +16,8 @@ namespace LMM06500BACK
     public class LMM06500Cls : R_BusinessObject<LMM06500DTO>
     {
 
-        RSP_LM_MAINTAIN_STAFFResources.Resources_Dummy_Class loRsp = new RSP_LM_MAINTAIN_STAFFResources.Resources_Dummy_Class();
-        RSP_LM_UPLOAD_STAFFResources.Resources_Dummy_Class loRspUpload = new RSP_LM_UPLOAD_STAFFResources.Resources_Dummy_Class();
+        RSP_PM_MAINTAIN_STAFFResources.Resources_Dummy_Class loRsp = new RSP_PM_MAINTAIN_STAFFResources.Resources_Dummy_Class();
+        RSP_PM_UPLOAD_STAFFResources.Resources_Dummy_Class loRspUpload = new RSP_PM_UPLOAD_STAFFResources.Resources_Dummy_Class();
 
         private readonly ActivitySource _activitySource;
         private LoggerLMM06500 _Logger;
@@ -39,7 +39,7 @@ namespace LMM06500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                string lcQuery = "RSP_LM_GET_STAFF_LIST";
+                string lcQuery = "RSP_PM_GET_STAFF_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -52,7 +52,7 @@ namespace LMM06500BACK
                      .Where(x => x.ParameterName == "@CCOMPANY_ID" ||
                             x.ParameterName == "@CPROPERTY_ID" ||
                             x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_STAFF_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_STAFF_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -82,7 +82,7 @@ namespace LMM06500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_STAFF_DETAIL";
+                var lcQuery = "RSP_PM_GET_STAFF_DETAIL";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -97,7 +97,7 @@ namespace LMM06500BACK
                             x.ParameterName == "@CPROPERTY_ID" ||
                             x.ParameterName == "@CSTAFF_ID" ||
                             x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_STAFF_DETAIL {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_STAFF_DETAIL {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM06500DTO>(loDataTable).FirstOrDefault();
@@ -125,7 +125,7 @@ namespace LMM06500BACK
 
             try
             {
-                lcQuery = "RSP_LM_MAINTAIN_STAFF";
+                lcQuery = "RSP_PM_MAINTAIN_STAFF";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -192,7 +192,7 @@ namespace LMM06500BACK
                                 x.ParameterName == "@CINACTIVE_NOTE" ||
                                 x.ParameterName == "@CACTION" ||
                                 x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_STAFF {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_STAFF {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -247,7 +247,7 @@ namespace LMM06500BACK
                 // set action delete
                 poEntity.CACTION = "DELETE";
 
-                lcQuery = "RSP_LM_MAINTAIN_STAFF";
+                lcQuery = "RSP_PM_MAINTAIN_STAFF";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -304,7 +304,7 @@ namespace LMM06500BACK
                                 x.ParameterName == "@CINACTIVE_NOTE" ||
                                 x.ParameterName == "@CACTION" ||
                                 x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_STAFF {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_STAFF {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -356,7 +356,7 @@ namespace LMM06500BACK
                 DbConnection loConn = loDb.GetConnection("R_DefaultConnectionString");
                 DbCommand loCmd = loDb.GetCommand();
 
-                string lcQuery = "RSP_LM_ACTIVE_INACTIVE_STAFF";
+                string lcQuery = "RSP_PM_ACTIVE_INACTIVE_STAFF";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -373,7 +373,7 @@ namespace LMM06500BACK
                         x.ParameterName == "@CSTAFF_ID" ||
                         x.ParameterName == "@LACTIVE" ||
                         x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_ACTIVE_INACTIVE_STAFF {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_ACTIVE_INACTIVE_STAFF {@poParameter}", loDbParam);
 
                 loDb.SqlExecQuery(loConn, loCmd, true);
             }

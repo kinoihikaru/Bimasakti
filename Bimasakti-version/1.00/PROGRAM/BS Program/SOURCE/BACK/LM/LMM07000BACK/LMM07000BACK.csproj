@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\COMMON\LM\LMM07000COMMON\LMM07000COMMON.csproj" />
-    <ProjectReference Include="..\LM_SPR\RSP_LM_MAINTAIN_DISCOUNTResources\RSP_LM_MAINTAIN_DISCOUNTResources.csproj" />
+	  <ProjectReference Include="..\..\..\COMMON\LM\LMM07000COMMON\LMM07000COMMON.csproj" />
+	  <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_DISCOUNTResources\RSP_PM_MAINTAIN_DISCOUNTResources.csproj" />
   </ItemGroup>
 	
 	

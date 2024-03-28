@@ -12,8 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\LM\LMM06500COMMON\LMM06500COMMON.csproj" />
-    <ProjectReference Include="..\LM_SPR\RSP_LM_MAINTAIN_STAFFResources\RSP_LM_MAINTAIN_STAFFResources.csproj" />
-    <ProjectReference Include="..\LM_SPR\RSP_LM_UPLOAD_STAFFResources\RSP_LM_UPLOAD_STAFFResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_MAINTAIN_STAFFResources\RSP_PM_MAINTAIN_STAFFResources.csproj" />
+    <ProjectReference Include="..\LM_SPR\RSP_PM_UPLOAD_STAFFResources\RSP_PM_UPLOAD_STAFFResources.csproj" />
   </ItemGroup>
 
 	<ItemGroup>

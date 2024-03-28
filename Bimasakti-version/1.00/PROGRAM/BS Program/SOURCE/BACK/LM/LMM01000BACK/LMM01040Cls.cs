@@ -48,7 +48,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_UTILITY_RATE_GU";
+                var lcQuery = "RSP_PM_GET_CHARGES_UTILITY_RATE_GU";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -61,7 +61,7 @@ namespace LMM01000BACK
                 //Logs Debug
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_CHARGES_UTILITY_RATE_GU {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_CHARGES_UTILITY_RATE_GU {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01040DTO>(loDataTable).FirstOrDefault();
@@ -102,7 +102,7 @@ namespace LMM01000BACK
                 loConn = loDb.GetConnection("R_DefaultConnectionString");
                 loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_MAINTAIN_RATE_GU";
+                var lcQuery = "RSP_PM_MAINTAIN_RATE_GU";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -133,7 +133,7 @@ namespace LMM01000BACK
                     //Logs Debug
                     var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                         .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                    _Logger.LogDebug("EXEC RSP_LM_MAINTAIN_RATE_GU {@poParameter}", loDbParam);
+                    _Logger.LogDebug("EXEC RSP_PM_MAINTAIN_RATE_GU {@poParameter}", loDbParam);
 
                     loDb.SqlExecNonQuery(loConn, loCmd, false);
                 }
@@ -221,7 +221,7 @@ namespace LMM01000BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_CHARGES_UTILITY_RATE_GU";
+                var lcQuery = "RSP_PM_GET_CHARGES_UTILITY_RATE_GU";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -234,7 +234,7 @@ namespace LMM01000BACK
                 //Logs Debug
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
                  .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
-                _Printlogger.LogDebug("EXEC RSP_LM_GET_CHARGES_UTILITY_RATE_GU {@poParameter}", loDbParam);
+                _Printlogger.LogDebug("EXEC RSP_PM_GET_CHARGES_UTILITY_RATE_GU {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loDb.GetConnection(), loCmd, true);
                 loResult = R_Utility.R_ConvertTo<LMM01040DTO>(loDataTable).FirstOrDefault();

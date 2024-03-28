@@ -46,7 +46,7 @@ namespace LMM06500BACK
                 var loConn = loDb.GetConnection("R_DefaultConnectionString");
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_LM_GET_STAFF_BY_SUPERVISOR_LIST";
+                var lcQuery = "RSP_PM_GET_STAFF_BY_SUPERVISOR_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -61,7 +61,7 @@ namespace LMM06500BACK
                         x.ParameterName == "@CPROPERTY_ID" ||
                         x.ParameterName == "@COLD_SUPERVISOR_ID" ||
                         x.ParameterName == "@CUSER_ID").Select(x => x.Value);
-                _Logger.LogDebug("EXEC RSP_LM_GET_STAFF_BY_SUPERVISOR_LIST {@poParameter}", loDbParam);
+                _Logger.LogDebug("EXEC RSP_PM_GET_STAFF_BY_SUPERVISOR_LIST {@poParameter}", loDbParam);
 
                 var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true);
 
@@ -91,7 +91,7 @@ namespace LMM06500BACK
                 loConn = loDb.GetConnection();
                 loCmd = loDb.GetCommand();
 
-                lcQuery = "RSP_LM_MOVE_STAFF";
+                lcQuery = "RSP_PM_MOVE_STAFF";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 

@@ -223,7 +223,7 @@ namespace LMM06500MODEL
                     COMPANY_ID = CompanyID,
                     USER_ID = UserId,
                     KEY_GUID = pcKeyGuid,
-                    RESOURCE_NAME = "RSP_LM_UPLOAD_STAFFResources"
+                    RESOURCE_NAME = "RSP_PM_UPLOAD_STAFFResources"
                 };
 
                 loCls = new R_ProcessAndUploadClient(pcModuleName: "LM",
